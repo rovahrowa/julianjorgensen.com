@@ -5,8 +5,8 @@ let store = require('configureStore').configure();
 class shopifyAPI {
   constructor() {
     this.buyClient = ShopifyBuy.buildClient({
-      apiKey: ENV.SHOPIFY_BUY_BUTTON_ACCESS_TOKEN,
-      domain: ENV.SHOPIFY_SHOP + '.myshopify.com',
+      apiKey: '5bdd1cfb6d32ad4160261643dda11f1c',
+      domain: 'wishbone-hats.myshopify.com',
       appId: 6
     });
 
