@@ -17,7 +17,7 @@ class shopifyAPI {
     return new Promise((resolve, reject) => {
       this.buyClient.createCart().then((newCart) => {
         localStorage.setItem('lastCartId', newCart.id);
-        console.log('created new cart', newCart);
+        // console.log('created new cart', newCart);
         // set singleton cart object to reference shopify cart
         this.cart = newCart;
 
