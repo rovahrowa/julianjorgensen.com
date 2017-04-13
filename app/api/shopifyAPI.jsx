@@ -5,9 +5,9 @@ let store = require('configureStore').configure();
 class shopifyAPI {
   constructor() {
     this.buyClient = ShopifyBuy.buildClient({
-      apiKey: ENV.SHOPIFY_BUY_API,
-      domain: ENV.SHOPIFY_BUY_DOMAIN,
-      appId: ENV.SHOPIFY_BUY_APP_ID
+      apiKey: ENV.SHOPIFY_BUY_BUTTON_ACCESS_TOKEN,
+      domain: ENV.SHOPIFY_SHOP + '.myshopify.com',
+      appId: 6
     });
 
     this.cart = {};

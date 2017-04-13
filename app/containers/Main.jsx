@@ -16,8 +16,8 @@ class Main extends React.Component{
 
   render() {
     const meta = {
-      title: 'Rep Your City',
-      description: 'Rep Your City description',
+      title: 'Wishbone Hats',
+      description: 'Wishbone Hats',
       meta: {
         charset: 'utf-8'
       },

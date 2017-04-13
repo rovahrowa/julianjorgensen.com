@@ -4,14 +4,6 @@ $footer-height: 120;
 body{
 }
 
-#main{
-  padding: rem-calc(150 0 0);
-
-  &.subpage{
-    padding-top: rem-calc(180);
-  }
-}
-
 #main-container{
   min-height: calc(100vh - #{rem-calc($nav-height + $footer-height)});
 }

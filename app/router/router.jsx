@@ -8,11 +8,8 @@ import Main from 'Main';
 import Index from 'Index';
 import Products from 'Products';
 import Product from 'Product';
-import Collections from 'Collections';
-import Collection from 'Collection';
 import Upload from 'Upload';
 import OrderStatus from 'OrderStatus';
-import Map from 'Map';
 import Login from 'Login';
 import About from 'About';
 import Contact from 'Contact';
@@ -38,12 +35,7 @@ export default (
       <IndexRoute path="/" component={Index} />
       <Route path="products" component={Products} />
       <Route path="product/:productId" component={Product} />
-      <Route path='collections' component={Collections} />
-      <Route path='collection/:collectionId' component={Collection} />
       <Route path="my-city" component={Products} />
-      <Route path="upload" component={Upload} />
-      <Route path="order-status" component={OrderStatus} />
-      <Route path="map" component={Map} />
       <Route path="login" component={Login} />
       <Route path="about" component={About} />
       <Route path="contact" component={Contact} />
