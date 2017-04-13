@@ -8,9 +8,9 @@ class ProductItem extends React.Component {
     return (
       <div className="product-item">
         <div className="product-item-inner">
-          <Link to={`/product/${id}`}><div className="product-item-image" style={{backgroundImage: 'url(' + image + ')'}}></div></Link>
+          <Link to={`/hat/${id}`}><div className="product-item-image" style={{backgroundImage: 'url(' + image + ')'}}></div></Link>
           <hr />
-          <h6 className="product-item-title"><Link to={`/product/${id}`}>{title}</Link></h6>
+          <h6 className="product-item-title"><Link to={`/hat/${id}`}>{title}</Link></h6>
           <div className="author">
             <div className="author__photo" style={{backgroundImage: 'url(' + image + ')'}}></div>
             <div className="author__info">

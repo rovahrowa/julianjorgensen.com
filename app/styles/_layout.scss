@@ -21,26 +21,35 @@ body{
 }
 
 #site-footer{
-  @include flex();
-  @include flex-align(center);
-  flex-direction: column;
-  text-align: center;
-  background-color: $black;
   margin-top: rem-calc(60);
   padding: rem-calc(60 0);
-  color: $white;
+  &, a{
+    color: $grey60;    
+  }
 
   .footer-nav{
     padding: 0;
     margin-bottom: rem-calc(30);
+
+    .footer-nav-headline{
+      text-transform: uppercase;
+      border-bottom: 1px solid $grey60;
+      padding-bottom: rem-calc(8);
+      margin-bottom: rem-calc(20);
+    }
+  }
+
+  .footer-copyright{
+    text-align: center;
+  }
+
+  .footer-payment{
+    text-align: center;
+    margin-top: rem-calc(30);
+    font-size: rem-calc(20);
     li{
       display: inline-block;
-      text-transform: uppercase;
-      font-weight: bold;
-      margin-right: rem-calc(40);
-      &:last-child{
-        margin-right: 0;
-      }
+      margin-right: rem-calc(30);
     }
   }
 }

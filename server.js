@@ -1,9 +1,10 @@
+require('dotenv').config();
 let express = require('express');
 let app = express();
 let logger = require('morgan');
 
 // Set port
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 3000));
 
 // Set static folder
 app.use(express.static(__dirname + '/public'));
@@ -12,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(logger('dev')); // Log requests to API using morgan
 
 // Serve the index file
-app.get('/', function(request, response) {
+app.get('*', function(request, response) {
   response.sendFile(__dirname + '/public/index.html');
 });
 

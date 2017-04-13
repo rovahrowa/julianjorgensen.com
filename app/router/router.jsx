@@ -33,9 +33,8 @@ export default (
   <Router history={browserHistory}>
     <Route path="/" component={Main}>
       <IndexRoute path="/" component={Index} />
-      <Route path="products" component={Products} />
-      <Route path="product/:productId" component={Product} />
-      <Route path="my-city" component={Products} />
+      <Route path="hats" component={Products} />
+      <Route path="hat/:productId" component={Product} />
       <Route path="login" component={Login} />
       <Route path="about" component={About} />
       <Route path="contact" component={Contact} />
