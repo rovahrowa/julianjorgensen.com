@@ -2,7 +2,6 @@ import React from 'react';
 import Header from 'Header';
 import Footer from 'Footer';
 import DocumentMeta from 'react-document-meta';
-import Cart from 'Cart';
 
 class Main extends React.Component{
   constructor(props){
@@ -16,8 +15,8 @@ class Main extends React.Component{
 
   render() {
     const meta = {
-      title: 'Wishbone Hats',
-      description: 'Wishbone Hats',
+      title: 'Julian Jorgensen',
+      description: 'UX &amp; Front-End Development',
       meta: {
         charset: 'utf-8'
       },
@@ -33,7 +32,6 @@ class Main extends React.Component{
         <DocumentMeta {...meta} />
         <Header />
         <div id="main-container">
-          <Cart />
           {this.props.children}
         </div>
         <Footer />

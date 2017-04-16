@@ -1,13 +1,10 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import {productsReducer, collectionsReducer, cartReducer, navReducer} from 'reducers';
+import {navReducer} from 'reducers';
 
 export let configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
-    products: productsReducer,
-    collections: collectionsReducer,
-    cart: cartReducer,
     nav: navReducer
   });
 

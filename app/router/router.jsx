@@ -6,11 +6,7 @@ let store = require('configureStore').configure();
 import DocumentMeta from 'react-document-meta';
 import Main from 'Main';
 import Index from 'Index';
-import Products from 'Products';
-import Product from 'Product';
-import Upload from 'Upload';
-import OrderStatus from 'OrderStatus';
-import Login from 'Login';
+import Invoice from 'Invoice';
 import About from 'About';
 import Contact from 'Contact';
 
@@ -33,97 +29,9 @@ export default (
   <Router history={browserHistory}>
     <Route path="/" component={Main}>
       <IndexRoute path="/" component={Index} />
-      <Route path="hats" component={Products} />
-      <Route path="hat/:productId" component={Product} />
-      <Route path="login" component={Login} />
+      <Route path="invoice/:id" component={Invoice} />
       <Route path="about" component={About} />
       <Route path="contact" component={Contact} />
     </Route>
   </Router>
 );
-
-
-// const componentRoutes = {
-//   component: 'Main',
-//   path: '/',
-//   indexRoute: { component: 'Index' },
-//   childRoutes: [
-//     {
-//       path: 'collections',
-//       getComponent(location, cb) {
-//         System.import('Collections')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'collection/:collectionId',
-//       getComponent(location, cb) {
-//         System.import('Collection')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'products',
-//       getComponent(location, cb) {
-//         System.import('Products')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'product/productId',
-//       getComponent(location, cb) {
-//         System.import('Product')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'my-city',
-//       getComponent(location, cb) {
-//         System.import('Products')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'about',
-//       getComponent(location, cb) {
-//         System.import('About')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'contact',
-//       getComponent(location, cb) {
-//         System.import('Contact')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'upload',
-//       getComponent(location, cb) {
-//         System.import('Upload')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'map',
-//       getComponent(location, cb) {
-//         System.import('Map')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'login',
-//       getComponent(location, cb) {
-//         System.import('Login')
-//           .then(module => cb(null, module.default));
-//       }
-//     },
-//     {
-//       path: 'order-status',
-//       getComponent(location, cb) {
-//         System.import('OrderStatus')
-//           .then(module => cb(null, module.default));
-//       }
-//     }
-//   ]
-// };

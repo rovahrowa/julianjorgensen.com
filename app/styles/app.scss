@@ -15,17 +15,8 @@
 @import "vendor/react-modal";
 
 // Components
+@import "m-payment-form";
 @import "buttons";
-@import "cart";
-
-@import "products/products-listings";
-@import "products/products-carousel";
-@import "products/product-index";
-@import "products/product";
-
-@import "collections/collections-listings";
-@import "collections/collection-index";
-@import "collections/collection";
 
 @import "layout";
 @import "m-header";

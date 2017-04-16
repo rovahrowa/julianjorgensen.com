@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link, IndexLink} from 'react-router';
 let {connect} = require('react-redux');
-let cartActions = require('cartActions');
 
 class Header extends React.Component {
   constructor(){
@@ -9,22 +8,18 @@ class Header extends React.Component {
   }
 
   render() {
-    let {dispatch, cartItems} = this.props;
+    let {dispatch} = this.props;
 
     return (
       <header id="site-header">
         <div id="site-logo">
-          <IndexLink to="/" activeClassName="active"><img src="/images/logo.png" /></IndexLink>
+          <IndexLink to="/" activeClassName="active">Logo</IndexLink>
         </div>
 
         <nav id="site-nav">
           <li className="site-nav-item"><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-          <li className="site-nav-item"><Link to="/hats" activeClassName="active">Hats</Link></li>
           <li className="site-nav-item"><Link to="/about" activeClassName="active">About</Link></li>
           <li className="site-nav-item"><Link to="/contact" activeClassName="active">Contact</Link></li>
-          <li className="site-nav-item"><Link to="/categories" activeClassName="active" onClick={()=>{
-            dispatch(cartActions.openCart());
-          }}>Cart</Link></li>
         </nav>
       </header>
     )
@@ -33,8 +28,5 @@ class Header extends React.Component {
 
 export default connect(
   (state) => {
-    return {
-      cartItems: state.cart.lineItemsCount
-    }
   }
 )(Header);
