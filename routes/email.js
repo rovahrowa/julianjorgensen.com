@@ -55,10 +55,18 @@ router.route('/invoice')
   	if (signature === hash) {
       console.log('\n\n\n\n\n\n\nQuickBooks');
       console.log(payload);
+      console.log('\n\n');
+      console.log(payload.["eventNotifications"]);
+      console.log('\n\n');
+      console.log(payload.[eventNotifications][0]);
+      console.log('\n\n');
+      console.log(payload.[eventNotifications][0].dataChangeEvent);
       console.log('\n\n\n\n\n\n\n');
 
-      let invoiceId = payload.eventNotifications[0].dataChangeEvent.entities[0].id;
-      let invoiceToken = crypto.createHash('md5').update(payload.eventNotifications[0].dataChangeEvent.entities[0].lastUpdated).digest('hex');
+      let invoice = payload.eventNotifications[0].dataChangeEvent.entities[0];
+
+      let invoiceId = invoice.id;
+      let invoiceToken = crypto.createHash('md5').update(invoice.lastUpdated).digest('hex');
 
       // SEND INVOICE EMAIL
       let contextObject = {
@@ -89,7 +97,7 @@ router.route('/test')
   .get(function (req, res) {
     let payload = {"eventNotifications":[{"realmId":"193514525151214","dataChangeEvent":{"entities":[{"name":"Invoice","id":"132","operation":"Update","lastUpdated":"2017-04-16T06:18:04.000Z"}]}}]}
     console.log(payload);
-    res.send(payload.eventNotifications[0].dataChangeEvent.entities[0].id);
+    res.send(payload.eventNotifications[0].dataChangeEvent.entities[0].lastUpdated);
   });
 
 // Send the get a quote email to prospect client
