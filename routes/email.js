@@ -3,7 +3,7 @@ let router = express.Router();
 let app = require('../app');
 let crypto = require('crypto');
 let bodyParser = require('body-parser');
-let util = require('util/util');
+let util = require('../util/util');
 
 let nodemailer = require('nodemailer');
 let mg = require('nodemailer-mailgun-transport');
@@ -61,7 +61,7 @@ router.route('/invoice')
   	if (util.isValidPayload(signature, token, payload)) {
       let invoiceId = invoice.id;
       let secretVariable = 'Invoice' + invoice.id;
-      let invoiceToken = crypto.createHash('md5').update(secretVariable).digest('hex');
+      let invoiceToken = util.createToken(secretVariable);
 
       console.log('Email secret variable:');
       console.log(secretVariable);

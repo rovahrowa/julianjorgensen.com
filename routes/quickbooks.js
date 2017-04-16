@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 var app = require('../app');
+let util = require('../util/util');
 let crypto = require('crypto');
 
 // Invoice route for Quickbooks
@@ -11,14 +12,14 @@ router.route('/invoice/:id')
       if(invoice){
         // generate unique md5 token
         let secretVariable = 'Invoice' + invoice.Id;
-        let key = crypto.createHash('md5').update(secretVariable).digest('hex');
+        let token = util.createToken(secretVariable);
 
         console.log('secret variable:');
         console.log(secretVariable);
-        console.log(key);
+        console.log(token);
 
         // if the url token parameter is the correct key, then show the invoice
-        if(req.query.token === key){
+        if(req.query.token === token){
           res.json(invoice);
         }else{
           res.status(401).send('You are unauthorized to see this invoice.');

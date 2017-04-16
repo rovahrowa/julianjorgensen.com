@@ -14,4 +14,10 @@ function isValidPayload(signature, token, payload) {
 	return hash;
 }
 
+function createToken(secretVariable) {
+	let token = crypto.createHash('md5').update(secretVariable).digest('hex');
+	return token;
+}
+
 module.exports.isValidPayload = isValidPayload;
+module.exports.createToken = createToken;
