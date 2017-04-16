@@ -58,7 +58,12 @@ router.route('/invoice')
 
   	if (signature === hash) {
       let invoiceId = invoice.id;
-      let invoiceToken = crypto.createHash('md5').update(invoice.lastUpdated).digest('hex');
+      let secretVariable = invoice.lastUpdated.substring(0, 13);
+      let invoiceToken = crypto.createHash('md5').update(secretVariable).digest('hex');
+
+      console.log('Email secret variable:');
+      console.log(secretVariable);
+      console.log(invoiceToken);
 
       // SEND INVOICE EMAIL
       let contextObject = {

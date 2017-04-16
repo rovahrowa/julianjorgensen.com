@@ -11,8 +11,12 @@ router.route('/invoice/:id')
     qbo.getInvoice(req.params.id, function(e, invoice) {
       if(invoice){
         // generate unique md5 token
-        let secretVariable = invoice.MetaData.CreateTime;
+        let secretVariable = invoice.MetaData.LastUpdatedTime.substring(0, 13);
         let key = crypto.createHash('md5').update(secretVariable).digest('hex');
+
+        console.log('secret variable:');
+        console.log(secretVariable);
+        console.log(key);
 
         // if the url token parameter is the correct key, then show the invoice
         if(req.query.token === key){
