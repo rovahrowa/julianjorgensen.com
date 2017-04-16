@@ -20,18 +20,29 @@ class Invoice extends React.Component {
     // Retrieve invoice data
     axios.get('/api/invoice/' + this.props.params.id + '?token=' + this.props.location.query.token)
       .then((response) => {
+        // if invoice has a email then use that, otherwise use the email(s) associated with the customer
+        let email;
+        if (response.data.BillEmail){
+          email = response.data.BillEmail.Address
+        }else if (response.data.PrimaryEmailAddr){
+          email = response.data.PrimaryEmailAddr.Address
+        }else{
+          email = null;
+        }
+
+        // set state
         this.setState({
           invoiceNumber: response.data.DocNumber,
           totalAmount: response.data.TotalAmt,
           currency: response.data.CurrencyRef.value,
-          customerEmail: (response.data.PrimaryEmailAddr ? response.data.PrimaryEmailAddr.Address : ''),
+          email: email,
           paid: response.data.CustomField[0].StringValue
         });
       })
       .catch((error) => {
         console.log('Error getting invoice data from api...', error);
         this.setState({
-          error: error.response.data
+          systemError: true
         });
       });
   }
@@ -47,15 +58,16 @@ class Invoice extends React.Component {
       return (
         <div className="container">
           <div className="callout success">{ this.state.paid === 'yes' ? 'Paid!' : 'Outstanding payment' }</div>
-          <div className="callout alert">{ this.state.error }</div>
+          <div className={`callout alert ${this.state.systemError ? '' : 'hide'}`}>There was an error. Please contact me if it persists: <a href="mailto:me@julianjorgensen.com">me@julianjorgensen.com</a></div>
           <h1>Invoice total amount: { this.state.totalAmount }</h1>
 
           <PaymentForm
             invoiceId={this.props.params.id}
             invoiceNumber={this.state.invoiceNumber}
             amount={this.state.totalAmount}
-            email={this.state.customerEmail}
+            email={this.state.email}
             currency={this.state.currency}
+            paid={this.state.paid}
             markAsPaid={this.markAsPaid}
           />
         </div>

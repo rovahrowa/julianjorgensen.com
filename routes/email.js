@@ -4,6 +4,8 @@ let app = require('../app');
 let crypto = require('crypto');
 let bodyParser = require('body-parser');
 let util = require('../util/util');
+let numeral = require('numeral');
+let dateFormat = require('dateformat');
 
 let nodemailer = require('nodemailer');
 let mg = require('nodemailer-mailgun-transport');
@@ -40,55 +42,113 @@ let nodemailerMailgun = nodemailer.createTransport(mg(auth));
 router.route('/invoice')
   .post(function (req, res) {
     let payload = req.body;
-    let invoice = payload.eventNotifications[0].dataChangeEvent.entities[0];
-    let signature = req.get('intuit-signature');
+    let invoiceRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
+    // let signature = req.get('intuit-signature');
     let token = process.env.QBO_WEBHOOK_TOKEN;
 
     // if signature is empty return 401
-		if (!signature) {
-			return res.status(401).send('FORBIDDEN');
-		}
+		// if (!signature) {
+		// 	return res.status(401).send('FORBIDDEN');
+		// }
 
     // if payload is empty, don't do anything
-		if (!payload) {
-			return res.status(200).send('success');
-		}
-
-    console.log('signature: ', signature);
-    console.log('token: ', token);
+		// if (!payload) {
+		// 	return res.status(200).send('success');
+		// }
 
 		// validate signature
-  	if (util.isValidPayload(signature, token, payload)) {
-      let invoiceId = invoice.id;
-      let secretVariable = 'Invoice' + invoice.id;
-      let invoiceToken = util.createToken(secretVariable);
+  	// if (util.isValidPayload(signature, token, payload)) {
 
-      console.log('Email secret variable:');
-      console.log(secretVariable);
-      console.log(invoiceToken);
+      // Get details about the invoice and customer
+      let getInvoiceDetails = new Promise((resolve, reject) => {
+        qbo.getInvoice(invoiceRef.id, (error, invoice) => {
+          if (invoice){
+            let customerId = invoice.CustomerRef.value;
+            qbo.getCustomer(customerId, (error, customer) => {
+              if(customer){
+                customer = customer;
+                invoice = invoice;
+                resolve([customer, invoice]);
+              }else{
+                reject('While sending the invoice email, there was an error getting quickbooks customer: ' + error);
+              }
+            });
+          }else{
+            reject('While sending the invoice email, there was an error getting quickbooks invoice: ' + error);
+          }
+        });
+      });
 
-      // SEND INVOICE EMAIL
-      let contextObject = {
-        invoiceId: invoiceId,
-        invoiceToken: invoiceToken,
-      };
+      getInvoiceDetails.then((result) => {
+        let customer = result[0];
+        let invoice = result[1];
 
-      let mailOptions = {
-        from: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
-        to: [{name:'Namza', address:'me@julianjorgensen.com'}], // An array if you have multiple recipients.
-        subject: 'Invoice #' + invoiceId,
-        template: {
-          name: './emails/invoice.pug',
-          engine: 'pug',
-          context: contextObject
+        // Create token for email button
+        let invoiceId = invoice.Id;
+        let secretVariable = 'Invoice' + invoice.Id;
+        let invoiceToken = util.createToken(secretVariable);
+
+        // Create variables
+        let invoiceNumber = invoice.DocNumber;
+        let invoiceAmount = numeral(invoice.TotalAmt).format('$0,0.00');
+        let invoiceDueDate = dateFormat(invoice.DueDate, "mmmm dS, yyyy");
+        let customerIsActive = customer.Active;
+        let customerName = customer.GivenName;
+        let companyName = customer.CompanyName;
+
+        // if invoice has an email then use that, otherwise use the email(s) associated with the customer
+        let email;
+        let emailCc;
+        if (invoice.BillEmail){
+          email = invoice.BillEmail.Address;
+        }else if (customer.PrimaryEmailAddr){
+          email = customer.PrimaryEmailAddr.Address;
+        }else{
+          email = null;
         }
-      };
+        if (invoice.BillEmailCc){
+          emailCc = invoice.BillEmailCc.Address;
+        }else{
+          emailCc = null;
+        }
 
-      sendMail(mailOptions);
-      return res.status(200).send('success');
-  	}else{
-      return res.status(401).send('FORBIDDEN');
-    }
+        // if customer is active and has a email (or the invoice has an email specified)
+        if (customerIsActive && email){
+          let contextObject = {
+            invoiceId,
+            invoiceNumber,
+            invoiceAmount,
+            invoiceDueDate,
+            invoiceToken,
+            customerName,
+            companyName
+          };
+
+          let mailOptions = {
+            from: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
+            to: [{name:customerName, address:email}], // An array if you have multiple recipients.
+            subject: 'Invoice #' + invoiceNumber,
+            template: {
+              name: './emails/invoice.pug',
+              engine: 'pug',
+              context: contextObject
+            }
+          };
+          // if CC exists, then also include that the object
+          if (emailCc){
+            Object.assign({cc: emailCc}, mailOptions);
+          }
+
+          // Finally send the mail!
+          sendMail(mailOptions);
+          return res.status(200).send('success');
+      	// }else{
+        //   return res.status(401).send('FORBIDDEN');
+        // }
+      }
+    }).catch((error) => {
+      console.log('Error getting invoice and customer details...', error);
+    });
   });
 
 

@@ -102,7 +102,15 @@ class PaymentForm extends React.Component {
   }
 
   render() {
-    let {amount, invoiceNumber} = this.props;
+    let {amount, invoiceNumber, paid} = this.props;
+
+    let ctaButton = () => {
+      if (paid){
+        return <div class="callout">Payment received. Thank you!</div>
+      }else{
+        return <button className="button" disabled={this.state.submittingPayment}>Pay ${amount}</button>
+      }
+    }
 
     return (
       <div>
@@ -120,9 +128,8 @@ class PaymentForm extends React.Component {
             <div id="card-errors"></div>
           </div>
 
-          <button className="button" disabled={this.state.submittingPayment}>Pay ${amount}</button>
+          {ctaButton()}
         </form>
-        <span>{ this.state.paymentComplete ? 'Payment completed' : 'Payment has not been completed' }</span><br />
       </div>
     )
   }

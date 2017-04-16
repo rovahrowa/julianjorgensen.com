@@ -10,7 +10,7 @@ let merge = require('merge'), original, cloned;
 router.route('/invoice/:id')
   .get(function (req, res) {
     console.log('getting data from Quickbooks...');
-    qbo.getInvoice(req.params.id, function(e, invoice) {
+    qbo.getInvoice(req.params.id, function(error, invoice) {
       if(invoice){
         // generate unique md5 token
         let secretVariable = 'Invoice' + invoice.Id;
@@ -36,7 +36,7 @@ router.route('/invoice/:id')
           res.status(401).send('You are unauthorized to see this invoice.');
         }
       }else{
-        res.json(e);
+        res.json(error);
       }
     });
   });
