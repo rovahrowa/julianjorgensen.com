@@ -41,10 +41,7 @@ router.route('/invoice')
     let payload = req.body;
     let invoice = payload.eventNotifications[0].dataChangeEvent.entities[0];
     let signature = req.get('intuit-signature');
-
-    console.log('invoice: \n\n\n\n\n');
-    console.log(invoice);
-    console.log('\n\n\n\n\n');
+    let QBO_WEBHOOK_TOKEN = process.env.QBO_WEBHOOK_TOKEN;
 
     // if signature is empty return 401
 		if (!signature) {
@@ -57,7 +54,7 @@ router.route('/invoice')
 		}
 
 		// validate signature
-    var hash = crypto.createHmac('sha256', process.env.QBO_WEBHOOK_TOKEN).update(payload).digest('base64');
+    var hash = crypto.createHmac('sha256', QBO_WEBHOOK_TOKEN).update(JSON.stringify(payload)).digest('base64');
 
   	if (signature === hash) {
       let invoiceId = invoice.id;
