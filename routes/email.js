@@ -58,6 +58,8 @@ router.route('/invoice')
       console.log('\n\n');
       console.log(payload.["eventNotifications"]);
       console.log('\n\n');
+      console.log(payload.["eventNotifications"][0]);
+      console.log('\n\n');
       console.log(payload.[eventNotifications][0]);
       console.log('\n\n');
       console.log(payload.[eventNotifications][0].dataChangeEvent);
