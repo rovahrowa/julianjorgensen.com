@@ -38,34 +38,49 @@ let nodemailerMailgun = nodemailer.createTransport(mg(auth));
 // ===================
 router.route('/invoice')
   .post(function (req, res) {
-    console.log('\n\n\n\n\n\n\nQuickBooks')
-    console.log(req.body);
-    console.log('\n\n\n\n\n\n\n')
-    // if (req.token == process.env.QBO_WEBHOOK_TOKEN){
-    //   console.log('success!');
-    //   console.log(req);
-    // }
-    // let {email, projectName, name} = req.body;
+    let payload = JSON.stringify(req.body);
+    let signature = req.get('intuit-signature');
 
-    let contextObject = {
-      emailSummary: 'Invoice',
-      name: 'QA',
-      projectName: 'testa123',
-    };
+    // if signature is empty return 401
+		if (!signature) {
+			return res.status(401).send('FORBIDDEN');
+		}
 
-    let mailOptions = {
-      from: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
-      to: [{name:'Namza', address:'me@julianjorgensen.com'}], // An array if you have multiple recipients.
-      subject: 'Your project',
-      template: {
-        name: './emails/estimate.pug',
-        engine: 'pug',
-        context: contextObject
-      }
-    };
+    // if payload is empty, don't do anything
+		if (!payload) {
+			return res.status(200).send('success');
+		}
 
-    sendMail(mailOptions);
-    res.status(200).send('success');
+		// validate signature
+    var hash = crypto.createHmac('sha256', process.env.QBO_WEBHOOK_TOKEN).update(payload).digest('base64');
+  	if (signature === hash) {
+      console.log('\n\n\n\n\n\n\nQuickBooks');
+      console.log(payload);
+      console.log('\n\n\n\n\n\n\n');
+
+      // SEND INVOICE EMAIL
+      let contextObject = {
+        emailSummary: 'Invoice',
+        name: 'QA',
+        projectName: 'testa123',
+      };
+
+      let mailOptions = {
+        from: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
+        to: [{name:'Namza', address:'me@julianjorgensen.com'}], // An array if you have multiple recipients.
+        subject: 'Your project',
+        template: {
+          name: './emails/estimate.pug',
+          engine: 'pug',
+          context: contextObject
+        }
+      };
+
+      sendMail(mailOptions);
+      return res.status(200).send('success');
+  	}else{
+      return res.status(401).send('FORBIDDEN');
+    }
   });
 
 // Send the get a quote email to prospect client
