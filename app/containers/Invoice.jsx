@@ -29,14 +29,16 @@ class Invoice extends React.Component {
         axios.get('/api/customer/' + response.data.CustomerRef.value)
           .then((response) => {
             this.setState({
-              customerData: response.data
+              customerData: response.data,
+              customerEmail: (response.data.PrimaryEmailAddr ? response.data.PrimaryEmailAddr.Address : '')
             });
           })
           .catch((error) => {
-            console.log('Error getting customer data from Quickbooks...', error);
+            console.log('Error getting customer data from api...', error);
           });
       })
       .catch((error) => {
+        console.log('Error getting invoice data from api...', error);
         this.setState({
           error: error.response.data
         });
@@ -56,11 +58,11 @@ class Invoice extends React.Component {
           <div className="callout success">{ this.state.paid === 'yes' ? 'Paid!' : 'Outstanding payment' }</div>
           <div className="callout alert">{ this.state.error }</div>
           <h1>Invoice total amount: { this.state.invoiceData.TotalAmt }</h1>
-          {/* <p>Customer email: { this.state.customerData.email }</p> */}
+
           <PaymentForm
             invoiceId={this.props.params.id}
             amount={this.state.invoiceData.TotalAmt}
-            email={this.state.customerData.PrimaryEmailAddr.Address}
+            email={this.state.customerEmail}
             currency={this.state.invoiceData.CurrencyRef.value}
             markAsPaid={this.markAsPaid}
           />
