@@ -42,6 +42,7 @@ router.route('/invoice')
     let payload = req.body;
     let invoice = payload.eventNotifications[0].dataChangeEvent.entities[0];
     let signature = req.get('intuit-signature');
+    let token = process.env.QBO_WEBHOOK_TOKEN;
 
     // if signature is empty return 401
 		if (!signature) {
@@ -53,8 +54,12 @@ router.route('/invoice')
 			return res.status(200).send('success');
 		}
 
+    console.log('signature: ', signature);
+    console.log('token: ', token);
+
+
 		// validate signature
-  	if (util.isValidPayload(signature, process.env.QBO_WEBHOOK_TOKEN, payload)) {
+  	if (util.isValidPayload(signature, token, payload)) {
       let invoiceId = invoice.id;
       let secretVariable = 'Invoice' + invoice.id;
       let invoiceToken = crypto.createHash('md5').update(secretVariable).digest('hex');
