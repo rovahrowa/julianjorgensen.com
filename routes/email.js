@@ -56,14 +56,9 @@ router.route('/invoice')
       console.log('\n\n\n\n\n\n\nQuickBooks');
       console.log(payload);
       console.log('\n\n');
-      console.log(payload.["eventNotifications"]);
+      console.log(payload.eventNotifications.dataChangeEvent);
+      console.log(payload.eventNotifications[0]);
       console.log('\n\n');
-      console.log(payload.["eventNotifications"][0]);
-      console.log('\n\n');
-      console.log(payload.[eventNotifications][0]);
-      console.log('\n\n');
-      console.log(payload.[eventNotifications][0].dataChangeEvent);
-      console.log('\n\n\n\n\n\n\n');
 
       let invoice = payload.eventNotifications[0].dataChangeEvent.entities[0];
 
