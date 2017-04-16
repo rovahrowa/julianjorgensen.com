@@ -3,6 +3,8 @@ let router = express.Router();
 var app = require('../app');
 let util = require('../util/util');
 let crypto = require('crypto');
+let merge = require('merge'), original, cloned;
+
 
 // Invoice route for Quickbooks
 router.route('/invoice/:id')
@@ -14,34 +16,27 @@ router.route('/invoice/:id')
         let secretVariable = 'Invoice' + invoice.Id;
         let token = util.createToken(secretVariable);
 
-        console.log('secret variable:');
-        console.log(secretVariable);
-        console.log(token);
-
         // if the url token parameter is the correct key, then show the invoice
         if(req.query.token === token){
-          res.json(invoice);
+          // get customer data too
+          console.log('getting customer data based on invoice...');
+          let customerId = invoice.CustomerRef.value;
+          qbo.getCustomer(customerId, function(error, customer) {
+            if(customer){
+              console.log('we found this customer: ', customer);
+
+              let invoiceAndCustomer = merge(invoice, customer);
+              res.json(invoiceAndCustomer).end();
+            }else{
+              console.log('there was an error getting quickbooks customer: ', error);
+              res.json(error).end();
+            }
+          });
         }else{
           res.status(401).send('You are unauthorized to see this invoice.');
         }
       }else{
         res.json(e);
-      }
-    });
-  });
-
-
-// Customer route for Quickbooks
-router.route('/customer/:id')
-  .get(function (req, res) {
-    let secretVariable = 'Invoice' + invoice.Id;
-    let token = req.params.token;
-    console.log('Getting quickbooks customer ' + req.params.id + '...');
-    qbo.getCustomer(req.params.id, function(error, customer) {
-      if(customer){
-        res.json(customer);
-      }else{
-        res.json(error);
       }
     });
   });

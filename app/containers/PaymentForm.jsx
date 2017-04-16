@@ -102,7 +102,7 @@ class PaymentForm extends React.Component {
   }
 
   render() {
-    let {amount} = this.props;
+    let {amount, invoiceNumber} = this.props;
 
     return (
       <div>
@@ -111,7 +111,7 @@ class PaymentForm extends React.Component {
           onError={this.handleScriptError.bind(this)}
           onLoad={this.createStripeElements.bind(this)}
         />
-
+        <h3>Invoice #{invoiceNumber}</h3>
         <form onSubmit={this.handleSubmit.bind(this)} id="payment-form">
           <div class="form-row">
             <label for="card-element">Credit or debit card</label>

@@ -21,21 +21,12 @@ class Invoice extends React.Component {
     axios.get('/api/invoice/' + this.props.params.id + '?token=' + this.props.location.query.token)
       .then((response) => {
         this.setState({
-          invoiceData: response.data,
+          invoiceNumber: response.data.DocNumber,
+          totalAmount: response.data.TotalAmt,
+          currency: response.data.CurrencyRef.value,
+          customerEmail: (response.data.PrimaryEmailAddr ? response.data.PrimaryEmailAddr.Address : ''),
           paid: response.data.CustomField[0].StringValue
         });
-
-        // Retrieve customer data
-        axios.get('/api/customer/' + response.data.CustomerRef.value)
-          .then((response) => {
-            this.setState({
-              customerData: response.data,
-              customerEmail: (response.data.PrimaryEmailAddr ? response.data.PrimaryEmailAddr.Address : '')
-            });
-          })
-          .catch((error) => {
-            console.log('Error getting customer data from api...', error);
-          });
       })
       .catch((error) => {
         console.log('Error getting invoice data from api...', error);
@@ -52,18 +43,19 @@ class Invoice extends React.Component {
   }
 
   render() {
-    if (this.state.invoiceData && this.state.customerData){
+    if (this.state.invoiceNumber){
       return (
         <div className="container">
           <div className="callout success">{ this.state.paid === 'yes' ? 'Paid!' : 'Outstanding payment' }</div>
           <div className="callout alert">{ this.state.error }</div>
-          <h1>Invoice total amount: { this.state.invoiceData.TotalAmt }</h1>
+          <h1>Invoice total amount: { this.state.totalAmount }</h1>
 
           <PaymentForm
             invoiceId={this.props.params.id}
-            amount={this.state.invoiceData.TotalAmt}
+            invoiceNumber={this.state.invoiceNumber}
+            amount={this.state.totalAmount}
             email={this.state.customerEmail}
-            currency={this.state.invoiceData.CurrencyRef.value}
+            currency={this.state.currency}
             markAsPaid={this.markAsPaid}
           />
         </div>

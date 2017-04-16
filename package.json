@@ -47,6 +47,7 @@
     "json-loader": "^0.5.4",
     "juice": "^4.0.2",
     "lodash": "^4.17.4",
+    "merge": "^1.2.0",
     "morgan": "^1.8.1",
     "node-quickbooks": "^2.0.11",
     "node-sass": "^4.3.0",
