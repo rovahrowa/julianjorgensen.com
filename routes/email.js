@@ -1,12 +1,11 @@
 let express = require('express');
 let router = express.Router();
 let app = require('../server');
+let crypto = require('crypto');
 
 let nodemailer = require('nodemailer');
 let mg = require('nodemailer-mailgun-transport');
 let pug = require('pug');
-let htmling = require('htmling');
-let juice = require('juice');
 
 // This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
 let auth = {
