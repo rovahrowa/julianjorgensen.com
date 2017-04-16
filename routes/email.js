@@ -62,8 +62,8 @@ router.route('/invoice')
 
       // SEND INVOICE EMAIL
       let contextObject = {
-        invoiceId,
-        invoiceToken,
+        invoiceId: invoiceId,
+        invoiceToken: invoiceToken,
       };
 
       let mailOptions = {
