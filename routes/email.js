@@ -39,6 +39,11 @@ let nodemailerMailgun = nodemailer.createTransport(mg(auth));
 router.route('/invoice')
   .post(function (req, res) {
     console.log(req);
+
+    // if (req.token == process.env.QBO_WEBHOOK_TOKEN){
+    //   console.log('success!');
+    //   console.log(req);
+    // }
     // let {email, projectName, name} = req.body;
 
     // let contextObject = {
