@@ -11,6 +11,10 @@ let QuickBooks = require('node-quickbooks')
 // Set port
 app.set('port', (process.env.PORT || 3000));
 
+// Setting up basic middleware for all Express requests
+app.use(logger('dev')); // Log requests to API using morgan
+
+// Quick Books
 qbo = new QuickBooks(process.env.QBO_CONSUMER_KEY,
                          process.env.QBO_CONSUMER_SECRET,
                          process.env.QBO_OAUTH_TOKEN,
@@ -35,11 +39,8 @@ app.use('/email', email);
 // Set static folder
 app.use(express.static(__dirname + '/public'));
 
-// Setting up basic middleware for all Express requests
-app.use(logger('dev')); // Log requests to API using morgan
-
-// Serve the index file
-app.get('*', function(request, response) {
+// Catch all other paths and serve the index file
+app.all('*', function(request, response) {
   response.sendFile(__dirname + '/public/index.html');
 });
 

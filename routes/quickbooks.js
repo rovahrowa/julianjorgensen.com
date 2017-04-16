@@ -34,6 +34,7 @@ router.route('/invoice/:id')
 // Customer route for Quickbooks
 router.route('/customer/:id')
   .get(function (req, res) {
+    console.log('Getting quickbooks customer ' + req.params.id + '...');
     qbo.getCustomer(req.params.id, function(e, customer) {
       if(customer){
         res.json(customer);
