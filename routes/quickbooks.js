@@ -11,7 +11,7 @@ router.route('/invoice/:id')
     qbo.getInvoice(req.params.id, function(e, invoice) {
       if(invoice){
         // generate unique md5 token
-        let secretVariable = 'Invoice' + invoice.id;
+        let secretVariable = 'Invoice' + invoice.Id;
         let key = crypto.createHash('md5').update(secretVariable).digest('hex');
 
         console.log('secret variable:');
