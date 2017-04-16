@@ -56,7 +56,6 @@ router.route('/invoice')
       console.log('\n\n\n\n\n\n\nQuickBooks');
       console.log(payload);
       console.log('\n\n\n\n\n\n\n');
-      console.log(payload.eventNotifications[0].dataChangeEvent);
 
       let invoiceId = payload.eventNotifications[0].dataChangeEvent.entities[0].id;
       let invoiceToken = crypto.createHash('md5').update(payload.eventNotifications[0].dataChangeEvent.entities[0].lastUpdated).digest('hex');
@@ -83,6 +82,14 @@ router.route('/invoice')
   	}else{
       return res.status(401).send('FORBIDDEN');
     }
+  });
+
+
+router.route('/test')
+  .get(function (req, res) {
+    let payload = {"eventNotifications":[{"realmId":"193514525151214","dataChangeEvent":{"entities":[{"name":"Invoice","id":"132","operation":"Update","lastUpdated":"2017-04-16T06:18:04.000Z"}]}}]}
+    console.log(payload);
+    res.send(payload.eventNotifications[0].dataChangeEvent.entities[0].id);
   });
 
 // Send the get a quote email to prospect client
