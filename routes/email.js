@@ -3,6 +3,7 @@ let router = express.Router();
 let app = require('../server');
 let crypto = require('crypto');
 let bodyParser = require('body-parser');
+let util = require('util/util');
 
 let nodemailer = require('nodemailer');
 let mg = require('nodemailer-mailgun-transport');
@@ -41,7 +42,6 @@ router.route('/invoice')
     let payload = req.body;
     let invoice = payload.eventNotifications[0].dataChangeEvent.entities[0];
     let signature = req.get('intuit-signature');
-    let QBO_WEBHOOK_TOKEN = process.env.QBO_WEBHOOK_TOKEN;
 
     // if signature is empty return 401
 		if (!signature) {
@@ -54,9 +54,7 @@ router.route('/invoice')
 		}
 
 		// validate signature
-    var hash = crypto.createHmac('sha256', QBO_WEBHOOK_TOKEN).update(JSON.stringify(payload)).digest('base64');
-
-  	if (signature === hash) {
+  	if (util.isValidPayload(signature, process.env.QBO_WEBHOOK_TOKEN, payload)) {
       let invoiceId = invoice.id;
       let secretVariable = 'Invoice' + invoice.id;
       let invoiceToken = crypto.createHash('md5').update(secretVariable).digest('hex');

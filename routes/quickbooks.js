@@ -34,12 +34,14 @@ router.route('/invoice/:id')
 // Customer route for Quickbooks
 router.route('/customer/:id')
   .get(function (req, res) {
+    let secretVariable = 'Invoice' + invoice.Id;
+    let token = req.params.token;
     console.log('Getting quickbooks customer ' + req.params.id + '...');
-    qbo.getCustomer(req.params.id, function(e, customer) {
+    qbo.getCustomer(req.params.id, function(error, customer) {
       if(customer){
         res.json(customer);
       }else{
-        res.json(e);
+        res.json(error);
       }
     });
   });
