@@ -38,33 +38,31 @@ let nodemailerMailgun = nodemailer.createTransport(mg(auth));
 // ===================
 router.route('/invoice')
   .post(function (req, res) {
-    console.log(req);
-    res.status(200).send('Im here');
     // if (req.token == process.env.QBO_WEBHOOK_TOKEN){
     //   console.log('success!');
     //   console.log(req);
     // }
     // let {email, projectName, name} = req.body;
 
-    // let contextObject = {
-    //   emailSummary: 'Invoice',
-    //   name: name.split(' ')[0],
-    //   projectName: projectName,
-    // };
-    //
-    // let mailOptions = {
-    //   from: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
-    //   to: [{name:name, address:email}], // An array if you have multiple recipients.
-    //   subject: 'Your project',
-    //   template: {
-    //     name: './emails/estimate.pug',
-    //     engine: 'pug',
-    //     context: contextObject
-    //   }
-    // };
+    let contextObject = {
+      emailSummary: 'Invoice',
+      name: 'QA',
+      projectName: 'testa123',
+    };
 
-    // sendMail(mailOptions);
-    // res.status(200).send('success');
+    let mailOptions = {
+      from: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
+      to: [{name:'Namza', address:'me@julianjorgensen.com'}], // An array if you have multiple recipients.
+      subject: 'Your project',
+      template: {
+        name: './emails/estimate.pug',
+        engine: 'pug',
+        context: contextObject
+      }
+    };
+
+    sendMail(mailOptions);
+    res.status(200).send('success');
   });
 
 // Send the get a quote email to prospect client
