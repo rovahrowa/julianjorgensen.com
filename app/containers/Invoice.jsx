@@ -31,9 +31,6 @@ class Invoice extends React.Component {
             this.setState({
               customerData: response.data
             });
-          })
-          .catch((error) => {
-            console.log('Error getting customer data from Quickbooks...');
           });
       })
       .catch((error) => {
