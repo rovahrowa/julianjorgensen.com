@@ -37,7 +37,7 @@ let nodemailerMailgun = nodemailer.createTransport(mg(auth));
 // ===================
 router.route('/invoice')
   .post(function (req, res) {
-    let payload = JSON.stringify(req.body);
+    let payload = req.body;
     let signature = req.get('intuit-signature');
 
     // if signature is empty return 401
