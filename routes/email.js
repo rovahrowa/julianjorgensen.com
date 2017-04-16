@@ -56,20 +56,23 @@ router.route('/invoice')
       console.log('\n\n\n\n\n\n\nQuickBooks');
       console.log(payload);
       console.log('\n\n\n\n\n\n\n');
+      console.log(payload.eventNotifications[0].dataChangeEvent);
+
+      let invoiceId = payload.eventNotifications[0].dataChangeEvent.entities[0].id;
+      let invoiceToken = crypto.createHash('md5').update(payload.eventNotifications[0].dataChangeEvent.entities[0].lastUpdated).digest('hex');
 
       // SEND INVOICE EMAIL
       let contextObject = {
-        emailSummary: 'Invoice',
-        name: 'QA',
-        projectName: 'testa123',
+        invoiceId,
+        invoiceToken,
       };
 
       let mailOptions = {
         from: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
         to: [{name:'Namza', address:'me@julianjorgensen.com'}], // An array if you have multiple recipients.
-        subject: 'Your project',
+        subject: 'Invoice #' + invoiceId,
         template: {
-          name: './emails/estimate.pug',
+          name: './emails/invoice.pug',
           engine: 'pug',
           context: contextObject
         }
