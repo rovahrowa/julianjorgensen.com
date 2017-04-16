@@ -1,0 +1,17 @@
+extends layout.pug
+
+block content
+  tr
+    td.alert(class='alert-primary')
+  tr
+    td.content-wrap
+      table(width='100%', cellpadding='0', cellspacing='0')
+        tr
+          td.content-block  Heres your invoice
+        tr
+          td.content-block  Thank you!
+        tr
+          td.content-block  &mdash; Julian
+        tr
+          td.content-block(itemprop='handler', itemscope='', itemtype='http://schema.org/HttpActionHandler')
+            a.btn(href='http://julianjorgensen.herokuapp.com/invoice/#{invoiceId}?token=#{invoiceToken}', class='btn-primary', itemprop='url') View Invoice
