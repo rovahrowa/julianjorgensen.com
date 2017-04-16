@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-let app = require('../server');
+let app = require('../app');
 let crypto = require('crypto');
 let bodyParser = require('body-parser');
 let util = require('util/util');
@@ -56,7 +56,6 @@ router.route('/invoice')
 
     console.log('signature: ', signature);
     console.log('token: ', token);
-
 
 		// validate signature
   	if (util.isValidPayload(signature, token, payload)) {

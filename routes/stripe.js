@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let bodyParser = require('body-parser');
-let app = require('../server');
+let app = require('../app');
 
 // let publicVars = require('.././config/' + (process.env.NODE_ENV || 'development') + '.config');
 // const keyPublishable = publicVars.STRIPE_PUBLISHABLE_KEY;

@@ -1,7 +1,6 @@
 let express = require('express');
 let router = express.Router();
-var app = require('../server');
-
+var app = require('../app');
 let crypto = require('crypto');
 
 // Invoice route for Quickbooks
