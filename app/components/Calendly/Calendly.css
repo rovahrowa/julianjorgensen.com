@@ -1,0 +1,14 @@
+.modal{
+  height: 600px;
+  width: 1000px;
+
+  & section{
+    padding: 0;
+  }
+}
+
+.ctaButton{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}

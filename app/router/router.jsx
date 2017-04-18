@@ -5,10 +5,11 @@ let store = require('configureStore').configure();
 
 import DocumentMeta from 'react-document-meta';
 import Main from 'Main';
-import Index from 'Index';
-import Invoice from 'Invoice';
-import About from 'About';
-import Contact from 'Contact';
+import Index from 'Index/Index';
+import Invoice from 'Invoice/Invoice';
+import About from 'About/About';
+import FrontEnd from 'FrontEnd/FrontEnd';
+import Design from 'Design/Design';
 
 import ReactGA from 'react-ga';
 // ReactGA.initialize('UA-6241825-9'); // initialize Google Analytics
@@ -30,8 +31,9 @@ export default (
     <Route path="/" component={Main}>
       <IndexRoute path="/" component={Index} />
       <Route path="invoice/:id" component={Invoice} />
+      <Route path="design" component={Design} />
+      <Route path="frontend" component={FrontEnd} />
       <Route path="about" component={About} />
-      <Route path="contact" component={Contact} />
     </Route>
   </Router>
 );

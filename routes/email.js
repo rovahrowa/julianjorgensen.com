@@ -11,6 +11,13 @@ let nodemailer = require('nodemailer');
 let mg = require('nodemailer-mailgun-transport');
 let pug = require('pug');
 
+function addHttp(url){
+  if (!url.match(/^[a-zA-Z]+:\/\//)){
+    url = 'http://' + url;
+  }
+  return url;
+}
+
 // This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
 let auth = {
   auth: {
@@ -47,17 +54,17 @@ router.route('/invoice')
     let token = process.env.QBO_WEBHOOK_TOKEN;
 
     // if signature is empty return 401
-		// if (!signature) {
-		// 	return res.status(401).send('FORBIDDEN');
-		// }
+		if (!signature) {
+			return res.status(401).send('FORBIDDEN');
+		}
 
     // if payload is empty, don't do anything
-		// if (!payload) {
-		// 	return res.status(200).send('success');
-		// }
+		if (!payload) {
+			return res.status(200).send('success');
+		}
 
 		// validate signature
-  	// if (util.isValidPayload(signature, token, payload)) {
+  	if (util.isValidPayload(signature, token, payload)) {
 
       // Get details about the invoice and customer
       let getInvoiceDetails = new Promise((resolve, reject) => {
@@ -142,13 +149,13 @@ router.route('/invoice')
           // Finally send the mail!
           sendMail(mailOptions);
           return res.status(200).send('success');
-      	// }else{
-        //   return res.status(401).send('FORBIDDEN');
-        // }
-      }
-    }).catch((error) => {
-      console.log('Error getting invoice and customer details...', error);
-    });
+      	}else{
+          return res.status(401).send('FORBIDDEN');
+        }
+      }).catch((error) => {
+        console.log('Error getting invoice and customer details...', error);
+      });
+    }
   });
 
 
@@ -159,20 +166,23 @@ router.route('/test')
     res.send(payload.eventNotifications[0].dataChangeEvent.entities[0].lastUpdated);
   });
 
-// Send the get a quote email to prospect client
+// Send the get estimate email to prospect client
 // ===================
-router.route('/get-a-estimate')
+router.route('/get-estimate')
   .post(function (req, res) {
-    let {email, projectName, name} = req.body;
+    let {name, email, projectName, projectWebsite, notes} = req.body;
 
     let contextObject = {
       schemaAction: 'AskAction', //http://schema.org/
       emailSummary: 'Project discovery',
       name: name.split(' ')[0],
       projectName: projectName,
+      projectWebsite: addHttp(projectWebsite),
+      notes: notes
     };
 
-    let mailOptions = {
+    // send the estimate confirmation to the prospect
+    let estimateConfirmation = {
       from: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
       to: [{name:name, address:email}], // An array if you have multiple recipients.
       subject: 'Your project',
@@ -182,8 +192,20 @@ router.route('/get-a-estimate')
         context: contextObject
       }
     };
+    sendMail(estimateConfirmation);
 
-    sendMail(mailOptions);
+    // send the estimate request to myself
+    let estimateRequest = {
+      from: {name: name, address: email},
+      to: [{name:'Julian Jorgensen', address:'me@julianjorgensen.com'}], // An array if you have multiple recipients.
+      subject: projectName + ' estimate',
+      template: {
+        name: './emails/estimateRequest.pug',
+        engine: 'pug',
+        context: contextObject
+      }
+    };
+    sendMail(estimateRequest);
     res.status(200).send('success');
   });
 

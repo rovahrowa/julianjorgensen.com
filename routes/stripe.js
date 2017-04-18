@@ -11,7 +11,7 @@ let stripe = require('stripe')(keySecret);
 router.route('/')
   .post(function (req, res) {
     // Token is created using Stripe.js
-    let {email, stripeToken, invoiceId, invoiceNumber, amount, currency} = req.body;
+    let {email, stripeToken, invoiceId, invoiceNumber, totalAmount, currency} = req.body;
     let existingCustomer = [];
 
     // search for existing customer(s) with matching email
@@ -47,7 +47,7 @@ router.route('/')
     // charge the customer with stripe
     function chargeCustomer(customerId){
       stripe.charges.create({
-        amount: amount*100, // times 100 to get it in dollars
+        amount: totalAmount*100, // times 100 to get it in dollars
         currency,
         description: 'Julian Jorgensen invoice #' + invoiceNumber,
         customer: customerId,

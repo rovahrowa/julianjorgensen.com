@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+  tr
+    td.alert(class='alert-primary')  #{alertText}
+  tr
+    td.content-wrap
+      meta(itemprop='name', content='#{emailSummary}')
+      table(width='100%', cellpadding='0', cellspacing='0')
+        tr
+          td.content-block  #{name} would like an estimate regarding <a href="#{projectWebsite}">#{projectName}</a>. He/she also says:
+        tr
+          td.content-block  <em>"#{notes}"</em>

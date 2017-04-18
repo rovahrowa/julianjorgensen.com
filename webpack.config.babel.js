@@ -8,14 +8,11 @@ import autoprefixer from 'autoprefixer';
 import PostCSS from './postcss.config';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
+let extractFonts = new ExtractTextPlugin('fonts.css');
+
 // define environment constants
 const NODE_ENV = (process.env.NODE_ENV || 'development');
 const IS_PRODUCTION = (NODE_ENV === 'production');
-
-// Extract sass into separate file
-const extractSass = new ExtractTextPlugin({
-  filename: IS_PRODUCTION ? '[name].min.[contenthash].css' : '[name].[contenthash].css'
-});
 
 // Static vendor assets for which one can expect
 //  minimal and a slow rate of change:
@@ -48,27 +45,31 @@ const BASE_CONFIG = {
         use: 'babel-loader'
       },
       {
-        test: /\.scss$/,
-        loader: extractSass.extract({
-          loader: [
-            {
-              loader: 'css-loader?-svgo',
-              options: {
-                minimize: IS_PRODUCTION ? true : false,
-                sourceMap: IS_PRODUCTION ? false : true
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: PostCSS
-            },
-            {
-              loader: 'sass-loader'
+        test: /\.css$/,
+        exclude: /fonts/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: "[name]--[local]--[hash:base64:8]"
             }
-          ],
-          // use style-loader in development
-          fallbackLoader: 'style-loader'
-        })
+          },
+          "postcss-loader" // has separate config, see postcss.config.js nearby
+        ]
+      },
+      {
+        test: /fonts\.css/,
+        loader: extractFonts.extract({
+          loader: 'css-loader',
+        }),
+      },
+      {
+        test: /\.(woff|woff2)$/,
+        use: 'url-loader'
       },
       {
         test: /\.json$/i,
@@ -88,14 +89,6 @@ const BASE_CONFIG = {
           'file?name=/images/[name].[ext]',
           'image-webpack-loader'
         ]
-      },
-      {
-        test: /\.woff$/,
-        use: 'url?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]'
-      },
-      {
-        test: /\.woff2$/,
-        use: 'url?limit=10000&mimetype=application/font-woff2&name=[path][name].[ext]'
       }
     ]
   },
@@ -119,10 +112,14 @@ const BASE_CONFIG = {
         NODE_ENV: JSON.stringify('production')
       }
     }),
-    extractSass,
     new HTMLWebpackPlugin({
       template: 'app/index.html'
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
+    extractFonts
   ],
   devtool: `${IS_PRODUCTION ? 'inline' : 'cheap-eval'}-source-map`,
   resolve: {
@@ -130,8 +127,7 @@ const BASE_CONFIG = {
       'node_modules',
       './app',
       './app/router',
-      './app/containers',
-      './app/presentational',
+      './app/components',
       './app/vendor',
       './app/api',
       './app/utils'
@@ -139,20 +135,18 @@ const BASE_CONFIG = {
     alias: {
       app: 'app',
       router: 'router/router.jsx',
-      cartActions: 'actions/cartActions.jsx',
-      productActions: 'actions/productActions.jsx',
-      collectionActions: 'actions/collectionActions.jsx',
+      invoiceActions: 'actions/invoiceActions.jsx',
       reducers: 'reducers/reducers.jsx',
-      configureStore: 'store/configureStore.jsx',
-      applicationStyles: 'styles/app.scss'
+      configureStore: 'store/configureStore.jsx'
     },
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.css']
   }
 };
 
 
 // Webpack plugins unique to the production build:
 const PROD_PLUGINS = [
+  new ExtractTextPlugin('[name].min.[contenthash].css'),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       screw_ie8: true,
@@ -168,6 +162,7 @@ const PROD_PLUGINS = [
 
 // Webpack plugins unique to the development build:
 const DEV_PLUGINS = [
+  new ExtractTextPlugin('[name].[contenthash].css'),
   new webpack.HotModuleReplacementPlugin(),
   new StatsPlugin('stats.json', {
     chunkModules: true

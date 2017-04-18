@@ -1,0 +1,13 @@
+:global body {
+  font-family: 'ScandiaWeb', system-ui !important;
+}
+
+:global h1{
+  font-family: 'WhitneySSm', system-ui;
+  text-transform: uppercase;
+}
+
+:global button{
+  font-family: 'WhitneySSm' !important;
+  font-weight: 400 !important;
+}
