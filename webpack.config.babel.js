@@ -147,15 +147,15 @@ const BASE_CONFIG = {
 // Webpack plugins unique to the production build:
 const PROD_PLUGINS = [
   new ExtractTextPlugin('[name].min.[contenthash].css'),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      screw_ie8: true,
-      warnings: false
-    },
-    output: {
-      comments: false
-    }
-  }),
+  // new webpack.optimize.UglifyJsPlugin({
+  //   compress: {
+  //     screw_ie8: true,
+  //     warnings: false
+  //   },
+  //   output: {
+  //     comments: false
+  //   }
+  // }),
   new webpack.optimize.AggressiveMergingPlugin()
 ];
 
