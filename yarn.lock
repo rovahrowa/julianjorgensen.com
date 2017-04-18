@@ -3658,12 +3658,6 @@ imagemin@^5.2.2:
     promise.pipe "^3.0.0"
     replace-ext "0.0.1"
 
-immutability-helper@^2.0.0:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/immutability-helper/-/immutability-helper-2.1.2.tgz#734506440d7209b74664dcadaa8ba14e73f2185b"
-  dependencies:
-    invariant "^2.2.0"
-
 in-publish@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/in-publish/-/in-publish-2.0.0.tgz#e20ff5e3a2afc2690320b6dc552682a9c7fadf51"
@@ -6410,7 +6404,7 @@ rc@^1.1.2, rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-addons-css-transition-group@^15.3.2, react-addons-css-transition-group@^15.4.2, react-addons-css-transition-group@^15.5.2:
+react-addons-css-transition-group@^15.4.2, react-addons-css-transition-group@^15.5.2:
   version "15.5.2"
   resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.5.2.tgz#ea7e0a9f0e1c27ca426da4efd3559915bd42ead2"
   dependencies:
@@ -6424,7 +6418,7 @@ react-addons-test-utils@^15.4.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-css-themr@^1.6.0, react-css-themr@^1.7.2:
+react-css-themr@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/react-css-themr/-/react-css-themr-1.7.2.tgz#424701383488f63966677f10a908d40861544ef3"
   dependencies:
@@ -6436,7 +6430,7 @@ react-document-meta@^2.1.1:
   dependencies:
     react-side-effect "^1.0.1"
 
-react-dom@^15.3.2, react-dom@^15.4.2:
+react-dom@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
   dependencies:
@@ -6543,17 +6537,6 @@ react-style-proptype@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-style-proptype/-/react-style-proptype-2.0.2.tgz#b4687990ac256deed89ee5777a3c58de5ac7bd15"
 
-react-toolbox-plus-router@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-toolbox-plus-router/-/react-toolbox-plus-router-1.1.2.tgz#15b22760843f2b1c517391819535a40c961251ef"
-  dependencies:
-    classnames "^2.2.5"
-    immutability-helper "^2.0.0"
-    react "^15.3.2"
-    react-addons-css-transition-group "^15.3.2"
-    react-css-themr "^1.6.0"
-    react-dom "^15.3.2"
-
 react-toolbox@^2.0.0-beta.8:
   version "2.0.0-beta.8"
   resolved "https://registry.yarnpkg.com/react-toolbox/-/react-toolbox-2.0.0-beta.8.tgz#95a785e02f74c52ed5d1932b1ad1121d4a60f807"
@@ -6572,7 +6555,7 @@ react-youtube@^7.3.0:
     lodash.isequal "^4.4.0"
     youtube-player "^4.0.1"
 
-react@>=0.14.2, react@^15.3.2, react@^15.4.2:
+react@>=0.14.2, react@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
   dependencies:
