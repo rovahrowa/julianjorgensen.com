@@ -6,6 +6,8 @@ let logger = require('morgan');
 let quickbooks = require('./routes/quickbooks');
 let stripe = require('./routes/stripe');
 let email = require('./routes/email');
+let contentful = require('./routes/contentful');
+let toggl = require('./routes/toggl/index');
 let QuickBooks = require('node-quickbooks')
 
 // Set port
@@ -30,11 +32,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Stripe routes
 app.use('/api/charge', stripe);
 
+// Proposal routes
+app.use('/api/proposal', contentful);
+
 // Quickbooks routes
 app.use('/api', quickbooks);
 
 // Email routes
 app.use('/email', email);
+
+// Toggl routes
+app.use('/api/toggl', toggl);
 
 // Set static folder
 app.use(express.static(__dirname + '/public'));

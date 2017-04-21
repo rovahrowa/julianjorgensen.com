@@ -50,7 +50,7 @@ router.route('/invoice')
   .post(function (req, res) {
     let payload = req.body;
     let invoiceRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
-    // let signature = req.get('intuit-signature');
+    let signature = req.get('intuit-signature');
     let token = process.env.QBO_WEBHOOK_TOKEN;
 
     // if signature is empty return 401

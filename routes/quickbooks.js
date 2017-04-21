@@ -5,7 +5,6 @@ let util = require('../util/util');
 let crypto = require('crypto');
 let merge = require('merge'), original, cloned;
 
-
 // Invoice route for Quickbooks
 router.route('/invoice/:id')
   .get(function (req, res) {

@@ -103,7 +103,9 @@ class EstimateForm extends React.Component {
       )
     }else{
       return (
-        <div>Thank you. {this.state.name.split(' ')[0]}, please take 5-10 minutes to <a href="https://goo.gl/forms/i8TwGVYpMkrrk5hj2" target="new">answer some questions about {this.state.projectName}</a>. It will help make the estimate more thorough.</div>
+        <div className={styles.container}>
+          Thank you. {this.state.name.split(' ')[0]}, please take 5-10 minutes to <a href="https://goo.gl/forms/i8TwGVYpMkrrk5hj2" target="new">answer some questions about {this.state.projectName}</a>. It will help make the estimate more thorough.
+        </div>
       )
     }
   }

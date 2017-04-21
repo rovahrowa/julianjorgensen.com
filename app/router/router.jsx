@@ -10,6 +10,7 @@ import Invoice from 'Invoice/Invoice';
 import About from 'About/About';
 import FrontEnd from 'FrontEnd/FrontEnd';
 import Design from 'Design/Design';
+import Proposal from 'Proposal/Proposal';
 
 import ReactGA from 'react-ga';
 // ReactGA.initialize('UA-6241825-9'); // initialize Google Analytics
@@ -34,6 +35,7 @@ export default (
       <Route path="design" component={Design} />
       <Route path="frontend" component={FrontEnd} />
       <Route path="about" component={About} />
+      <Route path="p/:prospectName/:proposalId" component={Proposal} />
     </Route>
   </Router>
 );

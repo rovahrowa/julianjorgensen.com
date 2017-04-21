@@ -16,4 +16,16 @@ function createToken(secretVariable) {
 	let token = crypto.createHash('md5').update(secretVariable).digest('hex');
 	return token;
 }
+
 module.exports.createToken = createToken;
+
+
+// search objects by prop value
+function searchObjects(nameKey, prop, arr){
+  for (var i=0; i < arr.length; i++) {
+    if (arr[i][prop] === nameKey) {
+      return arr[i];
+    }
+  }
+}
+module.exports.searchObjects = searchObjects;
