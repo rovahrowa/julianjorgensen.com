@@ -31,6 +31,7 @@
     "contentful": "^4.1.2",
     "copy-webpack-plugin": "^4.0.1",
     "cors": "^2.8.3",
+    "cron": "^1.2.1",
     "crypto": "^0.0.3",
     "css-loader": "^0.26.2",
     "dateformat": "^2.0.0",

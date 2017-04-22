@@ -3,12 +3,27 @@ let express = require('express');
 let app = module.exports = express();
 let bodyParser = require('body-parser');
 let logger = require('morgan');
+let CronJob = require('cron').CronJob;
 let quickbooks = require('./routes/quickbooks');
 let stripe = require('./routes/stripe');
 let email = require('./routes/email');
 let contentful = require('./routes/contentful');
 let toggl = require('./routes/toggl/index');
 let QuickBooks = require('node-quickbooks')
+
+// Initialize cron jobs
+// var job = new CronJob('00 30 11 * * 1-5', function() {
+//   /*
+//    * Runs every weekday (Monday through Friday)
+//    * at 11:30:00 AM. It does not run on Saturday
+//    * or Sunday.
+//    */
+//   }, function () {
+//     /* This function is executed when the job stops */
+//   },
+//   true, /* Start the job right now */
+//   timeZone /* Time zone of this job. */
+// );
 
 // Set port
 app.set('port', (process.env.PORT || 3000));
