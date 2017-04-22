@@ -29,3 +29,12 @@ function searchObjects(nameKey, prop, arr){
   }
 }
 module.exports.searchObjects = searchObjects;
+
+
+function addHttp(url){
+  if (!url.match(/^[a-zA-Z]+:\/\//)){
+    url = 'http://' + url;
+  }
+  return url;
+}
+module.exports.addHttp = addHttp;
