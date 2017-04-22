@@ -19,8 +19,6 @@ let processTimeEntries = function(passedData) {
       if (!timeEntry.billable || billed || timeEntry.duration < 30){
         return false;
       }else{
-        console.log('Creating Quickbooks time activity entry...');
-
         // description
         let description = timeEntry.description;
 
@@ -35,6 +33,7 @@ let processTimeEntries = function(passedData) {
         // get client name
         let client = util.searchObjects(project.cid, 'id', clients);
         let clientName = client.name;
+        let clientQboId = client.qboId;
 
         // determine currency
         let currency;
@@ -45,17 +44,17 @@ let processTimeEntries = function(passedData) {
         }
 
         // determine rate
-        if (user.rate){
-          rate = user.rate;
+        if (project.rate){
+          rate = project.rate;
+          console.log('using project rate: ', rate);
         }else{
-          if (project.rate){
-            rate = project.rate;
-          }else{
-            rate = workspace.default_hourly_rate;
-          }
+          rate = workspace.default_hourly_rate;
+          console.log('using workspace rate: ', rate);
         }
 
         processedTimeEntries.push({
+          id: timeEntry.id,
+          clientQboId,
           clientName,
           date: timeEntry.start,
           rate,

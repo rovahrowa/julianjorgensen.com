@@ -13,11 +13,12 @@ toggl = new TogglClient({apiToken: togglApiToken });
 let getTogglWorkspaceData = require('./getTogglWorkspaceData');
 let getTogglTimeEntries = require('./getTogglTimeEntries');
 let getTogglWorkspaceClients = require('./getTogglWorkspaceClients');
+let syncClients = require('./syncClients');
 let getTogglWorkspaceProjects = require('./getTogglWorkspaceProjects');
 let getTogglUsers = require('./getTogglUsers');
 let processTimeEntries = require('./processTimeEntries');
-let mapEntriesWithQuickbooksCustomers = require('./mapEntriesWithQuickbooksCustomers');
 let createQuickbooksTimeEntries = require('./createQuickbooksTimeEntries');
+let markEntriesAsBilled = require('./markEntriesAsBilled');
 
 // Toggl and QuickBooks sync route
 router.route('/sync-qbo/recent')
@@ -27,11 +28,12 @@ router.route('/sync-qbo/recent')
       getTogglWorkspaceData(toggl_workspace)
         .then(getTogglTimeEntries)
         .then(getTogglWorkspaceClients)
+        .then(syncClients)
         .then(getTogglWorkspaceProjects)
         .then(getTogglUsers)
         .then(processTimeEntries)
-        .then(mapEntriesWithQuickbooksCustomers)
         .then(createQuickbooksTimeEntries)
+        .then(markEntriesAsBilled)
         .then(() => {
           res.status(200).send('Success!');
         }).catch((err) => {

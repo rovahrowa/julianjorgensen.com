@@ -1,4 +1,5 @@
 let getTogglWorkspaceProjects = function(passedData) {
+  console.log('got this data from syncCLients: ', passedData);
   let workspaceId = passedData.workspace.id;
   let promise = new Promise(function(resolve, reject){
     toggl.getWorkspaceProjects(workspaceId, {active: true}, (err, data) => {
