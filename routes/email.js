@@ -136,7 +136,7 @@ router.route('/invoice')
             to: [{name:customerName, address:email}], // An array if you have multiple recipients.
             subject: 'Invoice #' + invoiceNumber,
             template: {
-              name: 'admin/emails/invoice.pug',
+              name: '../admin/emails/invoice.pug',
               engine: 'pug',
               context: contextObject
             }
@@ -187,7 +187,7 @@ router.route('/get-estimate')
       to: [{name:name, address:email}], // An array if you have multiple recipients.
       subject: 'Your project',
       template: {
-        name: 'admin/emails/estimate.pug',
+        name: '../admin/emails/estimate.pug',
         engine: 'pug',
         context: contextObject
       }
@@ -200,7 +200,7 @@ router.route('/get-estimate')
       to: [{name:'Julian Jorgensen', address:'me@julianjorgensen.com'}], // An array if you have multiple recipients.
       subject: projectName + ' estimate',
       template: {
-        name: 'admin/emails/estimateRequest.pug',
+        name: '../admin/emails/estimateRequest.pug',
         engine: 'pug',
         context: contextObject
       }
