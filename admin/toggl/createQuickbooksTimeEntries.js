@@ -34,10 +34,8 @@ let createQuickbooksTimeEntries = function(processedTimeEntries) {
   });
 
 
-  var results = Promise.all(timeEntriesPromises);
-  results.then((data) => {
-    // resolve(data);
-  }).catch((err) => {
+  let results = Promise.all(timeEntriesPromises);
+  results.then().catch((err) => {
     console.log('Error in createQuickbooksTimeEntries: ', err);
   });
 

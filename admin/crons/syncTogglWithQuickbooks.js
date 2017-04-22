@@ -1,6 +1,6 @@
 let CronJob = require('cron').CronJob;
 
-// Initialize cron jobs
+// Sync Toggl with Quickbooks (runs every 15 minutes)
 let syncTogglWithQuickbooks = new CronJob({
   cronTime: '00 */15 * * * *',
   onTick: function() {

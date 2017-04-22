@@ -3,16 +3,19 @@ let express = require('express');
 let app = module.exports = express();
 let bodyParser = require('body-parser');
 let logger = require('morgan');
-let quickbooks = require('./routes/quickbooks');
-let stripe = require('./routes/stripe');
-let email = require('./routes/email');
-let contentful = require('./routes/contentful');
-let toggl = require('./routes/toggl/index');
 let QuickBooks = require('node-quickbooks')
 
+// routes
+let quickbooks = require('routes/quickbooks');
+let stripe = require('routes/stripe');
+let contentful = require('routes/contentful');
+let toggl = require('routes/toggl');
+let email = require('routes/email');
+
 // cron jobs
-require('./crons/invoiceReminder');
-require('./crons/syncTogglWithQuickbooks');
+require('admin/crons/invoiceReminder');
+require('admin/crons/syncTogglWithQuickbooks');
+
 
 // Set port
 app.set('port', (process.env.PORT || 3000));
