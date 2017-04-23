@@ -36,7 +36,7 @@ export default (
       <Route path="frontend" component={FrontEnd} />
       <Route path="about" component={About} />
       <Route path="p/:prospectName/:proposalId" component={Proposal} />
-      <Route path="p/:prospectName/:proposalId/:environment" component={Proposal} />
+      <Route path="p/:prospectName/:proposalId?env=:environment" component={Proposal} />
     </Route>
   </Router>
 );

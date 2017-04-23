@@ -17,10 +17,12 @@ class Proposal extends React.Component {
     // Retrieve proposal data
     let proposalId = this.props.params.proposalId;
     let environment;
-    if (this.props.params.environment){
-      environment = this.props.params.environment;
+    if (this.props.location.query.env){
+      environment = `/this.props.params.environment`;
+    }else{
+      environment = '';
     }
-    axios.get(`/api/proposal/${proposalId}/${environment}`)
+    axios.get(`/api/proposal/${proposalId}${environment}`)
       .then((response) => {
         console.log(response);
         this.setState({
