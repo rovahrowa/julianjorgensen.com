@@ -33,8 +33,9 @@ router.route('/:id')
       console.log(response);
     });
 
+    console.log('getting info from contentful entry: ', req.params.id);
     client.getEntry(req.params.id).then((entry) => {
-      res.json(entry);
+      res.status(200).json(entry);
     }).catch((err)=> {
       res.status(500).send(`Could not get proposal data from Contentful. Contact me@julianjorgensen.com if the error persists. ${err}`);
     });
