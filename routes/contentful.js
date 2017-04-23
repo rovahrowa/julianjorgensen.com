@@ -26,6 +26,13 @@ const clientPreview = contentful.createClient({
 
 router.route('/:id')
   .get(function (req, res) {
+    // getting a specific Post
+    console.log('getting Contentful entries for production:');
+    client.getEntries().then((response) => {
+      console.log('contentful entry:');
+      console.log(response);
+    });
+
     client.getEntry(req.params.id).then((entry) => {
       res.json(entry);
     }).catch((err)=> {
