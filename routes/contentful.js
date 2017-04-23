@@ -31,9 +31,11 @@ router.route('/:id')
     client.getEntry(req.params.id).then((entry) => {
       console.log(entry);
       res.status(200).send(entry);
-    }).catch((err) => {
-      console.log('Error getting Contentful entry...', err);
-      res.status(500);
+    }).catch((response) => {
+      console.log('Response.sys: ', response.sys);
+      if (response.sys.type == "Error"){
+        res.status(500);
+      }
     });
 
     // client.getEntry(req.params.id).then((entry) => {
