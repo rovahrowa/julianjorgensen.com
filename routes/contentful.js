@@ -11,20 +11,21 @@ let contentful = require('contentful')
 
 const spaceId = process.env.CONTENTFUL_SPACE_ID;
 const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
+const accessTokenPreview = process.env.CONTENTFUL_ACCESS_TOKEN_PREVIEW;
+
 const client = contentful.createClient({
-  // This is the space ID. A space is like a project folder in Contentful terms
   space: spaceId,
-  // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
   accessToken: accessToken
 });
 
+const clientPreview = contentful.createClient({
+  space: spaceId,
+  accessToken: accessTokenPreview,
+  host: 'preview.contentful.com'
+});
 
 router.route('/:id')
   .get(function (req, res) {
-    console.log('Getting proposal data from Contentful...');
-    console.log('spaceId: ', spaceId);
-    console.log('accessToken: ', accessToken);
-    console.log('client: ', client);
     client.getEntry(req.params.id).then((entry) => {
       res.json(entry);
     }).catch((err)=> {
@@ -32,5 +33,13 @@ router.route('/:id')
     });
   });
 
+router.route('/:id/preview')
+  .get(function (req, res) {
+    clientPreview.getEntry(req.params.id).then((entry) => {
+      res.json(entry);
+    }).catch((err)=> {
+      res.status(500).send(`Could not get proposal data from Contentful. Contact me@julianjorgensen.com if the error persists. ${err}`);
+    });
+  });
 
 module.exports = router;

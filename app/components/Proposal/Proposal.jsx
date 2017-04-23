@@ -16,7 +16,10 @@ class Proposal extends React.Component {
   componentWillMount() {
     // Retrieve proposal data
     let proposalId = this.props.params.proposalId;
-    axios.get('/api/proposal/' + proposalId)
+    if (this.props.params.environment){
+      let environment = this.props.params.environment;
+    }
+    axios.get(`/api/proposal/${proposalId}/${environment}`)
       .then((response) => {
         console.log(response);
         this.setState({
