@@ -31,10 +31,12 @@ router.route('/:id')
     client.getEntry(req.params.id).then((entry) => {
       console.log(entry);
       res.status(200).send(entry);
-    }).catch((response) => {
-      console.log('Response.sys: ', response.sys);
-      if (response.sys.type == "Error"){
-        res.status(500);
+    }).catch((err) => {
+      console.log('Response.sys: ', err.response);
+      if (err.response.sys.type == "Error"){
+        res.status(err.response.sys.id);
+      }else{
+        res.status(200);
       }
     });
 
