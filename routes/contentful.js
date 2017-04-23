@@ -28,8 +28,10 @@ router.route('/:id')
   .get(function (req, res) {
     // getting a specific Post
     console.log('getting info from contentful entry: ', req.params.id);
-    client.getEntry(req.params.id)
-    .then((entry) => console.log(entry));
+    client.getEntry(req.params.id).then((entry) => {
+      console.log(entry);
+      res.status(200).send(entry);
+    }).catch(console.log('Error getting Contentful entry...'));
 
     // client.getEntry(req.params.id).then((entry) => {
     //   res.status(200).json(entry);
