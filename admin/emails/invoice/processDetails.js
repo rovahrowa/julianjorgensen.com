@@ -1,14 +1,16 @@
 let util = require('../../../util/util');
 let numeral = require('numeral');
 let dateFormat = require('dateformat');
+let prepareContent = require('./prepareContent');
+let adminAlertEmail = require('../adminAlertEmail');
 
 let processInvoiceDetails = function(passedData) {
   console.log('processing invoice...');
-
   let promise = new Promise(function(resolve, reject){
 
     let customer = passedData[0];
     let invoice = passedData[1];
+    let invoiceType = passedData[2];
 
     // Create token for email button
     let invoiceId = invoice.Id;
@@ -18,7 +20,8 @@ let processInvoiceDetails = function(passedData) {
     // Create variables
     let invoiceNumber = invoice.DocNumber;
     let invoiceAmount = numeral(invoice.TotalAmt).format('$0,0.00');
-    let invoiceDueDate = dateFormat(invoice.DueDate, "mmmm dS, yyyy");
+    let invoiceDueDate = invoice.DueDate;
+    let invoiceDueDateFormatted = dateFormat(invoice.DueDate, "mmmm dS, yyyy");
     let customerIsActive = customer.Active;
     let customerName = customer.GivenName;
     let companyName = customer.CompanyName;
@@ -42,35 +45,33 @@ let processInvoiceDetails = function(passedData) {
     // if customer is active and has a email (or the invoice has an email specified)
     if (customerIsActive && email){
       let contextObject = {
+        syncToken: invoice.SyncToken,
+        email,
+        emailCc,
         invoiceId,
         invoiceNumber,
         invoiceAmount,
         invoiceDueDate,
+        invoiceDueDateFormatted,
         invoiceToken,
         customerName,
         companyName
       };
 
-      let mailOptions = {
-        from: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
-        to: [{name:customerName, address:email}], // An array if you have multiple recipients.
-        subject: 'Invoice #' + invoiceNumber,
-        template: {
-          name: __dirname + '/invoice.pug',
-          engine: 'pug',
-          context: contextObject
-        }
-      };
-      // if CC exists, then also include that the object
-      if (emailCc){
-        Object.assign({cc: emailCc}, mailOptions);
-      }
+      console.log('are we here? ');
+
+      let mailOptions = prepareContent(invoiceType, contextObject);
+
+      console.log('or here? ', mailOptions);
 
       resolve(mailOptions);
     }else{
-      reject(forbidden);
+      adminAlertEmail.send(`The Quickbooks customer, ${companyName}, we tried to send invoice ${invoiceNumber} to, does not have an email associated or is not active...`).then(() => {
+        resolve();
+      }).catch((err)=>console.log(err));
     }
-
+  }).catch((err) => {
+    console.log('Error processing invoice details...', err);
   });
   return promise;
 };

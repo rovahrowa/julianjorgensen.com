@@ -1,4 +1,4 @@
-extends ../layout.pug
+extends layout.pug
 
 block content
   tr
@@ -9,11 +9,11 @@ block content
         tr
           td.content-block  Hi #{customerName},
         tr
-          td.content-block  Here's your latest invoice for a total of <strong>#{invoiceAmount}</strong> due on #{invoiceDueDate}.<br />You can view and pay it online by clicking the button below.
+          td.content-block  Here's your latest invoice for a total of <strong>#{invoiceAmount}</strong> due on #{invoiceDueDateFormatted}.<br />You can pay it online by clicking the button below.
         tr
           td.content-block  Thank you!
         tr
           td.content-block  &mdash; Julian
         tr
           td.content-block(itemprop='handler', itemscope='', itemtype='http://schema.org/HttpActionHandler')
-            a.btn(href='http://julianjorgensen.herokuapp.com/invoice/' + invoiceId + '?token=' + invoiceToken, class='btn-primary', itemprop='url') View and Pay Invoice
+            a.btn.btn-primary(href='http://julianjorgensen.herokuapp.com/invoice/' + invoiceId + '?token=' + invoiceToken, itemprop='url') View and Pay Invoice

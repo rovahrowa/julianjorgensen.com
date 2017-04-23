@@ -13,7 +13,7 @@ let processTimeEntries = require('./processTimeEntries');
 let createQuickbooksTimeEntries = require('./createQuickbooksTimeEntries');
 let markEntriesAsBilled = require('./markEntriesAsBilled');
 
-function run(){
+function init(){
   console.log('Fetching data from Toggl...');
   return getTogglWorkspaceData(toggl_workspace)
     .then(getTogglTimeEntries)
@@ -23,7 +23,10 @@ function run(){
     .then(getTogglUsers)
     .then(processTimeEntries)
     .then(createQuickbooksTimeEntries)
-    .then(markEntriesAsBilled);
+    .then(markEntriesAsBilled)
+    .catch((err) => {
+      console.log('Error syncing toggl...', err);
+    });
 }
 
-module.exports.run = run;
+module.exports.init = init;

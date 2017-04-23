@@ -1,4 +1,4 @@
-let util = require('../../util/util');
+let util = require('../../../util/util');
 let pug = require('pug');
 
 function sendEstimateConfirmation(){
@@ -19,7 +19,7 @@ function sendEstimateConfirmation(){
     to: [{name:name, address:email}], // An array if you have multiple recipients.
     subject: 'Your project',
     template: {
-      name: './admin/emails/estimate.pug',
+      name: './admin/emails/templates/estimate.pug',
       engine: 'pug',
       context: contextObject
     }
@@ -32,7 +32,7 @@ function sendEstimateConfirmation(){
     to: [{name:'Julian Jorgensen', address:'me@julianjorgensen.com'}], // An array if you have multiple recipients.
     subject: projectName + ' estimate',
     template: {
-      name: './admin/emails/estimateRequest.pug',
+      name: './admin/emails/templates/estimateRequest.pug',
       engine: 'pug',
       context: contextObject
     }
@@ -41,4 +41,4 @@ function sendEstimateConfirmation(){
   res.status(200).send('success');
 }
 
-module.exports = sendEstimateConfirmation;
+module.exports.send = sendEstimateConfirmation;

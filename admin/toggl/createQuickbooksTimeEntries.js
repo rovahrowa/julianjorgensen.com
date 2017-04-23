@@ -14,7 +14,7 @@ let createQuickbooksTimeEntries = function(processedTimeEntries) {
         "ItemRef": {
           "value": "1" // General services: development (could be re-categorized as Front-End: Development, or be more dynamic based on Toggls description/tags)
         },
-        // "BillableStatus": "Billable",
+        "BillableStatus": "Billable",
         "Taxable": true,
         "HourlyRate": timeEntry.rate,
         "Hours": timeEntry.hours,
@@ -29,7 +29,7 @@ let createQuickbooksTimeEntries = function(processedTimeEntries) {
         }
       });
     }).catch((err) => {
-      reject(err);
+      console.log(err);
     });
   });
 

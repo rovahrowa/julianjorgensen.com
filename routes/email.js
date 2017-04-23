@@ -2,10 +2,10 @@ let express = require('express');
 let router = express.Router();
 let app = require('../app');
 let util = require('../util/util');
-let invoice = require('../admin/emails/invoice/invoice');
-let sendInvoiceReminder = require('../admin/emails/sendInvoiceReminder');
-let sendEstimateConfirmation = require('../admin/emails/sendEstimateConfirmation');
 
+let invoice = require('../admin/emails/invoice/init');
+let invoiceReminder = require('../admin/crons/invoiceReminder/init');
+let sendEstimateConfirmation = require('../admin/emails/estimateRequest/init');
 
 // Send the invoice
 router.route('/invoice')
@@ -28,7 +28,11 @@ router.route('/invoice')
 
     // validate signature
     if (util.isValidPayload(signature, token, payload)) {
-      invoice.send(invoiceRef.id);
+      invoice.send(invoiceRef.id, 'new').then(() => {
+        res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
+      }).catch((err) => {
+        res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
+      });
     }else{
       return res.status(401).send('Forbidden');
     }
@@ -43,13 +47,10 @@ router.route('/get-estimate')
 
 router.route('/test')
   .post(function (req, res) {
-    let payload = {"eventNotifications":[{"realmId":"193514525151214","dataChangeEvent":{"entities":[{"name":"Invoice","id":"132","operation":"Update","lastUpdated":"2017-04-16T06:18:04.000Z"}]}}]}
-    let invoiceRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
-
-    invoice.send(invoiceRef.id).then(() => {
-      res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
+    invoiceReminder.init().then(() => {
+      res.status(200).send('success');
     }).catch((err) => {
-      res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
+      res.status(401).send(`${err}`);
     });
   });
 

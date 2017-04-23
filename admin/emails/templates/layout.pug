@@ -126,50 +126,43 @@ html(xmlns='http://www.w3.org/1999/xhtml')
       LINKS & BUTTONS
       ------------------------------------- */
       a {
-      color: #348eda;
-      text-decoration: underline;
+        color: #348eda;
+        text-decoration: underline;
       }
       .btn {
-      text-decoration: none;
-      color: #FFF;
-      background-color: #09385f;
-      border: solid #09385f;
-      border-width: 10px 20px;
-      text-transform: uppercase;
-      line-height: 1.6em;
-      /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
-      /*line-height: 28px;*/
-      letter-spacing: 0.125em;
-      font-weight: bold;
-      text-align: center;
-      cursor: pointer;
-      display: inline-block;
-      border-radius: 5px;
-      margin-top: 20px;
-      margin-bottom: 5px;
+        text-decoration: none;
+        color: #FFF;
+        background-color: #09385f;
+        border: solid #09385f;
+        text-transform: uppercase;
+        letter-spacing: 0.125em;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+        border-radius: 5px;
+        padding: 8px 16px;
+        margin-top: 8px;
       }
       .btn:hover{
         background-color: #063052;
         border-color: #063052;
       }
       .btn-warning{
-      text-decoration: none;
-      color: #FFF;
-      background-color: #FF9F00;
-      border: solid #FF9F00;
-      border-width: 10px 20px;
-      line-height: 2em;
-      /* 2em * 14px = 28px, use px to get airier line-height also in Thunderbird, and Yahoo!, Outlook.com, AOL webmail clients */
-      /*line-height: 28px;*/
-      letter-spacing: 0.125em;
-      font-weight: bold;
-      text-align: center;
-      cursor: pointer;
-      display: inline-block;
-      border-radius: 5px;
-      text-transform: capitalize;
-      margin-top: 20px;
-      margin-bottom: 5px;
+        background-color: #FF9F00;
+        border: solid #FF9F00;
+      }
+      .btn-warning:hover{
+        background-color: #ED9300;
+        border-color: #ED9300;
+      }
+      .btn-bad{
+        background-color: #A50014;
+        border: solid #A50014;
+      }
+      .btn-bad:hover{
+        background-color: #80000F;
+        border-color: #80000F;
       }
       .small{
       display: block;
@@ -206,19 +199,19 @@ html(xmlns='http://www.w3.org/1999/xhtml')
       font-size: 16px;
       color: #fff;
       font-weight: 500;
-      padding: 2px;
+      padding: 20px;
       text-align: center;
       border-radius: 3px 3px 0 0;
       }
       .alert.alert-primary {
       background-color: #09385f;
+      padding: 2px;
       }
       .alert.alert-warning {
       background-color: #FF9F00;
-      padding: 20px;
       }
       .alert.alert-bad {
-      background-color: #D0021B;
+      background-color: #A50014;
       }
       .alert.alert-good {
       background-color: #68B90F;

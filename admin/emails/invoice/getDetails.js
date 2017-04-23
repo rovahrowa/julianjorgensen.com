@@ -1,4 +1,4 @@
-let getInvoiceDetails = function(invoiceId) {
+let getInvoiceDetails = function(invoiceId, invoiceType) {
   let promise = new Promise(function(resolve, reject){
 
     qbo.getInvoice(invoiceId, (err, invoice) => {
@@ -8,18 +8,19 @@ let getInvoiceDetails = function(invoiceId) {
           if(customer){
             customer = customer;
             invoice = invoice;
-            resolve([customer, invoice]);
+            resolve([customer, invoice, invoiceType]);
           }else{
             console.log('error', err);
-            reject('While sending the invoice email, there was an error getting quickbooks customer: ' + err);
+            // throw new Error('While sending the invoice email, there was an error getting quickbooks customer: ' + err);
           }
         });
       }else{
         console.log('error', err);
-        reject('While sending the invoice email, there was an error getting quickbooks invoice: ' + err);
+        // throw new Error('While sending the invoice email, there was an error getting quickbooks invoice: ' + err);
       }
     });
-
+  }).catch((err) => {
+    throw Error('Error getting invoice details...');
   });
   return promise;
 };

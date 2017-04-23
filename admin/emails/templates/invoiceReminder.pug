@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+  tr
+    td.alert.alert-bad #{invoiceAmount} was due #{timeOverdue}
+  tr
+    td.content-wrap
+      table(width='100%', cellpadding='0', cellspacing='0')
+        tr
+          td.content-block  Hi #{customerName},
+        tr
+          td.content-block  This is a reminder that invoice ##{invoiceId} was <strong>due #{timeOverdue}</strong>. You can pay the total of <strong>#{invoiceAmount}</strong> online by clicking the button below.
+        tr
+          td.content-block  I appreciate your prompt action.
+        tr
+          td.content-block  &mdash; Julian
+        tr
+          td.content-block(itemprop='handler', itemscope='', itemtype='http://schema.org/HttpActionHandler')
+            a.btn.btn-bad(href='http://julianjorgensen.herokuapp.com/invoice/' + invoiceId + '?token=' + invoiceToken, itemprop='url') View and Pay Invoice

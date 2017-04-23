@@ -22,11 +22,15 @@ const client = contentful.createClient({
 router.route('/:id')
   .get(function (req, res) {
     console.log('Getting proposal data from Contentful...');
+    console.log('spaceId: ', spaceId);
+    console.log('accessToken: ', accessToken);
+    console.log('client: ', client);
     client.getEntry(req.params.id).then((entry) => {
-      res.json(entry).end();
-    }).catch((error)=> {
-      res.status(500).send('Could not get proposal data from Contentful. Contact me@julianjorgensen.com if the error persists.', error).end();
+      res.json(entry);
+    }).catch((err)=> {
+      res.status(500).send(`Could not get proposal data from Contentful. Contact me@julianjorgensen.com if the error persists. ${err}`);
     });
   });
+
 
 module.exports = router;

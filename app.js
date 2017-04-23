@@ -13,9 +13,7 @@ let toggl = require('./routes/toggl');
 let email = require('./routes/email');
 
 // cron jobs
-require('./admin/crons/invoiceReminder');
-require('./admin/crons/syncTogglWithQuickbooks');
-
+require('./admin/crons/init');
 
 // Set port
 app.set('port', (process.env.PORT || 3000));

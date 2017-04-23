@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let bodyParser = require('body-parser');
+let moment = require('moment');
 let app = require('../app');
 
 // let publicVars = require('.././config/' + (process.env.NODE_ENV || 'development') + '.config');
@@ -59,7 +60,7 @@ router.route('/')
           qbo.updateInvoice({
             "Id": invoice.Id,
             "SyncToken": invoice.SyncToken,
-            "CustomField": [{"DefinitionId": "1","Name": "payment pending","Type": "StringType","StringValue": "yes"}]
+            "CustomField": [{"DefinitionId": "1","Name": "paid date","Type": "StringType","StringValue": moment(Date.now()).format("DD-MM-YYYY")}]
           }, function(e, updatedInvoice) {
             console.log('Invoice updated');
             res.sendStatus(200);
