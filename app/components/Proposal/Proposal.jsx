@@ -18,7 +18,7 @@ class Proposal extends React.Component {
     let proposalId = this.props.params.proposalId;
     let environment;
     if (this.props.location.query.env){
-      environment = `/${this.props.params.environment}`;
+      environment = `/${this.props.location.query.env}`;
     }else{
       environment = '';
     }
