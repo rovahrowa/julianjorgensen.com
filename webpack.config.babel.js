@@ -55,7 +55,8 @@ const BASE_CONFIG = {
               loader: 'css-loader',
               options: {
                 modules: true,
-                sourceMap: true,
+                sourceMap: false,
+                minimize: true,
                 importLoaders: 1,
                 localIdentName: "[name]--[local]--[hash:base64:8]"
               }
