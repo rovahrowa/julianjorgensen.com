@@ -4,6 +4,7 @@ let app = module.exports = express();
 let bodyParser = require('body-parser');
 let logger = require('morgan');
 let QuickBooks = require('node-quickbooks')
+let expressStaticGzip = require("express-static-gzip");
 
 // routes
 let quickbooks = require('./routes/quickbooks');
@@ -20,6 +21,7 @@ app.set('port', (process.env.PORT || 3000));
 
 // Setting up basic middleware for all Express requests
 app.use(logger('dev')); // Log requests to API using morgan
+
 
 // Quick Books
 qbo = new QuickBooks(process.env.QBO_CONSUMER_KEY,
@@ -49,13 +51,16 @@ app.use('/email', email);
 // Toggl routes
 app.use('/api/toggl', toggl);
 
+
+app.use("/", expressStaticGzip(__dirname + '/public'));
+
 // Set static folder
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
 
 // Catch all other paths and serve the index file
-app.all('*', function(request, response) {
-  response.sendFile(__dirname + '/public/index.html');
-});
+// app.all('*', function(request, response) {
+//   response.sendFile(__dirname + '/public/index.html');
+// });
 
 // Listen to port
 app.listen(app.get('port'), function() {

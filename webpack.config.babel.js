@@ -7,6 +7,7 @@ import HTMLWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import PostCSS from './postcss.config';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 
 let extractFonts = new ExtractTextPlugin('fonts.css');
 
@@ -157,6 +158,13 @@ const PROD_PLUGINS = [
     }
   }),
   new webpack.optimize.AggressiveMergingPlugin(),
+  new CompressionPlugin({
+    asset: "[path].gz[query]",
+    algorithm: "gzip",
+    test: /\.js$|\.css$|\.html$/,
+    threshold: 10240,
+    minRatio: 0.8
+  }),
   new StatsPlugin('stats.json', {
     chunkModules: true
   })
