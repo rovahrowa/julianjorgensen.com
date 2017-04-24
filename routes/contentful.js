@@ -25,26 +25,13 @@ const clientPreview = contentful.createClient({
 });
 
 router.route('/:id')
-  .get(function (req, res) {
+  .get(function (req, res, next) {
     // getting a specific Post
-    console.log('getting info from contentful entry: ', req.params.id);
     client.getEntry(req.params.id).then((entry) => {
-      console.log(entry);
-      res.status(200).send(entry);
-    }).catch((err) => {
-      console.log('Response.sys: ', err.response);
-      if (err.response.sys.type == "Error"){
-        res.status(err.response.sys.id);
-      }else{
-        res.status(200);
-      }
+      res.json(entry);
+    }).catch((err)=> {
+      res.status(500).send(`Could not get proposal data from Contentful. Contact me@julianjorgensen.com if the error persists. ${err}`);
     });
-
-    // client.getEntry(req.params.id).then((entry) => {
-    //   res.status(200).json(entry);
-    // }).catch((err)=> {
-    //   res.status(500).send(`Could not get proposal data from Contentful. Contact me@julianjorgensen.com if the error persists. ${err}`);
-    // });
   });
 
 router.route('/:id/preview')
