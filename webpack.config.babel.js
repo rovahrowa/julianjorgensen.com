@@ -156,7 +156,10 @@ const PROD_PLUGINS = [
       comments: false
     }
   }),
-  new webpack.optimize.AggressiveMergingPlugin()
+  new webpack.optimize.AggressiveMergingPlugin(),
+  new StatsPlugin('stats.json', {
+    chunkModules: true
+  })
 ];
 
 // Webpack field-value pairs re: webpack-dev-server:

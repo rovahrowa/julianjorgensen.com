@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import {Link} from 'react-router';
 let {connect} = require('react-redux');
 
-import { Layout } from 'react-toolbox';
+import Layout from 'react-toolbox/lib/layout/Layout';
 import styles from './Index.css';
 import HomeLanding from 'Index/HomeLanding';
 

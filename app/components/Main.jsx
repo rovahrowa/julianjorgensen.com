@@ -5,7 +5,7 @@ import Header from 'Header/Header';
 import Footer from 'Footer/Footer';
 import EstimateForm from 'EstimateForm/EstimateForm';
 import Calendly from 'Calendly/Calendly';
-import { Layout } from 'react-toolbox';
+import Layout from 'react-toolbox/lib/layout/Layout';
 
 class Main extends React.Component{
   constructor(props){
