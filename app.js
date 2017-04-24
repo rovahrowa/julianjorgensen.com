@@ -52,15 +52,13 @@ app.use('/email', email);
 app.use('/api/toggl', toggl);
 
 
+// Serve Gzip
 app.use("/", expressStaticGzip(__dirname + '/public'));
 
-// Set static folder
-// app.use(express.static(__dirname + '/public'));
-
 // Catch all other paths and serve the index file
-// app.all('*', function(request, response) {
-//   response.sendFile(__dirname + '/public/index.html');
-// });
+app.all('*', function(request, response) {
+  response.sendFile(__dirname + '/public/index.html');
+});
 
 // Listen to port
 app.listen(app.get('port'), function() {

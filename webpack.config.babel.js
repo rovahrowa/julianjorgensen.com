@@ -9,7 +9,7 @@ import PostCSS from './postcss.config';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 
-let extractFonts = new ExtractTextPlugin('fonts.css');
+const extractFonts = new ExtractTextPlugin('fonts.css');
 
 // define environment constants
 const NODE_ENV = (process.env.NODE_ENV || 'development');
@@ -48,19 +48,23 @@ const BASE_CONFIG = {
       {
         test: /\.css$/,
         exclude: /fonts/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoaders: 1,
-              localIdentName: "[name]--[local]--[hash:base64:8]"
+        use: ExtractTextPlugin.extract({
+          fallback: {loader: 'style-loader'},
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                sourceMap: true,
+                importLoaders: 1,
+                localIdentName: "[name]--[local]--[hash:base64:8]"
+              }
+            },
+            {
+              loader: 'postcss-loader'
             }
-          },
-          "postcss-loader" // has separate config, see postcss.config.js nearby
-        ]
+          ]
+        })
       },
       {
         test: /fonts\.css/,

@@ -15,9 +15,6 @@ store.subscribe(() => {
   console.log('New state', state);
 });
 
-// App css
-// require('style!css!sass!applicationStyles')
-
 ReactDOM.render(
   <Provider store={store}>
     {router}
