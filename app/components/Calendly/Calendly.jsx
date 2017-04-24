@@ -1,7 +1,6 @@
 import React from 'react';
 import Dialog from 'react-toolbox/lib/dialog';
 import Button from 'react-toolbox/lib/button';
-import Iframe from 'react-iframe';
 
 import styles from './Calendly.css';
 
@@ -28,11 +27,7 @@ class Calendly extends React.Component{
           onOverlayClick={this.handleToggle}
           className={styles.modal}
         >
-        <Iframe url="https://calendly.com/julianjorgensen/30min"
-                position="absolute"
-                width="100%"
-                height="100%"
-                allowFullScreen/>
+          <iframe src="https://calendly.com/julianjorgensen/30min" width="100%" height="600px" allowFullScreen />
         </Dialog>
       </div>
     )
