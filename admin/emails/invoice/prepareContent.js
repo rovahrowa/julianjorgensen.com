@@ -1,7 +1,7 @@
 let moment = require('moment');
 
 function prepareContent(invoiceType, contextObject){
-  let {syncToken, email, emailCc, invoiceId, invoiceNumber, customerName, invoiceDueDate} = contextObject;
+  let {syncToken, email, emailCc, invoiceId, invoiceNumber, customerName, invoiceDueDate, invoiceLineItems, invoiceTaxDetails} = contextObject;
 
   console.log('invoiceType: ', invoiceType);
 
@@ -20,7 +20,10 @@ function prepareContent(invoiceType, contextObject){
     subject: subject,
     invoiceRef: {
       Id: invoiceId,
-      SyncToken: syncToken
+      SyncToken: syncToken,
+      sparse: true,
+      Line: invoiceLineItems,
+      TxnTaxDetail: invoiceTaxDetails
     },
     template: {
       name: `./admin/emails/templates/${invoiceTemplate}`,
@@ -28,7 +31,7 @@ function prepareContent(invoiceType, contextObject){
       context: contextObject
     }
   };
-  // if CC exists, then also include that the object
+  // if CC exists, then also include that to the object
   if (emailCc){
     Object.assign({cc: emailCc}, mailOptions);
   }

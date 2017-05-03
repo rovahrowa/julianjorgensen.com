@@ -24,6 +24,5 @@ let syncTogglWithQuickbooksCron = new CronJob({
   onTick: function() {
     syncTogglWithQuickbooks.init();
   },
-  start: true,
-  timeZone: 'America/Los_Angeles'
+  start: true
 });

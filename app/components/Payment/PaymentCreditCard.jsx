@@ -4,6 +4,8 @@ let invoiceActions = require('invoiceActions');
 import Script from 'react-load-script'
 import axios from 'axios';
 
+import {Button} from 'react-toolbox/lib/button';
+
 import styles from './Stripe.css';
 
 class PaymentCreditCard extends React.Component {
@@ -102,7 +104,7 @@ class PaymentCreditCard extends React.Component {
   // we have the token, now submit the
   // form to the server for the actual charge
   stripeTokenHandler(token) {
-    let {email, totalAmount, currency, invoiceId} = invoice;
+    let {email, totalAmount, currency, invoiceId} = this.props.invoice;
 
     // Submit the form
     axios.post('/api/charge', {
@@ -144,7 +146,7 @@ class PaymentCreditCard extends React.Component {
             <div id="card-errors"></div>
           </div>
 
-          {/* <Button label={`Pay ${totalAmount}`} disabled={this.state.submittingPayment} /> */}
+          <Button label={`Pay ${totalAmount}`} disabled={this.state.submittingPayment} />
         </form>
       </div>
     )

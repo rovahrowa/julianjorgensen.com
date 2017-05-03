@@ -10,10 +10,6 @@ let processInvoices = function(overdueInvoices) {
       let lastSentDate = invoice.CustomField[1].StringValue;
       let paidDate = invoice.CustomField[0].StringValue;
 
-      console.log('\n\n\n\nid: ', invoice.Id);
-      console.log('lastSentDate: ', lastSentDate);
-      console.log('paidDate: ', paidDate);
-
       if(!paidDate){
         if (lastSentDate){
           lastSentDate = moment(lastSentDate, 'DD-MM-YYYY'); //correct formatting
@@ -25,14 +21,6 @@ let processInvoices = function(overdueInvoices) {
         }else{
           invoicesToSendReminder.push(invoice.Id);
         }
-
-        // console.log('\n\n\n\nid: ', invoice.Id);
-        // console.log('lastSentDate: ', lastSentDate);
-        // console.log('today: ', today);
-        // console.log('paidDate: ', paidDate);
-        // console.log('daysSinceSentLast: ', daysSinceSentLast);
-
-
       }
     });
 

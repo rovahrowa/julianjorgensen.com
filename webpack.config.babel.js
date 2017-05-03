@@ -86,7 +86,7 @@ const BASE_CONFIG = {
         use: 'file?name=/docs/[name].[ext]'
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif)$/i,
         use: [
           {
             loader: 'url',

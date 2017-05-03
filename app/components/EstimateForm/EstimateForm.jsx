@@ -56,9 +56,8 @@ class EstimateForm extends React.Component {
     if (!this.state.sent){
       return (
         <div className={styles.container}>
-          <div className="callout alert">{ this.state.error }</div>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <div class="form-row">
+            <div>
               <Input
                 type='text'
                 label='Name'

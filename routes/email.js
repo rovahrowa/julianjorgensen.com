@@ -41,7 +41,9 @@ router.route('/invoice')
 // Send the get estimate email to prospect client
 router.route('/get-estimate')
   .post(function (req, res) {
-    sendEstimateConfirmation();
+    sendEstimateConfirmation.send(req.body).then(() => {
+      res.status(200).send('success');
+    });
   });
 
 

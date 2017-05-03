@@ -55,15 +55,12 @@ let processInvoiceDetails = function(passedData) {
         invoiceDueDateFormatted,
         invoiceToken,
         customerName,
-        companyName
+        companyName,
+        invoiceLineItems: invoice.Line,
+        invoiceTaxDetails: invoice.TxnTaxDetail
       };
 
-      console.log('are we here? ');
-
       let mailOptions = prepareContent(invoiceType, contextObject);
-
-      console.log('or here? ', mailOptions);
-
       resolve(mailOptions);
     }else{
       adminAlertEmail.send(`The Quickbooks customer, ${companyName}, we tried to send invoice ${invoiceNumber} to, does not have an email associated or is not active...`).then(() => {

@@ -5,6 +5,7 @@ let {connect} = require('react-redux');
 import Drawer from 'react-toolbox/lib/drawer';
 import Button from 'react-toolbox/lib/button';
 import styles from './Header.css';
+import theme from '../../styles/theme/topDrawer.css';
 
 class Header extends React.Component {
   constructor(){
@@ -25,14 +26,14 @@ class Header extends React.Component {
     return (
       <header className={styles.header}>
         <nav className={styles.nav}>
-          <li><IndexLink to="/" activeClassName="active">Logo</IndexLink></li>
+          <li><IndexLink to="/" activeClassName="active"><img src="/images/julian-jorgensen-logo.svg" width={24} /></IndexLink></li>
           <li><Link to='/design'>Design</Link></li>
           <li><Link to='/frontend'>Front-end</Link></li>
           <li><Link onClick={this.handleContactToggle}>Contact</Link></li>
         </nav>
 
-        <Drawer active={this.state.contactActive} onOverlayClick={this.handleContactToggle} className={styles.contact}>
-          <h5>Contact me</h5>
+        <Drawer theme={theme} active={this.state.contactActive} onOverlayClick={this.handleContactToggle} className={theme.contact}>
+          <h4>me@julianjorgensen.com</h4>
         </Drawer>
       </header>
     )

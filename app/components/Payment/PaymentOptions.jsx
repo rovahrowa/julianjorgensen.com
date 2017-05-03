@@ -6,8 +6,7 @@ import Script from 'react-load-script'
 import axios from 'axios';
 
 import PaymentCreditCard from 'Payment/PaymentCreditCard';
-import Tab from 'react-toolbox/lib/tabs/Tab';
-import Tabs from 'react-toolbox/lib/tabs/Tabs';
+import {Tab, Tabs} from 'react-toolbox/lib/tabs';
 
 class PaymentOptions extends React.Component {
   constructor() {
