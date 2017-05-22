@@ -6,8 +6,7 @@ import styles from './styles/app.css';
 import fonts from './fonts/fonts.css';
 
 let store = require('configureStore').configure();
-import router from './router/router.jsx';
-
+import main from './components/Main';
 
 // subscribe to the redux store
 store.subscribe(() => {
@@ -17,7 +16,7 @@ store.subscribe(() => {
 
 ReactDOM.render(
   <Provider store={store}>
-    {router}
+    {main}
   </Provider>,
   document.getElementById('app')
 );

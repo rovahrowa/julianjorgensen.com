@@ -1,6 +1,5 @@
 import React from 'react';
-import Slider from 'react-slick';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 let {connect} = require('react-redux');
 
 import Layout from 'react-toolbox/lib/layout/Layout';

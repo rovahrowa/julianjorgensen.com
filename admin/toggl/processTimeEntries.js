@@ -1,4 +1,5 @@
 let util = require('../../util/util');
+let moment = require('moment');
 
 let processTimeEntries = function(passedData) {
   let promise = new Promise(function(resolve, reject){
@@ -14,9 +15,13 @@ let processTimeEntries = function(passedData) {
         billed = (timeEntry.tags.indexOf("billed") > -1);
       }
 
+      let today = moment().startOf('day');
+      let timeEntryLogged = moment(timeEntry.stop, 'YYYY-MM-DD');
+      let daysSinceTimeEntryLogged = Math.round(moment.duration(today - timeEntryLogged).asDays());
+
       // If there's a new time entry from Toggl, then add it to QuickBooks:
-      // if it's a billable entry, has not been billed yet, and is more than 30 seconds
-      if (!timeEntry.billable || billed || timeEntry.duration < 30){
+      // if it's a billable entry, has not been billed yet, is more than 30 seconds, and logged more than a day ago
+      if (!timeEntry.billable || billed || timeEntry.duration < 30 || daysSinceTimeEntryLogged < 2){
         return false;
       }else{
         // description
@@ -46,10 +51,8 @@ let processTimeEntries = function(passedData) {
         // determine rate
         if (project.rate){
           rate = project.rate;
-          console.log('using project rate: ', rate);
         }else{
           rate = workspace.default_hourly_rate;
-          console.log('using workspace rate: ', rate);
         }
 
         processedTimeEntries.push({

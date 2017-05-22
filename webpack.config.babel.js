@@ -21,7 +21,7 @@ const VENDOR_LIBS = [
   'jquery',
   'react',
   'react-dom',
-  'react-router',
+  'react-router-dom',
   'react-redux',
   'react-document-meta'
 ];

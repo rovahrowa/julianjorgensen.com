@@ -5,6 +5,7 @@ let util = require('../util/util');
 
 let invoice = require('../admin/emails/invoice/init');
 let invoiceReminder = require('../admin/crons/invoiceReminder/init');
+let togglSync = require('../admin/toggl/init');
 let sendEstimateConfirmation = require('../admin/emails/estimateRequest/init');
 
 // Send the invoice
@@ -55,5 +56,15 @@ router.route('/test')
       res.status(401).send(`${err}`);
     });
   });
+
+router.route('/test-toggl')
+  .post(function (req, res) {
+    togglSync.init().then(() => {
+      res.status(200).send('success');
+    }).catch((err) => {
+      res.status(401).send(`${err}`);
+    });
+  });
+
 
 module.exports = router;

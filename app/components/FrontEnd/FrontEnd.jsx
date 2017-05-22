@@ -10,9 +10,7 @@ class FrontEnd extends React.Component{
   render() {
     return (
       <section className="section">
-        <section className="section">
-          <Marquee title="Front-End" />
-        </section>
+        <Marquee title="Front-End" bgColor="purple-blue" />
       </section>
     )
   }

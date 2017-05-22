@@ -1,0 +1,31 @@
+.item{
+  margin: 5px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid gray(90%, 50%);
+  &:last-child{
+    border-bottom: none;
+  }
+}
+
+.title{
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+  &:after{
+    content: '+';
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    transition: all 0.2s;
+  }
+}
+
+.content{
+}
+
+.active{
+  & .title:after{
+    transform: rotate(45deg);
+  }
+}

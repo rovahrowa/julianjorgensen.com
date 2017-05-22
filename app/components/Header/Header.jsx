@@ -1,10 +1,11 @@
 import React from 'react';
-import {Link, IndexLink} from 'react-router';
-let {connect} = require('react-redux');
+import {Link} from 'react-router-dom';
 
+import Logo from '../Logo';
 import Drawer from 'react-toolbox/lib/drawer';
 import Button from 'react-toolbox/lib/button';
-import styles from './Header.css';
+import headerStyles from './Header.css';
+import navStyles from './Nav.css';
 import theme from '../../styles/theme/topDrawer.css';
 
 class Header extends React.Component {
@@ -21,15 +22,26 @@ class Header extends React.Component {
   };
 
   render() {
-    let {dispatch} = this.props;
+    let {dispatch, pageName} = this.props;
+
+    let navStyle;
+
+    switch(pageName) {
+      case 'design':
+      case 'frontend':
+        navStyle = navStyles.navDark
+        break;
+    }
 
     return (
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <li><IndexLink to="/" activeClassName="active"><img src="/images/julian-jorgensen-logo.svg" width={24} /></IndexLink></li>
-          <li><Link to='/design'>Design</Link></li>
-          <li><Link to='/frontend'>Front-end</Link></li>
-          <li><Link onClick={this.handleContactToggle}>Contact</Link></li>
+      <header className={headerStyles.header}>
+        <nav className={`${navStyles.nav} ${navStyle}`}>
+          <li><Link to='/' className={`${navStyles.link} ${navStyles.logo}`}><Logo fill='#ffffff' width={24} /></Link></li>
+          <li><Link to='/design' className={navStyles.link} activeClassName={navStyles.linkActive}>Design</Link></li>
+          <li><Link to='/frontend' className={navStyles.link} activeClassName={navStyles.linkActive}>Front-end</Link></li>
+          <li><Link to='/automation' className={navStyles.link} activeClassName={navStyles.linkActive}>Automation</Link></li>
+          <li><Link to='/portfolio' className={navStyles.link} activeClassName={navStyles.linkActive}>Portfolio</Link></li>
+          <li><Link to='#' className={`${navStyles.link} ${navStyles.contact}`} onClick={this.handleContactToggle}>Contact</Link></li>
         </nav>
 
         <Drawer theme={theme} active={this.state.contactActive} onOverlayClick={this.handleContactToggle} className={theme.contact}>
@@ -40,7 +52,4 @@ class Header extends React.Component {
   }
 }
 
-export default connect(
-  (state) => {
-  }
-)(Header);
+module.exports = Header;
