@@ -1,4 +1,5 @@
 import React from 'react';
+let {connect} = require('react-redux');
 import {Link} from 'react-router-dom';
 
 import Logo from '../Logo';
@@ -22,16 +23,17 @@ class Header extends React.Component {
   };
 
   render() {
-    let {dispatch, pageName} = this.props;
+    let {dispatch, pageName, scroll} = this.props;
 
     let navStyle;
-
     switch(pageName) {
       case 'design':
       case 'frontend':
         navStyle = navStyles.navDark
         break;
     }
+
+    let headerOpacity = 0+(scroll.y/100);
 
     return (
       <header className={headerStyles.header}>
@@ -52,4 +54,10 @@ class Header extends React.Component {
   }
 }
 
-module.exports = Header;
+export default connect(
+  (state) => {
+    return {
+      scroll: state.scrollPosition
+    }
+  }
+)(Header);

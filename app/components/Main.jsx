@@ -17,6 +17,8 @@ import Proposal from 'Proposal/Proposal';
 import Calendly from 'Calendly/Calendly';
 import EstimateForm from 'EstimateForm/EstimateForm';
 
+import Scroll from 'Scroll';
+
 import { Layout } from 'react-toolbox/lib/layout';
 import ReactGA from 'react-ga';
 // ReactGA.initialize('UA-6241825-9'); // initialize Google Analytics
@@ -33,6 +35,7 @@ function logPageView(location) {
 //   window.scrollTo(0, 0);
 // });
 
+// site meta data
 const meta = {
   title: 'Julian Jorgensen',
   description: 'UX &amp; Front-End Development',
@@ -47,8 +50,10 @@ const meta = {
 export default (
   <Router>
     <div id="main" className={`page-name-here`}>
+      <Scroll />
       <DocumentMeta {...meta} />
       <Header />
+      <scrollPosition />
       <Route path="/" component={Main} />
       <Layout>
         <Route exact path="/" component={Index} />

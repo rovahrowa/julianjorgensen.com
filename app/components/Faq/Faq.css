@@ -1,3 +1,20 @@
 .container{
   composes: container from "../../styles/layout.css";
+  background-color: gray(91%);
+  display: flex;
+  justify-content: center;
+}
+
+.inner{
+  composes: inner from "../../styles/layout.css";
+}
+
+.accordions{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  & .accordion{
+    width: 40%;
+  }
 }

@@ -12,8 +12,9 @@ class Accordion extends React.Component{
   }
 
   render() {
+    let {className} = this.props;
     return (
-      <div>
+      <div className={className}>
         {this.props.children.map((item, index) => {
           let title = item.props.children[0].props.children;
           let content = item.props.children[1].props.children;

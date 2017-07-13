@@ -23,6 +23,18 @@ export var navReducer = (state = {showClose: false, showNav: false}, action) => 
   }
 };
 
+export var scrollReducer = (state = {y: 0}, action) => {
+  switch (action.type) {
+    case 'SET_SCROLL_POSITION':
+      console.log('setting scroll position in redux');
+      return {
+        ...state,
+        y: action.scrollY
+      };
+    default:
+      return state;
+  }
+};
 
 export var invoiceReducer = (state = {id: '', number: '', amount: '', email: '', currency: '', paid: false}, action) => {
   switch (action.type) {

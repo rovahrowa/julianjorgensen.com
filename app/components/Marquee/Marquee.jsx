@@ -1,43 +1,38 @@
 import React from 'react';
+let {connect} = require('react-redux');
 import Waypoint from 'react-waypoint';
 import {Link, Element, Events, scroll, scrollSpy} from 'react-scroll';
 import styles from './Marquee.css';
 
-class Header extends React.Component {
+class Marquee extends React.Component {
   constructor(){
     super();
 
-    this.state = {
-      headerMarginBottom: 0,
-      headerOpacity: 0.2
-    }
-  }
-
-  componentDidMount(){
-    window.addEventListener('scroll', () =>{
-      let supportPageOffset = window.pageXOffset !== undefined;
-      let isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
-      let scroll = {
-         x: supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft,
-         y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
-      };
-
-      this.setState({
-        headerMarginBottom: -scroll.y,
-        headerOpacity: 0.2-(scroll.y/600)
-      });
-    }, 300);//ms
+    // this.state = {
+    //   headerMarginBottom: 0,
+    //   headerOpacity: 0.2
+    // }
   }
 
   render() {
-    let {title, bgColor} = this.props;
+    let {title, bgColor, scroll} = this.props;
+
+    console.log('scroll prop: ', scroll);
+    let headerMarginBottom = -scroll.y;
+    let headerOpacity = 0.2-(scroll.y/600);
 
     return (
       <div className={`${styles.marquee} ${styles[bgColor]}`}>
-        <h1 className={styles.header} style={{marginBottom: this.state.headerMarginBottom, opacity: this.state.headerOpacity}}>{title}</h1>
+        <h1 className={styles.header} style={{marginBottom: headerMarginBottom, opacity: headerOpacity}}>{title}</h1>
       </div>
     )
   }
 }
 
-module.exports = Header;
+export default connect(
+  (state) => {
+    return {
+      scroll: state.scrollPosition
+    }
+  }
+)(Marquee);

@@ -2,6 +2,7 @@
   & body{
     margin: 0;
     background: #f3f3f3;
+    background: linear-gradient(to bottom, gray(98%), gray(50%));
   }
 
   & .page-content{
@@ -15,8 +16,14 @@
   align-self: center;
   width: 900px;
   max-width: 100%;
-  padding: 30px;
+  padding: 40px 30px;
   background-color: white;
+}
+
+.inner{
+  align-self: center;
+  width: 600px;
+  max-width: 100%;
 }
 
 .loader{
