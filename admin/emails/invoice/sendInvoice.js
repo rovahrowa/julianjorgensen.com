@@ -19,7 +19,7 @@ let sendInvoice = function(mailOptions) {
   });
 
 
-  return new Promise(function(resolve, reject){
+  return new Promise(function(resolve, reject) {
     Promise.all(sendInvoicePromises).then(() => {
       resolve(mailOptions.invoiceRef);
     });

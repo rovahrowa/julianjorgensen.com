@@ -1,6 +1,6 @@
 import React from 'react';
-let {connect} = require('react-redux');
-let store = require('configureStore').configure();
+let { connect } = require('react-redux');
+import store from 'store';
 
 class Scroll extends React.Component {
   constructor(){

@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
 import styles from './styles/app.css';
-import fonts from './fonts/fonts.css';
 
-let store = require('configureStore').configure();
-import main from './components/Main';
+import store from 'store';
+import main from 'layout';
 
 // subscribe to the redux store
 store.subscribe(() => {

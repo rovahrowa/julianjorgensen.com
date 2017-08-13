@@ -1,6 +1,6 @@
 import React from 'react';
 let {connect} = require('react-redux');
-let invoiceActions = require('invoiceActions');
+import { invoiceActions } from 'actions';
 import Script from 'react-load-script'
 import axios from 'axios';
 

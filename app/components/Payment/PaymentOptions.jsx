@@ -1,12 +1,12 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-let {connect} = require('react-redux');
-let invoiceActions = require('invoiceActions');
+import { Link } from 'react-router-dom';
+let { connect } = require('react-redux');
+import { invoiceActions } from 'actions';
 import Script from 'react-load-script'
 import axios from 'axios';
 
-import PaymentCreditCard from 'Payment/PaymentCreditCard';
-import {Tab, Tabs} from 'react-toolbox/lib/tabs';
+import PaymentCreditCard from 'components/Payment/PaymentCreditCard';
+import { Tab, Tabs } from 'react-toolbox/lib/tabs';
 
 class PaymentOptions extends React.Component {
   constructor() {

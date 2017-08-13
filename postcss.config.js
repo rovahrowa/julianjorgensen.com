@@ -5,6 +5,9 @@ module.exports = {
     },
     'postcss-mixins': {},
     'postcss-each': {},
-    'postcss-cssnext': {}
+    'postcss-cssnext': {},
+    'postcss-font-magician' : {
+      hosted: ['./app/assets/fonts']
+    }
   },
 };

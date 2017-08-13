@@ -8,12 +8,13 @@ import autoprefixer from 'autoprefixer';
 import PostCSS from './postcss.config';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
-
-const extractFonts = new ExtractTextPlugin('fonts.css');
+import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
 
 // define environment constants
 const NODE_ENV = (process.env.NODE_ENV || 'development');
 const IS_PRODUCTION = (NODE_ENV === 'production');
+
+console.log('Running webpack optimized for', NODE_ENV);
 
 // Static vendor assets for which one can expect
 //  minimal and a slow rate of change:
@@ -47,7 +48,6 @@ const BASE_CONFIG = {
       },
       {
         test: /\.css$/,
-        exclude: /fonts/,
         use: ExtractTextPlugin.extract({
           fallback: {loader: 'style-loader'},
           use: [
@@ -68,16 +68,6 @@ const BASE_CONFIG = {
         })
       },
       {
-        test: /fonts\.css/,
-        loader: extractFonts.extract({
-          loader: 'css-loader',
-        }),
-      },
-      {
-        test: /\.(woff|woff2)$/,
-        use: 'url-loader'
-      },
-      {
         test: /\.json$/i,
         use: 'json'
       },
@@ -94,6 +84,25 @@ const BASE_CONFIG = {
           },
           'file?name=/images/[name].[ext]',
           'image-webpack-loader'
+        ]
+      },
+      {
+        test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader?name=fonts/[name].[ext]'
+      },
+      {
+        test: /\.svg$/,
+        include: path.resolve(__dirname, 'app/assets/icons'),
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              extract: true,
+              spriteFilename: 'icons/sprite.svg'
+            }
+          },
+          'svg-fill-loader',
+          'svgo-loader'
         ]
       }
     ]
@@ -125,25 +134,22 @@ const BASE_CONFIG = {
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
-    extractFonts
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // reduce moment package size
+    new SpriteLoaderPlugin()
   ],
   devtool: `${IS_PRODUCTION ? 'inline' : 'cheap-eval'}-source-map`,
   resolve: {
-    modules: [
-      'node_modules',
-      './app',
-      './app/router',
-      './app/components',
-      './app/vendor',
-      './app/api',
-      './app/utils'
-    ],
     alias: {
-      app: 'app',
-      router: 'router/router.jsx',
-      invoiceActions: 'actions/invoiceActions.jsx',
-      reducers: 'reducers/reducers.jsx',
-      configureStore: 'store/configureStore.jsx'
+      assets: path.resolve(__dirname, 'app/assets/'),
+      app: path.resolve(__dirname, 'app/'),
+      components: path.resolve(__dirname, 'app/components/'),
+      layout: path.resolve(__dirname, 'app/layout/'),
+      routes: path.resolve(__dirname, 'app/routes/'),
+      store: path.resolve(__dirname, 'app/store/'),
+      reducers: path.resolve(__dirname, 'app/store/reducers'),
+      actions: path.resolve(__dirname, 'app/store/actions'),
+      styles: path.resolve(__dirname, 'app/styles/'),
+      utils: path.resolve(__dirname, 'app/utils/')
     },
     extensions: ['.js', '.jsx', '.css']
   }

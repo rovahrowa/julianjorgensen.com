@@ -1,9 +1,0 @@
-.header{
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  width: 100%;
-  display: flex;
-  padding: 25px 30px;
-  box-sizing: border-box;
-}
