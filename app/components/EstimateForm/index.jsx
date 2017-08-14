@@ -3,9 +3,10 @@ import axios from 'axios';
 
 import Input from 'react-toolbox/lib/input';
 import {Button} from 'react-toolbox/lib/button';
+import globalStyles from 'styles/app.css';
 import styles from './index.css';
 
-class EstimateForm extends React.Component {
+export default class EstimateForm extends React.Component {
   constructor() {
     super();
 
@@ -56,7 +57,9 @@ class EstimateForm extends React.Component {
     if (!this.state.sent){
       return (
         <div className={styles.container}>
-          <form onSubmit={this.handleSubmit.bind(this)}>
+          <form onSubmit={this.handleSubmit.bind(this)} className={styles.form}>
+            <h2>Get a quote for your project</h2>
+            <h3>(I often get fully booked, so reserve your spot now)</h3>
             <div>
               <Input
                 type='text'
@@ -109,6 +112,3 @@ class EstimateForm extends React.Component {
     }
   }
 }
-
-
-module.exports = EstimateForm;

@@ -4,7 +4,7 @@ import Button from 'react-toolbox/lib/button';
 
 import styles from './index.css';
 
-class Calendly extends React.Component{
+export default class Calendly extends React.Component{
   constructor(){
     super();
 
@@ -33,5 +33,3 @@ class Calendly extends React.Component{
     )
   }
 }
-
-module.exports = Calendly;

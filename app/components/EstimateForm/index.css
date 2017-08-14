@@ -1,3 +1,9 @@
+@import "../../styles/app.css";
+
 .container{
-  composes: container from "../../styles/layout.css";
+  composes: globalContainer withPaddings white center;
+}
+
+.form{
+  width: rem(400);
 }

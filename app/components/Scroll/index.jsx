@@ -1,8 +1,13 @@
 import React from 'react';
-let { connect } = require('react-redux');
+import { connect } from 'react-redux';
 import store from 'store';
 
-class Scroll extends React.Component {
+@connect(
+  ({ scrollPosition }) => ({
+    scroll: scrollPosition.y
+  })
+)
+export default class Scroll extends React.Component {
   constructor(){
     super();
   }
@@ -29,11 +34,3 @@ class Scroll extends React.Component {
     )
   }
 }
-
-export default connect(
-  (state) => {
-    return {
-      scroll: state.scrollPosition
-    }
-  }
-)(Scroll);

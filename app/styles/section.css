@@ -1,0 +1,33 @@
+@import "variables.css";
+
+/* Section Global Styles */
+.globalHeader{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: var(--purple) !default;
+  margin-bottom: rem(15);
+  & .globalTitle{
+    text-transform: uppercase;
+    margin: rem(10) 0;
+    color: inherit;
+    font-size: rem(26);
+    line-height: rem(26);
+  }
+  &:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    color: inherit;
+    height: rem(5);
+    width: 100%;
+    background: linear-gradient(90deg, currentColor, var(--curious-blue));
+  }
+}
+
+.globalBox{
+  background-color: gray(90%);
+  padding: rem(20);
+}

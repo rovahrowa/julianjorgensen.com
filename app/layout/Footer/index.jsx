@@ -1,11 +1,22 @@
 import React from 'react';
-let {connect} = require('react-redux');
+import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import Logo from 'components/Logo';
 
+// icons
+import 'assets/icons/brands/github.svg';
+import 'assets/icons/brands/linkedin-in.svg';
+import 'assets/icons/brands/angellist.svg';
+
+// styles
 import styles from './index.css';
 
-class Footer extends React.Component {
+@connect(
+  ({ scrollPosition }) => ({
+    scroll: scrollPosition.y
+  })
+)
+export default class Footer extends React.Component {
   constructor(){
     super();
   }
@@ -37,12 +48,20 @@ class Footer extends React.Component {
             <Link to='/design' className={styles.navItem}>About</Link>
             <Link to='/design' className={styles.navItem}>Get a Estimate</Link>
           </div>
+
+          <div className={styles.icons}>
+            <a href='https://github.com/julianjorgensen' target='new' className={`${styles.icon} ${styles.github}`}></a>
+            <a href='https://www.linkedin.com/in/julian-jorgensen-9a889b73' target='new' className={`${styles.icon} ${styles.linkedin}`}></a>
+            <a href='https://angel.co/julianjorgensen' target='new' className={`${styles.icon} ${styles.angellist}`}></a>
+          </div>
         </nav>
+        <div className={styles.pixelFade}>
+        </div>
 
         <div className={styles.credit} style={{opacity: creditOpacity}}>
           <div className={styles.slogan}>Life's Good</div>
-          <div className={styles.logo}>
-            <Logo fill='#ffffff' width={26} />
+          <div className={styles.signature}>
+            <Logo size={25} className={styles.logo} color='white' />
             <div>Julian Jorgensen</div>
           </div>
         </div>
@@ -50,11 +69,3 @@ class Footer extends React.Component {
     )
   }
 }
-
-export default connect(
-  (state) => {
-    return {
-      scroll: state.scrollPosition
-    }
-  }
-)(Footer);

@@ -3,16 +3,17 @@
 .marquee{
   display: flex;
   width: 100%;
-  height: 300px;
+  height: rem(300);
   background-color: white;
   color: white;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  margin-bottom: -50px;
+  margin-bottom: rem(-80);
 }
 
 .header{
-  font-size: 220px;
+  font-size: rem(220);
+  line-height: rem(130);
 }
 
 .purple-blue{
@@ -33,4 +34,8 @@
 
 .turquoise{
   background: linear-gradient(to bottom right, color(var(--turquoise) shade(50%)), var(--turquoise));
+}
+
+.black{
+  background: linear-gradient(to bottom right, gray(10%), black);
 }

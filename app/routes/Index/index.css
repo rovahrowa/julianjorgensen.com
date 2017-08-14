@@ -1,3 +1,1 @@
-.container{
-  composes: container from "../../styles/layout.css";
-}
+@import "../../styles/variables.css";

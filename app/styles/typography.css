@@ -22,6 +22,7 @@
 
   & :--headings{
     font-family: 'Whitney';
+    margin: 0;
   }
 
   & body {
@@ -36,6 +37,7 @@
   & h1 {
     font-size: var(--h1);
     line-height: calc(var(--h1) * var(--lineHeight));
+    text-transform: uppercase;
   }
   & h2 {
     font-size: var(--h2);

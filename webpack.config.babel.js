@@ -73,17 +73,25 @@ const BASE_CONFIG = {
       },
       {
         test: /\.pdf$/i,
-        use: 'file?name=/docs/[name].[ext]'
+        use: 'file-loader?name=/docs/[name].[ext]'
       },
       {
-        test: /\.(jpe?g|png|gif)$/i,
-        use: [
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        include: path.resolve(__dirname, 'app/assets/images'),
+        loaders: [
+          'file-loader',
           {
-            loader: 'url',
-            options: { limit: 40000 }
-          },
-          'file?name=/images/[name].[ext]',
-          'image-webpack-loader'
+            loader: 'image-webpack-loader',
+            query: {
+              progressive: true,
+              optimizationLevel: 7,
+              interlaced: false,
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              }
+            }
+          }
         ]
       },
       {
@@ -111,7 +119,8 @@ const BASE_CONFIG = {
     new CopyWebpackPlugin([
       {
         context: 'app',
-        from: 'assets'
+        from: 'assets/images',
+        to: 'images'
       }
     ]),
     new webpack.DefinePlugin({
@@ -121,11 +130,6 @@ const BASE_CONFIG = {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
       minChunks: Infinity
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
     }),
     new HTMLWebpackPlugin({
       template: 'app/index.html'
@@ -158,6 +162,11 @@ const BASE_CONFIG = {
 
 // Webpack plugins unique to the production build:
 const PROD_PLUGINS = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify('production')
+    }
+  }),
   new ExtractTextPlugin('[name].min.[contenthash].css'),
   new webpack.optimize.UglifyJsPlugin({
     compress: {

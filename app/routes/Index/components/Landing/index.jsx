@@ -4,9 +4,7 @@ import ReactPlayer from 'react-player';
 import Button from 'react-toolbox/lib/button';
 import styles from './index.css';
 
-import 'assets/icons/regular/trophy.svg';
-
-class HomeLanding extends React.Component{
+export default class HomeLanding extends React.Component{
   constructor(){
     super();
 
@@ -31,5 +29,3 @@ class HomeLanding extends React.Component{
     )
   }
 }
-
-module.exports = HomeLanding;

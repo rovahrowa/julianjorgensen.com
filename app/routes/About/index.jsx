@@ -2,7 +2,7 @@ import React from 'react';
 import DocumentMeta from 'react-document-meta';
 import Marquee from 'components/Marquee';
 
-class About extends React.Component{
+export default class About extends React.Component{
   constructor(){
     super();
   }
@@ -15,5 +15,3 @@ class About extends React.Component{
     )
   }
 }
-
-module.exports = About;

@@ -1,4 +1,4 @@
-var crypto = require('crypto'); // for validating payload
+let crypto = require('crypto'); // for validating payload
 
 // Validates the payload (used for QuickBooks)
 function isValidPayload(signature, token, payload) {

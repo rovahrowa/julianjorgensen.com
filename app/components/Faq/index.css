@@ -1,12 +1,8 @@
-.container{
-  composes: container from "../../styles/layout.css";
-  background-color: gray(91%);
-  display: flex;
-  justify-content: center;
-}
+@import "../../styles/app.css";
 
-.inner{
-  composes: inner from "../../styles/layout.css";
+.container{
+  composes: globalContainer withPaddings;
+  background-color: gray(91%);
 }
 
 .accordions{

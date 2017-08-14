@@ -1,11 +1,11 @@
 import React from 'react';
 import DocumentMeta from 'react-document-meta';
-import Carousel from 'nuka-carousel';
+import Carousel from 'rmc-nuka-carousel';
 import Marquee from 'components/Marquee';
 
 import styles from './index.css';
 
-class Portfolio extends React.Component{
+export default class Portfolio extends React.Component{
   constructor(){
     super();
   }
@@ -16,31 +16,6 @@ class Portfolio extends React.Component{
   }
 
   render() {
-
-    // let Decorators = [{
-    //   component: React.createClass({
-    //     render() {
-    //       return (
-    //         <button
-    //           onClick={this.props.previousSlide}>
-    //           Previous Slide
-    //         </button>
-    //       )
-    //     }
-    //   })
-    // },{
-    //   component: React.createClass({
-    //     render() {
-    //       return (
-    //         <button
-    //           onClick={this.props.nextSlide}>
-    //           Next Slide
-    //         </button>
-    //       )
-    //     }
-    //   })
-    // }];
-
     return (
       <div className="page-content">
         <Marquee title="Portfolio" bgColor="purple" />
@@ -59,5 +34,3 @@ class Portfolio extends React.Component{
     )
   }
 }
-
-module.exports = Portfolio;

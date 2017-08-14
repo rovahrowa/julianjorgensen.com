@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-let {connect} = require('react-redux');
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import invoiceActions from 'actions';
 import numeral from 'numeral';
 
@@ -8,7 +8,12 @@ import Loader from 'components/Loader';
 import PaymentOptions from 'components/Payment/PaymentOptions';
 import styles from './index.css';
 
-class Invoice extends React.Component {
+@connect(
+  ({ invoice }) => ({
+    invoice: invoice
+  })
+)
+export default class Invoice extends React.Component {
   constructor() {
     super();
 
@@ -52,11 +57,3 @@ class Invoice extends React.Component {
     }
   }
 }
-
-export default connect(
-  (state) => {
-    return {
-      invoice: state.invoice
-    }
-  }
-)(Invoice);

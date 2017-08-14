@@ -1,7 +1,6 @@
 let express = require('express');
 let router = express.Router();
 let app = require('../app');
-let crypto = require('crypto');
 let bodyParser = require('body-parser');
 let util = require('../util/util');
 let numeral = require('numeral');

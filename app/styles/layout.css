@@ -1,32 +1,40 @@
+@import "variables.css";
+
 :global {
   & body{
     margin: 0;
     background: #f3f3f3;
     background: linear-gradient(to bottom, gray(98%), gray(50%));
   }
+}
 
-  & .page-content{
+.globalContainer{
+  align-self: center;
+  width: rem(900);
+  max-width: 100%;
+  &.withMarginBottom{
+    margin-bottom: rem(100);
+  }
+  &.withPaddings{
+    padding: rem(40) rem(30);
+  }
+  &.white{
+    background-color: white;
+  }
+  &.center{
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 }
 
-.container{
-  align-self: center;
-  width: 900px;
-  max-width: 100%;
-  padding: 40px 30px;
-  background-color: white;
-}
-
-.inner{
-  align-self: center;
-  width: 600px;
-  max-width: 100%;
-}
-
-.loader{
+.globalWrapper{
   display: flex;
-  color: black;
+  justify-content: center;
+  padding: rem(40);
+  width: 100%;
+  margin-bottom: rem(40);
+  &.withMarginBottom{
+    margin-bottom: rem(100);
+  }
 }

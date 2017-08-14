@@ -1,13 +1,25 @@
+@import "../../styles/app.css";
+
 .container{
-  composes: container from "../../styles/layout.css";
+  composes: globalContainer;
   padding: 0;
   background-color: transparent;
+}
+
+.pixelFade{
+  background-image: url('assets/images/pixels-fade.svg');
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  background-size: 10%;
+  height: rem(50);
 }
 
 .nav{
   background-color: gray(30%);
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 40px 0;
 
   & .navItems{
@@ -27,6 +39,30 @@
   }
 }
 
+.icons{
+  display: flex;
+  margin-top: rem(60);
+  & .icon{
+    display: block;
+    width: rem(35);
+    height: rem(35);
+    margin-right: rem(20);
+    opacity: 0.5;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+  & .github{
+    background-image: url('assets/icons/brands/github.svg');
+  }
+  & .linkedin{
+    background-image: url('assets/icons/brands/linkedin-in.svg');
+  }
+  & .angellist{
+    background-image: url('assets/icons/brands/angellist.svg');
+  }
+}
+
 .credit{
   text-align: center;
   margin-top: 40px;
@@ -39,8 +75,9 @@
     font-style: italic;
   }
 
-  & .logo{
+  & .signature{
     display: flex;
+
     justify-content: center;
     align-items: center;
     font-size: 18px;

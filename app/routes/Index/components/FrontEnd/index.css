@@ -1,0 +1,23 @@
+@import "../../../../styles/app.css";
+
+.wrapper{
+  composes: globalWrapper withMarginBottom;
+  background-color: black;
+}
+
+.container{
+  composes: globalContainer;
+}
+
+.header{
+  composes: globalHeader;
+  color: var(--purple);
+}
+
+.title{
+  composes: globalTitle;
+}
+
+.box{
+  composes: globalBox;
+}

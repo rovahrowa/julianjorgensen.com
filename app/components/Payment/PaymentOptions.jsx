@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-let { connect } = require('react-redux');
+import { connect } from 'react-redux';
 import { invoiceActions } from 'actions';
-import Script from 'react-load-script'
 import axios from 'axios';
 
 import PaymentCreditCard from 'components/Payment/PaymentCreditCard';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
 
-class PaymentOptions extends React.Component {
+@connect(
+  ({ invoice }) => ({
+    invoice: invoice
+  })
+)
+export default class PaymentOptions extends React.Component {
   constructor() {
     super();
 
@@ -41,11 +45,3 @@ class PaymentOptions extends React.Component {
     )
   }
 }
-
-export default connect(
-  (state) => {
-    return {
-      invoice: state.invoice
-    }
-  }
-)(PaymentOptions);

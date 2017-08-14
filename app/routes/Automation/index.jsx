@@ -1,11 +1,11 @@
 import React from 'react';
 import DocumentMeta from 'react-document-meta';
-import Carousel from 'nuka-carousel';
+import Carousel from 'rmc-nuka-carousel';
 import Marquee from 'components/Marquee';
 
 import styles from './index.css';
 
-class Automation extends React.Component{
+export default class Automation extends React.Component{
   constructor(){
     super();
   }
@@ -30,5 +30,3 @@ class Automation extends React.Component{
     )
   }
 }
-
-module.exports = Automation;

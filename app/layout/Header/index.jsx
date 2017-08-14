@@ -1,15 +1,20 @@
 import React from 'react';
-let {connect} = require('react-redux');
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+
+import Drawer from 'react-toolbox/lib/drawer';
 
 import Logo from 'components/Logo';
-import Drawer from 'react-toolbox/lib/drawer';
-import Button from 'react-toolbox/lib/button';
-
 import styles from './index.css';
 import theme from 'styles/theme/topDrawer.css';
 
-class Header extends React.Component {
+@withRouter
+@connect(
+  ({ scrollPosition }) => ({
+    scroll: scrollPosition.y
+  })
+)
+export default class Header extends React.Component {
   constructor(){
     super();
 
@@ -23,13 +28,15 @@ class Header extends React.Component {
   };
 
   render() {
-    let {dispatch, pageName, scroll} = this.props;
+    let { dispatch } = this.props;
+    let { pathname } = this.props.location;
 
     let navStyle;
-    switch(pageName) {
-      case 'design':
-      case 'frontend':
+    let logoColor = 'white';
+    switch(pathname) {
+      case '/frontend':
         navStyle = styles.navDark
+        logoColor = 'black'
         break;
     }
 
@@ -38,11 +45,11 @@ class Header extends React.Component {
     return (
       <header className={styles.header}>
         <nav className={`${styles.nav} ${navStyle}`}>
-          <li><Link to='/' className={`${styles.link} ${styles.logo}`}><Logo fill='#ffffff' width={24} /></Link></li>
-          <li><Link to='/design' className={styles.link} activeClassName={styles.linkActive}>Design</Link></li>
-          <li><Link to='/frontend' className={styles.link} activeClassName={styles.linkActive}>Front-end</Link></li>
-          <li><Link to='/automation' className={styles.link} activeClassName={styles.linkActive}>Automation</Link></li>
-          <li><Link to='/portfolio' className={styles.link} activeClassName={styles.linkActive}>Portfolio</Link></li>
+          <li><Link to='/' className={styles.link}><Logo size={25} color={logoColor} className={`${styles.logo} ${pathname === '/' ? styles.active : ''}`} /></Link></li>
+          <li><Link to='/frontend' className={`${styles.link} ${pathname === '/frontend' ? styles.linkActive : ''}`}>Front-End</Link></li>
+          <li><Link to='/uiux' className={`${styles.link} ${pathname === '/uiux' ? styles.linkActive : ''}`}>UI & UX</Link></li>
+          <li><Link to='/backend' className={`${styles.link} ${pathname === '/backend' ? styles.linkActive : ''}`}>Back-End</Link></li>
+          <li><Link to='/automation' className={`${styles.link} ${pathname === '/automation' ? styles.linkActive : ''}`}>Automation</Link></li>
           <li><Link to='#' className={`${styles.link} ${styles.contact}`} onClick={this.handleContactToggle}>Contact</Link></li>
         </nav>
 
@@ -53,11 +60,3 @@ class Header extends React.Component {
     )
   }
 }
-
-export default connect(
-  (state) => {
-    return {
-      scroll: state.scrollPosition
-    }
-  }
-)(Header);

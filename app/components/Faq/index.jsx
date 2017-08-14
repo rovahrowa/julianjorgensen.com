@@ -2,7 +2,7 @@ import React from 'react';
 import Accordion from 'components/Accordion';
 import styles from './index.css';
 
-class Faq extends React.Component{
+export default class Faq extends React.Component{
   constructor(){
     super();
   }
@@ -10,59 +10,55 @@ class Faq extends React.Component{
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.inner}>
-          <h2>FAQ</h2>
-          <div className={styles.accordions}>
-            <Accordion className={styles.accordion}>
-              <Accordion.Item>
-                <Accordion.Title>Lorem ipsum</Accordion.Title>
-                <Accordion.Content>Content here...</Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Title>Dolar sit amit</Accordion.Title>
-                <Accordion.Content>Content2 here...</Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Title>Urit manu lorem</Accordion.Title>
-                <Accordion.Content>Content2 here...</Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Title>Trusti Varnum</Accordion.Title>
-                <Accordion.Content>Content2 here...</Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Title>Karim Rashu Manu Kilo</Accordion.Title>
-                <Accordion.Content>Content2 here...</Accordion.Content>
-              </Accordion.Item>
-            </Accordion>
+        <h2>FAQ</h2>
+        <div className={styles.accordions}>
+          <Accordion className={styles.accordion}>
+            <div>
+              <div>Lorem ipsum</div>
+              <div>Content here...</div>
+            </div>
+            <div>
+              <div>Dolar sit amit</div>
+              <div>Content2 here...</div>
+            </div>
+            <div>
+              <div>Urit manu lorem</div>
+              <div>Content2 here...</div>
+            </div>
+            <div>
+              <div>Trusti Varnum</div>
+              <div>Content2 here...</div>
+            </div>
+            <div>
+              <div>Karim Rashu Manu Kilo</div>
+              <div>Content2 here...</div>
+            </div>
+          </Accordion>
 
-            <Accordion className={styles.accordion}>
-              <Accordion.Item>
-                <Accordion.Title>Lorem ipsum</Accordion.Title>
-                <Accordion.Content>Content here...</Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Title>Dolar sit amit</Accordion.Title>
-                <Accordion.Content>Content2 here...</Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Title>Urit manu lorem</Accordion.Title>
-                <Accordion.Content>Content2 here...</Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Title>Trusti Varnum</Accordion.Title>
-                <Accordion.Content>Content2 here...</Accordion.Content>
-              </Accordion.Item>
-              <Accordion.Item>
-                <Accordion.Title>Karim Rashu Manu Kilo</Accordion.Title>
-                <Accordion.Content>Content2 here...</Accordion.Content>
-              </Accordion.Item>
-            </Accordion>
-          </div>
+          <Accordion className={styles.accordion}>
+            <div>
+              <div>Lorem ipsum</div>
+              <div>Content here...</div>
+            </div>
+            <div>
+              <div>Dolar sit amit</div>
+              <div>Content2 here...</div>
+            </div>
+            <div>
+              <div>Urit manu lorem</div>
+              <div>Content2 here...</div>
+            </div>
+            <div>
+              <div>Trusti Varnum</div>
+              <div>Content2 here...</div>
+            </div>
+            <div>
+              <div>Karim Rashu Manu Kilo</div>
+              <div>Content2 here...</div>
+            </div>
+          </Accordion>
         </div>
       </div>
     )
   }
 }
-
-module.exports = Faq;

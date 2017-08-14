@@ -1,10 +1,15 @@
 import React from 'react';
-let {connect} = require('react-redux');
+import { connect } from 'react-redux';
 import Waypoint from 'react-waypoint';
 import {Link, Element, Events, scroll, scrollSpy} from 'react-scroll';
 import styles from './index.css';
 
-class Marquee extends React.Component {
+@connect(
+  ({ scrollPosition }) => ({
+    scroll: scrollPosition.y
+  })
+)
+export default class Marquee extends React.Component {
   constructor(){
     super();
 
@@ -17,8 +22,8 @@ class Marquee extends React.Component {
   render() {
     let {title, bgColor, scroll} = this.props;
 
-    let headerMarginBottom = -scroll.y;
-    let headerOpacity = 0.2-(scroll.y/600);
+    let headerMarginBottom = -scroll;
+    let headerOpacity = 0.2-(scroll/600);
 
     return (
       <div className={`${styles.marquee} ${styles[bgColor]}`}>
@@ -27,11 +32,3 @@ class Marquee extends React.Component {
     )
   }
 }
-
-export default connect(
-  (state) => {
-    return {
-      scroll: state.scrollPosition
-    }
-  }
-)(Marquee);

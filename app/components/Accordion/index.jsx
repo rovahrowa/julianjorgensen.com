@@ -2,7 +2,7 @@ import React from 'react';
 import {Collapse} from 'react-collapse';
 import styles from './index.css';
 
-class Accordion extends React.Component{
+export default class Accordion extends React.Component{
   constructor(){
     super();
 
@@ -21,7 +21,7 @@ class Accordion extends React.Component{
           let selected;
 
           return (
-            <div className={`${styles.item} ${this.state.selected === index ? styles.active : ''}`}>
+            <div key={index} className={`${styles.item} ${this.state.selected === index ? styles.active : ''}`}>
               <div className={styles.title} onClick={() => {
                 selected = (index === this.state.selected ? null : index)
                 this.setState({
@@ -41,5 +41,3 @@ class Accordion extends React.Component{
     )
   }
 }
-
-module.exports = Accordion;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, HashRouter, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, HashRouter, Link } from 'react-router-dom';
 
 import DocumentMeta from 'react-document-meta';
 
@@ -18,12 +18,16 @@ import Index from 'routes/Index';
 import Invoice from 'routes/Invoice';
 import About from 'routes/About';
 import FrontEnd from 'routes/FrontEnd';
-import Design from 'routes/Design';
+import BackEnd from 'routes/BackEnd';
+import UiUx from 'routes/UiUx';
 import Automation from 'routes/Automation';
 import Portfolio from 'routes/Portfolio';
 import Proposal from 'routes/Proposal';
-
+//
 import { Layout } from 'react-toolbox/lib/layout';
+
+import styles from './index.css';
+
 import ReactGA from 'react-ga';
 // ReactGA.initialize('UA-6241825-9'); // initialize Google Analytics
 
@@ -53,27 +57,28 @@ const meta = {
 
 export default (
   <Router>
-    <div id="main" className={`page-name-here`}>
+    <div>
       <Scroll />
       <DocumentMeta {...meta} />
       <Header />
       <scrollPosition />
-      {/* <Route path="/" component={Main} /> */}
-      <Layout>
+      <Layout className={styles.main}>
         <Route exact path="/" component={Index} />
-        <Route path="/invoice/:id" component={Invoice} />
-        <Route path="/design" component={Design} />
         <Route path="/frontend" component={FrontEnd} />
+        <Route path="/uiux" component={UiUx} />
+        <Route path="/backend" component={BackEnd} />
         <Route path="/automation" component={Automation} />
         <Route path="/portfolio" component={Portfolio} />
         <Route path="/about" component={About} />
+        {/* <Route path="/invoice/:id" component={Invoice} /> */}
         <Route path="/p/:prospectName/:proposalId" component={Proposal} />
         <Route path="/p/:prospectName/:proposalId?env=:environment" component={Proposal} />
+
         <EstimateForm />
         <Faq />
         <Footer />
+        <Calendly />
       </Layout>
-      <Calendly />
     </div>
   </Router>
 );

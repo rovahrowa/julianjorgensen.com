@@ -4,7 +4,7 @@
   top: 0;
   width: 100%;
   display: flex;
-  padding: 25px 30px;
+  padding: rem(25) rem(30);
   box-sizing: border-box;
 }
 
@@ -17,7 +17,7 @@
   & li{
     display: inline-block;
     text-transform: uppercase;
-    margin-left: 50px;
+    margin-left: rem(70);
 
     &:first-child{
       margin-left: 0;
@@ -25,25 +25,29 @@
   }
 }
 
-.navDark{
-  & a{
-    color: #000000;
-  }
+.link{
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.7;
+  font-family: 'Whitney';
+  font-size: rem(18);
+  font-weight: 500;
+  transition: opacity 0.2s;
 
-  & svg path{
-    fill: #000000;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.navDark{
+  & .link{
+    color: black;
   }
 }
 
 .logo{
-}
-
-.link{
-  color: #ffffff;
-  text-decoration: none;
-  font-family: 'WhitneySSm', system-ui;
   opacity: 0.7;
-
+  &.active,
   &:hover{
     opacity: 1;
   }
@@ -51,8 +55,8 @@
 
 .linkActive{
   font-weight: 500;
-  padding-bottom: 0.2rem;
-  border-bottom: 2px solid currentColor;
+  padding-bottom: rem(3);
+  border-bottom: rem(2) solid currentColor;
   opacity: 1;
 }
 

@@ -4,7 +4,7 @@ import axios from 'axios';
 import Loader from 'components/Loader';
 import styles from './index.css';
 
-class Proposal extends React.Component {
+export default class Proposal extends React.Component {
   constructor() {
     super();
 
@@ -63,5 +63,3 @@ class Proposal extends React.Component {
     }
   }
 }
-
-module.exports = Proposal;

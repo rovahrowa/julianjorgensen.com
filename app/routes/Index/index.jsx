@@ -1,28 +1,27 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-let {connect} = require('react-redux');
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import Layout from 'react-toolbox/lib/layout/Layout';
+import Button from 'components/Button';
+
 import styles from './index.css';
 import HomeLanding from './components/Landing';
+import UiUx from './components/UiUx';
+import FrontEnd from './components/FrontEnd';
 
-class Index extends React.Component {
+export default class Index extends React.Component {
   constructor() {
     super();
   }
 
   render() {
     return (
-      <div className="page-content">
+      <div className={styles.container}>
         <HomeLanding />
 
-        <div className={styles.container}>
-          Content here
-        </div>
+        <UiUx />
+        <FrontEnd />
       </div>
     )
   }
 }
-
-
-module.exports = Index;

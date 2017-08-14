@@ -1,14 +1,18 @@
 import React from 'react';
-let {connect} = require('react-redux');
+import { connect } from 'react-redux';
 import { invoiceActions } from 'actions';
-import Script from 'react-load-script'
 import axios from 'axios';
 
 import {Button} from 'react-toolbox/lib/button';
 
 import styles from './Stripe.css';
 
-class PaymentCreditCard extends React.Component {
+@connect(
+  ({ invoice }) => ({
+    invoice: invoice
+  })
+)
+export default class PaymentCreditCard extends React.Component {
   constructor() {
     super();
 
@@ -132,11 +136,11 @@ class PaymentCreditCard extends React.Component {
 
     return (
       <div>
-        <Script
+        {/* <Script
           url="https://js.stripe.com/v3/"
           onError={this.handleScriptError.bind(this)}
           onLoad={this.createStripeElements.bind(this)}
-        />
+        /> */}
         <h3>Invoice #{number}</h3>
         <form onSubmit={this.handleSubmit.bind(this)} className={styles.form}>
           <div class="form-row">
@@ -152,11 +156,3 @@ class PaymentCreditCard extends React.Component {
     )
   }
 }
-
-export default connect(
-  (state) => {
-    return {
-      invoice: state.invoice
-    }
-  }
-)(PaymentCreditCard);
