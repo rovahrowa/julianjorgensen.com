@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import invoiceActions from 'actions';
+import { invoiceActions } from 'actions';
 import numeral from 'numeral';
 
 import Loader from 'components/Loader';
