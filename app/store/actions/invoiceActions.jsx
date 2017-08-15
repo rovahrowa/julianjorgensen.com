@@ -17,6 +17,8 @@ export function setInvoice(invoiceId, invoiceToken) {
           email = null;
         }
 
+        console.log(response.data);
+
         // Create invoice object and dispatch
         let invoice = {
           id: response.data.Id,
