@@ -34,6 +34,9 @@ let syncClients = function(passedData) {
           //   console.log('matched customers: ', matchedCustomers);
           //   timeEntry.clientId = matchedCustomers[0].Id;
           // }
+        })
+        .catch((error) => {
+          throw error('error finding QBO customer: ', error);
         });
       });
     }

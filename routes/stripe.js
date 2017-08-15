@@ -15,19 +15,24 @@ router.route('/')
     let {email, stripeToken, invoiceId, invoiceNumber, totalAmount, currency} = req.body;
     let existingCustomer = [];
 
+    console.log('body', req.body);
+
     // search for existing customer(s) with matching email
     let findCustomer = new Promise((resolve, reject) => {
-      stripe.customers.list(
-        { limit: 100 },
-        function(err, customers) {
-          customers.data.map((customer, i) => {
-            if (customer.email === email) {
-              existingCustomer.push(customer);
-            }
-          });
-          resolve();
-        }
-      );
+      stripe.customers.list({ limit: 100 }, (err, customers) => {
+
+        // loop through customers
+        customers.data.map((customer, i) => {
+          if (customer.email === email) {
+            existingCustomer.push(customer);
+          }
+        });
+
+        resolve();
+      })
+      .catch((error) => {
+        reject(error);
+      });
     });
 
     // if exists then charge that customer, otherwise create new
@@ -41,8 +46,13 @@ router.route('/')
           source: stripeToken,
         }).then((customer) => {
           chargeCustomer(customer.id);
+        }).catch((error) => {
+          throw error(error);
         })
       }
+    })
+    .catch((error) => {
+      throw error(error);
     });
 
     // charge the customer with stripe
@@ -66,6 +76,9 @@ router.route('/')
             res.sendStatus(200);
           });
         });
+      })
+      .catch((error) => {
+        throw error(error);
       });
     }
   });
