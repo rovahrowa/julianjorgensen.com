@@ -22,6 +22,10 @@ require('./admin/crons/init');
 // Set port
 app.set('port', (process.env.PORT || 3000));
 
+// site url
+const NODE_ENV = (process.env.NODE_ENV || 'development');
+const ENV_CONFIG = require('./config/' + NODE_ENV + '.config');
+
 // Setting up basic middleware for all Express requests
 app.use(logger('dev')); // Log requests to API using morgan
 
@@ -63,7 +67,7 @@ app.use("/", expressStaticGzip(__dirname + '/public'));
 // render quickbooks access page
 app.get('/qbo/authorize', (req, res) => {
   res.render('intuit.pug', {
-    requestUrl: 'http://localhost:3000/qbo/requestToken'
+    requestUrl: ENV_CONFIG.SITE_URL + '/qbo/requestToken'
   });
 });
 
@@ -71,7 +75,7 @@ app.get('/qbo/requestToken', (req, res) => {
   let postBody = {
     url: QuickBooks.REQUEST_TOKEN_URL,
     oauth: {
-      callback: 'http://localhost:3000/qbo/callback/',
+      callback: ENV_CONFIG.SITE_URL + '/qbo/callback/',
       consumer_key: process.env.QBO_CONSUMER_KEY,
       consumer_secret: process.env.QBO_CONSUMER_SECRET
     }
