@@ -21,7 +21,6 @@ export default class Invoice extends React.Component {
   }
 
   componentWillMount() {
-    console.log('mounting', this.props);
     this.dispatch = this.props.dispatch;
 
     // Retrieve invoice data

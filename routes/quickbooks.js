@@ -16,7 +16,7 @@ router.route('/invoice/:id')
         let token = util.createToken(secretVariable);
 
         // if the url token parameter is the correct key, then show the invoice
-        // if(req.query.token === token) {
+        if(req.query.token === token) {
           // get customer data too
           console.log('getting customer data based on invoice...');
           let customerId = invoice.CustomerRef.value;
@@ -31,9 +31,9 @@ router.route('/invoice/:id')
               res.json(error).end();
             }
           });
-        // }else{
-        //   res.status(401).send('You are unauthorized to see this invoice.');
-        // }
+        }else{
+          res.status(401).send('You are unauthorized to see this invoice.');
+        }
       }else{
         res.json(error);
       }
