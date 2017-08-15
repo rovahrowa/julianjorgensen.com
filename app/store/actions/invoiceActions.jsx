@@ -2,9 +2,8 @@ import axios from 'axios';
 import numeral from 'numeral';
 
 // Set the current invoice
-export var setInvoice = (invoiceId, invoiceToken) => {
+export function setInvoice(invoiceId, invoiceToken) {
   return (dispatch, getState) => {
-
     console.log('initiating fetching invoice data from api');
     axios.get('/api/invoice/' + invoiceId + '?token=' + invoiceToken)
       .then((response) => {
@@ -34,4 +33,8 @@ export var setInvoice = (invoiceId, invoiceToken) => {
         console.log('Error getting invoice data from api...', error);
       });
   }
-};
+}
+
+export default {
+  set: setInvoice
+}

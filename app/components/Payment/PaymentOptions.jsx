@@ -7,6 +7,8 @@ import axios from 'axios';
 import PaymentCreditCard from 'components/Payment/PaymentCreditCard';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
 
+import styles from './index.css';
+
 @connect(
   ({ invoice }) => ({
     invoice: invoice
@@ -35,7 +37,7 @@ export default class PaymentOptions extends React.Component {
     let {paid, invoiceNumber, totalAmount} = this.props.invoice;
 
     return (
-      <div>
+      <div className={styles.container}>
         <Tabs index={this.state.fixedIndex} onChange={this.handleFixedTabChange} fixed>
           <Tab label='Credit Card'><PaymentCreditCard /></Tab>
           <Tab label='Bank Transfer'><small>Second Content</small></Tab>

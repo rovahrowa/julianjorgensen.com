@@ -1,5 +1,2 @@
-import invoiceActions from './invoiceActions';
-
-export default {
-  invoiceActions
-}
+export invoiceActions from './invoiceActions';
+export testActions from './invoiceActions';

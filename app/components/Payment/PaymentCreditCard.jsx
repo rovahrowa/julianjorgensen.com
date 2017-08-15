@@ -143,8 +143,8 @@ export default class PaymentCreditCard extends React.Component {
         /> */}
         <h3>Invoice #{number}</h3>
         <form onSubmit={this.handleSubmit.bind(this)} className={styles.form}>
-          <div class="form-row">
-            <label for="card-element">Credit or debit card</label>
+          <div className="form-row">
+            <label htmlFor="card-element">Credit or debit card</label>
             <div id="card-element" className={styles.StripeElement}></div>
 
             <div id="card-errors"></div>
