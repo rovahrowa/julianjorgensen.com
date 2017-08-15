@@ -1,4 +1,5 @@
 let moment = require('moment');
+let _ = require('lodash');
 
 let processInvoices = function(overdueInvoices) {
   let promise = new Promise(function(resolve, reject) {
@@ -7,8 +8,11 @@ let processInvoices = function(overdueInvoices) {
     let today = moment().startOf('day');
 
     overdueInvoices.map((invoice) => {
-      let lastSentDate = invoice.CustomField[1].StringValue;
-      let paidDate = invoice.CustomField[0].StringValue;
+      let paidDateObj = _.find(invoice.CustomField, {'Name': 'paid date'});
+      let paidDate = paidDateObj ? paidDateObj.StringValue : null;
+
+      let lastSentDateObj = _.find(invoice.CustomField, {'Name': 'last sent'});
+      let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
 
       if(!paidDate){
         if (lastSentDate){
