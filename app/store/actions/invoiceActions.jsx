@@ -20,9 +20,8 @@ export function setInvoice(invoiceId, invoiceToken) {
           email = null;
         }
 
-        console.log(payload);
-        let paidDate = _.find(payload.CustomField, {'Name': 'paid date'});
-        console.log('paidDate: ', paidDate);
+        let paidDateObj = _.find(payload.CustomField, {'Name': 'paid date'});
+        let paidDate = paidDateObj ? paidDateObj.StringValue : null;
 
         // Create invoice object and dispatch
         let invoice = {
@@ -31,7 +30,7 @@ export function setInvoice(invoiceId, invoiceToken) {
           totalAmount: numeral(payload.TotalAmt).format('$0,0.00'),
           email: email,
           currency: payload.CurrencyRef.value,
-          paid: (payload.CustomField[0].StringValue ? true : false)
+          paid: paidDate ? true : false
         };
         console.log('dispatching invoice: ', invoice);
         dispatch({ type: 'SET_INVOICE', invoice });
