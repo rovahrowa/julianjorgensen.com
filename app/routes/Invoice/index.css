@@ -1,3 +1,3 @@
 .container{
-  composes: container from "../../styles/layout.css";
+  composes: globalContainer from "../../styles/layout.css";
 }

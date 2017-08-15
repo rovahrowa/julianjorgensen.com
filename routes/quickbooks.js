@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
-var app = require('../app');
+let axios = require('axios');
+let app = require('../app');
 let util = require('../util/util');
 let merge = require('merge'), original, cloned;
 
@@ -9,13 +10,13 @@ router.route('/invoice/:id')
   .get(function (req, res) {
     console.log('getting data from Quickbooks...');
     qbo.getInvoice(req.params.id, function(error, invoice) {
-      if(invoice){
+      if(invoice) {
         // generate unique md5 token
         let secretVariable = 'Invoice' + invoice.Id;
         let token = util.createToken(secretVariable);
 
         // if the url token parameter is the correct key, then show the invoice
-        if(req.query.token === token){
+        if(req.query.token === token) {
           // get customer data too
           console.log('getting customer data based on invoice...');
           let customerId = invoice.CustomerRef.value;

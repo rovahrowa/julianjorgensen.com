@@ -21,10 +21,11 @@ export default class Invoice extends React.Component {
   }
 
   componentWillMount() {
+    console.log('mounting', this.props);
     this.dispatch = this.props.dispatch;
 
     // Retrieve invoice data
-    let invoiceId = this.props.params.id;
+    let invoiceId = this.props.match.params.id;
     let invoiceToken = this.props.location.query.token;
     this.dispatch(invoiceActions.setInvoice(invoiceId, invoiceToken));
   }

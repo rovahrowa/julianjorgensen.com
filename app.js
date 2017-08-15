@@ -3,8 +3,11 @@ let express = require('express');
 let app = module.exports = express();
 let bodyParser = require('body-parser');
 let logger = require('morgan');
-let QuickBooks = require('node-quickbooks')
+let QuickBooks = require('node-quickbooks');
 let expressStaticGzip = require("express-static-gzip");
+let request = require('request');
+let qs = require('querystring');
+let session = require('express-session');
 
 // routes
 let quickbooks = require('./routes/quickbooks');
@@ -36,6 +39,9 @@ qbo = new QuickBooks(process.env.QBO_CONSUMER_KEY,
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// session
+app.use(session({resave: false, saveUninitialized: false, secret: 'chai'}));
+
 // Stripe routes
 app.use('/api/charge', stripe);
 
@@ -51,9 +57,57 @@ app.use('/email', email);
 // Toggl routes
 app.use('/api/toggl', toggl);
 
-
 // Serve Gzip
 app.use("/", expressStaticGzip(__dirname + '/public'));
+
+// render quickbooks access page
+app.get('/qbo/authorize', (req, res) => {
+  res.render('intuit.pug', {
+    requestUrl: 'http://localhost:3000/qbo/requestToken'
+  });
+});
+
+app.get('/qbo/requestToken', (req, res) => {
+  let postBody = {
+    url: QuickBooks.REQUEST_TOKEN_URL,
+    oauth: {
+      callback: 'http://localhost:3000/qbo/callback/',
+      consumer_key: process.env.QBO_CONSUMER_KEY,
+      consumer_secret: process.env.QBO_CONSUMER_SECRET
+    }
+  }
+  console.log(QuickBooks);
+  console.log('req.session', req.session);
+  console.log('requesting token:', postBody);
+  request.post(postBody, function (e, r, data) {
+    let requestToken = qs.parse(data)
+    req.session.oauth_token_secret = requestToken.oauth_token_secret
+    console.log(requestToken)
+    res.redirect(QuickBooks.APP_CENTER_URL + requestToken.oauth_token)
+  })
+});
+
+app.get('/qbo/callback', (req, res) => {
+  let postBody = {
+    url: QuickBooks.ACCESS_TOKEN_URL,
+    oauth: {
+      consumer_key:    process.env.QBO_CONSUMER_KEY,
+      consumer_secret: process.env.QBO_CONSUMER_SECRET,
+      token:           req.query.oauth_token,
+      token_secret:    req.session.oauth_token_secret,
+      verifier:        req.query.oauth_verifier,
+      realmId:         req.query.realmId
+    }
+  }
+  request.post(postBody, function (e, r, data) {
+    let accessToken = qs.parse(data)
+    res.render('qbo-secrets.pug', {
+      accessToken: accessToken.oauth_token,
+      accessSecret: accessToken.oauth_token_secret,
+      realmId: postBody.oauth.realmId
+    });
+  });
+});
 
 // Catch all other paths and serve the index file
 app.all('*', function(request, response) {
