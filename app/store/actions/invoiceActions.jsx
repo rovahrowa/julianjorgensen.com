@@ -21,7 +21,7 @@ export function setInvoice(invoiceId, invoiceToken) {
         }
 
         console.log(payload);
-        let paidDate = _.find(payload, { 'CustomField': {'Name': 'paid date'}});
+        let paidDate = _.find(payload.CustomField, {'Name': 'paid date'});
         console.log('paidDate: ', paidDate);
 
         // Create invoice object and dispatch
