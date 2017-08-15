@@ -26,7 +26,7 @@ export default class Invoice extends React.Component {
 
     // Retrieve invoice data
     let invoiceId = this.props.match.params.id;
-    let invoiceToken = this.props.location.query.token;
+    let invoiceToken = this.props.match.params.token;
     this.dispatch(invoiceActions.setInvoice(invoiceId, invoiceToken));
   }
 

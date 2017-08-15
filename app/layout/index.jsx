@@ -70,7 +70,7 @@ export default (
         <Route path="/automation" component={Automation} />
         <Route path="/portfolio" component={Portfolio} />
         <Route path="/about" component={About} />
-        <Route path="/invoice/:id" component={Invoice} />
+        <Route path="/invoice/:id/:token" component={Invoice} />
         <Route path="/p/:prospectName/:proposalId" component={Proposal} />
         <Route path="/p/:prospectName/:proposalId?env=:environment" component={Proposal} />
         <EstimateForm />
