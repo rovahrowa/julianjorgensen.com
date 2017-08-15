@@ -11,7 +11,7 @@ let invoiceReminderCron = new CronJob({
      * at 10:00:00 AM. It does not run on Saturday
      * or Sunday.
      */
-     invoiceReminder.init();
+    //  invoiceReminder.init();
   },
   start: true,
   timeZone: 'America/Los_Angeles'
@@ -22,7 +22,7 @@ let invoiceReminderCron = new CronJob({
 let syncTogglWithQuickbooksCron = new CronJob({
   cronTime: '00 */15 * * * *',
   onTick: function() {
-    syncTogglWithQuickbooks.init();
+    // syncTogglWithQuickbooks.init();
   },
   start: true
 });

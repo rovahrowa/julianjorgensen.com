@@ -62,19 +62,26 @@ router.route('/')
         currency,
         description: 'Julian Jorgensen invoice #' + invoiceNumber,
         customer: customerId,
-      }).then(function(error, charge) {
+      }).then((error, charge) => {
         console.log('charged!, ', charge);
         console.log('error, ', error);
 
-        qbo.getInvoice(invoiceId, function(e, invoice) {
+        qbo.getInvoice(invoiceId, (e, invoice) => {
           qbo.updateInvoice({
             "Id": invoice.Id,
             "SyncToken": invoice.SyncToken,
-            "CustomField": [{"DefinitionId": "1","Name": "paid date","Type": "StringType","StringValue": moment(Date.now()).format("DD-MM-YYYY")}]
-          }, function(e, updatedInvoice) {
+            "CustomField": [{
+              "DefinitionId": "1",
+              "Name": "paid date",
+              "Type": "StringType",
+              "StringValue": moment(Date.now()).format("DD-MM-YYYY")
+            }]
+          }, (e, updatedInvoice) => {
             console.log('Invoice updated');
             res.sendStatus(200);
-          });
+          }).catch((error) => {
+            throw error(error);
+          })
         });
       })
       .catch((error) => {
