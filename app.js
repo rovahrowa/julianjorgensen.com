@@ -1,5 +1,6 @@
 require('dotenv').config();
 let express = require('express');
+let session = require('express-session');
 let app = module.exports = express();
 let bodyParser = require('body-parser');
 let logger = require('morgan');
@@ -7,7 +8,6 @@ let QuickBooks = require('node-quickbooks');
 let expressStaticGzip = require("express-static-gzip");
 let request = require('request');
 let qs = require('querystring');
-let session = require('express-session');
 
 // routes
 let quickbooks = require('./routes/quickbooks');
