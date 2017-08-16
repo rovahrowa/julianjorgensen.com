@@ -1,0 +1,31 @@
+@import "../../../../styles/app.css";
+
+.wrapper{
+  composes: globalWrapper withMarginBottom;
+  background-color: black;
+  position: relative;
+  margin-top: rem(40);
+}
+
+.bgImage{
+  composes: globalBgImage;
+  background-image: url('assets/images/code-bg.jpg');
+  opacity: 0.15;
+}
+
+.container{
+  composes: globalContainer;
+}
+
+.header{
+  composes: globalHeader;
+  color: var(--purple);
+}
+
+.title{
+  composes: globalTitle;
+}
+
+.box{
+  composes: globalBox;
+}

@@ -17,9 +17,9 @@ import Scroll from 'components/Scroll';
 import Index from 'routes/Index';
 import Invoice from 'routes/Invoice';
 import About from 'routes/About';
+import FullStack from 'routes/FullStack';
 import FrontEnd from 'routes/FrontEnd';
-import BackEnd from 'routes/BackEnd';
-import UiUx from 'routes/UiUx';
+import Ux from 'routes/Ux';
 import Automation from 'routes/Automation';
 import Portfolio from 'routes/Portfolio';
 import Proposal from 'routes/Proposal';
@@ -64,9 +64,9 @@ export default (
       <scrollPosition />
       <Layout className={styles.main}>
         <Route exact path="/" component={Index} />
+        <Route path="/fullstack" component={FullStack} />
         <Route path="/frontend" component={FrontEnd} />
-        <Route path="/uiux" component={UiUx} />
-        <Route path="/backend" component={BackEnd} />
+        <Route path="/ux" component={Ux} />
         <Route path="/automation" component={Automation} />
         <Route path="/portfolio" component={Portfolio} />
         <Route path="/about" component={About} />

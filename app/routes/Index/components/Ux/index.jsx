@@ -5,12 +5,12 @@ import Button from 'components/Button';
 
 import styles from './index.css';
 
-export default class HomeUiUx extends React.Component{
+export default class HomeUx extends React.Component{
   render() {
     return (
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Full-Stack Design</h2>
+          <h2 className={styles.title}>User Experience</h2>
           <Button
             label='See more'
             hollow

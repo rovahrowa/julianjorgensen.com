@@ -6,7 +6,7 @@ import AtvImg from 'components/3DImg';
 
 import styles from './index.css';
 
-export default class UiUx extends React.Component{
+export default class Ux extends React.Component{
   constructor() {
     super();
   }

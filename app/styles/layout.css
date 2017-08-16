@@ -31,7 +31,7 @@
 .globalWrapper{
   display: flex;
   justify-content: center;
-  padding: rem(40);
+  padding: rem(60);
   width: 100%;
   margin-bottom: rem(40);
   &.withMarginBottom{

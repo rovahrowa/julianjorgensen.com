@@ -1,0 +1,11 @@
+.default{
+  background-color: gray(80%);
+  padding: rem(30);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label{
+  padding: rem(10);
+}

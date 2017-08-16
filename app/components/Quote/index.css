@@ -1,0 +1,39 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: rem(40) 0;
+  width: rem(550);
+}
+
+.quote{
+  font-size: rem(30);
+  line-height: rem(34);
+  text-align: center;
+  font-style: italic;
+}
+
+.author{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: rem(20);
+}
+
+.avatar{
+  display: block;
+  border-radius: 50%;
+  background-position: center center;
+  background-size: cover;
+  height: rem(50);
+  width: rem(50);
+  margin-right: rem(10);
+}
+
+.meta{
+  font-size: rem(14);
+  line-height: rem(14);
+  & .title{
+    opacity: 0.8;
+  }
+}

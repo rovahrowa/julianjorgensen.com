@@ -5,7 +5,7 @@ import Marquee from 'components/Marquee';
 
 import styles from './index.css';
 
-export default class BackEnd extends React.Component{
+export default class FullStack extends React.Component{
   constructor(){
     super();
   }
@@ -14,7 +14,7 @@ export default class BackEnd extends React.Component{
 
     return (
       <div className="page-content">
-        <Marquee title="BackEnd" bgColor="black" />
+        <Marquee title="Full-Stack" bgColor="black" />
 
         <div className={styles.container}>
           <Carousel>

@@ -1,11 +1,32 @@
+.headroom{
+  position: absolute;
+  width: 100%;
+}
+
 .header{
-  position: fixed;
-  z-index: 2;
-  top: 0;
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   padding: rem(25) rem(30);
   box-sizing: border-box;
+  transition: background-color 0.2s;
+  &.navStatic{
+    background-color: transparent;
+  }
+  &.navDefault{
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.dark{
+  &.navDefault{
+    background-color: rgba(255,255,255,0.7);
+  }
+  & .link{
+    color: black;
+  }
 }
 
 .nav{
@@ -31,17 +52,12 @@
   opacity: 0.7;
   font-family: 'Whitney';
   font-size: rem(18);
-  font-weight: 500;
+  font-weight: bold;
   transition: opacity 0.2s;
+  -webkit-font-smoothing: antialiased;
 
   &:hover{
     opacity: 1;
-  }
-}
-
-.navDark{
-  & .link{
-    color: black;
   }
 }
 
@@ -54,7 +70,6 @@
 }
 
 .linkActive{
-  font-weight: 500;
   padding-bottom: rem(3);
   border-bottom: rem(2) solid currentColor;
   opacity: 1;

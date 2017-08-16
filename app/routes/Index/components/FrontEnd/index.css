@@ -1,12 +1,8 @@
 @import "../../../../styles/app.css";
 
-.wrapper{
-  composes: globalWrapper withMarginBottom;
-  background-color: black;
-}
-
 .container{
-  composes: globalContainer;
+  composes: globalContainer withMarginBottom;
+  margin-top: rem(20);
 }
 
 .header{
