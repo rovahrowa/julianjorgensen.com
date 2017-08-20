@@ -9,6 +9,7 @@
   align-items: flex-end;
   justify-content: center;
   margin-bottom: rem(-80);
+  overflow: hidden;
 }
 
 .header{

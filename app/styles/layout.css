@@ -3,8 +3,10 @@
 :global {
   & body{
     margin: 0;
-    background: #f3f3f3;
-    background: linear-gradient(to bottom, gray(98%), gray(50%));
+  }
+
+  & div{
+    box-sizing: border-box;
   }
 }
 
@@ -17,6 +19,7 @@
   }
   &.withPaddings{
     padding: rem(40) rem(30);
+    @apply --boxShadow;
   }
   &.white{
     background-color: white;

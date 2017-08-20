@@ -7,3 +7,9 @@
   --turquoise: #35B8AC;
   --orange: #FFAA09;
 }
+
+:root {
+  --boxShadow: {
+    box-shadow: rem(3) rem(3) rem(10) rem(1) gray(70%);
+  };  
+}

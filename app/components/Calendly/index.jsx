@@ -20,7 +20,7 @@ export default class Calendly extends React.Component{
   render() {
     return (
       <div>
-        <Button label='Schedule time with me' onClick={this.handleToggle} className={styles.ctaButton} raised primary />
+        <Button label='Schedule a free consultation' onClick={this.handleToggle} className={styles.ctaButton} raised primary />
         <Dialog
           active={this.state.active}
           onEscKeyDown={this.handleToggle}
