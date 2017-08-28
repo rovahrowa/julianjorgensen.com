@@ -13,7 +13,7 @@ export default class Automation extends React.Component{
   render() {
 
     return (
-      <div className="page-content">
+      <div className={styles.wrapper}>
         <Marquee title="Automation" bgColor="blue" />
 
         <div className={styles.container}>

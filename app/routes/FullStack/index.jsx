@@ -13,7 +13,7 @@ export default class FullStack extends React.Component{
   render() {
 
     return (
-      <div>
+      <div className={styles.wrapper}>
         <Marquee title="Full-Stack" bgColor="black" />
 
         <div className={styles.container}>

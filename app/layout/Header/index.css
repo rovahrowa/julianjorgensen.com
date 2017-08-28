@@ -1,3 +1,5 @@
+@import "../../styles/variables.css";
+
 .headroom{
   position: absolute;
   width: 100%;
@@ -10,19 +12,20 @@
   justify-content: center;
   padding: rem(25) rem(30);
   box-sizing: border-box;
-  transition: background-color 0.2s;
+  transition: all 0.3s;
   &.navStatic{
     background-color: transparent;
   }
   &.navDefault{
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.8);
     backdrop-filter: blur(8px);
+    /*background: linear-gradient(to bottom right, color(var(--blue) shade(50%)), var(--blue));*/
   }
 }
 
 .dark{
   &.navDefault{
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255,255,255,0.8);
   }
   & .link{
     color: black;

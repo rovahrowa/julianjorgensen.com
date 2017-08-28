@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, matchPath, HashRouter, Link, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { ParallaxController } from 'react-scroll-parallax';
+ParallaxController.init();
 
 import DocumentMeta from 'react-document-meta';
 
@@ -56,15 +59,68 @@ const meta = {
   }
 };
 
+let pages = {
+  '/': 0,
+  '/fullstack': 1,
+  '/frontend': 2,
+  '/ux': 3,
+  '/automation': 4
+}
+
 @withRouter
+@connect()
 export default class Routes extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      contentHeight: 0,
+      direction: null
+    }
+  }
+
+  getDirection = (prevPage) => {
+    console.log('prev location', prevPage);
+    let currentPage = this.props.location.pathname;
+    let currentPageIndex = pages[currentPage];
+    let prevPageIndex = pages[prevPage];
+    let direction;
+
+    console.log('prev page: ', prevPage);
+    console.log('prevPageIndex', prevPageIndex);
+
+    console.log('current page: ', currentPage);
+    console.log('currentPageIndex', currentPageIndex);
+
+    if (prevPageIndex < currentPageIndex) {
+      direction = 'right'
+    } else if (prevPageIndex > currentPageIndex) {
+      direction = 'left'
+    }
+
+    console.log('setting direction to: ', direction);
+    this.setState({
+      direction
+    })
+  }
+
+  getAnimationClasses() {
+    let { direction } = this.state;
+    direction = 'right';
+    console.log('returning animation classes', direction);
+    return {
+      enter: `fade-${direction}-enter`,
+      enterActive: `fade-${direction}-enter-active`,
+      exit: `fade-${direction}-exit`,
+      exitActive: `fade-${direction}-exit-active`
+    };
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       this.onRouteChanged();
+
+      this.getDirection(prevProps.location.pathname);
     }
   }
 
@@ -76,23 +132,34 @@ export default class Routes extends React.Component {
     window.scrollTo(0, 0);
   }
 
+  handleRoutesContainer = (ref) => {
+    if (ref){
+      // set client height 200ms after page is loaded (could possibly be more elegant or faster)
+      // this ensures all elements, sliders in particular, have been loaded!
+      // if this is not set, then Body will never have the correct height, causing a lot of issues with scroll events and components
+      setTimeout(() => {
+        this.setState({
+          contentHeight: ref.clientHeight
+        });
+      }, 200);
+    }
+  }
+
   render() {
+    let { direction } = this.state;
     let { location } = this.props;
     const currentKey = location.pathname.split('/')[1] || '/';
-    const timeout = { enter: 300, exit: 200 };
+    const timeout = { enter: 400, exit: 400 };
 
     return (
       <div className={styles.container}>
-
-        <Scroll />
         <DocumentMeta {...meta} />
         <Header />
-        <scrollPosition />
 
         <Layout>
-          <TransitionGroup component="main" className={styles.animatedRoutes}>
-            <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
-              <section className={styles.animatedRoutesInner}>
+          <TransitionGroup component="main" className={styles.animatedRoutes} style={{height: this.state.contentHeight}}>
+            <CSSTransition key={currentKey} timeout={timeout} classNames={this.getAnimationClasses()}>
+              <div className={styles.animatedRoutesInner} ref={this.handleRoutesContainer}>
                 <Switch location={location}>
                   <Route path="/" exact component={Index} />
                   <Route path="/fullstack" component={FullStack} />
@@ -106,17 +173,16 @@ export default class Routes extends React.Component {
                   <Route path="/p/:prospectName/:proposalId?env=:environment" component={Proposal} />
                 </Switch>
 
-                <div className={styles.footer}>
-                  <EstimateForm />
-                  <Faq />
-                  <Footer />
-                </div>
-              </section>
+                <EstimateForm />
+                <Faq />
+                <Footer />
+              </div>
             </CSSTransition>
           </TransitionGroup>
 
           <Calendly />
         </Layout>
+        <Scroll />
       </div>
     )
   }

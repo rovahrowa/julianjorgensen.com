@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Waypoint from 'react-waypoint';
-import {Link, Element, Events, scroll, scrollSpy} from 'react-scroll';
 import styles from './index.css';
 
 @connect(

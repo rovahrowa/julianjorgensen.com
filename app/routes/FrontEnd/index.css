@@ -1,10 +1,14 @@
 @import "../../styles/app.css";
 
-.subNav{
-  composes: globalContainer withPaddings white;
+.wrapper{
+  composes: globalWrapper;
 }
 
 .container{
   composes: globalContainer;
   padding: rem(30) 0;
+}
+
+.subNav{
+  composes: globalContainer withPaddings white;
 }

@@ -10,7 +10,7 @@ export default class FrontEnd extends React.Component{
 
   render() {
     return (
-      <div>
+      <div className={styles.wrapper}>
         <Marquee title="Front-End" bgColor="purple-blue" />
 
         <div className={styles.subNav}>

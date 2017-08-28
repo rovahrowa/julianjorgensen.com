@@ -6,7 +6,7 @@
   }
 
   & div{
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
   }
 }
 
@@ -33,11 +33,11 @@
 
 .globalWrapper{
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: rem(60);
   width: 100%;
   margin-bottom: rem(40);
-  &.withMarginBottom{
-    margin-bottom: rem(100);
+  &.withPadding{
+    padding: rem(60);
   }
 }

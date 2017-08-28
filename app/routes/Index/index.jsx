@@ -20,7 +20,7 @@ export default class Index extends React.Component {
 
   render() {
     return (
-      <div className={styles.container}>
+      <div className={styles.wrapper}>
         <HomeLanding />
 
         <Quote
@@ -29,7 +29,7 @@ export default class Index extends React.Component {
           authorTitle='CEO, localsolo.com'
           avatarUrl='images/mark-fromson.png'
           className={styles.quote}
-         />
+        />
         <FullStack />
         <FrontEnd />
         <Ux />

@@ -1,10 +1,11 @@
 @import "../../../../styles/app.css";
 
 .wrapper{
-  composes: globalWrapper withMarginBottom;
+  composes: globalWrapper withPadding;
   background-color: black;
   position: relative;
   margin-top: rem(40);
+  margin-bottom: rem(100);
 }
 
 .bgImage{

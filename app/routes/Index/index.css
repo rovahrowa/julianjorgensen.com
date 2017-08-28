@@ -1,5 +1,10 @@
-@import "../../styles/variables.css";
+@import "../../styles/layout.css";
+
+.wrapper{
+  composes: globalWrapper;
+}
 
 .quote{
+  composes: globalContainer;
   margin-top: rem(30);
 }

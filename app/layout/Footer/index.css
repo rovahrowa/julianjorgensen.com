@@ -7,6 +7,8 @@
 }
 
 .pixelFade{
+  position: relative;
+  z-index: 2;
   background-image: url('assets/images/pixels-fade.svg');
   background-repeat: repeat-x;
   background-position: 0 0;
@@ -15,6 +17,8 @@
 }
 
 .nav{
+  position: relative;
+  z-index: 2;
   background-color: gray(30%);
   display: flex;
   flex-direction: column;

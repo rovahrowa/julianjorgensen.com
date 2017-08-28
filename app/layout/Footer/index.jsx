@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import Logo from 'components/Logo';
+import { Parallax } from 'react-scroll-parallax';
 
 // icons
 import 'assets/icons/brands/github.svg';
@@ -58,13 +59,19 @@ export default class Footer extends React.Component {
         <div className={styles.pixelFade}>
         </div>
 
-        <div className={styles.credit} style={{opacity: creditOpacity}}>
+        <Parallax
+            className={styles.credit}
+            offsetYMax={1800}
+            offsetYMin={-400}
+            slowerScrollRate
+            tag="div"
+        >
           <div className={styles.slogan}>Life's Good</div>
           <div className={styles.signature}>
             <Logo size={25} className={styles.logo} color='white' />
             <div>Julian Jorgensen</div>
           </div>
-        </div>
+        </Parallax>
       </footer>
     )
   }

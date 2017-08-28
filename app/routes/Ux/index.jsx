@@ -13,7 +13,7 @@ export default class Ux extends React.Component{
 
   render() {
     return (
-      <div className="page-content">
+      <div className={styles.wrapper}>
         <Marquee title="UI & UX" bgColor="orange" />
 
         <div className={styles.container}>
