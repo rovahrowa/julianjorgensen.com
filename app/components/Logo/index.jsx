@@ -1,9 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
 
+import LogoSVG from '-!svg-react-loader?name=Icon!assets/icons/julian-jorgensen-logo.svg';
 import styles from './index.css';
-import 'assets/icons/julian-jorgensen-logo-black.svg';
-import 'assets/icons/julian-jorgensen-logo-white.svg';
 
 const Logo = ({ className, color, size, ...others }) => {
   const _className = cn(className, {
@@ -12,10 +11,14 @@ const Logo = ({ className, color, size, ...others }) => {
   });
 
   return (
-    <div className={_className} {...others} style={{
-      width: size,
-      height: size
-    }}></div>
+    <LogoSVG
+      className={_className}
+      {...others}
+      style={{
+        width: size,
+        height: size
+      }}
+    />
   )
 };
 

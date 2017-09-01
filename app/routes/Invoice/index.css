@@ -1,5 +1,7 @@
 @import "../../styles/app.css";
 
 .container{
-  composes: globalContainer withPaddings white;
+  composes: globalContainer;
+  margin-top: rem(200);
+  margin-bottom: rem(200);
 }

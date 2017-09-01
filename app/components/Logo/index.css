@@ -1,6 +1,11 @@
 .white{
-  background-image: url('assets/icons/julian-jorgensen-logo-white.svg');
+  & g{
+    fill: white;
+  }
 }
+
 .black{
-  background-image: url('assets/icons/julian-jorgensen-logo-black.svg');
+  & g{
+    fill: black;
+  }
 }

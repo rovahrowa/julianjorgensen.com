@@ -12,14 +12,15 @@ let stripe = require('stripe')(keySecret);
 router.route('/')
   .post(function (req, res) {
     // Token is created using Stripe.js
-    let {email, stripeToken, invoiceId, invoiceNumber, totalAmount, currency} = req.body;
-    let existingCustomer = [];
+    let {email, stripeToken, invoiceId, invoiceNumber, amount, currency} = req.body;
 
     console.log('body', req.body);
 
     // search for existing customer(s) with matching email
     let findCustomer = new Promise((resolve, reject) => {
       stripe.customers.list({ limit: 100 }, (err, customers) => {
+
+        let existingCustomer = [];
 
         // loop through customers
         customers.data.map((customer, i) => {
@@ -28,7 +29,7 @@ router.route('/')
           }
         });
 
-        resolve();
+        resolve(existingCustomer);
       })
       .catch((error) => {
         reject(error);
@@ -36,7 +37,8 @@ router.route('/')
     });
 
     // if exists then charge that customer, otherwise create new
-    findCustomer.then(() => {
+    findCustomer.then((existingCustomer) => {
+      console.log('existing customer: ', existingCustomer);
       if (existingCustomer.length > 0) {
         chargeCustomer(existingCustomer[0].id);
       }else{
@@ -57,18 +59,21 @@ router.route('/')
 
     // charge the customer with stripe
     function chargeCustomer(customerId){
-      stripe.charges.create({
-        amount: totalAmount*100, // times 100 to get it in dollars
-        currency,
-        description: 'Julian Jorgensen invoice #' + invoiceNumber,
-        customer: customerId,
-      }).then((error, charge) => {
-        console.log('charged!, ', charge);
-        console.log('error, ', error);
+      console.log('charging customer: ', customerId);
 
+      stripe.charges.create({
+        amount: parseInt(amount)*100, // times 100 to get it in dollars
+        currency,
+        description: 'Flo Digital Inc. (Julian Jorgensen) invoice #' + invoiceNumber,
+        customer: customerId,
+      }).then((charge) => {
+        console.log('charged!, ', charge);
+
+        console.log('getting invoice', invoiceId);
         qbo.getInvoice(invoiceId, (e, invoice) => {
+          console.log('got invoice from qbo', invoice);
           qbo.updateInvoice({
-            "Id": invoice.Id,
+            "Id": invoiceId,
             "SyncToken": invoice.SyncToken,
             "CustomField": [{
               "DefinitionId": "1",
@@ -76,15 +81,17 @@ router.route('/')
               "Type": "StringType",
               "StringValue": moment(Date.now()).format("DD-MM-YYYY")
             }]
-          }, (e, updatedInvoice) => {
+          }).then((updatedInvoice) => {
             console.log('Invoice updated');
             res.sendStatus(200);
           }).catch((error) => {
+            console.log('error', error);
             throw error(error);
-          })
+          });
         });
       })
       .catch((error) => {
+        console.log('error', error);
         throw error(error);
       });
     }

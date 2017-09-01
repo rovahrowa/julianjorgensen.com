@@ -1,59 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { invoiceActions } from 'actions';
-import numeral from 'numeral';
+import { getInvoice } from './utils/invoice';
 
-import Loader from 'components/Loader';
-import PaymentOptions from 'components/Payment/PaymentOptions';
+import LoadingSpinner from 'components/LoadingSpinner';
+import PaymentOptions from './components/PaymentOptions';
 import styles from './index.css';
 
-@connect(
-  ({ invoice }) => ({
-    invoice: invoice
-  })
-)
 export default class Invoice extends React.Component {
-  constructor() {
-    super();
-
-    let dispatch;
+  state = {
+    invoice: null
   }
 
   componentWillMount() {
-    this.dispatch = this.props.dispatch;
-
     // Retrieve invoice data
     let invoiceId = this.props.match.params.id;
     let invoiceToken = this.props.match.params.token;
-    this.dispatch(invoiceActions.set(invoiceId, invoiceToken));
+
+    getInvoice(invoiceId, invoiceToken).then(({ invoice, customer }) => {
+      this.setState({
+        invoice,
+        customer
+      });
+    });
   }
 
   render() {
-    let {paid, number, totalAmount} = this.props.invoice;
+    let { invoice, customer } = this.state;
 
-    let paymentOptions = () => {
-      if (paid){
-        return <div>Payment Received. Thank you!</div>
-      }else{
-        return (
-          <PaymentOptions />
-        )
-      }
-    }
-
-    if (number){
+    if (!invoice) {
       return (
         <div className={styles.container}>
-          {/* <div className="callout alert">There was an error. Please contact me if it persists: <a href="mailto:me@julianjorgensen.com">me@julianjorgensen.com</a></div> */}
-          <h1>Invoice total amount: { totalAmount }</h1>
-          {paymentOptions()}
+          <LoadingSpinner />
         </div>
       )
-    }else{
-      return (
-        <Loader />
-      )
     }
+
+    let { paid, number, amount } = invoice;
+
+    if (paid) {
+      return <div>Payment Received. Thank you!</div>
+    }
+
+    return (
+      <div className={styles.container}>
+        {/* <div className="callout alert">There was an error. Please contact me if it persists: <a href="mailto:me@julianjorgensen.com">me@julianjorgensen.com</a></div> */}
+        <PaymentOptions invoice={invoice} customer={customer} />
+      </div>
+    )
   }
 }

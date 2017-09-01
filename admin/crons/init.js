@@ -18,11 +18,11 @@ let invoiceReminderCron = new CronJob({
 });
 
 
-// Sync Toggl with Quickbooks (runs every 15 minutes)
+// Sync Toggl with Quickbooks (runs every 2 hours)
 let syncTogglWithQuickbooksCron = new CronJob({
-  cronTime: '00 */15 * * * *',
+  cronTime: '00 00 */2 * * *',
   onTick: function() {
-    // syncTogglWithQuickbooks.init();
+    syncTogglWithQuickbooks.init();
   },
   start: true
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Parallax } from 'react-scroll-parallax';
 import Button from 'components/Button';
 
 import styles from './index.css';
@@ -9,7 +10,16 @@ export default class HomeFullStack extends React.Component{
   render() {
     return (
       <div className={styles.wrapper}>
-        <div className={styles.bgImage} />
+        <Parallax
+            className={styles.parallaxBg}
+            offsetYMax={10}
+            offsetYMin={-50}
+            slowerScrollRate
+            tag="div"
+        >
+          <img src='/images/code-bg.jpg' />
+        </Parallax>
+
         <div className={styles.container}>
           <div className={styles.header}>
             <h2 className={styles.title}>Full-Stack Development</h2>

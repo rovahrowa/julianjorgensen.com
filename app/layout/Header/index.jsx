@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 import Headroom from 'react-headroom';
-import Drawer from 'react-toolbox/lib/drawer';
 
 import Logo from 'components/Logo';
+import Contact from './Contact';
 import styles from './index.css';
-import theme from 'styles/theme/topDrawer.css';
 
 @withRouter
 @connect(
@@ -42,14 +41,19 @@ export default class Header extends React.Component {
   }
 
   render() {
-    let { navStatic } = this.state;
+    let { navStatic, contactActive } = this.state;
     let { dispatch } = this.props;
-    let { pathname } = this.props.location;
+    let pathname = this.props.location.pathname.split('/')[1];
 
     let bgColor;
     let logoColor = 'white';
+    console.log('pathname', pathname);
     switch(pathname) {
-      case '/frontend':
+      case 'invoice':
+        bgColor = styles.dark
+        logoColor = 'black'
+        break;
+      case 'frontend':
         bgColor = styles.dark
         logoColor = 'black'
         break;
@@ -71,12 +75,13 @@ export default class Header extends React.Component {
             <li><Link to='/frontend' className={`${styles.link} ${pathname === '/frontend' ? styles.linkActive : ''}`}>Front-End</Link></li>
             <li><Link to='/ux' className={`${styles.link} ${pathname === '/ux' ? styles.linkActive : ''}`}>UX</Link></li>
             <li><Link to='/automation' className={`${styles.link} ${pathname === '/automation' ? styles.linkActive : ''}`}>Automation</Link></li>
-            <li><Link to='#' className={`${styles.link} ${styles.contact}`} onClick={this.handleContactToggle}>Contact</Link></li>
+            <li><div className={`${styles.link} ${styles.contact}`} onClick={this.handleContactToggle}>Contact</div></li>
           </nav>
 
-          <Drawer theme={theme} active={this.state.contactActive} onOverlayClick={this.handleContactToggle} className={theme.contact}>
-            <h4>me@julianjorgensen.com</h4>
-          </Drawer>
+          <Contact
+            active={contactActive}
+            handleToggle={this.handleContactToggle}
+          />
         </header>
       </Headroom>
     )

@@ -8,7 +8,6 @@ import autoprefixer from 'autoprefixer';
 import PostCSS from './postcss.config';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
-import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
 
 // define environment constants
 const NODE_ENV = (process.env.NODE_ENV || 'development');
@@ -76,7 +75,7 @@ const BASE_CONFIG = {
         use: 'file-loader?name=/docs/[name].[ext]'
       },
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(gif|png|jpe?g)$/i,
         include: path.resolve(__dirname, 'app/assets/images'),
         loaders: [
           'file-loader',
@@ -99,19 +98,12 @@ const BASE_CONFIG = {
         loader: 'file-loader?name=fonts/[name].[ext]'
       },
       {
-        test: /\.svg$/,
-        include: path.resolve(__dirname, 'app/assets/icons'),
-        use: [
-          {
-            loader: 'svg-sprite-loader',
-            options: {
-              extract: true,
-              spriteFilename: 'icons/sprite.svg'
-            }
-          },
-          'svg-fill-loader',
-          'svgo-loader'
-        ]
+          test: /\.svg$/,
+          exclude: /node_modules/,
+          loader: 'svg-react-loader',
+          query: {
+            classIdPrefix: '[name]-[hash:8]__'
+          }
       }
     ]
   },
@@ -138,8 +130,7 @@ const BASE_CONFIG = {
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // reduce moment package size
-    new SpriteLoaderPlugin()
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/) // reduce moment package size
   ],
   devtool: `${IS_PRODUCTION ? 'inline' : 'cheap-eval'}-source-map`,
   resolve: {

@@ -8,10 +8,10 @@
   margin-bottom: rem(100);
 }
 
-.bgImage{
+.parallaxBg{
   composes: globalBgImage;
-  background-image: url('assets/images/code-bg.jpg');
-  opacity: 0.15;
+  opacity: 0.25;
+  overflow: hidden;
 }
 
 .container{

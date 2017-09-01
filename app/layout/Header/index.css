@@ -57,6 +57,7 @@
   font-size: rem(18);
   font-weight: bold;
   transition: opacity 0.2s;
+  cursor: pointer;
   -webkit-font-smoothing: antialiased;
 
   &:hover{
@@ -76,8 +77,4 @@
   padding-bottom: rem(3);
   border-bottom: rem(2) solid currentColor;
   opacity: 1;
-}
-
-.contact{
-  cursor: pointer;
 }

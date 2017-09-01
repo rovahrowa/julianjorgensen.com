@@ -1,0 +1,30 @@
+.container{
+  display: flex;
+  align-items: center;
+  & .icon{
+    display: block;
+    width: rem(25);
+    height: rem(25);
+    margin-right: rem(10);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    & svg{
+      max-height: 100%;
+    }
+    &:hover{
+      opacity: 1;
+    }
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
+
+.large{
+  & .icon{
+    display: block;
+    width: rem(35);
+    height: rem(35);
+    margin-right: rem(20);
+  }
+}

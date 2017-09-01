@@ -7,6 +7,7 @@ let getTogglWorkspaceData = require('./getTogglWorkspaceData');
 let getTogglTimeEntries = require('./getTogglTimeEntries');
 let getTogglWorkspaceClients = require('./getTogglWorkspaceClients');
 let syncClients = require('./syncClients');
+
 let getTogglWorkspaceProjects = require('./getTogglWorkspaceProjects');
 let getTogglUsers = require('./getTogglUsers');
 let processTimeEntries = require('./processTimeEntries');
@@ -19,11 +20,11 @@ function init(){
     .then(getTogglTimeEntries)
     .then(getTogglWorkspaceClients)
     .then(syncClients)
-    .then(getTogglWorkspaceProjects)
-    .then(getTogglUsers)
-    .then(processTimeEntries)
-    .then(createQuickbooksTimeEntries)
-    .then(markEntriesAsBilled)
+    // .then(getTogglWorkspaceProjects)
+    // .then(getTogglUsers)
+    // .then(processTimeEntries)
+    // .then(createQuickbooksTimeEntries)
+    // .then(markEntriesAsBilled)
     .catch((err) => {
       console.log('Error syncing toggl...', err);
     });

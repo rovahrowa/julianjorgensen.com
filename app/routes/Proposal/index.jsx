@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import Loader from 'components/Loader';
+import Loader from 'components/LoadingSpinner';
 import styles from './index.css';
 
 export default class Proposal extends React.Component {

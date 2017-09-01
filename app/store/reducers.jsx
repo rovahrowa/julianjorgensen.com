@@ -34,20 +34,3 @@ export var scrollReducer = (state = {y: 0}, action) => {
       return state;
   }
 };
-
-export var invoiceReducer = (state = {id: '', number: '', amount: '', email: '', currency: '', paid: false}, action) => {
-  switch (action.type) {
-    case 'SET_INVOICE':
-      console.log('setting invoice in reducer...', action);
-      return {
-        id: action.invoice.id,
-        number: action.invoice.number,
-        totalAmount: action.invoice.totalAmount,
-        email: action.invoice.email,
-        currency: action.invoice.currency,
-        paid: action.invoice.paid
-      };
-    default:
-      return state;
-  }
-};

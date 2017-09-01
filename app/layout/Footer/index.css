@@ -44,27 +44,7 @@
 }
 
 .icons{
-  display: flex;
   margin-top: rem(60);
-  & .icon{
-    display: block;
-    width: rem(35);
-    height: rem(35);
-    margin-right: rem(20);
-    opacity: 0.5;
-    &:last-child{
-      margin-right: 0;
-    }
-  }
-  & .github{
-    background-image: url('assets/icons/brands/github.svg');
-  }
-  & .linkedin{
-    background-image: url('assets/icons/brands/linkedin-in.svg');
-  }
-  & .angellist{
-    background-image: url('assets/icons/brands/angellist.svg');
-  }
 }
 
 .credit{

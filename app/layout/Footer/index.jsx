@@ -1,13 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from 'components/Logo';
 import { Parallax } from 'react-scroll-parallax';
 
-// icons
-import 'assets/icons/brands/github.svg';
-import 'assets/icons/brands/linkedin-in.svg';
-import 'assets/icons/brands/angellist.svg';
+import SocialIcons from 'components/SocialIcons';
 
 // styles
 import styles from './index.css';
@@ -50,14 +47,9 @@ export default class Footer extends React.Component {
             <Link to='/design' className={styles.navItem}>Get a Estimate</Link>
           </div>
 
-          <div className={styles.icons}>
-            <a href='https://github.com/julianjorgensen' target='new' className={`${styles.icon} ${styles.github}`}></a>
-            <a href='https://www.linkedin.com/in/julian-jorgensen-9a889b73' target='new' className={`${styles.icon} ${styles.linkedin}`}></a>
-            <a href='https://angel.co/julianjorgensen' target='new' className={`${styles.icon} ${styles.angellist}`}></a>
-          </div>
+          <SocialIcons large className={styles.icons} />
         </nav>
-        <div className={styles.pixelFade}>
-        </div>
+        <div className={styles.pixelFade}></div>
 
         <Parallax
             className={styles.credit}
