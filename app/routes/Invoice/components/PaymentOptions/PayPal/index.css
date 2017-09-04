@@ -1,0 +1,30 @@
+@import "../../../../../styles/variables.css";
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.paypal{
+  margin-top: rem(20);
+}
+
+.error{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: rem(20);
+  color: white;
+  text-align: center;
+  color: var(--errorColor);
+  & .icon{
+    margin-right: rem(10);
+    height: rem(25);
+    & path{
+      fill: var(--errorColor);
+    }
+  }
+}

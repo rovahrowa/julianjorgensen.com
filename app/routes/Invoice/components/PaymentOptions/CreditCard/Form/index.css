@@ -1,0 +1,63 @@
+@import "../../../../../../styles/variables.css";
+
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+.form{
+  width: rem(400);
+}
+
+.card{
+  margin-top: rem(10);
+  margin-bottom: rem(10);
+}
+
+
+.input{
+  background-color: gray(95%);
+  padding: rem(15) rem(20);
+  border-radius: rem(4);
+  border: rem(1) solid transparent;
+  box-shadow: 0 rem(1) rem(3) 0 #e6ebf1;
+  transition: box-shadow 150ms ease;
+  margin: rem(10) 0;
+  width: 100%;
+  font-size: rem(18);
+  &:focus{
+    box-shadow: 0 rem(1) rem(3) 0 #cfd7df;
+  }
+}
+
+.submit{
+  width: 100%;
+  margin-top: rem(30);
+}
+
+:global {
+  & .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+  & .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }
+}
+
+.error{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: rem(20);
+  color: white;
+  text-align: center;
+  color: var(--errorColor);
+  margin-top: rem(30);
+  & .icon{
+    margin-right: rem(10);
+    height: rem(25);
+    & path{
+      fill: var(--errorColor);
+    }
+  }
+}

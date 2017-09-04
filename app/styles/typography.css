@@ -17,11 +17,11 @@
   & button,
   & li,
   & :--inputs {
-    font-family: 'ScandiaWeb', 'ScandiaWeb-Regular' !important;
+    font-family: var(--secondaryFont);
   }
 
   & :--headings{
-    font-family: 'Whitney';
+    font-family: var(--primaryFont);
     margin: 0;
   }
 
@@ -32,6 +32,7 @@
 
   & a {
     text-decoration: none;
+    cursor: pointer;
   }
 
   & h1 {

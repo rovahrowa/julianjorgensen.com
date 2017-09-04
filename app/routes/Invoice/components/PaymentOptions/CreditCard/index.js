@@ -7,6 +7,8 @@ import { Elements } from 'react-stripe-elements';
 import Form from './Form';
 import styles from './index.css';
 
+let ScandiaWebRegular = require('assets/fonts/ScandiaWebRegular.woff2');
+
 export default class CreditCard extends React.Component {
   state = {
     stripeLoaded: false
@@ -17,19 +19,27 @@ export default class CreditCard extends React.Component {
   }
 
   render() {
-    let { invoice, customer } = this.props;
+    let { invoice, customer, markAsPaid } = this.props;
     let { stripeLoaded } = this.state;
 
     return (
       <div>
         {stripeLoaded ?
           <StripeProvider apiKey={ENV_CONFIG.STRIPE_PUBLISHABLE_KEY}>
-            <Elements>
-              <Form invoice={invoice} customer={customer} />
+            <Elements fonts={[{
+              family: 'ScandiaWeb-Regular',
+              src: `url(${ScandiaWebRegular})`
+            }]}>
+              <Form
+                invoice={invoice}
+                customer={customer}
+                markAsPaid={markAsPaid}
+              />
             </Elements>
           </StripeProvider> : ''
         }
 
+        {/* load stripe api */}
         <Script
           url="https://js.stripe.com/v3/"
           onLoad={this.handleScriptLoad}

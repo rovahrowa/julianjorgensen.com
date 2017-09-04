@@ -9,15 +9,10 @@ let app = require('../app');
 const keySecret = process.env.STRIPE_SECRET_KEY;
 let stripe = require('stripe')(keySecret);
 
-router.route('/')
-  .post(function (req, res) {
-    // Token is created using Stripe.js
-    let {email, stripeToken, invoiceId, invoiceNumber, amount, currency} = req.body;
-
-    console.log('body', req.body);
-
+router.route('/find-customer')
+  .get(function (req, res) {
     // search for existing customer(s) with matching email
-    let findCustomer = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       stripe.customers.list({ limit: 100 }, (err, customers) => {
 
         let existingCustomer = [];
@@ -35,38 +30,46 @@ router.route('/')
         reject(error);
       });
     });
+  });
 
-    // if exists then charge that customer, otherwise create new
+
+router.route('/charge-customer')
+  .post(function (req, res) {
     findCustomer.then((existingCustomer) => {
       console.log('existing customer: ', existingCustomer);
       if (existingCustomer.length > 0) {
         chargeCustomer(existingCustomer[0].id);
-      }else{
-        // Create a new customer
-        stripe.customers.create({
-          email,
-          source: stripeToken,
-        }).then((customer) => {
-          chargeCustomer(customer.id);
-        }).catch((error) => {
-          throw error(error);
-        })
       }
-    })
-    .catch((error) => {
+    });
+  });
+
+router.route('/create-customer')
+  .post(function(req, res) {
+    // Create a new customer
+    stripe.customers.create({
+      email,
+      source: stripeToken,
+    }).then((customer) => {
+      chargeCustomer(customer.id);
+    }).catch((error) => {
       throw error(error);
     });
+  });
+
+router.route('/charge')
+  .post(function (req, res) {
+    let { email, stripeToken, invoiceId, invoiceNumber, amount, currency } = req.body;
+
+    console.log('body', req.body);
 
     // charge the customer with stripe
-    function chargeCustomer(customerId){
-      console.log('charging customer: ', customerId);
-
-      stripe.charges.create({
-        amount: parseInt(amount)*100, // times 100 to get it in dollars
-        currency,
-        description: 'Flo Digital Inc. (Julian Jorgensen) invoice #' + invoiceNumber,
-        customer: customerId,
-      }).then((charge) => {
+    stripe.charges.create({
+      amount: parseInt(amount)*100, // times 100 to get it in dollars
+      currency,
+      description: 'Flo Digital Inc. (Julian Jorgensen) invoice #' + invoiceNumber,
+      source: stripeToken
+    }, (error, charge) => {
+      if(!error) {
         console.log('charged!, ', charge);
 
         console.log('getting invoice', invoiceId);
@@ -81,20 +84,16 @@ router.route('/')
               "Type": "StringType",
               "StringValue": moment(Date.now()).format("DD-MM-YYYY")
             }]
-          }).then((updatedInvoice) => {
+          }, (e, updatedInvoice) => {
             console.log('Invoice updated');
             res.sendStatus(200);
-          }).catch((error) => {
-            console.log('error', error);
-            throw error(error);
           });
         });
-      })
-      .catch((error) => {
+      }else{
         console.log('error', error);
-        throw error(error);
-      });
-    }
+        res.status(200).send({ error: error.message });
+      }
+    });
   });
 
 

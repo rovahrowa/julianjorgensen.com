@@ -1,0 +1,90 @@
+@import "../../../../styles/app.css";
+
+.wrapper{
+  composes: globalWrapper;
+  margin-bottom: rem(100);
+}
+
+.container{
+  composes: globalContainer withShadow;
+}
+
+label{
+  text-transform: uppercase;
+  letter-spacing: rem(2);
+  color: gray(70%);
+  margin-bottom: rem(20);
+}
+
+.id{
+  font-size: rem(20);
+  text-align: right;
+  margin-bottom: rem(5);
+  & label{
+    margin-right: rem(5);
+  }
+}
+
+.status,
+.note{
+  padding: rem(20);
+  text-align: center;
+}
+
+.status{
+  background-color: gray(20%);
+  color: white;
+}
+
+.note{
+  background-color: var(--mystic);
+}
+
+.header{
+  composes: globalContainer white;
+  padding: rem(40) rem(120);
+  border-bottom: rem(1) solid gray(70%);
+
+  & .row{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+  & .col{
+    width: rem(200);
+    margin-bottom: rem(50);
+    margin-right: rem(80);
+    & label{
+      display: block;
+    }
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
+
+
+.body{
+  composes: globalContainer withPaddings white;
+
+  & .items{
+    display: flex;
+    width: 100%;
+    & .name{
+      width: 50%;
+    }
+    & .units{
+      width: 15%;
+      text-align: right;
+    }
+    & .rate{
+      width: 15%;
+      text-align: right;
+    }
+    & .total{
+      width: 20%;
+      text-align: right;
+    }
+  }
+}

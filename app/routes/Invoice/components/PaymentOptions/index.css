@@ -9,7 +9,6 @@
   }
 
   & .label{
-    font-family: 'ScandiaWeb-Medium';
     color: gray(20%);
     font-size: rem(18);
   }
@@ -21,4 +20,13 @@
   border-top-right-radius: 0;
   border-bottom-left-radius: rem(4);
   border-bottom-right-radius: rem(4);
+  &:focus{
+    outline: 0;
+  }
+}
+
+.paymentThankYou{
+  composes: globalContainer withPaddings white;
+  text-align: center;
+  color: green;
 }

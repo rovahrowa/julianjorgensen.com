@@ -11,6 +11,10 @@
   width: 100%;
 
   & .accordion{
-    width: 40%;
+    width: calc(50% - 20px);
+
+    & .item{
+      border-top: rem(1) solid black;
+    }
   }
 }

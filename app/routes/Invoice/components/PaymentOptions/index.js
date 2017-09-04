@@ -2,43 +2,59 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import CreditCard from './CreditCard';
+import BankTransfer from './BankTransfer';
+import PayPal from './PayPal';
+import Cheque from './Cheque';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
 
 import styles from './index.css';
 
 export default class PaymentOptions extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      fixedIndex: 0
-    };
-
-    let dispatch;
-  }
+  state = {
+    fixedIndex: 0,
+    paid: false
+  };
 
   handleFixedTabChange = (index) => {
     this.setState({fixedIndex: index});
   };
 
-  handleActive = () => {
-    console.log('Special one activated');
-  };
 
   render() {
-    let { invoice, customer } = this.props;
+    let { invoice, customer, paid, markAsPaid } = this.props;
+
+    if (!paid) {
+      return (
+        <div className={styles.container}>
+          <div className={styles.paymentThankYou}>
+            <h2>Thank you for your payment!</h2>
+          </div>
+        </div>
+      )
+    }
 
     return (
       <div className={styles.container}>
         <Tabs index={this.state.fixedIndex} theme={styles} onChange={this.handleFixedTabChange} fixed>
           <Tab label='Credit Card'>
-            <CreditCard invoice={invoice} customer={customer} />
+            <CreditCard
+              invoice={invoice}
+              customer={customer}
+              markAsPaid={this.markAsPaid}
+            />
           </Tab>
           <Tab label='Bank Transfer'>
-            <small>Second Content</small>
+            <BankTransfer />
           </Tab>
           <Tab label='PayPal'>
-            <small>Third Content</small>
+            <PayPal
+              invoice={invoice}
+              customer={customer}
+              markAsPaid={markAsPaid}
+            />
+          </Tab>
+          <Tab label='Cheque'>
+            <Cheque />
           </Tab>
         </Tabs>
       </div>

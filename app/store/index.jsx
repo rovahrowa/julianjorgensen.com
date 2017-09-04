@@ -1,10 +1,11 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import {navReducer, scrollReducer} from './reducers';
+import { siteReducer, navReducer, scrollReducer } from './reducers';
 
 export const store = (initialState = {}) => {
   let reducer = redux.combineReducers({
+    site: siteReducer,
     nav: navReducer,
     scrollPosition: scrollReducer
   });

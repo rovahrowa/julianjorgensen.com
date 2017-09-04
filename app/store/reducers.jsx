@@ -34,3 +34,15 @@ export var scrollReducer = (state = {y: 0}, action) => {
       return state;
   }
 };
+
+export var siteReducer = (state = {showScheduling: false}, action) => {
+  switch (action.type) {
+    case 'TOGGLE_SCHEDULING':
+      return {
+        ...state,
+        showScheduling: !state.showScheduling
+      };
+    default:
+      return state;
+  }
+};

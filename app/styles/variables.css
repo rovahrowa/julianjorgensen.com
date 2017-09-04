@@ -6,10 +6,19 @@
   --sky-blue: #47ABF7;
   --turquoise: #35B8AC;
   --orange: #FFAA09;
+  --mystic: #DFE9F0;
+
+  --gamboge: #EF9915;
+  --brightSun: #FCCF3B;
+
+  --primaryFont: 'Whitney';
+  --secondaryFont: 'Scandia';
+
+  --errorColor: #A40000;
 }
 
 :root {
   --boxShadow: {
     box-shadow: rem(3) rem(3) rem(10) rem(1) gray(70%);
-  };  
+  };
 }

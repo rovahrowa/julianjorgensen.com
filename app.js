@@ -47,7 +47,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({resave: false, saveUninitialized: false, secret: 'chai'}));
 
 // Stripe routes
-app.use('/api/charge', stripe);
+app.use('/api/stripe', stripe);
 
 // Proposal routes
 app.use('/api/proposal', contentful);

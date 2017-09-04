@@ -4,11 +4,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: rem(50);
   padding-left: rem(30);
   padding-right: rem(30);
+  height: rem(50);
+  font-size: rem(18);
   background-color: gray(95%);
+  border-radius: rem(8);
   text-decoration: none;
+  font-family: var(--primaryFont);
 }
 
 .button.hollow:not([disabled]) {
@@ -21,10 +24,11 @@
 }
 
 .button.primary:not([disabled]) {
-  color: white;
-  background-color: var(--blue);
+  color: black;
+  box-shadow: rem(0) rem(2) rem(2) rem(0) gray(50%);
+  background: linear-gradient(to bottom right, var(--gamboge), var(--brightSun));
   &:hover{
-    background-color: color(var(--blue) blackness(50%));
+    background: linear-gradient(to bottom right, color(var(--gamboge) shade(10%)), color(var(--brightSun) shade(10%)));
   }
 }
 

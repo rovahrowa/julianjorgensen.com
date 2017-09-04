@@ -4,6 +4,7 @@ import { getInvoice } from './utils/invoice';
 
 import LoadingSpinner from 'components/LoadingSpinner';
 import PaymentOptions from './components/PaymentOptions';
+import InvoiceDetails from './components/InvoiceDetails';
 import styles from './index.css';
 
 export default class Invoice extends React.Component {
@@ -19,13 +20,18 @@ export default class Invoice extends React.Component {
     getInvoice(invoiceId, invoiceToken).then(({ invoice, customer }) => {
       this.setState({
         invoice,
-        customer
+        customer,
+        paid: invoice.paid || false
       });
     });
   }
 
+  markAsPaid = () => {
+    this.setState({paid: true});
+  }
+
   render() {
-    let { invoice, customer } = this.state;
+    let { invoice, customer, paid } = this.state;
 
     if (!invoice) {
       return (
@@ -35,16 +41,21 @@ export default class Invoice extends React.Component {
       )
     }
 
-    let { paid, number, amount } = invoice;
-
-    if (paid) {
-      return <div>Payment Received. Thank you!</div>
-    }
+    let { number, amount } = invoice;
 
     return (
       <div className={styles.container}>
-        {/* <div className="callout alert">There was an error. Please contact me if it persists: <a href="mailto:me@julianjorgensen.com">me@julianjorgensen.com</a></div> */}
-        <PaymentOptions invoice={invoice} customer={customer} />
+        <InvoiceDetails
+          invoice={invoice}
+          customer={customer}
+          paid={paid}
+        />
+        <PaymentOptions
+          invoice={invoice}
+          customer={customer}
+          paid={paid}
+          markAsPaid={this.markAsPaid}
+        />
       </div>
     )
   }

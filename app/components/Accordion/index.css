@@ -1,7 +1,7 @@
 .item{
-  margin: 5px 0;
-  padding: 5px 0;
-  border-bottom: 1px solid gray(90%, 50%);
+  cursor: pointer;
+  padding: rem(14) rem(10);
+  border-bottom: 1px solid gray(70%, 50%);
   &:last-child{
     border-bottom: none;
   }
@@ -10,21 +10,23 @@
 .title{
   position: relative;
   user-select: none;
-  cursor: pointer;
-  margin-bottom: 5px;
+  margin-bottom: 0;
+  transition: all 0.2s;
   &:after{
     content: '+';
     font-weight: bold;
     position: absolute;
     right: 0;
     transition: all 0.2s;
+    font-size: rem(20);
   }
 }
 
-.content{
-}
-
 .active{
+  background-color: gray(95%);
+  & .title{
+    margin-bottom: rem(8);
+  }
   & .title:after{
     transform: rotate(45deg);
   }

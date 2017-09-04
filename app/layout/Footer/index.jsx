@@ -20,7 +20,7 @@ export default class Footer extends React.Component {
   }
 
   render() {
-    let {scroll} = this.props;
+    let { scroll } = this.props;
 
     let windowHeight = window.height;
     let creditOpacity = 1;

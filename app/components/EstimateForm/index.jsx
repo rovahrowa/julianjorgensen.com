@@ -1,11 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import Input from 'react-toolbox/lib/input';
-import {Button} from 'react-toolbox/lib/button';
+import Button from 'components/Button';
 import globalStyles from 'styles/app.css';
 import styles from './index.css';
 
+import CalendarIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/calendar.svg';
+import EmailIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/envelope.svg';
+
+@connect()
 export default class EstimateForm extends React.Component {
   constructor() {
     super();
@@ -20,6 +25,11 @@ export default class EstimateForm extends React.Component {
       sent: false,
       error: null
     };
+  }
+
+  toggleScheduling = () => {
+    let { dispatch } = this.props;
+    dispatch({type: 'TOGGLE_SCHEDULING'});
   }
 
   handleChange = (name, value) => {
@@ -57,50 +67,68 @@ export default class EstimateForm extends React.Component {
     if (!this.state.sent){
       return (
         <div className={styles.container}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>Get a free estimate</h2>
+            <h3 className={styles.subTitle}>(I often get fully booked, so reserve your spot now)</h3>
+          </div>
           <form onSubmit={this.handleSubmit.bind(this)} className={styles.form}>
-            <h2>Get a quote for your project</h2>
-            <h3>(I often get fully booked, so reserve your spot now)</h3>
             <div>
               <Input
                 type='text'
-                label='Name'
-                name='name'
+                label='Your name'
                 required
                 value={this.state.name}
-                onChange={this.handleChange.bind(this, 'name')} />
+                onChange={this.handleChange.bind(this, 'name')}
+              />
 
               <Input
                 type='email'
-                label='Email address'
+                label='Your email'
                 required
                 value={this.state.email}
-                onChange={this.handleChange.bind(this, 'email')} />
+                onChange={this.handleChange.bind(this, 'email')}
+              />
 
               <Input
                 type='text'
-                value={this.state.projectName}
                 label='Company/project name'
+                value={this.state.projectName}
                 required
-                onChange={this.handleChange.bind(this, 'projectName')} />
+                onChange={this.handleChange.bind(this, 'projectName')}
+              />
 
               <Input
                 type='text'
                 value={this.state.projectWebsite}
-                label='Website'
+                label='Company website'
                 required
-                onChange={this.handleChange.bind(this, 'projectWebsite')} />
+                onChange={this.handleChange.bind(this, 'projectWebsite')}
+              />
 
               <Input
                 type='textarea'
                 value={this.state.notes}
-                label='Notes'
+                label='How can I help?'
                 multiline={true}
-                rows={3}
-                onChange={this.handleChange.bind(this, 'notes')} />
+                rows={4}
+                onChange={this.handleChange.bind(this, 'notes')}
+              />
 
-              <Button type='submit' label='Get Estimate' disabled={this.state.submitting} raised primary />
+              <Button
+                type='submit'
+                label='Get Estimate'
+                disabled={this.state.submitting}
+                className={styles.submit}
+                primary
+              />
             </div>
           </form>
+
+          <div className={styles.helper}>
+            <div className={styles.helperHeadline}>Got questions?</div>
+            <div className={styles.helperMethod}><CalendarIcon className={styles.icon} /><a onClick={this.toggleScheduling}>Schedule a free meeting</a></div>
+            <div className={styles.helperMethod}><EmailIcon className={styles.icon} /><a href='mailto:me@julianjorgensen.com'>me@julianjorgensen.com</a></div>
+          </div>
         </div>
       )
     }else{

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Collapse} from 'react-collapse';
+import { Collapse } from 'react-collapse';
 import styles from './index.css';
 
 export default class Accordion extends React.Component{
@@ -21,13 +21,13 @@ export default class Accordion extends React.Component{
           let selected;
 
           return (
-            <div key={index} className={`${styles.item} ${this.state.selected === index ? styles.active : ''}`}>
-              <div className={styles.title} onClick={() => {
-                selected = (index === this.state.selected ? null : index)
-                this.setState({
-                  selected: selected
-                });
-              }}>{title}</div>
+            <div key={index} className={`${styles.item} ${this.state.selected === index ? styles.active : ''}`} onClick={() => {
+              selected = (index === this.state.selected ? null : index)
+              this.setState({
+                selected: selected
+              });
+            }}>
+              <div className={styles.title}>{title}</div>
               <Collapse
                 isOpened={this.state.selected === index ? true : false}
                 springConfig={{stiffness: 200, damping: 20}}

@@ -19,7 +19,6 @@
   }
   &.withPaddings{
     padding: rem(40) rem(30);
-    @apply --boxShadow;
   }
   &.white{
     background-color: white;
@@ -28,6 +27,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  &.withShadow{
+    @apply --boxShadow;
   }
 }
 

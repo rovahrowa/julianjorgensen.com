@@ -1,0 +1,32 @@
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+.item{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: rem(80);
+  &:last-child{
+    margin-right: 0;
+  }
+
+  & .flag{
+    height: rem(34);
+    align-self: center;
+    margin-bottom: rem(10);
+  }
+
+  & .name{
+    margin-bottom: rem(10);
+  }
+
+  & .detail{
+    margin-bottom: rem(10);
+    & label{
+      display: block;
+      color: gray(70%);
+    }
+  }
+}
