@@ -28,12 +28,22 @@ export function getInvoice(invoiceId, invoiceToken) {
         // Create invoice object and dispatch
         let invoice = {
           id: payload.invoice.Id,
+          createdDate: payload.invoice.MetaData.CreateTime,
+          dueDate: payload.invoice.DueDate,
           number: payload.invoice.DocNumber,
-          amountFormatted: numeral(payload.invoice.TotalAmt).format('$0,0.00'),
-          amount: payload.invoice.TotalAmt,
+          subtotal: _.find(payload.invoice.Line, {'DetailType': 'SubTotalLineDetail'}).Amount || 0,
+          discount: _.find(payload.invoice.Line, {'DetailType': 'DiscountLineDetail'}).Amount || 0,
+          taxes: payload.invoice.TxnTaxDetail.TotalTax || 0,
+          taxPercent: payload.invoice.TxnTaxDetail.TaxLine[0].TaxLineDetail.TaxPercent || 0,
+          amount: payload.invoice.TotalAmt || 0,
+          deposit: payload.invoice.Deposit || 0,
+          balance: payload.invoice.Balance || 0,
           email: email,
-          currency: payload.invoice.CurrencyRef.value,
-          paid: paidDate ? true : false
+          currency: payload.invoice.CurrencyRef.value || '',
+          paid: paidDate ? true : false,
+          items: payload.invoice.Line || [],
+          notes: payload.invoice.CustomerMemo.value || '',
+          customFields: payload.invoice.CustomField || []
         };
         console.log('invoice: ', invoice);
 

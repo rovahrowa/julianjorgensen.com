@@ -42,7 +42,7 @@ export default class PayPal extends React.Component {
           env={ENV_CONFIG.ENV === 'production' ? 'production' : 'sandbox'}
           client={client}
           currency={invoice.currency}
-          total={invoice.amount}
+          total={invoice.balance}
           onError={this.onError}
           onSuccess={this.onSuccess}
           onCancel={this.onCancel}

@@ -1,6 +1,10 @@
 import React from 'react';
+import numeral from 'numeral';
 import { Link } from 'react-router-dom';
 
+import InvoiceHeader from './components/InvoiceHeader';
+import InvoiceItems from './components/InvoiceItems';
+import InvoiceSummary from './components/InvoiceSummary';
 import styles from './index.css';
 
 export default class InvoiceDetails extends React.Component {
@@ -11,87 +15,34 @@ export default class InvoiceDetails extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.id}><label>Invoice</label>{invoice.id}</div>
 
-        <div className={styles.container}>
+        <div className={styles.body}>
           <div className={styles.status}>
-            {paid ? 'Paid on xx/xx/xxxx' : `${invoice.amountFormatted} is due on April 2017`}
+            {paid ? 'Paid on xx/xx/xxxx' : `${numeral(invoice.balance).format('$0,0.00')} is due on April 2017`}
           </div>
 
           <div className={styles.note}>
             Some more detail here...
           </div>
 
-          <div className={styles.header}>
-            <div className={styles.row}>
-              <div className={styles.col}>
-                <label>From</label>
-                <address>
-                  FLO INC.<br />
-                  Julian Jorgensen<br />
-                  308 5th Ave E<br />
-                  V5T 1H4, Vancouver <br />
-                  B.C., Canada<br /><br />
-
-                  me@julianjorgensen.com
-                </address>
-              </div>
-              <div className={styles.col}>
-                <label>To</label>
-                <address>
-                  FLO INC.<br />
-                  Julian Jorgensen<br />
-                  308 5th Ave E<br />
-                  V5T 1H4, Vancouver <br />
-                  B.C., Canada<br /><br />
-
-                  me@julianjorgensen.com
-                </address>
-              </div>
-            </div>
-
-            <div className={styles.row}>
-              <div className={styles.col}>
-                <label>Issued on</label>
-                <date>Mar 19, 2017</date>
-              </div>
-              <div className={styles.col}>
-                <label>Due on</label>
-                <date>Apr 19, 2017</date>
-              </div>
-            </div>
+          <div className={styles.container}>
+            <InvoiceHeader {...this.props} />
+            <InvoiceItems {...this.props} />
+            <InvoiceSummary {...this.props} />
           </div>
 
-          <div className={styles.body}>
-            <header className={styles.items}>
-              <div className={styles.name}>
-                <label>Item name</label>
-              </div>
-              <div className={styles.units}>
-                <label>Units</label>
-              </div>
-              <div className={styles.rate}>
-                <label>Rate</label>
-              </div>
-              <div className={styles.total}>
-                <label>Total</label>
-              </div>
-            </header>
+          <footer className={styles.footer}>
+            <div className={styles.col}>
+              <label>Notes</label>
+              <div className={styles.description}>{invoice.notes}</div>
+            </div>
 
-            <div className={styles.items}>
-              <div className={styles.name}>
-                name here
-              </div>
-              <div className={styles.units}>
-                70
-              </div>
-              <div className={styles.rate}>
-                $100.00
-              </div>
-              <div className={styles.total}>
-                $9.000,00
+            <div className={styles.col}>
+              <label>Late Fees</label>
+              <div className={styles.description}>
+                If this invoice is unpaid by Jul 24, 2017, a non-compounding late fee of 3.0% accrues monthly on the outstanding amount.
               </div>
             </div>
-          </div>
-
+          </footer>
         </div>
       </div>
     )

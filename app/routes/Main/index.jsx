@@ -142,6 +142,13 @@ export default class Routes extends React.Component {
           contentHeight: ref.clientHeight
         });
       }, 200);
+
+      // do it again after 4 seconds (some components loads slow)
+      setTimeout(() => {
+        this.setState({
+          contentHeight: ref.clientHeight
+        });
+      }, 4000);
     }
   }
 
@@ -173,7 +180,7 @@ export default class Routes extends React.Component {
                   <Route path="/p/:prospectName/:proposalId?env=:environment" component={Proposal} />
                 </Switch>
 
-                <EstimateForm />
+                <EstimateForm show={currentKey !== 'invoice'} />
                 <Faq />
                 <Footer />
               </div>

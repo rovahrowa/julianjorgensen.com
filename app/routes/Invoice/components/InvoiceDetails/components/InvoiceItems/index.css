@@ -1,0 +1,35 @@
+@import "../../../../../../styles/app.css";
+
+.container{
+  margin-bottom: rem(30);
+}
+
+.header,
+.item{
+  display: flex;
+  width: 100%;
+}
+
+.items{
+  margin-bottom: rem(10);
+  margin-top: rem(10);
+}
+
+.description{
+  width: 50%;
+}
+
+.units{
+  width: 15%;
+  text-align: right;
+}
+
+.rate{
+  width: 15%;
+  text-align: right;
+}
+
+.total{
+  width: 20%;
+  text-align: right;
+}

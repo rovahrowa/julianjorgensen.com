@@ -64,6 +64,10 @@ export default class EstimateForm extends React.Component {
   }
 
   render() {
+    if (!this.props.show) {
+      return (<div></div>);
+    }
+
     if (!this.state.sent){
       return (
         <div className={styles.container}>

@@ -68,7 +68,7 @@ const BASE_CONFIG = {
       },
       {
         test: /\.json$/i,
-        use: 'json'
+        use: 'json-loader'
       },
       {
         test: /\.pdf$/i,

@@ -1,4 +1,5 @@
 import React from 'react';
+import numeral from 'numeral';
 import axios from 'axios';
 
 import { injectStripe, CardElement } from 'react-stripe-elements';
@@ -53,7 +54,7 @@ export default class CreditCardForm extends React.Component {
       invoiceId: invoice.id,
       email: invoice.email,
       currency: invoice.currency,
-      amount: invoice.amount,
+      amount: invoice.balance,
       stripeToken: token.id
     })
     .then((response) => {
@@ -143,7 +144,7 @@ export default class CreditCardForm extends React.Component {
             primary
             className={styles.submit}
           >
-            Pay {invoice.currency} {invoice.amountFormatted}
+            Pay {invoice.currency} {numeral(invoice.balance).format('$0,0.00')}
           </Button>
 
           {error ?
