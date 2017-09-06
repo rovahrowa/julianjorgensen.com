@@ -23,7 +23,7 @@ export default class PaymentOptions extends React.Component {
   render() {
     let { invoice, customer, paid, markAsPaid } = this.props;
 
-    if (!paid) {
+    if (paid) {
       return (
         <div className={styles.container}>
           <div className={styles.paymentThankYou}>

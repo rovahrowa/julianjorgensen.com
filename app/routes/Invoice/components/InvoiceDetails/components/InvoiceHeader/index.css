@@ -1,6 +1,7 @@
 @import "../../../../../../styles/app.css";
 
 .container{
+  position: relative;
   padding: 0 rem(80);
   margin-bottom: rem(40);
   border-bottom: rem(1) solid gray(70%);
@@ -21,5 +22,18 @@
     &:last-child{
       margin-right: 0;
     }
+  }
+
+  & .paid{
+    color: green;
+    position: absolute;
+    top: rem(50);
+    right: rem(50);
+    transform: rotate(25deg);
+    font-size: rem(45);
+    text-transform: uppercase;
+    border: 2px dashed green;
+    padding: rem(25);
+    border-radius: rem(5);
   }
 }

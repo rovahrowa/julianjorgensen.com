@@ -5,6 +5,9 @@ import styles from './index.css';
 const InvoiceHeader = ({ invoice, customer, paid }) => {
   return (
     <div className={styles.container}>
+
+      {paid ? <div className={styles.paid}>Paid</div> : ''}
+
       <div className={styles.row}>
         <div className={styles.col}>
           <label>From</label>

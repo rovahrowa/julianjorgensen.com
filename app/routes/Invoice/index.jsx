@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { getInvoice } from './utils/invoice';
 
 import LoadingSpinner from 'components/LoadingSpinner';
-import PaymentOptions from './components/PaymentOptions';
 import InvoiceDetails from './components/InvoiceDetails';
+import PaymentOptions from './components/PaymentOptions';
 import styles from './index.css';
 
 export default class Invoice extends React.Component {

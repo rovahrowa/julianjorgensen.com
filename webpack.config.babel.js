@@ -113,6 +113,11 @@ const BASE_CONFIG = {
         context: 'app',
         from: 'assets/images',
         to: 'images'
+      },
+      {
+        context: 'app',
+        from: 'assets/pdfs',
+        to: 'pdfs'
       }
     ]),
     new webpack.DefinePlugin({

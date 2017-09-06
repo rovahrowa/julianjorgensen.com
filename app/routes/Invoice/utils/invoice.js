@@ -14,7 +14,7 @@ export function getInvoice(invoiceId, invoiceToken) {
 
         // if invoice has a email then use that, otherwise use the email(s) associated with the customer
         let email;
-        if (payload.invoice.BillEmail){
+        if (payload.invoice.BillEmail) {
           email = payload.invoice.BillEmail.Address
         }else if (payload.customer.PrimaryEmailAddr){
           email = payload.customer.PrimaryEmailAddr.Address
@@ -24,6 +24,9 @@ export function getInvoice(invoiceId, invoiceToken) {
 
         let paidDateObj = _.find(payload.invoice.CustomField, {'Name': 'paid date'});
         let paidDate = paidDateObj ? paidDateObj.StringValue : null;
+
+        let dateRangeObj = _.find(payload.invoice.CustomField, {'Name': 'date range'});
+        let dateRange = dateRangeObj ? dateRangeObj.StringValue ? dateRangeObj.StringValue.split(' - ') : null : null;
 
         // Create invoice object and dispatch
         let invoice = {
@@ -40,7 +43,9 @@ export function getInvoice(invoiceId, invoiceToken) {
           balance: payload.invoice.Balance || 0,
           email: email,
           currency: payload.invoice.CurrencyRef.value || '',
-          paid: paidDate ? true : false,
+          paid: paidDate && payload.invoice.Balance <= 0 ? true : false,
+          paidDate: paidDate,
+          dateRange: dateRange,
           items: payload.invoice.Line || [],
           notes: payload.invoice.CustomerMemo.value || '',
           customFields: payload.invoice.CustomField || []

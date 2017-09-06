@@ -1,17 +1,23 @@
 import React from 'react';
+import moment from 'moment-timezone';
 import _ from 'lodash';
 import numeral from 'numeral';
 
+import TimeEntryDetails from './TimeEntryDetails';
 import styles from './index.css';
 
 export default class InvoiceItems extends React.Component {
   render() {
     let { invoice, customer, paid } = this.props;
 
-    console.log('invoice from invocie items', invoice);
-
     return (
       <div className={styles.container}>
+        {invoice.dateRange ?
+          <div className={styles.dateRange}>
+            <label>Date range</label>
+            <date>{moment(invoice.dateRange[0], 'DD-MM-YYYY').format('MMMM Do YYYY')} - {moment(invoice.dateRange[1], 'DD-MM-YYYY').format('MMMM Do YYYY')}</date>
+          </div> : ''}
+
         <header className={styles.header}>
           <div className={styles.description}>
             <label>Description</label>
@@ -53,7 +59,7 @@ export default class InvoiceItems extends React.Component {
           }
         </div>
 
-        <small>(For more details please refer to the time-entries below.)</small>
+        <TimeEntryDetails />
       </div>
     )
   }
