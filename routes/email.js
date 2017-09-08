@@ -24,7 +24,7 @@ router.route('/invoice')
 
     // if payload is empty, don't do anything
     if (!payload) {
-      return res.status(200).send('success');
+      return res.status(200).send('there was no payload sending invoice email');
     }
 
     // validate signature

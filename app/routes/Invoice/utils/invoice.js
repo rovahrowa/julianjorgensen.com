@@ -28,8 +28,15 @@ export function getInvoice(invoiceId, invoiceToken) {
         let dateRangeObj = _.find(payload.invoice.CustomField, {'Name': 'date range'});
         let dateRange = dateRangeObj ? dateRangeObj.StringValue ? dateRangeObj.StringValue.split(' - ') : null : null;
 
-        let notes = payload.invoice.CustomerMemo.value.split('metadata')[0] || '';
-        let report = payload.invoice.CustomerMemo.value.split('metadata')[1].split('report=')[1] || '';
+        let notes;
+        let report;
+        if (payload.invoice.CustomerMemo) {
+          notes = payload.invoice.CustomerMemo.value.split('metadata')[0] || '';
+          report = payload.invoice.CustomerMemo.value.split('metadata')[1].split('report=')[1] || '';
+        }
+
+        let discountObj = _.find(payload.invoice.Line, {'DetailType': 'DiscountLineDetail'});
+        let discount = discountObj ? discountObj.Amount : 0;
 
         // Create invoice object and dispatch
         let invoice = {
@@ -38,7 +45,7 @@ export function getInvoice(invoiceId, invoiceToken) {
           dueDate: payload.invoice.DueDate,
           number: payload.invoice.DocNumber,
           subtotal: _.find(payload.invoice.Line, {'DetailType': 'SubTotalLineDetail'}).Amount || 0,
-          discount: _.find(payload.invoice.Line, {'DetailType': 'DiscountLineDetail'}).Amount || 0,
+          discount: discount,
           taxes: payload.invoice.TxnTaxDetail.TotalTax || 0,
           taxPercent: payload.invoice.TxnTaxDetail.TaxLine[0].TaxLineDetail.TaxPercent || 0,
           amount: payload.invoice.TotalAmt || 0,

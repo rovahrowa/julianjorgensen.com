@@ -37,3 +37,24 @@
     border-radius: rem(5);
   }
 }
+
+
+.address{
+  display: flex;
+  flex-wrap: wrap;
+  & div{
+    &:after{
+      content: ',';
+      margin-right: rem(5);
+    }
+    &:last-child{
+      &:after{
+        display: none;
+      }
+    }
+  }
+}
+
+.email{
+  margin-top: rem(15);
+}

@@ -47,7 +47,6 @@ export default class Header extends React.Component {
 
     let bgColor;
     let logoColor = 'white';
-    console.log('pathname', pathname);
     switch(pathname) {
       case 'invoice':
         bgColor = styles.dark
