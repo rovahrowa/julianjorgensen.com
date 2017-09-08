@@ -21,7 +21,7 @@ function reset() {
 function getElAndScroll() {
   const element = document.getElementById(hashFragment);
   if (element !== null) {
-    element.scrollIntoView({ behavior: 'smooth' });
+    window.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
     reset();
     return true;
   }
