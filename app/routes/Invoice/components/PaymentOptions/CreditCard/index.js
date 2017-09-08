@@ -23,7 +23,7 @@ export default class CreditCard extends React.Component {
     let { stripeLoaded } = this.state;
 
     return (
-      <div>
+      <div className={styles.container}>
         {stripeLoaded ?
           <StripeProvider apiKey={ENV_CONFIG.STRIPE_PUBLISHABLE_KEY}>
             <Elements fonts={[{

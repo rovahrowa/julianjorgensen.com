@@ -6,27 +6,25 @@
 .item{
   display: flex;
   flex-direction: column;
-  text-align: center;
   margin-right: rem(80);
+  font-size: rem(14);
   &:last-child{
     margin-right: 0;
   }
 
   & .flag{
     height: rem(34);
-    align-self: center;
-    margin-bottom: rem(10);
-  }
-
-  & .name{
+    align-self: flex-start;
     margin-bottom: rem(10);
   }
 
   & .detail{
-    margin-bottom: rem(10);
+    margin-bottom: rem(20);
     & label{
       display: block;
+      font-size: rem(14);
       color: gray(70%);
+      margin-bottom: 0;
     }
   }
 }

@@ -77,6 +77,8 @@ export default class Routes extends React.Component {
       contentHeight: 0,
       direction: null
     }
+
+    this.routesContainer = null;
   }
 
   getDirection = (prevPage) => {
@@ -129,27 +131,18 @@ export default class Routes extends React.Component {
     // logPageView(location);
 
     // scroll to top when changing page
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }
 
-  handleRoutesContainer = (ref) => {
-    if (ref){
-      // set client height 200ms after page is loaded (could possibly be more elegant or faster)
-      // this ensures all elements, sliders in particular, have been loaded!
-      // if this is not set, then Body will never have the correct height, causing a lot of issues with scroll events and components
-      setTimeout(() => {
-        this.setState({
-          contentHeight: ref.clientHeight
-        });
-      }, 200);
+  updateRoutesContainer = () => {
+    console.log('updating content height based on routescontainer ref', this.routesContainer);
+    this.setState({
+      contentHeight: this.routesContainer.clientHeight
+    });
+  };
 
-      // do it again after 4 seconds (some components loads slow)
-      setTimeout(() => {
-        this.setState({
-          contentHeight: ref.clientHeight
-        });
-      }, 4000);
-    }
+  componentDidMount() {
+    this.updateRoutesContainer();
   }
 
   render() {
@@ -166,7 +159,7 @@ export default class Routes extends React.Component {
         <Layout>
           <TransitionGroup component="main" className={styles.animatedRoutes} style={{height: this.state.contentHeight}}>
             <CSSTransition key={currentKey} timeout={timeout} classNames={this.getAnimationClasses()}>
-              <div className={styles.animatedRoutesInner} ref={this.handleRoutesContainer}>
+              <div className={styles.animatedRoutesInner} ref={(el) => { this.routesContainer = el; }}>
                 <Switch location={location}>
                   <Route path="/" exact component={Index} />
                   <Route path="/fullstack" component={FullStack} />
@@ -175,13 +168,14 @@ export default class Routes extends React.Component {
                   <Route path="/automation" component={Automation} />
                   <Route path="/portfolio" component={Portfolio} />
                   <Route path="/about" component={About} />
-                  <Route path="/invoice/:id/:token" component={Invoice} />
+                  <Route path='/invoice/:id/:token' render={(props)=><Invoice {...props} onLoaded={this.updateRoutesContainer} />} />
+                  <Route path="/estimate/:id/:token" render={(props)=><Invoice {...props} onLoaded={this.updateRoutesContainer} />} />
                   <Route path="/p/:prospectName/:proposalId" component={Proposal} />
                   <Route path="/p/:prospectName/:proposalId?env=:environment" component={Proposal} />
                 </Switch>
 
                 <EstimateForm show={currentKey !== 'invoice'} />
-                <Faq />
+                <Faq handleUpdate={this.updateRoutesContainer} />
                 <Footer />
               </div>
             </CSSTransition>

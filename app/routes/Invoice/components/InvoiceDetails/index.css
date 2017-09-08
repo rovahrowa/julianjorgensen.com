@@ -2,7 +2,6 @@
 
 .wrapper{
   composes: globalWrapper;
-  margin-bottom: rem(100);
 }
 
 .body{
@@ -17,7 +16,7 @@ label{
   text-transform: uppercase;
   letter-spacing: rem(2);
   color: gray(70%);
-  margin-bottom: rem(12);
+  margin-bottom: rem(10);
 }
 
 .id{
@@ -26,6 +25,9 @@ label{
   margin-bottom: rem(5);
   & label{
     margin-right: rem(5);
+  }
+  @media print {
+    text-align: center;
   }
 }
 
@@ -45,10 +47,10 @@ label{
 }
 
 .footer{
-  composes: globalContainer withPaddings white;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-top: rem(30);
   & .col{
     display: flex;
     justify-content: center;
@@ -57,9 +59,21 @@ label{
   }
 
   & .description{
-    width: rem(400);
     font-style: italic;
     color: gray(20%);
     white-space: pre-line;
+  }
+}
+
+.summary{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+@media print {
+  .status,
+  .note {
+    display: none !important;
   }
 }

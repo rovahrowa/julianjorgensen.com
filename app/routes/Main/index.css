@@ -11,6 +11,9 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  @media print {
+    height: auto !important;
+  }
 }
 .animatedRoutesInner{
   display: flex;
@@ -37,4 +40,8 @@
   & div:first-child{
     width: 100%;
   }*/
+
+  @media print {
+    position: static !important;
+  }
 }

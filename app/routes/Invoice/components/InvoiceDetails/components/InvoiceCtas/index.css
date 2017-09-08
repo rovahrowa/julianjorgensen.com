@@ -1,22 +1,17 @@
-@import "../../styles/app.css";
+@import "../../../../../../styles/app.css";
 
 .container{
   composes: globalContainer withPaddings;
-  background-color: gray(91%);
+  background-color: gray(95%);
+  display: flex;
+  justify-content: center;
+  border-top: 1px dashed gray(50%);
 }
 
-.accordions{
+.ctas{
   display: flex;
   justify-content: space-between;
-  width: 100%;
-
-  & .accordion{
-    width: calc(50% - 20px);
-
-    & .item{
-      border-top: rem(1) solid black;
-    }
-  }
+  width: rem(400);
 }
 
 @media print {

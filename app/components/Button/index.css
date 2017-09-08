@@ -37,7 +37,7 @@
 }
 
 .button.white:not([disabled]) {
-  color: white;
+  background-color: white;
 }
 
 
@@ -49,6 +49,15 @@
   font-size: rem(14);
   line-height: rem(14);
   text-transform: capitalize;
+}
+
+/* Button: Small */
+.button.small {
+  border-radius: rem(10);
+  padding: rem(10) rem(14);
+  height: auto;
+  font-size: rem(16);
+  line-height: rem(16);
 }
 
 

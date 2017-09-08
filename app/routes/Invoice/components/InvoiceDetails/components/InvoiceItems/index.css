@@ -4,16 +4,6 @@
   margin-bottom: rem(30);
 }
 
-.dateRange{
-  margin-bottom: rem(30);
-  & label{
-    display: block;
-    margin-right: rem(15);
-  }
-  & date{
-  }
-}
-
 .header,
 .item{
   display: flex;

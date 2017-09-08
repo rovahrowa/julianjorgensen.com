@@ -15,8 +15,11 @@ export default class PaymentOptions extends React.Component {
     paid: false
   };
 
-  handleFixedTabChange = (index) => {
-    this.setState({fixedIndex: index});
+  handleTabChange = (index) => {
+    this.setState({fixedIndex: index}, () => {
+      // trigger onloaded
+      this.props.onLoaded();
+    });
   };
 
 
@@ -34,8 +37,8 @@ export default class PaymentOptions extends React.Component {
     }
 
     return (
-      <div className={styles.container}>
-        <Tabs index={this.state.fixedIndex} theme={styles} onChange={this.handleFixedTabChange} fixed>
+      <div className={styles.container} id='pay'>
+        <Tabs index={this.state.fixedIndex} theme={styles} onChange={this.handleTabChange} fixed>
           <Tab label='Credit Card'>
             <CreditCard
               invoice={invoice}

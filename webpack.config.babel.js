@@ -149,7 +149,8 @@ const BASE_CONFIG = {
       reducers: path.resolve(__dirname, 'app/store/reducers'),
       actions: path.resolve(__dirname, 'app/store/actions'),
       styles: path.resolve(__dirname, 'app/styles/'),
-      utils: path.resolve(__dirname, 'app/utils/')
+      utils: path.resolve(__dirname, 'app/utils/'),
+      lib: path.resolve(__dirname, 'app/lib/')
     },
     extensions: ['.js', '.jsx', '.css']
   }

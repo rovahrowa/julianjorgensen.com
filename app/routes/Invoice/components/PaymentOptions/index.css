@@ -1,5 +1,9 @@
 @import "../../../../styles/app.css";
 
+.container{
+  padding-top: rem(100);
+}
+
 .navigation {
   & .active{
     background-color: white;
@@ -29,4 +33,11 @@
   composes: globalContainer withPaddings white;
   text-align: center;
   color: green;
+}
+
+@media print {
+  .container {
+    display: none !important;
+    page-break-after: avoid;
+  }
 }

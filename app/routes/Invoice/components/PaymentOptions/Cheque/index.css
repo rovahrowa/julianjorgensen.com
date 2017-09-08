@@ -3,6 +3,11 @@
   justify-content: center;
 }
 
+.header{
+  font-size: rem(20);
+  margin-bottom: rem(30);
+}
+
 .item{
   display: flex;
   flex-direction: column;

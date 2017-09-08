@@ -1,0 +1,39 @@
+.container{
+}
+
+.button{
+  display: flex;
+  align-items: center;
+  background-color: gray(95%);
+  text-transform: uppercase;
+
+  & .icon{
+    height: rem(15);
+    margin-right: rem(5);
+  }
+}
+
+.dateRange{
+  margin-bottom: rem(30);
+  & label{
+    display: block;
+    margin-right: rem(15);
+  }
+  & date{
+  }
+}
+
+.modal{
+  height: rem(600);
+  width: rem(1000) !important;
+
+  & section{
+    padding: 0;
+  }
+}
+
+@media print {
+  .button {
+    display: none !important;
+  }
+}

@@ -5,6 +5,7 @@ const Cheque = () => {
   return (
     <div className={styles.container}>
       <div className={styles.item}>
+        <div className={styles.header}>Please send the cheque to</div>
         <img
           src='/images/ca-flag.jpg'
           className={styles.flag}

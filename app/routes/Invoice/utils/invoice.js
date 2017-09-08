@@ -28,6 +28,9 @@ export function getInvoice(invoiceId, invoiceToken) {
         let dateRangeObj = _.find(payload.invoice.CustomField, {'Name': 'date range'});
         let dateRange = dateRangeObj ? dateRangeObj.StringValue ? dateRangeObj.StringValue.split(' - ') : null : null;
 
+        let notes = payload.invoice.CustomerMemo.value.split('metadata')[0] || '';
+        let report = payload.invoice.CustomerMemo.value.split('metadata')[1].split('report=')[1] || '';
+
         // Create invoice object and dispatch
         let invoice = {
           id: payload.invoice.Id,
@@ -47,7 +50,8 @@ export function getInvoice(invoiceId, invoiceToken) {
           paidDate: paidDate,
           dateRange: dateRange,
           items: payload.invoice.Line || [],
-          notes: payload.invoice.CustomerMemo.value || '',
+          notes: notes,
+          report: report,
           customFields: payload.invoice.CustomField || []
         };
         console.log('invoice: ', invoice);

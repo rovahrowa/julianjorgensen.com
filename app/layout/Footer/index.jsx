@@ -35,17 +35,21 @@ export default class Footer extends React.Component {
     return (
       <footer className={styles.container}>
         <nav className={styles.nav}>
-          <div className={styles.navItems}>
-            <Link to='/design' className={styles.navItem}>UX Design</Link>
-            <Link to='/design' className={styles.navItem}>Front-End Development</Link>
-            <Link to='/design' className={styles.navItem}>Team Training</Link>
-            <Link to='/design' className={styles.navItem}>Ecommerce</Link>
-            <Link to='/design' className={styles.navItem}>Web Apps</Link>
-            <Link to='/design' className={styles.navItem}>Brand Sites</Link>
-            <Link to='/design' className={styles.navItem}>PortfoLinko</Link>
-            <Link to='/design' className={styles.navItem}>About</Link>
-            <Link to='/design' className={styles.navItem}>Get a Estimate</Link>
-          </div>
+          { ENV_CONFIG.ENV !== 'production' ?
+            <div className={styles.navItems}>
+              <Link to='/design' className={styles.navItem}>UX Design</Link>
+              <Link to='/design' className={styles.navItem}>Front-End Development</Link>
+              <Link to='/design' className={styles.navItem}>Team Training</Link>
+              <Link to='/design' className={styles.navItem}>Ecommerce</Link>
+              <Link to='/design' className={styles.navItem}>Web Apps</Link>
+              <Link to='/design' className={styles.navItem}>Brand Sites</Link>
+              <Link to='/design' className={styles.navItem}>PortfoLinko</Link>
+              <Link to='/design' className={styles.navItem}>About</Link>
+              <Link to='/design' className={styles.navItem}>Get a Estimate</Link>
+            </div>
+            :
+            <div></div>
+          }
 
           <SocialIcons large className={styles.icons} />
         </nav>

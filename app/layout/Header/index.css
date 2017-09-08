@@ -59,11 +59,13 @@
   font-size: rem(18);
   font-weight: bold;
   transition: opacity 0.2s;
-  cursor: pointer;
   -webkit-font-smoothing: antialiased;
 
   &:hover{
     opacity: 1;
+  }
+  &a{
+    cursor: pointer;
   }
 }
 
@@ -79,4 +81,11 @@
   padding-bottom: rem(3);
   border-bottom: rem(2) solid currentColor;
   opacity: 1;
+}
+
+@media print {
+  .header {
+    display: none !important;
+    page-break-after: avoid;
+  }
 }

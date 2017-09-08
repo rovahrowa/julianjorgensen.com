@@ -12,7 +12,7 @@ export default class Invoice extends React.Component {
     invoice: null
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // Retrieve invoice data
     let invoiceId = this.props.match.params.id;
     let invoiceToken = this.props.match.params.token;
@@ -23,6 +23,11 @@ export default class Invoice extends React.Component {
         customer,
         paid: invoice.paid || false
       });
+
+      console.log('got invoice', invoice);
+
+      // trigger callback
+      this.props.onLoaded();
     });
   }
 
@@ -55,6 +60,7 @@ export default class Invoice extends React.Component {
           customer={customer}
           paid={paid}
           markAsPaid={this.markAsPaid}
+          onLoaded={() => this.props.onLoaded()}
         />
       </div>
     )

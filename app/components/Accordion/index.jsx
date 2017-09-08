@@ -11,6 +11,13 @@ export default class Accordion extends React.Component{
     }
   }
 
+  handleUpdate = () => {
+    setTimeout(() => {
+      console.log('handling accordion update');
+      this.props.handleUpdate();
+    }, 250);
+  };
+
   render() {
     let {className} = this.props;
     return (
@@ -21,12 +28,18 @@ export default class Accordion extends React.Component{
           let selected;
 
           return (
-            <div key={index} className={`${styles.item} ${this.state.selected === index ? styles.active : ''}`} onClick={() => {
-              selected = (index === this.state.selected ? null : index)
-              this.setState({
-                selected: selected
-              });
-            }}>
+            <div
+              key={index}
+              className={`${styles.item} ${this.state.selected === index ? styles.active : ''}`}
+              onClick={() => {
+                selected = (index === this.state.selected ? null : index)
+                this.setState({
+                  selected: selected
+                }, () => {
+                  this.handleUpdate();
+                });
+              }}
+            >
               <div className={styles.title}>{title}</div>
               <Collapse
                 isOpened={this.state.selected === index ? true : false}
