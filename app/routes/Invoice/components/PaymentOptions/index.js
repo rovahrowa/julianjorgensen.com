@@ -43,7 +43,7 @@ export default class PaymentOptions extends React.Component {
             <CreditCard
               invoice={invoice}
               customer={customer}
-              markAsPaid={this.markAsPaid}
+              markAsPaid={markAsPaid}
             />
           </Tab>
           <Tab label='Bank Transfer'>
