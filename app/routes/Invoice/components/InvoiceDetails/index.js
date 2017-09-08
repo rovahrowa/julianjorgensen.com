@@ -20,7 +20,7 @@ export default class InvoiceDetails extends React.Component {
 
         <div className={styles.body}>
           <div className={styles.status}>
-            {paid ? `Paid on ${moment(invoice.paidDate, 'DD-MM-YYYY').format('MMMM Do YYYY')}` : `${numeral(invoice.balance).format('$0,0.00')} is due on ${moment(invoice.dueDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}`}
+            {paid ? `Thank you for your payment on ${moment(invoice.paidDate, 'DD-MM-YYYY').format('MMMM Do YYYY')}` : `${numeral(invoice.balance).format('$0,0.00')} is due on ${moment(invoice.dueDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}`}
           </div>
 
           <div className={styles.note}>&nbsp;</div>

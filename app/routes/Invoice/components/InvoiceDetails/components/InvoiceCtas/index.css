@@ -10,8 +10,14 @@
 
 .ctas{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: rem(400);
+  & button{
+    margin-right: rem(30);
+    &:last-child{
+      margin-right: 0;
+    }
+  }
 }
 
 @media print {

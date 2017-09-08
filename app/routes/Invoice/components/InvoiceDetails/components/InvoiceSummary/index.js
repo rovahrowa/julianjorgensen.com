@@ -41,7 +41,7 @@ export default class InvoiceSummary extends React.Component {
 
         <div className={styles.row}>
           <div className={styles.col}><strong>Balance due</strong></div>
-          <div className={styles.col}><strong>{numeral(invoice.balance).format('$0,0.00')}</strong></div>
+          <div className={styles.col}><strong>{numeral(paid ? 0 : invoice.balance).format('$0,0.00')}</strong></div>
         </div>
       </div>
     )

@@ -6,7 +6,7 @@ import RTButton from 'react-toolbox/lib/button';
 import styles from './index.css';
 
 const Button = ({ className, white, hollow, primary, blue, small, tiny, theme, href, ...others }) => {
-  const _className = cn(className, {
+  const _className = cn(styles.default, className, {
     [styles.white]: white,
     [styles.hollow]: hollow,
     [styles.primary]: primary,

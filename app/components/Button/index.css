@@ -1,6 +1,6 @@
 @import "../../styles/variables.css";
 
-.button{
+.default{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,7 +8,6 @@
   padding-right: rem(30);
   height: rem(50);
   font-size: rem(18);
-  background-color: gray(95%);
   border-radius: rem(8);
   text-decoration: none;
   font-family: var(--primaryFont);
