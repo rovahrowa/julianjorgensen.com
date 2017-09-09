@@ -24,11 +24,13 @@ router.route('/invoice')
 
     // send the invoice
     let invoiceRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
-    let lastSentObj = _.find(invoiceRef.CustomField, {'Name': 'last sent'});
+    let lastSentObj = _.find(invoiceRef.CustomField, {
+      'Name': 'last sent'
+    });
     let lastSent = lastSentObj ? lastSentObj.StringValue : null;
 
     if (lastSent) {
-      res.status(200).send('The invoice has already been sent!');      
+      res.status(200).send('The invoice has already been sent!');
     }
 
     invoice.send(invoiceRef.id, 'new').then(() => {
