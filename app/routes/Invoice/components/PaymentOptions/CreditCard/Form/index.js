@@ -52,6 +52,7 @@ export default class CreditCardForm extends React.Component {
 
     axios.post('/api/stripe/charge', {
       invoiceId: invoice.id,
+      invoiceNumber: invoice.number,
       email: invoice.email,
       currency: invoice.currency,
       amount: invoice.balance,
