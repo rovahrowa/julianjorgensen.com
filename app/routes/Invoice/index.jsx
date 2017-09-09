@@ -33,6 +33,9 @@ export default class Invoice extends React.Component {
 
   markAsPaid = () => {
     this.setState({paid: true});
+
+    // trigger callback
+    this.props.onLoaded();
   }
 
   render() {
