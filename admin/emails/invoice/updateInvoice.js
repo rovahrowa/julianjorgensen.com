@@ -16,7 +16,7 @@ let updateInvoice = function (invoiceRef) {
     let updatedInvoiceData = {
       CustomField: [{
         "DefinitionId": "2",
-        "Name": "reminded",
+        "Name": "last sent",
         "Type": "StringType",
         "StringValue": moment(Date.now()).format('DD-MM-YYYY')
       }],
