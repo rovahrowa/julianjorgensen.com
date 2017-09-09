@@ -2,6 +2,10 @@ let crypto = require('crypto'); // for validating payload
 
 // Validates the payload (used for QuickBooks)
 function isValidPayload(signature, token, payload) {
+	if (!signature || !token || !payload) {
+		return false;
+	}
+
 	var hash = crypto.createHmac('sha256', token).update(JSON.stringify(payload)).digest('base64');
 	if (signature === hash) {
 		return hash;

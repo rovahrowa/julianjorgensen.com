@@ -13,30 +13,28 @@ router.route('/invoice')
   .post(function (req, res) {
     // get data from QBO webhook
     let payload = req.body;
-    let invoiceRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
     let signature = req.get('intuit-signature');
     let token = process.env.QBO_WEBHOOK_TOKEN;
 
-    // if signature is empty return 401
-    if (!signature) {
-      return res.status(401).send('FORBIDDEN');
-    }
-
-    // if payload is empty, don't do anything
-    if (!payload) {
-      return res.status(200).send('there was no payload sending invoice email');
-    }
-
     // validate signature
-    if (util.isValidPayload(signature, token, payload)) {
-      invoice.send(invoiceRef.id, 'new').then(() => {
-        res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
-      }).catch((err) => {
-        res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
-      });
-    }else{
-      return res.status(401).send('Forbidden');
+    if (!util.isValidPayload(signature, token, payload)) {
+      res.status(500).send('There was an error validating invoice token or payload.');
     }
+
+    // send the invoice
+    let invoiceRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
+    let lastSentObj = _.find(payload.invoice.CustomField, {'Name': 'last sent'});
+    let lastSent = lastSentObj ? lastSentObj.StringValue : null;
+
+    if (lastSent) {
+      res.status(200).send('The invoice has already been sent!');      
+    }
+
+    invoice.send(invoiceRef.id, 'new').then(() => {
+      res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
+    }).catch((err) => {
+      res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
+    });
   });
 
 // Send the get estimate email to prospect client
