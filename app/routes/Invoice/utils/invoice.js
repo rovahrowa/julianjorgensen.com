@@ -54,7 +54,7 @@ export function getInvoice(invoiceId, invoiceToken) {
           balance: payload.invoice.Balance || 0,
           email: email,
           currency: payload.invoice.CurrencyRef.value || '',
-          paid: paidDate && payload.invoice.Balance <= 0 ? true : false,
+          paid: paidDate ? true : false,
           paidDate: paidDate,
           dateRange: dateRange,
           items: payload.invoice.Line || [],

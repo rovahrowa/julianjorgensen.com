@@ -16,7 +16,7 @@ export default class InvoiceDetails extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <div className={styles.id}><label>Invoice</label>{invoice.id}</div>
+        <div className={styles.id}><label>Invoice</label>{invoice.number}</div>
 
         <div className={styles.body}>
           <div className={styles.status}>
