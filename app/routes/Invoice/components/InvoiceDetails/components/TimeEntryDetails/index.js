@@ -25,24 +25,27 @@ export default class TimeEntryDetails extends React.Component {
           <div className={styles.dateRange}>
             <label>Date range</label>
             <date>{moment(invoice.dateRange[0], 'DD-MM-YYYY').format('MMMM Do YYYY')} - {moment(invoice.dateRange[1], 'DD-MM-YYYY').format('MMMM Do YYYY')}</date>
-          </div> : ''}
+          </div>
+        : ''}
 
-        <Button small className={styles.button} onClick={this.handleToggle}>
-          <ChartIcon className={styles.icon} />
-          <small>See full time-entry report</small>
-        </Button>
+        {invoice.report ?
+          <Button small className={styles.button} onClick={this.handleToggle}>
+            <ChartIcon className={styles.icon} />
+            <small>See full time-entry report</small>
+          </Button>
 
-        <Dialog
-          actions={[
-            { label: "Close", onClick: this.handleToggle }
-          ]}
-          active={active}
-          onEscKeyDown={this.handleToggle}
-          onOverlayClick={this.handleToggle}
-          className={styles.modal}
-        >
-          <iframe src={`https://toggl.com/app/bookmark/${invoice.report}`} width="100%" height="600px" allowFullScreen />
-        </Dialog>
+          <Dialog
+            actions={[
+              { label: "Close", onClick: this.handleToggle }
+            ]}
+            active={active}
+            onEscKeyDown={this.handleToggle}
+            onOverlayClick={this.handleToggle}
+            className={styles.modal}
+          >
+            <iframe src={`https://toggl.com/app/bookmark/${invoice.report}`} width="100%" height="600px" allowFullScreen />
+          </Dialog>
+        : ''}
       </div>
     )
   }
