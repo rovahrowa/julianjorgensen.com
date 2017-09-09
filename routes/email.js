@@ -24,7 +24,7 @@ router.route('/invoice')
 
     // send the invoice
     let invoiceRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
-    let lastSentObj = _.find(payload.invoice.CustomField, {'Name': 'last sent'});
+    let lastSentObj = _.find(invoiceRef.CustomField, {'Name': 'last sent'});
     let lastSent = lastSentObj ? lastSentObj.StringValue : null;
 
     if (lastSent) {
