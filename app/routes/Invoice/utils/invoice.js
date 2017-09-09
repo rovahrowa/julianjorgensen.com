@@ -31,8 +31,9 @@ export function getInvoice(invoiceId, invoiceToken) {
         let notes;
         let report;
         if (payload.invoice.CustomerMemo) {
-          notes = payload.invoice.CustomerMemo.value.split('metadata')[0] || '';
-          report = payload.invoice.CustomerMemo.value.split('metadata')[1].split('report=')[1] || '';
+          let memo = payload.invoice.CustomerMemo.value;
+          notes = memo.split('metadata')[0] || '';
+          report = memo.split('metadata')[1] ? memo.split('metadata')[1].split('report=')[1] : '';
         }
 
         let discountObj = _.find(payload.invoice.Line, {'DetailType': 'DiscountLineDetail'});
