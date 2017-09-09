@@ -29,22 +29,24 @@ export default class TimeEntryDetails extends React.Component {
         : ''}
 
         {invoice.report ?
-          <Button small className={styles.button} onClick={this.handleToggle}>
-            <ChartIcon className={styles.icon} />
-            <small>See full time-entry report</small>
-          </Button>
+          <div>
+            <Button small className={styles.button} onClick={this.handleToggle}>
+              <ChartIcon className={styles.icon} />
+              <small>See full time-entry report</small>
+            </Button>
 
-          <Dialog
-            actions={[
-              { label: "Close", onClick: this.handleToggle }
-            ]}
-            active={active}
-            onEscKeyDown={this.handleToggle}
-            onOverlayClick={this.handleToggle}
-            className={styles.modal}
-          >
-            <iframe src={`https://toggl.com/app/bookmark/${invoice.report}`} width="100%" height="600px" allowFullScreen />
-          </Dialog>
+            <Dialog
+              actions={[
+                { label: "Close", onClick: this.handleToggle }
+              ]}
+              active={active}
+              onEscKeyDown={this.handleToggle}
+              onOverlayClick={this.handleToggle}
+              className={styles.modal}
+            >
+              <iframe src={`https://toggl.com/app/bookmark/${invoice.report}`} width="100%" height="600px" allowFullScreen />
+            </Dialog>
+          </div>
         : ''}
       </div>
     )
