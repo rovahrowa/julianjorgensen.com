@@ -64,7 +64,7 @@ router.route('/charge')
 
     // charge the customer with stripe
     stripe.charges.create({
-      amount: parseInt(amount)*100, // times 100 to get it in dollars
+      amount: amount*100, // times 100 to get it in dollars
       currency,
       description: 'Flo Digital Inc. (Julian Jorgensen) invoice #' + invoiceNumber,
       source: stripeToken
