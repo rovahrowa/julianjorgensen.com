@@ -19,7 +19,8 @@ let processInvoiceDetails = function(passedData) {
 
     // Create variables
     let invoiceNumber = invoice.DocNumber;
-    let invoiceAmount = numeral(invoice.TotalAmt).format('$0,0.00');
+    let invoiceAmount = numeral(invoice.Balance).format('$0,0.00');
+    let currency = invoice.CurrencyRef.value;
     let invoiceDueDate = invoice.DueDate;
     let invoiceDueDateFormatted = dateFormat(invoice.DueDate, "mmmm dS, yyyy");
     let customerIsActive = customer.Active;
@@ -54,6 +55,7 @@ let processInvoiceDetails = function(passedData) {
         invoiceDueDate,
         invoiceDueDateFormatted,
         invoiceToken,
+        currency,
         customerName,
         companyName,
         invoiceLineItems: invoice.Line,
