@@ -31,6 +31,7 @@ let updateInvoice = function (invoiceRef) {
     let lateFeesQty = 1;
 
     let previousLateFees = searchObjectsAndApplyArrOrder('Late fee', 'Description', invoiceRef.Line);
+    console.log('previousLateFees item ref', previousLateFees);
     if (previousLateFees) {
       previousLateFees.SalesItemLineDetail.Qty++;
       let updatedLateFeesQty = +invoiceRef.Line[previousLateFees.arrOrder].SalesItemLineDetail.Qty;
