@@ -61,7 +61,7 @@ router.route('/webhook')
       res.status(500).send('There was an error validating invoice token or payload.');
     }
 
-    // loop over all events submitted by QBO webhook
+    // loop over all events emitted by QBO webhook
     payload.eventNotifications.map((event) => {
       // get event name (Invoice, or Estimate)
       let eventName = event.dataChangeEvent.entities[0].name.toLowerCase();
@@ -71,10 +71,13 @@ router.route('/webhook')
       let eventType = event.dataChangeEvent.entities[0].operation.toLowerCase();
       console.log('eventType: ', eventType);
 
+      let eventId = event.dataChangeEvent.entities[0].id;
+
+
       // If its an invoice
       if (eventName === 'invoice') {
         // get invoice details
-        qbo.getInvoice(event.id, (err, invoice) => {
+        qbo.getInvoice(eventId, (err, invoice) => {
           console.log('got invoice details from webhook: ', invoice);
 
           // get last sent date
