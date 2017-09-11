@@ -91,7 +91,6 @@ router.route('/webhook')
 
 router.route('/trigger/invoiceReminders')
   .get(function (req, res) {
-    let invoiceReminder = require('./admin/crons/invoiceReminder/init');
     invoiceReminder.init()
       .then(() => {
         res.status(200).send('finished sending invoice reminders...');
