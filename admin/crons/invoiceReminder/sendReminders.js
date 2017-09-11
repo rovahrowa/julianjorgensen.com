@@ -3,11 +3,11 @@ let invoice = require('../../emails/invoice/init');
 
 let sendReminders = function (invoices) {
   if (invoices) {
-    let promises = invoices.map((invoice) => {
+    let promises = invoices.map((invoiceRef) => {
       return new Promise(function (resolve, reject) {
 
         let today = moment().startOf('day');
-        let dueDate = moment(invoice.DueDate, 'YYYY-MM-DD');
+        let dueDate = moment(invoiceRef.DueDate, 'YYYY-MM-DD');
         let daysTillOverdue = moment.duration(dueDate - today).asDays();
 
         let invoiceType;
@@ -18,8 +18,8 @@ let sendReminders = function (invoices) {
         }
 
         // now, send the invoice
-        invoice.send(invoice.Id, invoiceType).then((data) => {
-          resolve(`Invoice reminder #${invoice.Id} sent!`);
+        invoice.send(invoiceRef.Id, invoiceType).then((data) => {
+          resolve(`Invoice reminder #${invoiceRef.Id} sent!`);
         }).catch((err) => {
           reject('Something went wrong sending the invoice email reminder', err);
         });

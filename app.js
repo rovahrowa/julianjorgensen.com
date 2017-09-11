@@ -129,13 +129,4 @@ app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
 });
 
-let invoiceReminder = require('./admin/crons/invoiceReminder/init');
-invoiceReminder.init()
-  .then(() => {
-    console.log('finished sending invoice reminders...');
-  })
-  .catch((err) => {
-    console.log('invoice reminder error: ', err);
-  });
-
 module.exports = app;

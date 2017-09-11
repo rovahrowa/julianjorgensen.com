@@ -11,12 +11,17 @@ let invoiceReminderCron = new CronJob({
      * at 10:00:00 AM. It does not run on Saturday
      * or Sunday.
      */
-    //  invoiceReminder.init();
+    invoiceReminder.init()
+      .then(() => {
+        console.log('finished sending invoice reminders...');
+      })
+      .catch((err) => {
+        console.log('invoice reminder error: ', err);
+      });
   },
   start: true,
   timeZone: 'America/Los_Angeles'
 });
-
 
 // Sync Toggl with Quickbooks (runs every 2 hours)
 let syncTogglWithQuickbooksCron = new CronJob({

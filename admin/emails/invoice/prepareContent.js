@@ -33,6 +33,9 @@ function prepareContent(invoiceType, contextObject) {
       break;
   }
 
+  console.log('invoiceTYpe', invoiceType);
+  console.log('subject', subject);
+
   let mailOptions = {
     from: {
       name: 'Julian Jorgensen',
