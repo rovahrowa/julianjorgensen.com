@@ -26,9 +26,13 @@ function prepareContent(invoiceType, contextObject) {
       invoiceTemplate = 'invoiceOverdue.pug';
       timeOverdue = moment(invoiceDueDate, 'YYYY-MM-DD').fromNow();
       break;
-    case 'new':
+    case 'create':
       subject = 'Invoice #' + invoiceNumber;
       invoiceTemplate = 'invoice.pug';
+      break;
+    case 'update':
+      subject = `Invoice #${invoiceNumber} updated`;
+      invoiceTemplate = 'invoiceUpdated.pug';
   }
 
   console.log('invoiceTYpe', invoiceType);

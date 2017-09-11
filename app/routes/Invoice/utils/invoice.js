@@ -6,7 +6,7 @@ import numeral from 'numeral';
 export function getInvoice(invoiceId, invoiceToken) {
   return new Promise((resolve, reject) => {
     console.log('initiating fetching invoice data from api');
-    axios.get('/api/invoice/' + invoiceId + '?token=' + invoiceToken)
+    axios.get('/api/qbo/invoice/' + invoiceId + '?token=' + invoiceToken)
       .then((response) => {
         let payload = response.data;
 

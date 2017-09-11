@@ -4,9 +4,9 @@ let dateFormat = require('dateformat');
 let prepareContent = require('./prepareContent');
 let adminAlertEmail = require('../adminAlertEmail');
 
-let processInvoiceDetails = function(passedData) {
+let processInvoiceDetails = function (passedData) {
   console.log('processing invoice...');
-  let promise = new Promise(function(resolve, reject){
+  let promise = new Promise(function (resolve, reject) {
 
     let customer = passedData[0];
     let invoice = passedData[1];
@@ -30,21 +30,21 @@ let processInvoiceDetails = function(passedData) {
     // if invoice has an email then use that, otherwise use the email(s) associated with the customer
     let email;
     let emailCc;
-    if (invoice.BillEmail){
+    if (invoice.BillEmail) {
       email = invoice.BillEmail.Address;
-    }else if (customer.PrimaryEmailAddr){
+    } else if (customer.PrimaryEmailAddr) {
       email = customer.PrimaryEmailAddr.Address;
-    }else{
+    } else {
       email = null;
     }
-    if (invoice.BillEmailCc){
+    if (invoice.BillEmailCc) {
       emailCc = invoice.BillEmailCc.Address;
-    }else{
+    } else {
       emailCc = null;
     }
 
-    // if customer is active and has a email (or the invoice has an email specified)
-    if (customerIsActive && email){
+    // if customer is active and has an email (or the invoice has an email specified)
+    if (customerIsActive && email) {
       let contextObject = {
         syncToken: invoice.SyncToken,
         email,
@@ -64,10 +64,10 @@ let processInvoiceDetails = function(passedData) {
 
       let mailOptions = prepareContent(invoiceType, contextObject);
       resolve(mailOptions);
-    }else{
+    } else {
       adminAlertEmail.send(`The Quickbooks customer, ${companyName}, we tried to send invoice ${invoiceNumber} to, does not have an email associated or is not active...`).then(() => {
         resolve();
-      }).catch((err)=>console.log(err));
+      }).catch((err) => console.log(err));
     }
   }).catch((err) => {
     console.log('Error processing invoice details...', err);

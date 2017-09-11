@@ -59,7 +59,7 @@ app.use('/api/stripe', stripe);
 app.use('/api/proposal', contentful);
 
 // Quickbooks routes
-app.use('/api', quickbooks);
+app.use('/api/qbo', quickbooks);
 
 // Email routes
 app.use('/email', email);
