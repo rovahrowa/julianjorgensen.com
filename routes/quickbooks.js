@@ -2,9 +2,10 @@ let express = require('express');
 let router = express.Router();
 let axios = require('axios');
 let app = require('../app');
+let _ = require('lodash');
+
 let util = require('../util/util');
-let merge = require('merge'),
-  original, cloned;
+let ENV_CONFIG = util.getEnvConfig();
 
 let invoiceMailer = require('../admin/emails/invoice/init');
 let invoiceReminder = require('../admin/crons/invoiceReminder/init');
@@ -76,12 +77,23 @@ router.route('/webhook')
       qbo.getInvoice(eventRef.id, (err, invoice) => {
         console.log('got invoice details from webhook: ', invoice);
 
-        // send the invoice
-        // invoiceMailer.send(invoice.id, eventType).then(() => {
-        //   res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
-        // }).catch((err) => {
-        //   res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
-        // });
+        // get last sent date
+        let lastSentDateObj = _.find(invoice.CustomField, {
+          'Name': ENV_CONFIG.QBO_SENT_LABEL
+        });
+        let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
+
+        console.log('last sent date', lastSentDate);
+        console.log('send invoice?', !lastSentDate);
+
+        if (!lastSentDate) {
+          // send the invoice
+          invoiceMailer.send(invoice.id, eventType).then(() => {
+            res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
+          }).catch((err) => {
+            res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
+          });
+        }
       });
     }
 
