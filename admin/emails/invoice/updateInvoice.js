@@ -3,6 +3,7 @@ let util = require('../../../util/util');
 let ENV_CONFIG = util.getEnvConfig();
 
 let updateInvoice = (invoiceRef) => {
+  console.log('the invoice was sent, now updating', invoiceRef);
   return new Promise((resolve, reject) => {
     let updatedInvoiceData = {
       CustomField: [{

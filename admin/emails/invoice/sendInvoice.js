@@ -18,12 +18,7 @@ let sendInvoice = function (mailOptions) {
     });
   });
 
-
-  return new Promise(function (resolve, reject) {
-    Promise.all(sendInvoicePromises).then(() => {
-      resolve(mailOptions.invoiceRef);
-    });
-  }).catch((err) => {
+  return Promise.all(sendInvoicePromises).catch((err) => {
     console.log(err);
   });
 };

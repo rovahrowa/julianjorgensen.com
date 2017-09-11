@@ -73,7 +73,6 @@ router.route('/webhook')
 
       let eventId = event.dataChangeEvent.entities[0].id;
 
-
       // If its an invoice
       if (eventName === 'invoice') {
         // get invoice details
