@@ -71,9 +71,7 @@ let updateInvoice = function (invoiceRef) {
     console.log('invoiceRef: ', invoiceRef);
 
     qbo.updateInvoice(invoiceRef, (err, invoice) => {
-      console.log(JSON.stringify(err));
-      console.log(err.Fault.Error);
-      if (err) console.log('Error updating invoice: ', err.Error);
+      if (err) console.log('Error updating invoice: ', JSON.stringify(err));
 
       resolve(`Updated invoice`);
     });
