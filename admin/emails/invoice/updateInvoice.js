@@ -2,7 +2,8 @@ let moment = require('moment');
 let util = require('../../../util/util');
 let ENV_CONFIG = util.getEnvConfig();
 
-let updateInvoice = (invoiceRef) => {
+let updateInvoice = (passedData) => {
+  let invoiceRef = passedData[0];
   console.log('the invoice was sent, now updating', invoiceRef);
   return new Promise((resolve, reject) => {
     let updatedInvoiceData = {
