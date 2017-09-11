@@ -1,38 +1,50 @@
 let moment = require('moment');
 let _ = require('lodash');
+let util = require('../../../util/util');
+let ENV_CONFIG = util.getEnvConfig();
 
-let processInvoices = function(overdueInvoices) {
-  let promise = new Promise(function(resolve, reject) {
-    let invoicesToSendReminder = [];
+let processInvoices = function (overdueInvoices) {
+  console.log('processing invoices...', overdueInvoices);
 
-    let today = moment().startOf('day');
+  if (overdueInvoices) {
+    let promise = new Promise(function (resolve, reject) {
+      let invoicesToSendReminder = [];
 
-    overdueInvoices.map((invoice) => {
-      let paidDateObj = _.find(invoice.CustomField, {'Name': 'paid date'});
-      let paidDate = paidDateObj ? paidDateObj.StringValue : null;
+      let today = moment().startOf('day');
 
-      let lastSentDateObj = _.find(invoice.CustomField, {'Name': 'last sent'});
-      let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
+      overdueInvoices.map((invoice) => {
+        let paidDateObj = _.find(invoice.CustomField, {
+          'Name': ENV_CONFIG.QBO_PAID_LABEL
+        });
+        let paidDate = paidDateObj ? paidDateObj.StringValue : null;
 
-      if(!paidDate){
-        if (lastSentDate){
-          lastSentDate = moment(lastSentDate, 'DD-MM-YYYY'); //correct formatting
-          let daysSinceSentLast = Math.round(moment.duration(today - lastSentDate).asDays());
+        let lastSentDateObj = _.find(invoice.CustomField, {
+          'Name': ENV_CONFIG.QBO_SENT_LABEL
+        });
+        let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
 
-          if (daysSinceSentLast > 7){
-            invoicesToSendReminder.push(invoice.Id);
+        if (!paidDate) {
+          if (lastSentDate) {
+            lastSentDate = moment(lastSentDate, 'DD-MM-YYYY'); //parse date to moment
+            let daysSinceSentLast = Math.round(moment.duration(today - lastSentDate).asDays());
+
+            if (daysSinceSentLast > 7) {
+              invoicesToSendReminder.push(invoice);
+            }
+          } else {
+            invoicesToSendReminder.push(invoice);
           }
-        }else{
-          invoicesToSendReminder.push(invoice.Id);
         }
-      }
-    });
+      });
 
-    resolve(invoicesToSendReminder);
-  }).catch((err) => {
-    console.log('Error processing reminder invoice...', err);
-  });
-  return promise;
+      resolve(invoicesToSendReminder);
+    }).catch((err) => {
+      console.log('Error processing reminder invoice...', err);
+    });
+    return promise;
+  } else {
+    return null;
+  }
 };
 
 module.exports = processInvoices;

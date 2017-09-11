@@ -18,7 +18,7 @@ let email = require('./routes/email');
 
 let util = require('./util/util');
 let ENV_CONFIG = util.getEnvConfig();
-console.log('env_config', ENV_CONFIG.SITE_URL);
+console.log('Site url: ', ENV_CONFIG.SITE_URL);
 
 // cron jobs
 require('./admin/crons/init');
@@ -128,5 +128,14 @@ app.all('*', function (request, response) {
 app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
 });
+
+let invoiceReminder = require('./admin/crons/invoiceReminder/init');
+invoiceReminder.init()
+  .then(() => {
+    console.log('finished sending invoice reminders...');
+  })
+  .catch((err) => {
+    console.log('invoice reminder error: ', err);
+  });
 
 module.exports = app;

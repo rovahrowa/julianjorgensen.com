@@ -1,22 +1,30 @@
 let moment = require('moment');
 
-let getInvoices = function() {
-  let promise = new Promise(function(resolve, reject) {
+let getInvoices = function () {
+  console.log('getting invoices...');
+  let promise = new Promise(function (resolve, reject) {
     let dateToday = moment(Date.now()).format('YYYY-MM-DD');
 
-    qbo.findInvoices([
-      {field: 'Balance', value: '0', operator: '>'},
-      {field: 'DueDate', value: dateToday, operator: '<'}
+    qbo.findInvoices([{
+        field: 'Balance',
+        value: '0',
+        operator: '>'
+      },
+      {
+        field: 'DueDate',
+        value: dateToday,
+        operator: '<'
+      }
     ], (err, data) => {
-      if (err){
+      if (err) {
         reject('error', err);
-      }else{
+      } else {
         resolve(data.QueryResponse.Invoice);
       }
     });
   }).catch((err) => {
     throw Error(err);
-  })
+  });
   return promise;
 };
 

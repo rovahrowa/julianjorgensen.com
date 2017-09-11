@@ -5,7 +5,7 @@ let syncTogglWithQuickbooks = require('../toggl/init');
 // Initialize cron jobs
 let invoiceReminderCron = new CronJob({
   cronTime: '00 00 10 * * 1-5',
-  onTick: function() {
+  onTick: function () {
     /*
      * Runs every weekday (Monday through Friday)
      * at 10:00:00 AM. It does not run on Saturday
@@ -21,7 +21,7 @@ let invoiceReminderCron = new CronJob({
 // Sync Toggl with Quickbooks (runs every 2 hours)
 let syncTogglWithQuickbooksCron = new CronJob({
   cronTime: '00 00 */2 * * *',
-  onTick: function() {
+  onTick: function () {
     syncTogglWithQuickbooks.init();
   },
   start: true

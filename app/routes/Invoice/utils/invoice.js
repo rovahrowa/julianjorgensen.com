@@ -16,16 +16,20 @@ export function getInvoice(invoiceId, invoiceToken) {
         let email;
         if (payload.invoice.BillEmail) {
           email = payload.invoice.BillEmail.Address
-        }else if (payload.customer.PrimaryEmailAddr){
+        } else if (payload.customer.PrimaryEmailAddr) {
           email = payload.customer.PrimaryEmailAddr.Address
-        }else{
+        } else {
           email = null;
         }
 
-        let paidDateObj = _.find(payload.invoice.CustomField, {'Name': 'paid date'});
+        let paidDateObj = _.find(payload.invoice.CustomField, {
+          'Name': ENV_CONFIG.QBO_PAID_LABEL
+        });
         let paidDate = paidDateObj ? paidDateObj.StringValue : null;
 
-        let dateRangeObj = _.find(payload.invoice.CustomField, {'Name': 'date range'});
+        let dateRangeObj = _.find(payload.invoice.CustomField, {
+          'Name': ENV_CONFIG.QBO_DATE_RANGE_LABEL
+        });
         let dateRange = dateRangeObj ? dateRangeObj.StringValue ? dateRangeObj.StringValue.split(' - ') : null : null;
 
         let notes;
@@ -36,7 +40,9 @@ export function getInvoice(invoiceId, invoiceToken) {
           report = memo.split('metadata')[1] ? memo.split('metadata')[1].split('report=')[1] : '';
         }
 
-        let discountObj = _.find(payload.invoice.Line, {'DetailType': 'DiscountLineDetail'});
+        let discountObj = _.find(payload.invoice.Line, {
+          'DetailType': 'DiscountLineDetail'
+        });
         let discount = discountObj ? discountObj.Amount : 0;
 
         // Create invoice object and dispatch
@@ -45,7 +51,9 @@ export function getInvoice(invoiceId, invoiceToken) {
           createdDate: payload.invoice.MetaData.CreateTime,
           dueDate: payload.invoice.DueDate,
           number: payload.invoice.DocNumber,
-          subtotal: _.find(payload.invoice.Line, {'DetailType': 'SubTotalLineDetail'}).Amount || 0,
+          subtotal: _.find(payload.invoice.Line, {
+            'DetailType': 'SubTotalLineDetail'
+          }).Amount || 0,
           discount: discount,
           taxes: payload.invoice.TxnTaxDetail.TotalTax || 0,
           taxPercent: payload.invoice.TxnTaxDetail.TaxLine[0].TaxLineDetail.TaxPercent || 0,
@@ -68,7 +76,10 @@ export function getInvoice(invoiceId, invoiceToken) {
 
         console.log('customer: ', customer);
 
-        resolve({invoice, customer});
+        resolve({
+          invoice,
+          customer
+        });
       })
       .catch((error) => {
         reject(`Error getting invoice data from api...${error}`);

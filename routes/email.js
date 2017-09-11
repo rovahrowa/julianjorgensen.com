@@ -3,6 +3,7 @@ let express = require('express');
 let router = express.Router();
 let app = require('../app');
 let util = require('../util/util');
+let ENV_CONFIG = util.getEnvConfig();
 
 let invoice = require('../admin/emails/invoice/init');
 let invoiceReminder = require('../admin/crons/invoiceReminder/init');
@@ -25,7 +26,7 @@ router.route('/invoice')
     // send the invoice
     let invoiceRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
     let lastSentObj = _.find(invoiceRef.CustomField, {
-      'Name': 'last sent'
+      'Name': ENV_CONFIG.QBO_SENT_LABEL
     });
     let lastSent = lastSentObj ? lastSentObj.StringValue : null;
 

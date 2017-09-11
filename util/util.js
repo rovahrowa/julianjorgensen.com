@@ -48,6 +48,6 @@ module.exports.addHttp = addHttp;
 
 
 function getEnvConfig() {
-	return ENV_CONFIG;
+	return JSON.parse(ENV_CONFIG);
 }
 module.exports.getEnvConfig = getEnvConfig;
