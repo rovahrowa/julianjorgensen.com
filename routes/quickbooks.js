@@ -63,17 +63,17 @@ router.route('/webhook')
     let eventRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
 
     // get event name (Invoice, or Estimate)
-    let eventName = invoiceRef.name.toLowerCase();
+    let eventName = eventRef.name.toLowerCase();
     console.log('eventName: ', eventName);
 
     // get event type (Create, Update, or Delete)
-    let eventType = invoiceRef.operation.toLowerCase();
+    let eventType = eventRef.operation.toLowerCase();
     console.log('eventType: ', eventType);
 
     // If its an invoice
     if (eventName === 'invoice') {
       // get invoice details
-      qbo.getInvoice(invoiceRef.id, (err, invoice) => {
+      qbo.getInvoice(eventRef.id, (err, invoice) => {
         console.log('got invoice details from webhook: ', invoice);
 
         // send the invoice
