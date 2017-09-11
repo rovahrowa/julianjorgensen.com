@@ -1,5 +1,8 @@
 let crypto = require('crypto'); // for validating payload
 
+let NODE_ENV = (process.env.NODE_ENV || 'development');
+let ENV_CONFIG = JSON.stringify(require('../config/' + NODE_ENV + '.config'));
+
 // Validates the payload (used for QuickBooks)
 function isValidPayload(signature, token, payload) {
 	if (!signature || !token || !payload) {
@@ -25,20 +28,26 @@ module.exports.createToken = createToken;
 
 
 // search objects by prop value
-function searchObjects(nameKey, prop, arr){
-  for (var i=0; i < arr.length; i++) {
-    if (arr[i][prop] === nameKey) {
-      return arr[i];
-    }
-  }
+function searchObjects(nameKey, prop, arr) {
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i][prop] === nameKey) {
+			return arr[i];
+		}
+	}
 }
 module.exports.searchObjects = searchObjects;
 
 
-function addHttp(url){
-  if (!url.match(/^[a-zA-Z]+:\/\//)){
-    url = 'http://' + url;
-  }
-  return url;
+function addHttp(url) {
+	if (!url.match(/^[a-zA-Z]+:\/\//)) {
+		url = 'http://' + url;
+	}
+	return url;
 }
 module.exports.addHttp = addHttp;
+
+
+function getEnvConfig() {
+	return ENV_CONFIG;
+}
+module.exports.getEnvConfig = getEnvConfig;

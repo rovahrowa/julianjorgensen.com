@@ -1,5 +1,6 @@
 let moment = require('moment');
 let util = require('../../../util/util');
+let ENV_CONFIG = util.getEnvConfig();
 
 function searchObjectsAndApplyArrOrder(nameKey, prop, arr) {
   for (var i = 0; i < arr.length; i++) {
@@ -70,8 +71,9 @@ let updateInvoice = function (invoiceRef) {
     console.log('invoiceRef: ', invoiceRef);
 
     qbo.updateInvoice(invoiceRef, (err, invoice) => {
-      console.log(err);
-      if (err) console.log('Error updating invoice: ', err);
+      console.log(JSON.stringify(err));
+      console.log(err.Fault.Error);
+      if (err) console.log('Error updating invoice: ', err.Error);
 
       resolve(`Updated invoice`);
     });

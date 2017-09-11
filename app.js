@@ -16,15 +16,15 @@ let contentful = require('./routes/contentful');
 let toggl = require('./routes/toggl');
 let email = require('./routes/email');
 
+let util = require('./util/util');
+let ENV_CONFIG = util.getEnvConfig();
+console.log('env_config', ENV_CONFIG.SITE_URL);
+
 // cron jobs
 require('./admin/crons/init');
 
 // Set port
 app.set('port', (process.env.PORT || 3000));
-
-// site url
-const NODE_ENV = (process.env.NODE_ENV || 'development');
-const ENV_CONFIG = require('./config/' + NODE_ENV + '.config');
 
 // Setting up basic middleware for all Express requests
 app.use(logger('dev')); // Log requests to API using morgan
@@ -32,19 +32,25 @@ app.use(logger('dev')); // Log requests to API using morgan
 
 // Quick Books
 qbo = new QuickBooks(process.env.QBO_CONSUMER_KEY,
-                         process.env.QBO_CONSUMER_SECRET,
-                         process.env.QBO_OAUTH_TOKEN,
-                         process.env.QBO_OAUTH_TOKEN_SECRET,
-                         process.env.QBO_REALM_ID,
-                         true, // don't use the sandbox (i.e. for testing)
-                         true); // turn debugging on
+  process.env.QBO_CONSUMER_SECRET,
+  process.env.QBO_OAUTH_TOKEN,
+  process.env.QBO_OAUTH_TOKEN_SECRET,
+  process.env.QBO_REALM_ID,
+  true, // don't use the sandbox (i.e. for testing)
+  true); // turn debugging on
 
 // create application/x-www-form-urlencoded parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // session
-app.use(session({resave: false, saveUninitialized: false, secret: 'chai'}));
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: 'chai'
+}));
 
 // Stripe routes
 app.use('/api/stripe', stripe);
@@ -95,12 +101,12 @@ app.get('/qbo/callback', (req, res) => {
   let postBody = {
     url: QuickBooks.ACCESS_TOKEN_URL,
     oauth: {
-      consumer_key:    process.env.QBO_CONSUMER_KEY,
+      consumer_key: process.env.QBO_CONSUMER_KEY,
       consumer_secret: process.env.QBO_CONSUMER_SECRET,
-      token:           req.query.oauth_token,
-      token_secret:    req.session.oauth_token_secret,
-      verifier:        req.query.oauth_verifier,
-      realmId:         req.query.realmId
+      token: req.query.oauth_token,
+      token_secret: req.session.oauth_token_secret,
+      verifier: req.query.oauth_verifier,
+      realmId: req.query.realmId
     }
   }
   request.post(postBody, function (e, r, data) {
@@ -114,12 +120,12 @@ app.get('/qbo/callback', (req, res) => {
 });
 
 // Catch all other paths and serve the index file
-app.all('*', function(request, response) {
+app.all('*', function (request, response) {
   response.sendFile(__dirname + '/public/index.html');
 });
 
 // Listen to port
-app.listen(app.get('port'), function() {
+app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
 });
 
