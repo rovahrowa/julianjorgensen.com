@@ -61,46 +61,50 @@ router.route('/webhook')
       res.status(500).send('There was an error validating invoice token or payload.');
     }
 
-    // loop over all events emitted by QBO webhook
-    payload.eventNotifications.map((event) => {
-      // get event name (Invoice, or Estimate)
-      let eventName = event.dataChangeEvent.entities[0].name.toLowerCase();
-      console.log('eventName: ', eventName);
+    // loop over all event notifications emitted by QBO webhook
+    payload.eventNotifications.map((events) => {
 
-      // get event type (Create, Update, or Delete)
-      let eventType = event.dataChangeEvent.entities[0].operation.toLowerCase();
-      console.log('eventType: ', eventType);
+      // loop over all events
+      events.dataChangeEvent.entities.map((event) => {
+        // get event name (Invoice, or Estimate)
+        let eventName = event.name.toLowerCase();
+        console.log('eventName: ', eventName);
 
-      let eventId = event.dataChangeEvent.entities[0].id;
+        // get event type (Create, Update, or Delete)
+        let eventType = event.operation.toLowerCase();
+        console.log('eventType: ', eventType);
 
-      // If its an invoice
-      if (eventName === 'invoice') {
-        // get invoice details
-        qbo.getInvoice(eventId, (err, invoice) => {
-          console.log('got invoice details from webhook: ', invoice);
+        let eventId = event.id;
 
-          // get last sent date
-          let lastSentDateObj = _.find(invoice.CustomField, {
-            'Name': ENV_CONFIG.QBO_SENT_LABEL
-          });
-          let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
+        // If its an invoice
+        if (eventName === 'invoice') {
+          // get invoice details
+          qbo.getInvoice(eventId, (err, invoice) => {
+            console.log('got invoice details from webhook: ', invoice);
 
-          console.log('last sent date', lastSentDate);
-          console.log('send invoice?', !lastSentDate);
-
-          if (!lastSentDate) {
-            // send the invoice
-            invoiceMailer.send(invoice.Id, eventType).then(() => {
-              res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
-            }).catch((err) => {
-              res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
+            // get last sent date
+            let lastSentDateObj = _.find(invoice.CustomField, {
+              'Name': ENV_CONFIG.QBO_SENT_LABEL
             });
-          }
-        });
-      }
+            let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
 
-      // If its an estimate
-      if (eventName === 'estimate') {}
+            console.log('last sent date', lastSentDate);
+            console.log('send invoice?', !lastSentDate);
+
+            if (!lastSentDate) {
+              // send the invoice
+              invoiceMailer.send(invoice.Id, eventType).then(() => {
+                res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
+              }).catch((err) => {
+                res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
+              });
+            }
+          });
+        }
+
+        // If its an estimate
+        if (eventName === 'estimate') {}
+      });
     });
   });
 
