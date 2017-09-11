@@ -56,12 +56,12 @@ let updateInvoice = function (invoiceRef) {
         Amount: lateFeesQty * subtotal * 0.03,
         SalesItemLineDetail: {
           "ItemRef": {
-            "value": "29"
+            "value": ENV_CONFIG.QBO_LATE_FEE_ITEM_REF
           },
           UnitPrice: subtotal * 0.03,
           Qty: lateFeesQty,
           "TaxCodeRef": {
-            "value": "5"
+            "value": ENV_CONFIG.QBO_DEFAULT_TAX_ITEM_REF
           }
         }
       });
