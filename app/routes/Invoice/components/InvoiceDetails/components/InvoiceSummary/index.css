@@ -1,16 +1,15 @@
 @import "../../../../../../styles/app.css";
-
-.container{
+.container {
   margin-bottom: rem(30);
 }
 
-.row{
+.row {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: rem(10);
+  margin-bottom: rem(8);
 }
 
-.col{
+.col {
   width: rem(160);
   text-align: right;
 }

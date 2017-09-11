@@ -1,35 +1,35 @@
 @import "../../../../../../styles/app.css";
-
-.container{
+.container {
   margin-bottom: rem(30);
 }
 
 .header,
-.item{
+.item {
   display: flex;
   width: 100%;
+  margin-bottom: rem(8);
 }
 
-.items{
+.items {
   margin-bottom: rem(10);
   margin-top: rem(10);
 }
 
-.description{
+.description {
   width: 50%;
 }
 
-.units{
+.units {
   width: 15%;
   text-align: right;
 }
 
-.rate{
+.rate {
   width: 15%;
   text-align: right;
 }
 
-.total{
+.total {
   width: 20%;
   text-align: right;
 }
