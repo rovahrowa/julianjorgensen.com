@@ -62,7 +62,7 @@ router.route('/webhook')
     }
 
     // loop over all events submitted by QBO webhook
-    let eventRef = payload.eventNotifications.map((event) => {
+    payload.eventNotifications.map((event) => {
       // get event name (Invoice, or Estimate)
       let eventName = event.dataChangeEvent.entities[0].name.toLowerCase();
       console.log('eventName: ', eventName);
@@ -74,7 +74,7 @@ router.route('/webhook')
       // If its an invoice
       if (eventName === 'invoice') {
         // get invoice details
-        qbo.getInvoice(eventRef.id, (err, invoice) => {
+        qbo.getInvoice(event.id, (err, invoice) => {
           console.log('got invoice details from webhook: ', invoice);
 
           // get last sent date
@@ -88,7 +88,7 @@ router.route('/webhook')
 
           if (!lastSentDate) {
             // send the invoice
-            invoiceMailer.send(invoice.id, eventType).then(() => {
+            invoiceMailer.send(invoice.Id, eventType).then(() => {
               res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
             }).catch((err) => {
               res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
