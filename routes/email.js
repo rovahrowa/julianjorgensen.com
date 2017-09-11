@@ -25,22 +25,15 @@ router.route('/invoice')
       res.status(500).send('There was an error validating invoice token or payload.');
     }
 
-    // send the invoice
     let invoiceRef = payload.eventNotifications[0].dataChangeEvent.entities[0];
-    let lastSentObj = _.find(invoiceRef.CustomField, {
-      'Name': ENV_CONFIG.QBO_SENT_LABEL
-    });
-    let lastSent = lastSentObj ? lastSentObj.StringValue : null;
-
-    if (lastSent) {
-      res.status(200).send('The invoice has already been sent!');
+    if (invoiceRef.operation === 'Create') {
+      // send the invoice
+      invoice.send(invoiceRef.id, 'new').then(() => {
+        res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
+      }).catch((err) => {
+        res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
+      });
     }
-
-    invoice.send(invoiceRef.id, 'new').then(() => {
-      res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
-    }).catch((err) => {
-      res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
-    });
   });
 
 // Send the get estimate email to prospect client

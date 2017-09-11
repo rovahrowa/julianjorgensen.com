@@ -27,10 +27,8 @@ function prepareContent(invoiceType, contextObject) {
       timeOverdue = moment(invoiceDueDate, 'YYYY-MM-DD').fromNow();
       break;
     case 'new':
-    default:
       subject = 'Invoice #' + invoiceNumber;
       invoiceTemplate = 'invoice.pug';
-      break;
   }
 
   console.log('invoiceTYpe', invoiceType);
