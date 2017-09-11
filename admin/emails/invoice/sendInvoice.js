@@ -1,10 +1,10 @@
 let sendMail = require('../sendMail');
 
-let sendInvoice = function(mailOptions) {
+let sendInvoice = function (mailOptions) {
   let sendInvoicePromises = ['customer', 'admin'].map((recipientType) => {
-    return new Promise(function(resolve, reject){
+    return new Promise(function (resolve, reject) {
       console.log(`sending invoice to ${recipientType} with mailOptions: ${mailOptions}`);
-      if(recipientType == 'admin'){
+      if (recipientType == 'admin') {
         mailOptions.to = mailOptions.from;
       }
 
@@ -19,7 +19,7 @@ let sendInvoice = function(mailOptions) {
   });
 
 
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     Promise.all(sendInvoicePromises).then(() => {
       resolve(mailOptions.invoiceRef);
     });

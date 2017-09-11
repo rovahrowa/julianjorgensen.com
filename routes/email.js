@@ -18,6 +18,8 @@ router.route('/invoice')
     let signature = req.get('intuit-signature');
     let token = process.env.QBO_WEBHOOK_TOKEN;
 
+    console.log('payload from QBO', JSON.stringify(payload));
+
     // validate signature
     if (!util.isValidPayload(signature, token, payload)) {
       res.status(500).send('There was an error validating invoice token or payload.');

@@ -3,7 +3,7 @@ let moment = require('moment');
 let getInvoices = function () {
   console.log('getting invoices...');
   let promise = new Promise(function (resolve, reject) {
-    let dateToday = moment(Date.now()).format('YYYY-MM-DD');
+    let oneWeekFromNow = moment(Date.now()).add(1, 'w').format('YYYY-MM-DD');
 
     qbo.findInvoices([{
         field: 'Balance',
@@ -12,7 +12,7 @@ let getInvoices = function () {
       },
       {
         field: 'DueDate',
-        value: dateToday,
+        value: oneWeekFromNow,
         operator: '<'
       }
     ], (err, data) => {

@@ -8,7 +8,7 @@ function init() {
   return getInvoices()
     .then(processInvoices)
     .then(applyLateFees)
-    // .then(sendReminders)
+    .then(sendReminders)
     .catch((err) => {
       throw Error(err);
     });

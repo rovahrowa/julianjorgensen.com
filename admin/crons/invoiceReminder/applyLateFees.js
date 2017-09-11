@@ -4,7 +4,7 @@ let utils = require('./utils/invoiceReminderUtils');
 let ENV_CONFIG = require('../../../util/util').getEnvConfig();
 
 let applyLateFees = function (processedInvoices) {
-  if (processedInvoices) {
+  if (processedInvoices.length > 0) {
 
     let invoicesPromises = processedInvoices.map((invoiceRef) => {
       return new Promise(function (resolve, reject) {
@@ -22,7 +22,6 @@ let applyLateFees = function (processedInvoices) {
           let subtotal = subtotalObj.Amount;
 
           let previousLateFee = utils.searchForPreviousLateFee(invoiceRef.Line);
-          console.log('previousLateFee item ref', previousLateFee);
 
           // If there was a previous Late fee item, increment that one
           if (previousLateFee) {
@@ -34,11 +33,7 @@ let applyLateFees = function (processedInvoices) {
             invoiceRef.Line[previousLateFee.arrOrder].Amount = updatedAmount;
 
             // update taxes
-            console.log('tax details', JSON.stringify(invoiceRef.TxnTaxDetail));
-
             let taxRate = invoiceRef.TxnTaxDetail.TaxLine[0].TaxLineDetail.TaxPercent / 100;
-            console.log('tax rate', taxRate);
-
             invoiceRef.TxnTaxDetail.TaxLine[0].TaxLineDetail.NetAmountTaxable = subtotal + unitPrice;
             invoiceRef.TxnTaxDetail.TaxLine[0].Amount = (subtotal + unitPrice) * taxRate;
             invoiceRef.TxnTaxDetail.TotalTax = (subtotal + unitPrice) * taxRate;
@@ -49,7 +44,6 @@ let applyLateFees = function (processedInvoices) {
           } else {
 
             let defaultTaxCode = utils.getFirstLineItemTaxCode(invoiceRef.Line);
-            console.log('default tax code', defaultTaxCode);
 
             // Otherwise, create a new late fee line item
             invoiceRef.Line.push({
@@ -71,16 +65,13 @@ let applyLateFees = function (processedInvoices) {
 
           // Now, actually update the invoice on QuickBooks 
           // ===============================================
-          console.log('line items:... ', invoiceRef.Line);
-          console.log('invoiceRef: ', invoiceRef);
-
           qbo.updateInvoice(invoiceRef, (err, invoice) => {
             if (err) console.log('Error updating invoice: ', JSON.stringify(err));
 
-            resolve(`Updated invoice`);
+            resolve(invoiceRef);
           });
         } else {
-          resolve('Invoice did not need late fee applied');
+          resolve(invoiceRef);
         }
 
       });

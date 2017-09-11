@@ -3,45 +3,48 @@ let _ = require('lodash');
 let util = require('../../../util/util');
 let ENV_CONFIG = util.getEnvConfig();
 
-let processInvoices = function (overdueInvoices) {
-  console.log('processing invoices...', overdueInvoices);
-
-  if (overdueInvoices) {
-    let promise = new Promise(function (resolve, reject) {
-      let invoicesToSendReminder = [];
-
+let processInvoices = function (invoices) {
+  if (invoices) {
+    let processedInvoices = invoices.filter((invoice) => {
+      // today
       let today = moment().startOf('day');
 
-      overdueInvoices.map((invoice) => {
-        let paidDateObj = _.find(invoice.CustomField, {
-          'Name': ENV_CONFIG.QBO_PAID_LABEL
-        });
-        let paidDate = paidDateObj ? paidDateObj.StringValue : null;
-
-        let lastSentDateObj = _.find(invoice.CustomField, {
-          'Name': ENV_CONFIG.QBO_SENT_LABEL
-        });
-        let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
-
-        if (!paidDate) {
-          if (lastSentDate) {
-            lastSentDate = moment(lastSentDate, 'DD-MM-YYYY'); //parse date to moment
-            let daysSinceSentLast = Math.round(moment.duration(today - lastSentDate).asDays());
-
-            if (daysSinceSentLast > 7) {
-              invoicesToSendReminder.push(invoice);
-            }
-          } else {
-            invoicesToSendReminder.push(invoice);
-          }
-        }
+      // get paid date
+      let paidDateObj = _.find(invoice.CustomField, {
+        'Name': ENV_CONFIG.QBO_PAID_LABEL
       });
+      let paidDate = paidDateObj ? paidDateObj.StringValue : null;
 
-      resolve(invoicesToSendReminder);
-    }).catch((err) => {
-      console.log('Error processing reminder invoice...', err);
+      // get last sent date
+      let lastSentDateObj = _.find(invoice.CustomField, {
+        'Name': ENV_CONFIG.QBO_SENT_LABEL
+      });
+      let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
+
+      // if its already been paid just resolve
+      if (paidDate) {
+        return false;
+      }
+
+      // if it's never been sent, then just resolve 
+      if (!lastSentDate) {
+        return invoice;
+      }
+
+      // if it was sent before
+      if (lastSentDate) {
+        lastSentDate = moment(lastSentDate, 'DD-MM-YYYY'); //parse date to moment
+        let daysSinceSentLast = Math.round(moment.duration(today - lastSentDate).asDays());
+
+        if (daysSinceSentLast > 7) {
+          return invoice;
+        } else {
+          return false;
+        }
+      }
     });
-    return promise;
+
+    return processedInvoices;
   } else {
     return null;
   }
