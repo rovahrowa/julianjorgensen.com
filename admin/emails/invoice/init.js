@@ -3,8 +3,8 @@ let processDetails = require('./processDetails');
 let sendInvoice = require('./sendInvoice');
 let updateInvoice = require('./updateInvoice');
 
-function init(invoiceId, invoiceType){
-  console.log(`Preparing to send ${invoiceType} invoice email...`);
+function init(invoiceId, invoiceType) {
+  console.log(`Preparing to send ${invoiceType} invoice email for invoice ${invoiceId}...`);
   return getDetails(invoiceId, invoiceType)
     .then(processDetails)
     .then(sendInvoice)
