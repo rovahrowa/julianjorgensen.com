@@ -93,19 +93,40 @@ router.route('/webhook')
 
             if (!lastSentDate) {
               // send the invoice
-              invoiceMailer.send(invoice.Id, eventType).then((invoiceRef, test) => {
-                console.log('invoiceRef from quickbooks.js', invoiceRef);
-                console.log('test from quickbooks.js', test);
-                res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
+              invoiceMailer.send(invoice.Id, eventType).then(() => {
+                res.status(200).send(`Invoice #${invoice.DocNumber} sent!`);
               }).catch((err) => {
-                res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
+                res.status(500).send(`Error sending invoice #${invoice.DocNumber}...`);
               });
             }
           });
         }
 
         // If its an estimate
-        if (eventName === 'estimate') {}
+        if (eventName === 'estimate') {
+          // get invoice details
+          qbo.getEstimate(eventId, (err, estimate) => {
+            console.log('got estimate details from webhook: ', estimate);
+
+            // get last sent date
+            let lastSentDateObj = _.find(estimate.CustomField, {
+              'Name': ENV_CONFIG.QBO_SENT_LABEL
+            });
+            let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
+
+            console.log('last sent date', lastSentDate);
+            console.log('send estimate?', !lastSentDate);
+
+            if (!lastSentDate) {
+              // send the estimate
+              invoiceMailer.send(estimate.Id, eventType).then(() => {
+                res.status(200).send(`Estimate #${estimate.DocNumber} sent!`);
+              }).catch((err) => {
+                res.status(500).send(`Error sending estimate #${estimate.DocNumber}...`);
+              });
+            }
+          });
+        }
       });
     });
   });
