@@ -7,6 +7,7 @@ let _ = require('lodash');
 let util = require('../util/util');
 let ENV_CONFIG = util.getEnvConfig();
 
+let estimateMailer = require('../admin/emails/estimate/init');
 let invoiceMailer = require('../admin/emails/invoice/init');
 let invoiceReminder = require('../admin/crons/invoiceReminder/init');
 
@@ -104,7 +105,7 @@ router.route('/webhook')
 
         // If its an estimate
         if (eventName === 'estimate') {
-          // get invoice details
+          // get estimate details
           qbo.getEstimate(eventId, (err, estimate) => {
             console.log('got estimate details from webhook: ', estimate);
 
@@ -119,7 +120,7 @@ router.route('/webhook')
 
             if (!lastSentDate) {
               // send the estimate
-              invoiceMailer.send(estimate.Id, eventType).then(() => {
+              estimateMailer.send(estimate.Id, eventType).then(() => {
                 res.status(200).send(`Estimate #${estimate.DocNumber} sent!`);
               }).catch((err) => {
                 res.status(500).send(`Error sending estimate #${estimate.DocNumber}...`);
