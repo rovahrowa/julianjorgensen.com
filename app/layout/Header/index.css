@@ -1,11 +1,10 @@
 @import "../../styles/variables.css";
-
-.headroom{
+.headroom {
   position: absolute;
   width: 100%;
 }
 
-.header{
+.header {
   width: 100%;
   display: flex;
   align-items: center;
@@ -13,45 +12,46 @@
   padding: rem(25) rem(30);
   box-sizing: border-box;
   transition: all 0.3s;
-  &.navStatic{
+  &.navStatic {
     background-color: transparent;
     box-shadow: none;
   }
-  &.navDefault{
-    background-color: rgba(0,0,0,1);
+  &.navDefault {
+    background-color: rgba(0, 0, 0, 1);
     box-shadow: 0 rem(2) rem(20) 0;
     backdrop-filter: blur(8px);
     /*background: linear-gradient(to bottom right, color(var(--blue) shade(50%)), var(--blue));*/
   }
 }
 
-.dark{
-  &.navDefault{
-    background-color: rgba(255,255,255,1);
+.dark {
+  &.navDefault {
+    background-color: rgba(255, 255, 255, 1);
   }
-  & .link{
+  & .link {
     color: black;
   }
 }
 
-.nav{
+.nav {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-
-  & li{
-    display: inline-block;
-    text-transform: uppercase;
-    margin-left: rem(70);
-
-    &:first-child{
-      margin-left: 0;
+  & li {
+    display: none;
+    @media (--medium-and-up) {
+      display: inline-block;
+      text-transform: uppercase;
+      margin-left: rem(70);
+      &:first-child {
+        margin-left: 0;
+      }
     }
   }
 }
 
-.link{
+.link {
   color: #ffffff;
   text-decoration: none;
   opacity: 0.7;
@@ -60,24 +60,23 @@
   font-weight: bold;
   transition: opacity 0.2s;
   -webkit-font-smoothing: antialiased;
-
-  &:hover{
+  &:hover {
     opacity: 1;
   }
-  &a{
+  &a {
     cursor: pointer;
   }
 }
 
-.logo{
+.logo {
   opacity: 0.7;
   &.active,
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 }
 
-.linkActive{
+.linkActive {
   padding-bottom: rem(3);
   border-bottom: rem(2) solid currentColor;
   opacity: 1;

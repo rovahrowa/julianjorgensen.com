@@ -1,0 +1,47 @@
+@import "../../../../../../styles/app.css";
+.container {
+  margin-bottom: rem(30);
+}
+
+.header,
+.item {
+  display: flex;
+  width: 100%;
+}
+
+.items {
+  margin-bottom: rem(10);
+  & .item {
+    margin-bottom: rem(8);
+  }
+}
+
+.description {
+  width: 80%;
+  @media (--medium-and-up) {
+    width: 45%;
+  }
+}
+
+.units {
+  display: none;
+  @media (--medium-and-up) {
+    display: block;
+    width: 20%;
+    text-align: right;
+  }
+}
+
+.rate {
+  display: none;
+  @media (--medium-and-up) {
+    display: block;
+    width: 15%;
+    text-align: right;
+  }
+}
+
+.total {
+  width: 20%;
+  text-align: right;
+}

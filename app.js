@@ -10,7 +10,8 @@ let request = require('request');
 let qs = require('querystring');
 
 // routes
-let quickbooks = require('./routes/quickbooks');
+let qboItem = require('./routes/qboItem');
+let qboWebhook = require('./routes/qboWebhook');
 let stripe = require('./routes/stripe');
 let contentful = require('./routes/contentful');
 let toggl = require('./routes/toggl');
@@ -36,8 +37,8 @@ qbo = new QuickBooks(process.env.QBO_CONSUMER_KEY,
   process.env.QBO_OAUTH_TOKEN,
   process.env.QBO_OAUTH_TOKEN_SECRET,
   process.env.QBO_REALM_ID,
-  true, // don't use the sandbox (i.e. for testing)
-  true); // turn debugging on
+  ENV_CONFIG.ENV === 'development' ? true : false, // use the sandbox?
+  ENV_CONFIG.ENV === 'development' ? true : false); // turn debugging on?
 
 // create application/x-www-form-urlencoded parser
 app.use(bodyParser.json());
@@ -59,7 +60,10 @@ app.use('/api/stripe', stripe);
 app.use('/api/proposal', contentful);
 
 // Quickbooks routes
-app.use('/api/qbo', quickbooks);
+app.use('/api/qbo/item', qboItem);
+
+// Quickbooks routes
+app.use('/api/qbo/webhook', qboWebhook);
 
 // Email routes
 app.use('/email', email);
@@ -89,7 +93,7 @@ app.get('/qbo/requestToken', (req, res) => {
   console.log(QuickBooks);
   console.log('req.session', req.session);
   console.log('requesting token:', postBody);
-  request.post(postBody, function (e, r, data) {
+  request.post(postBody, function(e, r, data) {
     let requestToken = qs.parse(data)
     req.session.oauth_token_secret = requestToken.oauth_token_secret
     console.log(requestToken)
@@ -109,7 +113,7 @@ app.get('/qbo/callback', (req, res) => {
       realmId: req.query.realmId
     }
   }
-  request.post(postBody, function (e, r, data) {
+  request.post(postBody, function(e, r, data) {
     let accessToken = qs.parse(data)
     res.render('qbo-secrets.pug', {
       accessToken: accessToken.oauth_token,
@@ -120,12 +124,12 @@ app.get('/qbo/callback', (req, res) => {
 });
 
 // Catch all other paths and serve the index file
-app.all('*', function (request, response) {
+app.all('*', function(request, response) {
   response.sendFile(__dirname + '/public/index.html');
 });
 
 // Listen to port
-app.listen(app.get('port'), function () {
+app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 

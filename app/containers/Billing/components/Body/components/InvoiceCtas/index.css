@@ -1,0 +1,28 @@
+@import "../../../../../../styles/app.css";
+
+.container{
+  composes: globalContainer withPaddings;
+  background-color: gray(95%);
+  display: flex;
+  justify-content: center;
+  border-top: 1px dashed gray(50%);
+}
+
+.ctas{
+  display: flex;
+  justify-content: center;
+  width: rem(400);
+  & button{
+    margin-right: rem(30);
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
+
+@media print {
+  .container {
+    display: none !important;
+    page-break-after: avoid;
+  }
+}

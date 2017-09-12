@@ -1,46 +1,49 @@
 @import "variables.css";
-
 :global {
-  & body{
+  & body {
     margin: 0;
     scroll-behavior: smooth;
   }
-
-  & div{
+  & div {
     /*box-sizing: border-box;*/
   }
 }
 
-.globalContainer{
+.globalContainer {
   align-self: center;
   width: rem(900);
   max-width: 100%;
-  &.withMarginBottom{
+  &.withMarginBottom {
     margin-bottom: rem(100);
   }
-  &.withPaddings{
+  &.withPaddings {
     padding: rem(40) rem(30);
   }
-  &.white{
+  &.white {
     background-color: white;
   }
-  &.center{
+  &.center {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  &.withShadow{
+  &.withShadow {
     @apply --boxShadow;
+    width: calc(100% - 20px);
+    @media (--medium-and-up) {
+      width: rem(900);
+      max-width: 100%;
+    }
   }
 }
 
-.globalWrapper{
+.globalWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  margin-bottom: rem(40);
-  &.withPadding{
+  margin: 0 0 rem(40);
+  &.withPadding {
     padding: rem(60);
   }
 }

@@ -39,8 +39,7 @@ const BASE_CONFIG = {
     publicPath: '/'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.jsx?$/i,
         exclude: /node_modules/,
         use: 'babel-loader'
@@ -48,9 +47,10 @@ const BASE_CONFIG = {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: {loader: 'style-loader'},
-          use: [
-            {
+          fallback: {
+            loader: 'style-loader'
+          },
+          use: [{
               loader: 'css-loader',
               options: {
                 modules: true,
@@ -98,18 +98,17 @@ const BASE_CONFIG = {
         loader: 'url-loader'
       },
       {
-          test: /\.svg$/,
-          exclude: /node_modules/,
-          loader: 'svg-react-loader',
-          query: {
-            classIdPrefix: '[name]-[hash:8]__'
-          }
+        test: /\.svg$/,
+        exclude: /node_modules/,
+        loader: 'svg-react-loader',
+        query: {
+          classIdPrefix: '[name]-[hash:8]__'
+        }
       }
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {
+    new CopyWebpackPlugin([{
         context: 'app',
         from: 'assets/images',
         to: 'images'
@@ -143,6 +142,7 @@ const BASE_CONFIG = {
       assets: path.resolve(__dirname, 'app/assets/'),
       app: path.resolve(__dirname, 'app/'),
       components: path.resolve(__dirname, 'app/components/'),
+      containers: path.resolve(__dirname, 'app/containers/'),
       layout: path.resolve(__dirname, 'app/layout/'),
       routes: path.resolve(__dirname, 'app/routes/'),
       store: path.resolve(__dirname, 'app/store/'),
@@ -224,8 +224,12 @@ const DEV_CONFIG = {
 
 // Final Webpack configuration object constructed
 //  conditionally according to the NODE_ENV value:
-const AGGREGATE_CONFIG = IS_PRODUCTION
-  ? Merge(BASE_CONFIG, PROD_CONFIG, { plugins: PROD_PLUGINS })
-  : Merge(BASE_CONFIG, DEV_CONFIG, { plugins: DEV_PLUGINS });
+const AGGREGATE_CONFIG = IS_PRODUCTION ?
+  Merge(BASE_CONFIG, PROD_CONFIG, {
+    plugins: PROD_PLUGINS
+  }) :
+  Merge(BASE_CONFIG, DEV_CONFIG, {
+    plugins: DEV_PLUGINS
+  });
 
 export default AGGREGATE_CONFIG;

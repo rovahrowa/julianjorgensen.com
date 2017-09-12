@@ -1,10 +1,10 @@
 let moment = require('moment');
-let invoice = require('../../emails/invoice/init');
+let invoice = require('../../emails/billingItem/init');
 
-let sendReminders = function (invoices) {
+let sendReminders = function(invoices) {
   if (invoices) {
     let promises = invoices.map((invoiceRef) => {
-      return new Promise(function (resolve, reject) {
+      return new Promise(function(resolve, reject) {
 
         let today = moment().startOf('day');
         let dueDate = moment(invoiceRef.DueDate, 'YYYY-MM-DD');

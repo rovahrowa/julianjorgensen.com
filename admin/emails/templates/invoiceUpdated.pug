@@ -9,13 +9,13 @@ block content
         tr
           td.content-block Hi #{customerName},
         tr
-          td.content-block Your invoice ##{invoiceNumber} was just updated. 
+          td.content-block Your invoice ##{itemNumber} was just updated. 
         tr
-          td.content-block As a reminder, the total of <strong>#{currency} #{invoiceAmount}</strong> is due on #{invoiceDueDateFormatted}.<br />You can pay it online by clicking the button below.
+          td.content-block As a reminder, the total of <strong>#{currency} #{itemAmount}</strong> is due on #{itemDueDateFormatted}.<br />You can pay it online by clicking the button below.
         tr
           td.content-block Thank you!
         tr
           td.content-block &mdash; Julian
         tr
           td.content-block(itemprop='handler', itemscope='', itemtype='http://schema.org/HttpActionHandler')
-            a.btn.btn-primary(href='https://julianjorgensen.herokuapp.com/invoice/' + invoiceId + '/' + invoiceToken, itemprop='url') View and Pay Invoice
+            a.btn.btn-primary(href='https://julianjorgensen.herokuapp.com/invoice/' + itemId + '/' + itemToken, itemprop='url') View and Pay Invoice

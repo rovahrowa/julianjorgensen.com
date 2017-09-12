@@ -1,0 +1,98 @@
+@import "../../../../styles/app.css";
+:root {
+  & label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: rem(2);
+    color: gray(70%);
+    margin-bottom: rem(10);
+  }
+}
+
+.wrapper {
+  composes: globalWrapper;
+}
+
+.body {
+  composes: globalContainer withShadow;
+}
+
+.container {
+  composes: globalContainer withPaddings white;
+}
+
+.id {
+  font-size: rem(26);
+  text-align: center;
+  & label {
+    display: inline-block;
+    margin-right: rem(5);
+  }
+  @media (--medium-and-up) {
+    text-align: right;
+  }
+  @media print {
+    text-align: center;
+  }
+}
+
+.status,
+.note {
+  padding: rem(20);
+  text-align: center;
+}
+
+.status {
+  background-color: gray(20%);
+  color: white;
+}
+
+.note {
+  background-color: var(--mystic);
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer,
+.finePrint {
+  column-count: 1;
+  column-gap: 0;
+  @media (--medium-and-up) {
+    column-count: 2;
+    column-gap: rem(30);
+  }
+  & .col {
+    display: inline-block;
+    margin: 0 0 rem(25);
+    width: 100%;
+  }
+  & .description {
+    font-style: italic;
+    color: gray(20%);
+    white-space: pre-line;
+  }
+}
+
+.finePrint {
+  composes: globalContainer withPaddings;
+  background-color: gray(90%);
+  font-size: rem(14);
+  & label {
+    margin-bottom: rem(4);
+    color: gray(40%);
+  }
+  & p {
+    margin-top: 0;
+  }
+  & .description {}
+}
+
+@media print {
+  .status,
+  .note {
+    display: none !important;
+  }
+}
