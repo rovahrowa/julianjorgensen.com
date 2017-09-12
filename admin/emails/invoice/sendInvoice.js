@@ -1,12 +1,14 @@
 let sendMail = require('../sendMail');
 
-let sendInvoice = function (mailOptions) {
+let sendInvoice = function(mailOptions) {
   let sendInvoicePromises = ['customer', 'admin'].map((recipientType) => {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       console.log(`sending invoice to ${recipientType} with mailOptions: ${mailOptions}`);
       if (recipientType == 'admin') {
         mailOptions.to = mailOptions.from;
       }
+
+      console.log('invoiceRef from sendInvoice.js', mailOptions.invoiceRef);
 
       sendMail(mailOptions).then(() => {
         resolve(mailOptions.invoiceRef); // pass the invoiceRef to "markinvoiceSentDate" so we can track when the invoice was sent
