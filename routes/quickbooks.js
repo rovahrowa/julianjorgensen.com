@@ -11,40 +11,41 @@ let estimateMailer = require('../admin/emails/estimate/init');
 let invoiceMailer = require('../admin/emails/invoice/init');
 let invoiceReminder = require('../admin/crons/invoiceReminder/init');
 
-// Invoice route for Quickbooks
-router.route('/invoice/:id')
+// Get Invoice/Estimate route for Quickbooks
+router.route('/:type/:id')
   .get(function(req, res) {
-    qbo.getInvoice(req.params.id, (error, invoiceRef) => {
-      if (!invoiceRef) {
-        res.status(200).json(error);
-      }
+    // generate unique md5 token
+    let secretVariable = 'Item' + req.params.id;
+    let token = util.createToken(secretVariable);
 
-      // generate unique md5 token
-      let secretVariable = 'Invoice' + invoiceRef.Id;
-      let token = util.createToken(secretVariable);
+    // if token is false, then don't allow
+    if (req.query.token !== token) {
+      res.status(401).send('You are unauthorized to see this item.').end();
+    }
 
-      if (req.query.token !== token) {
-        res.status(401).send('You are unauthorized to see this invoice.');
-      }
-
-      // if the url token parameter is the correct key, then show the invoice
-      // get customer data too
-      console.log('getting customer data based on invoice...');
-      let customerId = invoiceRef.CustomerRef.value;
-      qbo.getCustomer(customerId, function(error, customer) {
-        if (customer) {
-          console.log('we found this customer: ', customer);
-          let invoiceAndCustomer = {
-            invoice: invoiceRef,
-            customer: customer
-          };
-          res.json(invoiceAndCustomer).end();
-        } else {
-          console.log('there was an error getting quickbooks customer: ', error);
-          res.json(error).end();
-        }
+    if (req.params.type === 'invoice') {
+      // get invoice
+      qbo.getInvoice(req.params.id, (error, item) => {
+        processItemData(item).then(() => {
+            res.status(200).json(response).end();
+          })
+          .catch((err) => {
+            res.status(500).send(err).end();
+          });
       });
-    });
+    }
+
+    if (req.params.type === 'estimate') {
+      // get estimate
+      qbo.getEstimate(req.params.id, (error, item) => {
+        processItemData(item).then(() => {
+            res.status(200).json(response).end();
+          })
+          .catch((err) => {
+            res.status(500).send(err).end();
+          });
+      });
+    }
   });
 
 

@@ -4,9 +4,9 @@ let dateFormat = require('dateformat');
 let prepareContent = require('./prepareContent');
 let adminAlertEmail = require('../adminAlertEmail');
 
-let processInvoiceDetails = function (passedData) {
+let processInvoiceDetails = function(passedData) {
   console.log('processing invoice...');
-  let promise = new Promise(function (resolve, reject) {
+  let promise = new Promise(function(resolve, reject) {
 
     let customer = passedData[0];
     let invoice = passedData[1];
@@ -14,7 +14,7 @@ let processInvoiceDetails = function (passedData) {
 
     // Create token for email button
     let invoiceId = invoice.Id;
-    let secretVariable = 'Invoice' + invoice.Id;
+    let secretVariable = 'Item' + invoice.Id;
     let invoiceToken = util.createToken(secretVariable);
 
     // Create variables

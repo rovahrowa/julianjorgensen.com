@@ -4,7 +4,7 @@ let sendEstimate = require('./sendEstimate');
 let updateEstimate = require('./updateEstimate');
 
 function init(estimateId, estimateType) {
-  console.log(`Preparing to send ${estimateType} estimate email for estimate id ${invoiceId}...`);
+  console.log(`Preparing to send ${estimateType} estimate email for estimate id ${estimateId}...`);
   return getDetails(estimateId, estimateType)
     .then(processDetails)
     .then(sendEstimate)

@@ -14,7 +14,7 @@ let processEstimateDetails = function(passedData) {
 
     // Create token for email button
     let estimateId = estimate.Id;
-    let secretVariable = 'Estimate' + estimate.Id;
+    let secretVariable = 'Item' + estimate.Id;
     let estimateToken = util.createToken(secretVariable);
 
     // Create variables
