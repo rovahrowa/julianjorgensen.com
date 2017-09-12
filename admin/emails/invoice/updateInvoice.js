@@ -17,6 +17,8 @@ let updateInvoice = (passedData) => {
     };
     Object.assign(invoiceRef, updatedInvoiceData);
 
+    console.log('invoiceRef:', invoiceRef);
+
     qbo.updateInvoice(invoiceRef, (err, invoice) => {
       if (err) console.log('Error updating invoice: ', JSON.stringify(err));
 
