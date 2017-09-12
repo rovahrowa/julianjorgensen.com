@@ -12,7 +12,7 @@ let invoiceReminder = require('../admin/crons/invoiceReminder/init');
 
 // Invoice route for Quickbooks
 router.route('/invoice/:id')
-  .get(function (req, res) {
+  .get(function(req, res) {
     qbo.getInvoice(req.params.id, (error, invoiceRef) => {
       if (!invoiceRef) {
         res.status(200).json(error);
@@ -30,7 +30,7 @@ router.route('/invoice/:id')
       // get customer data too
       console.log('getting customer data based on invoice...');
       let customerId = invoiceRef.CustomerRef.value;
-      qbo.getCustomer(customerId, function (error, customer) {
+      qbo.getCustomer(customerId, function(error, customer) {
         if (customer) {
           console.log('we found this customer: ', customer);
           let invoiceAndCustomer = {
@@ -48,7 +48,7 @@ router.route('/invoice/:id')
 
 
 router.route('/webhook')
-  .post(function (req, res) {
+  .post(function(req, res) {
     // get data from QBO webhook
     let payload = req.body;
     let signature = req.get('intuit-signature');
@@ -93,7 +93,9 @@ router.route('/webhook')
 
             if (!lastSentDate) {
               // send the invoice
-              invoiceMailer.send(invoice.Id, eventType).then(() => {
+              invoiceMailer.send(invoice.Id, eventType).then((invoiceRef, test) => {
+                console.log('invoiceRef from quickbooks.js', invoiceRef);
+                console.log('test from quickbooks.js', test);
                 res.status(200).send(`Invoice #${invoiceRef.id} sent!`);
               }).catch((err) => {
                 res.status(500).send(`Error sending invoice #${invoiceRef.id}...`);
@@ -109,7 +111,7 @@ router.route('/webhook')
   });
 
 router.route('/trigger/invoiceReminders')
-  .get(function (req, res) {
+  .get(function(req, res) {
     invoiceReminder.init()
       .then(() => {
         res.status(200).send('finished sending invoice reminders...');
