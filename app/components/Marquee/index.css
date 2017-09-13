@@ -1,6 +1,5 @@
-@import "../../styles/variables.css";
-
-.marquee{
+@import "globals.css";
+.marquee {
   display: flex;
   width: 100%;
   height: rem(300);
@@ -12,31 +11,31 @@
   overflow: hidden;
 }
 
-.header{
+.header {
   font-size: rem(220);
   line-height: rem(130);
 }
 
-.purple-blue{
+.purple-blue {
   background: linear-gradient(to bottom right, var(--lavender), var(--sky-blue));
 }
 
-.orange{
+.orange {
   background: linear-gradient(to bottom right, color(var(--orange) hue(30%)), var(--orange));
 }
 
-.purple{
+.purple {
   background: linear-gradient(to bottom right, #712DBC 40%, #3892D7);
 }
 
-.blue{
+.blue {
   background: linear-gradient(to bottom right, color(var(--blue) shade(50%)), var(--blue));
 }
 
-.turquoise{
+.turquoise {
   background: linear-gradient(to bottom right, color(var(--turquoise) shade(50%)), var(--turquoise));
 }
 
-.black{
+.black {
   background: linear-gradient(to bottom right, gray(10%), black);
 }

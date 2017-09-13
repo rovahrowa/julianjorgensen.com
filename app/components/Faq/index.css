@@ -1,4 +1,4 @@
-@import "../../styles/globals.css";
+@import "globals.css";
 .container {
   composes: globalContainer withPaddings;
   background-color: gray(91%);

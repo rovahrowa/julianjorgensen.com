@@ -1,3 +1,4 @@
+let ENV_CONFIG = require('../util/util').getEnvConfig();
 let _ = require('lodash');
 let billingItemMailer = require('../../admin/emails/billingItem/init');
 

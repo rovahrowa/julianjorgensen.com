@@ -1,4 +1,4 @@
-@import "../../../../../../styles/globals.css";
+@import "globals.css";
 .summary {
   display: flex;
   justify-content: flex-end;
