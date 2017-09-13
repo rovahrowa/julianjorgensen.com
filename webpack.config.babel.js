@@ -18,7 +18,6 @@ console.log('Running webpack optimized for', NODE_ENV);
 // Static vendor assets for which one can expect
 //  minimal and a slow rate of change:
 const VENDOR_LIBS = [
-  'jquery',
   'react',
   'react-dom',
   'react-router-dom',
@@ -182,7 +181,7 @@ const PROD_PLUGINS = [
     threshold: 10240,
     minRatio: 0.8
   }),
-  new StatsPlugin('stats.json', {
+  new StatsPlugin('stats.prod.json', {
     chunkModules: true
   })
 ];
@@ -200,7 +199,7 @@ const PROD_CONFIG = {
 const DEV_PLUGINS = [
   new ExtractTextPlugin('[name].[contenthash].css'),
   new webpack.HotModuleReplacementPlugin(),
-  new StatsPlugin('stats.json', {
+  new StatsPlugin('stats.dev.json', {
     chunkModules: true
   })
 ];

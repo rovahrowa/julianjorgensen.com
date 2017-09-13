@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment-timezone';
+import moment from 'moment';
 import Dialog from 'react-toolbox/lib/dialog';
 import Button from 'components/Button';
 
