@@ -62,6 +62,11 @@ let prepareContent = ({
 
   // determine template and other itemType specific variables
   switch (itemType) {
+    case 'estimate':
+      subject = `Estimate`;
+      itemTemplate = 'estimate.pug';
+      emailContext.expirationDateFormatted = moment(itemDueDate, 'YYYY-MM-DD').fromNow();
+      break;
     case 'reminder':
       subject = `Invoice reminder`;
       itemTemplate = 'invoiceReminder.pug';

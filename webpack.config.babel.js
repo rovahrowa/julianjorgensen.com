@@ -80,13 +80,24 @@ const BASE_CONFIG = {
           'file-loader',
           {
             loader: 'image-webpack-loader',
-            query: {
-              progressive: true,
-              optimizationLevel: 7,
-              interlaced: false,
+            options: {
+              gifsicle: {
+                interlaced: false,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
               pngquant: {
-                quality: '65-90',
+                quality: '65-80',
                 speed: 4
+              },
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              // Specifying webp here will create a WEBP version of your JPG/PNG images
+              webp: {
+                quality: 75
               }
             }
           }
