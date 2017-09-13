@@ -11,6 +11,10 @@ let prepareContent = ({
   let secretVariable = 'Item' + item.Id;
   let itemToken = util.createToken(secretVariable);
 
+  console.log('preparingContent');
+  console.log('itemToken', itemToken);
+  console.log('item id', item.Id);
+
   // Create variables
   let itemNumber = item.DocNumber;
   let itemAmount = numeral(item.Balance).format('$0,0.00');
@@ -54,6 +58,8 @@ let prepareContent = ({
     companyName
   };
 
+  console.log('emailContext', emailContext);
+
   // determine template and other itemType specific variables
   switch (itemType) {
     case 'reminder':
@@ -74,6 +80,8 @@ let prepareContent = ({
       subject = `Invoice #${itemNumber} updated`;
       itemTemplate = 'invoiceUpdated.pug';
   }
+
+  console.log('itemTemplate', itemTemplate);
 
   // prepare final content
   let preparedMailContent = {
@@ -99,6 +107,8 @@ let prepareContent = ({
       context: emailContext
     }
   };
+
+  console.log('preparedMailContent', preparedMailContent);
 
   // if CC exists, then also include that to the object
   if (emailCc) {
