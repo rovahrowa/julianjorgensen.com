@@ -5,5 +5,5 @@ module.exports = {
   QBO_LATE_FEE_ITEM_REF: "6",
   QBO_PAID_LABEL: "paid date",
   QBO_SENT_LABEL: "last sent",
-  QBO_DATE_RANGE_LABEL: "date range",
+  QBO_PROJECT_NAME_LABEL: "project name",
 };

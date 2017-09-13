@@ -27,10 +27,10 @@ export default class TimeEntryDetails extends React.Component {
 
     return (
       <div className={styles.container}>
-        {item.dateRange ?
-          <div className={styles.dateRange}>
-            <label>Date range</label>
-            <date>{moment(item.dateRange[0], 'DD-MM-YYYY').format('MMMM Do YYYY')} - {moment(item.dateRange[1], 'DD-MM-YYYY').format('MMMM Do YYYY')}</date>
+        {item.projectName ?
+          <div className={styles.projectName}>
+            <label>Project name</label>
+            <div>{item.projectName}</div>
           </div>
         : ''}
 

@@ -27,10 +27,10 @@ export function getItem(type, id, token) {
         });
         let paidDate = paidDateObj ? paidDateObj.StringValue : null;
 
-        let dateRangeObj = _.find(payload.item.CustomField, {
-          'Name': ENV_CONFIG.QBO_DATE_RANGE_LABEL
+        let projectNameObj = _.find(payload.item.CustomField, {
+          'Name': ENV_CONFIG.QBO_PROJECT_NAME_LABEL
         });
-        let dateRange = dateRangeObj ? dateRangeObj.StringValue ? dateRangeObj.StringValue.split(' - ') : null : null;
+        let projectName = projectNameObj ? projectNameObj.StringValue ? projectNameObj.StringValue.split(' - ') : null : null;
 
         let notes;
         let report;
@@ -65,7 +65,7 @@ export function getItem(type, id, token) {
           currency: payload.item.CurrencyRef.value || '',
           paid: paidDate ? true : false,
           paidDate: paidDate,
-          dateRange: dateRange,
+          projectName: projectName,
           items: payload.item.Line || [],
           notes: notes,
           report: report,

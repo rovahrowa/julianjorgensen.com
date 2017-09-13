@@ -1,33 +1,28 @@
-.container{
-}
+.container {}
 
-.button{
+.button {
   display: flex;
   align-items: center;
   background-color: gray(95%);
   text-transform: uppercase;
-
-  & .icon{
+  & .icon {
     height: rem(15);
     margin-right: rem(5);
   }
 }
 
-.dateRange{
+.projectName {
   margin-bottom: rem(30);
-  & label{
+  & label {
     display: block;
     margin-right: rem(15);
   }
-  & date{
-  }
 }
 
-.modal{
+.modal {
   height: rem(600);
   width: rem(1000) !important;
-
-  & section{
+  & section {
     padding: 0;
   }
 }
