@@ -1,6 +1,5 @@
 @import "../../styles/variables.css";
-
-.button.custom{
+.button.custom {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,34 +10,28 @@
   border-radius: rem(8);
   text-decoration: none;
   font-family: var(--primaryFont);
-
   &.hollow:not([disabled]) {
     border: 1px solid currentColor;
     background-color: transparent;
     color: gray(60%);
-    &:hover{
+    &:hover {
       background-color: color(gray(60%) alpha(-80%));
     }
   }
-
   &.primary:not([disabled]) {
     color: black;
     box-shadow: rem(0) rem(2) rem(2) rem(0) gray(50%);
     background: linear-gradient(to bottom right, var(--gamboge), var(--brightSun));
-    &:hover{
+    &:hover {
       background: linear-gradient(to bottom right, color(var(--gamboge) shade(10%)), color(var(--brightSun) shade(10%)));
     }
   }
-
   &.confirm:not([disabled]) {
-    @apply --success-theme;
+    /* @apply --success-theme; */
   }
-
   &.white:not([disabled]) {
     background-color: white;
   }
-
-
   /* Button: Tiny */
   &.tiny {
     border-radius: rem(10);
@@ -48,7 +41,6 @@
     line-height: rem(14);
     text-transform: capitalize;
   }
-
   /* Button: Small */
   &.small {
     border-radius: rem(10);
@@ -57,8 +49,6 @@
     font-size: rem(16);
     line-height: rem(16);
   }
-
-
   /* Button: hollow blue */
   &.blue.hollow:not([disabled]) {
     color: var(--curious-blue);
