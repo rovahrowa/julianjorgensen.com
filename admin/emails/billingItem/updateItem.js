@@ -2,11 +2,14 @@ let moment = require('moment');
 let util = require('../../../util/util');
 let ENV_CONFIG = util.getEnvConfig();
 
-let updateItem = ({
-  itemRef,
-  itemType
-}) => {
-  console.log('updating', itemType);
+let updateItem = (passedData) => {
+  console.log('passedData', passedData);
+  let {
+    itemType,
+    itemRef
+  } = passedData;
+  console.log('updating itemType', itemType);
+  console.log('updating itemRef', itemRef);
   if (itemRef && itemType) {
     console.log('the item was sent, now updating', itemRef);
     return new Promise((resolve, reject) => {

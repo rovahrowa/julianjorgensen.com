@@ -25,12 +25,13 @@ const VENDOR_LIBS = [
   'react-document-meta'
 ];
 
+const APP_PATH = path.resolve(__dirname, 'app/app');
 
 // Webpack config for both production and development environments
 // ====================
 const BASE_CONFIG = {
   entry: {
-    bundle: path.resolve(__dirname, 'app/app'),
+    bundle: ['babel-polyfill', APP_PATH],
     vendor: VENDOR_LIBS
   },
   output: {
