@@ -7,7 +7,7 @@ let ENV_CONFIG = util.getEnvConfig();
 
 let {
   mailItem
-} = requre('./utils/qbo');
+} = require('./utils/qbo');
 
 let invoiceReminder = require('../admin/crons/invoiceReminder/init');
 
