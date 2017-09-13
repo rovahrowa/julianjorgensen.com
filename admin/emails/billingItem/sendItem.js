@@ -19,10 +19,7 @@ let sendItem = function(preparedMailContent) {
 
       sendMail(preparedMailContent).then(() => {
         console.log('sent! now resolving', itemType);
-        resolve({
-          itemRef,
-          itemType
-        }); // pass the itemRef so we can update the item as being sent
+        resolve(preparedMailContent); // pass the data so we can update item
       }).catch((err) => {
         console.log('Error: Something went wrong when sending the item email...', err);
       });
