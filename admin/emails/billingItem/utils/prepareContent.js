@@ -65,7 +65,7 @@ let prepareContent = ({
     case 'estimate':
       subject = `Estimate`;
       itemTemplate = 'estimate.pug';
-      emailContext.expirationDateFormatted = moment(itemDueDate, 'YYYY-MM-DD').fromNow();
+      emailContext.expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow();
       break;
     case 'reminder':
       subject = `Invoice reminder`;
@@ -98,7 +98,8 @@ let prepareContent = ({
       name: customerName,
       address: email
     }], // An array if you have multiple recipients.
-    subject: subject,
+    subject,
+    itemType,
     itemRef: {
       Id: item.Id,
       SyncToken: item.SyncToken,

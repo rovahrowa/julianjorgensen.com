@@ -12,8 +12,16 @@ let sendItem = function(preparedMailContent) {
 
       console.log('itemRef from sendItem.js', preparedMailContent.itemRef);
 
+      let {
+        itemRef,
+        itemType
+      } = preparedMailContent;
+
       sendMail(preparedMailContent).then(() => {
-        resolve(preparedMailContent.itemRef); // pass the itemRef so we can update the item as being sent
+        resolve({
+          itemRef,
+          itemType
+        }); // pass the itemRef so we can update the item as being sent
       }).catch((err) => {
         console.log('Error: Something went wrong when sending the item email...', err);
       });
