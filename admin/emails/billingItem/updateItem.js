@@ -6,6 +6,7 @@ let updateItem = ({
   itemRef,
   itemType
 }) => {
+  console.log('updating', itemType);
   if (itemRef && itemType) {
     console.log('the item was sent, now updating', itemRef);
     return new Promise((resolve, reject) => {

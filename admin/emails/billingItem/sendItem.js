@@ -18,6 +18,7 @@ let sendItem = function(preparedMailContent) {
       } = preparedMailContent;
 
       sendMail(preparedMailContent).then(() => {
+        console.log('sent! now resolving', itemType);
         resolve({
           itemRef,
           itemType
