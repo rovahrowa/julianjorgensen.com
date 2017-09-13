@@ -31,8 +31,8 @@ router.route('/')
       // loop over all events
       events.dataChangeEvent.entities.map((event) => {
         // get event name (Invoice, or Estimate)
-        let eventName = event.name.toLowerCase();
-        console.log('eventName: ', eventName);
+        let itemType = event.name.toLowerCase();
+        console.log('itemType: ', itemType);
 
         // get event type (Create, Update, or Delete)
         let eventType = event.operation.toLowerCase();
@@ -41,9 +41,13 @@ router.route('/')
         let itemId = event.id;
 
         // If its an invoice
-        if (eventName === 'invoice') {
+        if (itemType === 'invoice') {
           qbo.getInvoice(itemId, (err, invoice) => {
-            mailItem(invoice, eventType).then((response) => {
+            mailItem({
+              item: invoice,
+              itemType,
+              eventType
+            }).then((response) => {
               res.status(200).send(response);
             }).catch((error) => {
               res.status(500).send(error);
@@ -52,9 +56,13 @@ router.route('/')
         }
 
         // If its an estimate
-        if (eventName === 'estimate') {
+        if (itemType === 'estimate') {
           qbo.getEstimate(itemId, (err, estimate) => {
-            mailItem(estimate, eventType).then((response) => {
+            mailItem({
+              item: estimate,
+              itemType,
+              eventType
+            }).then((response) => {
               res.status(200).send(response);
             }).catch((error) => {
               res.status(500).send(error);

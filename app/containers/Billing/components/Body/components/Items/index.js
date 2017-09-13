@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import numeral from 'numeral';
 
 import styles from './index.css';

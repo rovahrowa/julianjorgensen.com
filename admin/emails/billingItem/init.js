@@ -3,9 +3,9 @@ let processItem = require('./processItem');
 let sendItem = require('./sendItem');
 let updateItem = require('./updateItem');
 
-function init(id, itemType) {
-  console.log(`Preparing to send ${itemType} invoice email for item id ${id}...`);
-  return getItem(id, itemType)
+function init(params) {
+  console.log(`Preparing to send ${params.eventType} ${params.itemType} email for item id ${params.id}...`);
+  return getItem(params)
     .then(processItem)
     .then(sendItem)
     .then(updateItem)

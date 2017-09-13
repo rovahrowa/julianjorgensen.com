@@ -23,7 +23,11 @@ function processItemData(item) {
 module.exports.processItemData = processItemData;
 
 
-function mailItem(item, eventType) {
+function mailItem({
+  item,
+  itemType,
+  eventType
+}) {
   return new Promise((resolve, reject) => {
     if (!item) {
       reject();
@@ -42,7 +46,11 @@ function mailItem(item, eventType) {
 
     if (!lastSentDate) {
       // send the item
-      billingItemMailer.send(item.Id, eventType).then(() => {
+      billingItemMailer.send({
+        id: item.Id,
+        itemType,
+        eventType
+      }).then(() => {
         resolve(`Billing item #${item.DocNumber} sent!`);
       }).catch((err) => {
         reject(`Error sending billing item #${Item.DocNumber}...`);

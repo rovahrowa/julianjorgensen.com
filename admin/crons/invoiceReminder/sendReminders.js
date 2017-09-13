@@ -1,5 +1,5 @@
 let moment = require('moment');
-let invoice = require('../../emails/billingItem/init');
+let billingMailer = require('../../emails/billingItem/init');
 
 let sendReminders = function(invoices) {
   if (invoices) {
@@ -10,15 +10,19 @@ let sendReminders = function(invoices) {
         let dueDate = moment(invoiceRef.DueDate, 'YYYY-MM-DD');
         let daysTillOverdue = moment.duration(dueDate - today).asDays();
 
-        let invoiceType;
+        let eventType;
         if (daysTillOverdue >= 0) {
-          invoiceType = 'reminder';
+          eventType = 'reminder';
         } else {
-          invoiceType = 'overdue';
+          eventType = 'overdue';
         }
 
         // now, send the invoice
-        invoice.send(invoiceRef.Id, invoiceType).then((data) => {
+        billingMailer.send({
+          id: invoiceRef.Id,
+          itemType: 'invoice',
+          eventType: eventType
+        }).then((data) => {
           resolve(`Invoice reminder #${invoiceRef.Id} sent!`);
         }).catch((err) => {
           reject('Something went wrong sending the invoice email reminder', err);
