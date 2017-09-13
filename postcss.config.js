@@ -2,7 +2,7 @@ module.exports = {
   plugins: {
     'postcss-import': {
       root: __dirname,
-      path: 'app/styles'
+      path: __dirname + '/app/styles'
     },
     'postcss-mixins': {},
     'postcss-each': {},
