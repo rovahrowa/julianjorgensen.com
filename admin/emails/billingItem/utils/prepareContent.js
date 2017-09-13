@@ -66,7 +66,9 @@ let prepareContent = ({
       subject = `Estimate`;
       itemTemplate = 'estimate.pug';
       emailContext.expirationDate = moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow();
+      console.log('expiration date: ', item.ExpirationDate);
       emailContext.expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('mmmm dS, yyyy');
+      console.log('expiration date formatted: ', emailContext.expirationDateFormatted);
       break;
     case 'reminder':
       subject = `Invoice reminder`;
