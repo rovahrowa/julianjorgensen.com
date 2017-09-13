@@ -1,5 +1,5 @@
 let _ = require('lodash');
-let billingItemMailer = require('../admin/emails/billingItem/init');
+let billingItemMailer = require('../../admin/emails/billingItem/init');
 
 function processItemData(item) {
   return new Promise((resolve, reject) => {

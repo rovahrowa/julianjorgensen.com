@@ -1,12 +1,11 @@
-@import "../../styles/app.css";
-
-.container{
+@import "../../styles/globals.css";
+.container {
   composes: globalContainer;
   padding: 0;
   background-color: transparent;
 }
 
-.pixelFade{
+.pixelFade {
   position: relative;
   z-index: 2;
   background-image: url('assets/images/pixels-fade.svg');
@@ -16,7 +15,7 @@
   height: rem(50);
 }
 
-.nav{
+.nav {
   position: relative;
   z-index: 2;
   background-color: gray(30%);
@@ -25,16 +24,14 @@
   justify-content: center;
   align-items: center;
   padding: 40px 0;
-
-  & .navItems{
+  & .navItems {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     width: 50%;
     color: white;
-
-    & .navItem{
+    & .navItem {
       color: white;
       text-decoration: none;
       padding: 0 10px;
@@ -43,25 +40,22 @@
   }
 }
 
-.icons{
+.icons {
   margin-top: rem(60);
 }
 
-.credit{
+.credit {
   text-align: center;
   margin-top: 40px;
   margin-bottom: 60px;
   color: white;
-
-  & .slogan{
+  & .slogan {
     margin-bottom: 20px;
     font-size: 14px;
     font-style: italic;
   }
-
-  & .signature{
+  & .signature {
     display: flex;
-
     justify-content: center;
     align-items: center;
     font-size: 18px;

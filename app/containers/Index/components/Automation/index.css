@@ -1,36 +1,33 @@
-@import "../../../../styles/app.css";
-
-.container{
+@import "../../../../styles/globals.css";
+.container {
   composes: globalContainer withMarginBottom;
 }
 
-.header{
+.header {
   composes: globalHeader;
   color: var(--blue);
 }
 
-.title{
+.title {
   composes: globalTitle;
 }
 
-.body{
+.body {
   display: flex;
-
-  & .hero{
+  & .hero {
     display: flex;
     padding: rem(45);
     width: 50%;
     background: linear-gradient(to bottom right, var(--blue), color(var(--blue) shade(60%)));
   }
-
-  & .heroHeader{
+  & .heroHeader {
     align-self: flex-start;
     position: relative;
     font-size: rem(48);
     line-height: rem(58);
     font-weight: bold;
     color: white;
-    &:after{
+    &:after {
       content: '';
       position: absolute;
       left: 0;
@@ -40,13 +37,11 @@
       background-color: white;
     }
   }
-
-  & .carousel{
+  & .carousel {
     width: 50%;
-    & .slide{
+    & .slide {
       height: rem(200);
-
-      & .slideLabel{
+      & .slideLabel {
         background-color: var(--blue);
         font-weight: bold;
         text-transform: uppercase;

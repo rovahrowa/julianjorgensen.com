@@ -1,6 +1,5 @@
-@import "../../../../../../styles/app.css";
-
-.container{
+@import "../../../../../../styles/globals.css";
+.container {
   composes: globalContainer withPaddings;
   background-color: gray(95%);
   display: flex;
@@ -8,13 +7,13 @@
   border-top: 1px dashed gray(50%);
 }
 
-.ctas{
+.ctas {
   display: flex;
   justify-content: center;
   width: rem(400);
-  & button{
+  & button {
     margin-right: rem(30);
-    &:last-child{
+    &:last-child {
       margin-right: 0;
     }
   }

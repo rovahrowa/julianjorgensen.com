@@ -1,19 +1,18 @@
-@import "../../../../styles/app.css";
-
-.container{
+@import "../../../../styles/globals.css";
+.container {
   composes: globalContainer withMarginBottom;
   margin-top: rem(40);
 }
 
-.header{
+.header {
   composes: globalHeader;
   color: var(--purple);
 }
 
-.title{
+.title {
   composes: globalTitle;
 }
 
-.box{
+.box {
   composes: globalBox;
 }

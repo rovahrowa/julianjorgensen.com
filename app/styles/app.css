@@ -1,8 +1,6 @@
-/* Globals */
+/* App styles */
+
 @import "fonts.css";
 @import "typography.css";
-@import "variables.css";
-@import "layout.css";
-@import "section.css";
-@import "helpers.css";
 @import "animations.css";
+@import "globals.css";

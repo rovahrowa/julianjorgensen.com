@@ -1,10 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {
+  connect
+} from 'react-redux';
 import axios from 'axios';
 
 import Input from 'react-toolbox/lib/input';
 import Button from 'components/Button';
-import globalStyles from 'styles/app.css';
 import styles from './index.css';
 
 import CalendarIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/calendar.svg';
@@ -28,12 +29,18 @@ export default class EstimateForm extends React.Component {
   }
 
   toggleScheduling = () => {
-    let { dispatch } = this.props;
-    dispatch({type: 'TOGGLE_SCHEDULING'});
+    let {
+      dispatch
+    } = this.props;
+    dispatch({
+      type: 'TOGGLE_SCHEDULING'
+    });
   }
 
   handleChange = (name, value) => {
-    this.setState({...this.state, [name]: value});
+    this.setState({ ...this.state,
+      [name]: value
+    });
   };
 
   handleSubmit(event) {
@@ -44,23 +51,23 @@ export default class EstimateForm extends React.Component {
 
     // Submit the form
     axios.post('/email/get-estimate', {
-      name: this.state.name,
-      email: this.state.email,
-      projectName: this.state.projectName,
-      projectWebsite: this.state.projectWebsite,
-      notes: this.state.notes
-    })
-    .then((response) => {
-      if (response.status === 200){
-        this.setState({
-          submitting: false,
-          sent: true
-        });
-      }
-    })
-    .catch((error) => {
-      console.log('Error using /email/get-estimate: ', error);
-    });
+        name: this.state.name,
+        email: this.state.email,
+        projectName: this.state.projectName,
+        projectWebsite: this.state.projectWebsite,
+        notes: this.state.notes
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          this.setState({
+            submitting: false,
+            sent: true
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('Error using /email/get-estimate: ', error);
+      });
   }
 
   render() {
@@ -68,7 +75,7 @@ export default class EstimateForm extends React.Component {
       return (<div></div>);
     }
 
-    if (!this.state.sent){
+    if (!this.state.sent) {
       return (
         <div className={styles.container}>
           <div className={styles.header}>
@@ -135,7 +142,7 @@ export default class EstimateForm extends React.Component {
           </div>
         </div>
       )
-    }else{
+    } else {
       return (
         <div className={styles.container}>
           Thank you. {this.state.name.split(' ')[0]}, please take 5-10 minutes to <a href="https://goo.gl/forms/i8TwGVYpMkrrk5hj2" target="new">answer some questions about {this.state.projectName}</a>. It will help make the estimate more thorough.

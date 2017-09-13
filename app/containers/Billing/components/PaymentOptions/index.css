@@ -1,35 +1,33 @@
-@import "../../../../styles/app.css";
-
-.container{
+@import "../../../../styles/globals.css";
+.container {
   padding-top: rem(100);
 }
 
 .navigation {
-  & .active{
+  & .active {
     background-color: white;
     border-top-left-radius: rem(4);
     border-top-right-radius: rem(4);
     transition-duration: 0.1s;
   }
-
-  & .label{
+  & .label {
     color: gray(20%);
     font-size: rem(18);
   }
 }
 
-.tab{
+.tab {
   composes: globalContainer withPaddings white;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: rem(4);
   border-bottom-right-radius: rem(4);
-  &:focus{
+  &:focus {
     outline: 0;
   }
 }
 
-.paymentThankYou{
+.paymentThankYou {
   composes: globalContainer withPaddings white;
   text-align: center;
   color: green;

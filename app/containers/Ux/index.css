@@ -1,9 +1,8 @@
-@import "../../styles/app.css";
-
-.wrapper{
+@import "../../styles/globals.css";
+.wrapper {
   composes: globalWrapper;
 }
 
-.container{
+.container {
   composes: globalContainer withPaddings white;
 }

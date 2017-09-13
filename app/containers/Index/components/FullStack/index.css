@@ -1,6 +1,5 @@
-@import "../../../../styles/app.css";
-
-.wrapper{
+@import "../../../../styles/globals.css";
+.wrapper {
   composes: globalWrapper withPadding;
   background-color: black;
   position: relative;
@@ -8,25 +7,25 @@
   margin-bottom: rem(100);
 }
 
-.parallaxBg{
+.parallaxBg {
   composes: globalBgImage;
   opacity: 0.25;
   overflow: hidden;
 }
 
-.container{
+.container {
   composes: globalContainer;
 }
 
-.header{
+.header {
   composes: globalHeader;
   color: var(--purple);
 }
 
-.title{
+.title {
   composes: globalTitle;
 }
 
-.box{
+.box {
   composes: globalBox;
 }
