@@ -33,7 +33,6 @@ let prepareContent = ({
   });
   let projectName = projectNameObj ? projectNameObj.StringValue : null;
 
-
   // if item has an email then use that, otherwise use the email(s) associated with the customer
   let email;
   let emailCc;

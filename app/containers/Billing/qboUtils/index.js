@@ -30,7 +30,7 @@ export function getItem(type, id, token) {
         let projectNameObj = _.find(payload.item.CustomField, {
           'Name': ENV_CONFIG.QBO_PROJECT_NAME_LABEL
         });
-        let projectName = projectNameObj ? projectNameObj.StringValue ? projectNameObj.StringValue.split(' - ') : null : null;
+        let projectName = projectNameObj ? projectNameObj.StringValue : null;
 
         let notes;
         let report;

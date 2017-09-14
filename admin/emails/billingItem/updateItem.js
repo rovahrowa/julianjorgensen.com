@@ -32,16 +32,19 @@ let updateItem = (passedData) => {
           if (err) console.log('Error updating estimate: ', JSON.stringify(err));
           resolve();
         });
-      } else {
+      } else if (itemType === 'invoice') {
         // update invoice
         qbo.updateInvoice(itemRef, (err, item) => {
           if (err) console.log('Error updating invoice: ', JSON.stringify(err));
           resolve();
         });
+      }else{
+        reject();
       }
 
     }).catch((err) => {
       console.log(err);
+      reject(err);
     });
   } else {
     return true;

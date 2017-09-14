@@ -8,10 +8,7 @@ function init(params) {
   return getItem(params)
     .then(processItem)
     .then(sendItem)
-    .then(updateItem)
-    .catch((err) => {
-      throw Error(err);
-    });
+    .then(updateItem);
 }
 
 module.exports.send = init;
