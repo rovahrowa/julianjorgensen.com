@@ -5,6 +5,7 @@ let _ = require('lodash');
 let moment = require('moment');
 
 let prepareContent = ({
+  eventType,
   itemType,
   item,
   customer
@@ -69,31 +70,33 @@ let prepareContent = ({
 
   console.log('emailContext', emailContext);
 
-  // determine template and other itemType specific variables
-  switch (itemType) {
-    case 'estimate':
-      subject = `Estimate`;
-      itemTemplate = 'estimate.pug';
-      emailContext.expirationDate = moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow();
-      emailContext.expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
-      break;
-    case 'reminder':
-      subject = `Invoice reminder`;
-      itemTemplate = 'invoiceReminder.pug';
-      emailContext.timeTillDueDate = moment(itemDueDate, 'YYYY-MM-DD').fromNow();
-      break;
-    case 'overdue':
-      subject = `Invoice overdue!`;
-      itemTemplate = 'invoiceOverdue.pug';
-      emailContext.timeOverdue = moment(itemDueDate, 'YYYY-MM-DD').fromNow();
-      break;
-    case 'create':
-      subject = 'Invoice #' + itemNumber;
-      itemTemplate = 'invoice.pug';
-      break;
-    case 'update':
-      subject = `Invoice #${itemNumber} updated`;
-      itemTemplate = 'invoiceUpdated.pug';
+  // if its an estimate
+  if (itemType === 'estimate') {
+    subject = `Estimate`;
+    itemTemplate = 'estimate.pug';
+    emailContext.expirationDate = moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow();
+    emailContext.expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
+  }else{
+    // invoice
+    switch (eventType) {
+      case 'reminder':
+        subject = `Invoice reminder`;
+        itemTemplate = 'invoiceReminder.pug';
+        emailContext.timeTillDueDate = moment(itemDueDate, 'YYYY-MM-DD').fromNow();
+        break;
+      case 'overdue':
+        subject = `Invoice overdue!`;
+        itemTemplate = 'invoiceOverdue.pug';
+        emailContext.timeOverdue = moment(itemDueDate, 'YYYY-MM-DD').fromNow();
+        break;
+      case 'create':
+        subject = 'Invoice #' + itemNumber;
+        itemTemplate = 'invoice.pug';
+        break;
+      case 'update':
+        subject = `Invoice #${itemNumber} updated`;
+        itemTemplate = 'invoiceUpdated.pug';
+    }
   }
 
   console.log('itemTemplate', itemTemplate);
