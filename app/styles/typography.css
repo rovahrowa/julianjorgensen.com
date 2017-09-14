@@ -1,14 +1,8 @@
-@custom-selector :--headings h1,
-h2,
-h3,
-h4,
-h5,
-h6;
-@custom-selector :--inputs input,
-textarea,
-radio,
-select,
-label;
+@import 'variables.css';
+
+@custom-selector :--headings h1,h2,h3,h4,h5,h6;
+@custom-selector :--inputs input,textarea,radio,select,label;
+
 :root {
   --h1: rem(50);
   --h2: rem(30);
@@ -37,7 +31,7 @@ label;
   & a {
     text-decoration: none;
     cursor: pointer;
-    color var(--primaryColor);
+    color: var(--linkColor);
   }
   & h1 {
     font-size: var(--h1);
