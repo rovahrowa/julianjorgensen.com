@@ -25,6 +25,8 @@ export default class HomeLanding extends React.Component{
         <h1>This is the home landing page!</h1>
         <Button label="Test Button" onClick={this.startVideo.bind(this)} raised accent />
         <ReactPlayer url='https://vimeo.com/channels/staffpicks/214023666' className={styles.videoPlayer} width="100%" hidden={this.state.videoHidden} preload="true" />
+
+        <footer className={styles.footer} />
       </div>
     )
   }

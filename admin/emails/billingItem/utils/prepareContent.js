@@ -74,7 +74,7 @@ let prepareContent = ({
   if (itemType === 'estimate') {
     subject = `Estimate`;
     itemTemplate = 'estimate.pug';
-    let expirationDate = moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow();
+    let expirationDate = item.ExpirationDate ? moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow() : null;
     let expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
     emailContext.mainContent = `As promised, here's the estimate ${projectName ? `for ${projectName}` : 'you requested'}. You can view it by clicking the button below.${expirationDate ? ` Please note that it expires ${expirationDate} (${expirationDateFormatted}).` : ''}`;
   }else{
