@@ -13,7 +13,7 @@
   /* primary, secondary... */
   --primaryColor: #001C9B;
   --errorColor: #A40000;
-  --linkColor: color(blue hue(-50, +61, +92));
+  --linkColor: #3D89D4;
   /* fonts */
   --primaryFont: 'Whitney';
   --secondaryFont: 'Scandia';
