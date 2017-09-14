@@ -6,7 +6,7 @@
 
 .header {
   composes: globalHeader;
-  color: white;
+  color: black;
 }
 
 .title {

@@ -13,15 +13,16 @@
     text-transform: uppercase;
     margin: rem(10) 0;
     color: inherit;
-    font-size: rem(26);
-    line-height: rem(26);
+    font-size: rem(24);
+    line-height: rem(24);
+    font-weight: 600;
   }
   &:after{
     content: '';
     position: absolute;
     bottom: 0;
     color: inherit;
-    height: rem(5);
+    height: rem(4);
     width: 100%;
     background: linear-gradient(90deg, currentColor, var(--curious-blue));
   }

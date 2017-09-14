@@ -5,5 +5,5 @@
 
 .quote {
   composes: globalContainer;
-  margin-top: rem(30);
+  margin-bottom: rem(30);
 }

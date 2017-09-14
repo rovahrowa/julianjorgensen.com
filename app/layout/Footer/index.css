@@ -23,7 +23,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 0;
+  padding: rem(40) 0;
   & .navItems {
     display: flex;
     flex-wrap: wrap;
@@ -34,8 +34,8 @@
     & .navItem {
       color: white;
       text-decoration: none;
-      padding: 0 10px;
-      line-height: 30px;
+      padding: 0 rem(10);
+      line-height: rem(30);
     }
   }
 }
@@ -45,20 +45,21 @@
 }
 
 .credit {
+  position: relative;
   text-align: center;
-  margin-top: 40px;
-  margin-bottom: 60px;
+  top: rem(-100);
+  margin-bottom: rem(80);
   color: white;
   & .slogan {
-    margin-bottom: 20px;
-    font-size: 14px;
+    margin-bottom: rem(20);
+    font-size: rem(14);
     font-style: italic;
   }
   & .signature {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: rem(18);
     text-transform: uppercase;
     font-weight: bold;
     font-style: italic;

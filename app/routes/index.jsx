@@ -13,7 +13,7 @@ import {
 } from 'react-redux';
 import {
   ParallaxController
-} from 'react-scroll-parallax';
+} from 'lib/react-scroll-parallax';
 ParallaxController.init();
 
 import DocumentMeta from 'react-document-meta';

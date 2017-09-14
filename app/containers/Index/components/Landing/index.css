@@ -5,9 +5,10 @@
     height: inherit;
     width: 50%;
     top: rem(-100);
-    border-bottom: rem(100) solid white;
-    border-left-style: solid;
+    border-bottom-width: rem(100);
+    border-bottom-style: solid;
     border-right-style: solid;
+    border-left-style: solid;
     border-left-color: transparent;
     border-right-color: transparent;
   }
@@ -20,9 +21,11 @@
   align-items: center;
   justify-content: center;
   background-color: #c0c0c0;
+  background: url('/images/landing-placeholder-dark.jpg') center center no-repeat;
   text-align: center;
   height: 100vh;
   width: 100%;
+  color: white;
 }
 
 .videoPlayer{
@@ -34,23 +37,36 @@
   height: 100vh !important;
 }
 
-.footer{
+.footer,
+.preFooter{
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: rem(80);
   background-color: white;
-  &:before{
+  &:before,
+  &:after{
     @apply --footer-triangle;
+    border-bottom-color: white;    
+  }
+  &:before{
     left: 0;
     border-left-width: 0;
     border-right-width: 50vw;
   }
   &:after{
-    @apply --footer-triangle;
     right: 0;
     border-left-width: 50vw;
     border-right-width: rem(0);
   }
+}
+
+.preFooter{
+  bottom: rem(25);
+  background-color: gray(90%);
+  &:before,
+  &:after{
+    border-bottom-color: gray(90%);
+  }  
 }

@@ -4,7 +4,30 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Parallax } from 'react-scroll-parallax';
 import Button from 'components/Button';
 
+import CodeBasedDesignIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/code-based-design.svg';
+import CMSIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/cms-icon.svg';
+import AutomationIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/automation.svg';
+
 import styles from './index.css';
+
+let items = [
+  {
+    title: 'Scalable',
+    icon: <div className={styles.scalableIcon}></div>
+  },
+  {
+    title: 'API integrations',
+    icon: <CodeBasedDesignIcon className={styles.boxIcon} />
+  },
+  {
+    title: 'Automation',
+    icon: <AutomationIcon className={styles.boxIcon} />
+  },
+  {
+    title: 'Cloud based CMS',
+    icon: <CMSIcon className={styles.boxIcon} />
+  }
+];
 
 export default class HomeFullStack extends React.Component{
   render() {
@@ -17,7 +40,7 @@ export default class HomeFullStack extends React.Component{
             slowerScrollRate
             tag="div"
         >
-          <img src='/images/code-bg.jpg' />
+          <img src='/images/code-bg.jpg' className={styles.codeBg} />
         </Parallax>
 
         <div className={styles.container}>
@@ -32,18 +55,18 @@ export default class HomeFullStack extends React.Component{
           </div>
 
           <Row>
-            <Col xs={6} md={3}>
-              <div className={styles.box}>Scalable</div>
-            </Col>
-            <Col xs={6} md={3}>
-              <div className={styles.box}>API integrations</div>
-            </Col>
-            <Col xs={6} md={3}>
-              <div className={styles.box}>Automation</div>
-            </Col>
-            <Col xs={6} md={3}>
-              <div className={styles.box}>The future of CMS: Cloud based API</div>
-            </Col>
+          {
+            items.map((item, i) => {
+              return (
+                <Col key={i} xs={6} md={3}>
+                  <div className={styles.box}>
+                    {item.icon}
+                  </div>
+                  <div className={styles.boxLabel}>{item.title}</div>
+                </Col>  
+              )
+            })
+          }
           </Row>
         </div>
       </div>

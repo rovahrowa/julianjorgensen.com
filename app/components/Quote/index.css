@@ -6,6 +6,7 @@
 }
 
 .quote{
+  display: block;
   font-size: rem(30);
   line-height: rem(34);
   text-align: center;

@@ -2,6 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import styles from './index.css';
 import { Link } from 'react-router-dom';
+import { Parallax } from 'lib/react-scroll-parallax';
 
 const Quote = ({ className, body, quoteClassName, avatarUrl, avatarClassName, authorClassName, author, authorTitle, href, ...others }) => {
   const _className = cn(className, styles.container);
@@ -20,11 +21,17 @@ const Quote = ({ className, body, quoteClassName, avatarUrl, avatarClassName, au
   )
 
   return (
-    <div className={_className}>
+    <Parallax
+      offsetYMin={-10}
+      offsetYMax={20}
+      fadeSpeed={1.4}
+      tag="div"
+      className={_className}
+    >
       <q className={_quoteClassName}>{body}</q>
 
       { href === undefined ? Author : <Link to={href}>{Author}</Link> }
-    </div>
+    </Parallax>
   )
 }
 

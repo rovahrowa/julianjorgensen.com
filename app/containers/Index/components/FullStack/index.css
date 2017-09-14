@@ -27,5 +27,41 @@
 }
 
 .box {
-  composes: globalBox;
+  composes: globalBox transparent;
+}  
+
+.boxLabel{
+  composes: globalBoxLabel transparent;
+  color: white;
+}  
+
+.codeBg{
+  transform: rotate(20deg);
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes scaleAnimation {
+  0%   { 
+    opacity:1;
+    transform: scale(1);
+    background-color: gray(20%);
+  }
+  50%  { 
+    opacity:0.6; 
+    transform: scale(1.3);
+    background-color: gray(60%);
+  }
+  100% { 
+    opacity:1; 
+    transform: scale(1);
+    background-color: gray(20%);
+  }
+}  
+
+.scalableIcon{
+  background-color: gray(20%);
+  width: rem(70);
+  height: rem(70);
+  animation: scaleAnimation 6s infinite;
 }

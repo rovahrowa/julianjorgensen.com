@@ -30,8 +30,8 @@ export default class Index extends React.Component {
           avatarUrl='images/mark-fromson.png'
           className={styles.quote}
         />
-        <FullStack />
         <FrontEnd />
+        <FullStack />
         <Ux />
         <Automation />
       </div>

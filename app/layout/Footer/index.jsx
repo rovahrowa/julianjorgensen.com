@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logo from 'components/Logo';
-import { Parallax } from 'react-scroll-parallax';
+import { Parallax } from 'lib/react-scroll-parallax';
 
 import SocialIcons from 'components/SocialIcons';
 
@@ -57,9 +57,9 @@ export default class Footer extends React.Component {
 
         <Parallax
             className={styles.credit}
-            offsetYMax={1800}
-            offsetYMin={-400}
-            slowerScrollRate
+            offsetYMax={0}
+            offsetYMin={800}
+            fadeSpeed={1.6}
             tag="div"
         >
           <div className={styles.slogan}>Life's Good</div>

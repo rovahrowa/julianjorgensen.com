@@ -32,7 +32,7 @@ let sendEstimateConfirmation = function(body) {
         name: name,
         address: email
       }], // An array if you have multiple recipients.
-      subject: 'Your project',
+      subject: projectName ? projectName : 'Your project',
       template: {
         name: './admin/emails/templates/estimateConfirmation.pug',
         engine: 'pug',

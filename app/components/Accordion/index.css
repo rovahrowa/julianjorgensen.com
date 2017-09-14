@@ -1,9 +1,23 @@
 .item{
   cursor: pointer;
   padding: rem(14) rem(10);
+  padding-left: 0;
   border-bottom: 1px solid gray(70%, 50%);
+  transition: padding-left 0.2s;
   &:last-child{
     border-bottom: none;
+  }
+}
+
+.active{
+  background-color: gray(95%);
+  padding-left: rem(10);
+  & .title{
+    margin-bottom: rem(8);
+    opacity: 0.6;
+  }
+  & .title:after{
+    transform: rotate(45deg);
   }
 }
 
@@ -19,15 +33,5 @@
     right: 0;
     transition: all 0.2s;
     font-size: rem(20);
-  }
-}
-
-.active{
-  background-color: gray(95%);
-  & .title{
-    margin-bottom: rem(8);
-  }
-  & .title:after{
-    transform: rotate(45deg);
   }
 }

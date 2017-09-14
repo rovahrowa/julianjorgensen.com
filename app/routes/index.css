@@ -26,7 +26,7 @@
   left: 0;
   width: 100%;
   background: #f3f3f3;
-  background: linear-gradient(to bottom, gray(98%), gray(50%));
+  background: linear-gradient(to bottom, white rem(1000), gray(50%));
   /*&,
   & > div{
     display: flex;
