@@ -22,7 +22,7 @@ let prepareContent = ({
   let itemAmount = numeral(item.Balance).format('$0,0.00');
   let currency = item.CurrencyRef.value;
   let itemDueDate = item.DueDate;
-  let itemDueDateFormatted = moment(item.DueDate, 'YYYY-MM-DD').format('MMMM Do YYYY');
+  let itemDueDateFormatted = moment(item.DueDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
   let customerIsActive = customer.Active;
   let customerName = customer.GivenName;
   let companyName = customer.CompanyName;
@@ -64,7 +64,8 @@ let prepareContent = ({
     itemDueDateFormatted,
     currency,
     customerName,
-    companyName
+    companyName,
+    projectName
   };
 
   console.log('emailContext', emailContext);
@@ -75,10 +76,7 @@ let prepareContent = ({
       subject = `Estimate`;
       itemTemplate = 'estimate.pug';
       emailContext.expirationDate = moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow();
-      console.log('expiration date: ', item.ExpirationDate);
-      emailContext.expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('MMMM Do YYYY');
-      console.log('expiration date formatted: ', emailContext.expirationDateFormatted);
-      console.log('expiration date formatted2: ', moment(item.ExpirationDate, 'YYYY-MM-DD').format('DD-MM-YYYY'));
+      emailContext.expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
       break;
     case 'reminder':
       subject = `Invoice reminder`;
