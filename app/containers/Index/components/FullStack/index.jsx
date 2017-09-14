@@ -33,16 +33,16 @@ export default class HomeFullStack extends React.Component{
 
           <Row>
             <Col xs={6} md={3}>
-              <div className={styles.box}>Web Architecture</div>
+              <div className={styles.box}>Scalable</div>
             </Col>
             <Col xs={6} md={3}>
-              <div className={styles.box}>UX Development</div>
+              <div className={styles.box}>API integrations</div>
             </Col>
             <Col xs={6} md={3}>
-              <div className={styles.box}>Interface Design</div>
+              <div className={styles.box}>Automation</div>
             </Col>
             <Col xs={6} md={3}>
-              <div className={styles.box}>Prototyping</div>
+              <div className={styles.box}>The future of CMS: Cloud based API</div>
             </Col>
           </Row>
         </div>

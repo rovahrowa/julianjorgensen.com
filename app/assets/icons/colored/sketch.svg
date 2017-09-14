@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="117px" height="99px" viewBox="0 0 117 99" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>diamond</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Homepage---below-fold" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-545.000000, -1598.000000)">
+            <g id="Group-27" transform="translate(267.000000, 1484.000000)">
+                <g id="diamond" transform="translate(278.000000, 114.000000)">
+                    <g id="Layer_1">
+                        <polygon id="Shape" fill="#FFE182" points="82.2951035 30.274333 58.5 98.5229004 117 30.274333"></polygon>
+                        <g id="Group" fill="#FFCD73">
+                            <polygon id="Shape" points="24.2068887 0.164630813 0 30.274333 34.7048965 30.274333"></polygon>
+                            <polygon id="Shape" points="82.2951035 30.274333 117 30.274333 92.7931113 0.164630813"></polygon>
+                            <polygon id="Shape" points="82.2951035 30.274333 58.5 0.164630813 34.7048965 30.274333"></polygon>
+                        </g>
+                        <polygon id="Shape" fill="#FFAA64" points="58.5 0.164630813 24.2068887 0.164630813 34.7048965 30.274333"></polygon>
+                        <polygon id="Shape" fill="#FFE182" points="92.7931113 0.164630813 58.5 0.164630813 82.2951035 30.274333"></polygon>
+                        <polygon id="Shape" fill="#FFAA64" points="34.7048965 30.274333 58.5 98.5229004 82.2951035 30.274333"></polygon>
+                        <polygon id="Shape" fill="#FF8C5A" points="0 30.274333 58.5 98.5229004 34.7048965 30.274333"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

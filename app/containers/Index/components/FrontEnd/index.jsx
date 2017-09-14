@@ -5,6 +5,8 @@ import Button from 'components/Button';
 
 import styles from './index.css';
 
+import CodeBasedDesignIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/code-based-design.svg';
+
 export default class HomeFrontEnd extends React.Component{
   render() {
     return (
@@ -21,16 +23,28 @@ export default class HomeFrontEnd extends React.Component{
 
         <Row>
           <Col xs={6} md={3}>
-            <div className={styles.box}>Web Architecture</div>
+            <div className={styles.box}>
+              <CodeBasedDesignIcon className={styles.boxIcon} />
+            </div>
+            <div className={styles.boxLabel}>Code-based design</div>
           </Col>
           <Col xs={6} md={3}>
-            <div className={styles.box}>UX Development</div>
+            <div className={styles.box}>
+              <CodeBasedDesignIcon className={styles.boxIcon} />
+            </div>
+            <div className={styles.boxLabel}>Animations</div>
           </Col>
           <Col xs={6} md={3}>
-            <div className={styles.box}>Interface Design</div>
+            <div className={styles.box}>
+              <CodeBasedDesignIcon className={styles.boxIcon} />
+            </div>
+            <div className={styles.boxLabel}>Ultra fast</div>
           </Col>
           <Col xs={6} md={3}>
-            <div className={styles.box}>Prototyping</div>
+            <div className={styles.box}>
+              <CodeBasedDesignIcon className={styles.boxIcon} />
+            </div>
+            <div className={styles.boxLabel}>Optimized for everybody</div>
           </Col>
         </Row>
       </div>

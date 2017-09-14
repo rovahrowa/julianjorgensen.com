@@ -6,7 +6,7 @@
 
 .header {
   composes: globalHeader;
-  color: var(--purple);
+  color: white;
 }
 
 .title {
@@ -15,4 +15,8 @@
 
 .box {
   composes: globalBox;
-}
+}  
+
+.boxLabel{
+  composes: globalBoxLabel;  
+}  

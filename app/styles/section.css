@@ -27,7 +27,24 @@
   }
 }
 
+
 .globalBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: gray(90%);
   padding: rem(20);
+  height: rem(180);
+  &.transparent{
+    background-color: transparent;
+  }
+}  
+
+.globalBoxLabel{
+  background-color: gray(98%);  
+  text-align: center;
+  padding: rem(20);
+  &.transparent{
+    background-color: transparent;
+  }  
 }
