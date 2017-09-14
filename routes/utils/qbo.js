@@ -55,6 +55,8 @@ function mailItem({
       }).catch((err) => {
         reject(`Error sending billing item #${Item.DocNumber}...`);
       });
+    } else {
+      reject();
     }
   });
 };

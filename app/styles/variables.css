@@ -1,4 +1,5 @@
 :root {
+  /* colors */
   --purple: #451989;
   --lavender: #9442EE;
   --blue: #001C9B;
@@ -9,9 +10,12 @@
   --mystic: #DFE9F0;
   --gamboge: #EF9915;
   --brightSun: #FCCF3B;
+  /* primary, secondary... */
+  --primaryColor: #001C9B;
+  --errorColor: #A40000;
+  /* fonts */
   --primaryFont: 'Whitney';
   --secondaryFont: 'Scandia';
-  --errorColor: #A40000;
 }
 
 :root {
