@@ -147,6 +147,7 @@ export default class CreditCardForm extends React.Component {
           >
             Pay {item.currency} {numeral(item.balance).format('$0,0.00')}
           </Button>
+          <small className={styles.securityNote}>Protected by bank-level security using Stripe.</small>
 
           {error ?
             <div className={styles.error}>

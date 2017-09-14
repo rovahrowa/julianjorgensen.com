@@ -59,3 +59,10 @@
     }
   }
 }
+
+.securityNote{
+  display: block;
+  text-align: center;
+  margin-top: rem(15);
+  color: gray(40%);
+}
