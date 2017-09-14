@@ -1,5 +1,7 @@
 let util = require('../../../../util/util');
+let ENV_CONFIG = util.getEnvConfig();
 let numeral = require('numeral');
+let _ = require('lodash');
 let moment = require('moment');
 
 let prepareContent = ({
@@ -24,6 +26,13 @@ let prepareContent = ({
   let customerIsActive = customer.Active;
   let customerName = customer.GivenName;
   let companyName = customer.CompanyName;
+
+  // get project name
+  let projectNameObj = _.find(item.CustomField, {
+    'Name': ENV_CONFIG.QBO_PROJECT_NAME_LABEL
+  });
+  let projectName = projectNameObj ? projectNameObj.StringValue : null;
+
 
   // if item has an email then use that, otherwise use the email(s) associated with the customer
   let email;
