@@ -29,7 +29,7 @@ export default class CreditCardForm extends React.Component {
       error: false
     });
 
-    let { invoice, customer } = this.props;
+    let { item, customer } = this.props;
     let { name } = this.state;
 
     this.props.stripe.createToken({
@@ -48,14 +48,14 @@ export default class CreditCardForm extends React.Component {
   }
 
   createCharge = (token) => {
-    let { invoice, customer } = this.props;
+    let { item, customer } = this.props;
 
     axios.post('/api/stripe/charge', {
-      invoiceId: invoice.id,
-      invoiceNumber: invoice.number,
-      email: invoice.email,
-      currency: invoice.currency,
-      amount: invoice.balance,
+      invoiceId: item.id,
+      invoiceNumber: item.number,
+      email: item.email,
+      currency: item.currency,
+      amount: item.balance,
       stripeToken: token.id
     })
     .then((response) => {
@@ -86,7 +86,7 @@ export default class CreditCardForm extends React.Component {
   }
 
   componentWillMount() {
-    let { customer, invoice } = this.props;
+    let { customer, item } = this.props;
     let customerAddress, customerName;
 
     // if (customer.BillAddr) {
@@ -108,7 +108,7 @@ export default class CreditCardForm extends React.Component {
 
   render() {
     let { error } = this.state;
-    let { customer, invoice } = this.props;
+    let { customer, item } = this.props;
 
     return (
       <div className={styles.container}>
@@ -145,7 +145,7 @@ export default class CreditCardForm extends React.Component {
             primary
             className={styles.submit}
           >
-            Pay {invoice.currency} {numeral(invoice.balance).format('$0,0.00')}
+            Pay {item.currency} {numeral(item.balance).format('$0,0.00')}
           </Button>
 
           {error ?

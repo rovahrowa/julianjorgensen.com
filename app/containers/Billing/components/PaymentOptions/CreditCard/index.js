@@ -19,7 +19,6 @@ export default class CreditCard extends React.Component {
   }
 
   render() {
-    let { invoice, customer, markAsPaid } = this.props;
     let { stripeLoaded } = this.state;
 
     return (
@@ -30,11 +29,7 @@ export default class CreditCard extends React.Component {
               family: 'ScandiaWeb-Regular',
               src: `url(${ScandiaWebRegular})`
             }]}>
-              <Form
-                invoice={invoice}
-                customer={customer}
-                markAsPaid={markAsPaid}
-              />
+              <Form {...this.props} />
             </Elements>
           </StripeProvider> : ''
         }

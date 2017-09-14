@@ -98,7 +98,7 @@ export default class Routes extends React.Component {
       direction: null
     }
 
-    this.routesContainer = null;
+    this.updateRoutesContainer = this.updateRoutesContainer.bind(this);
   }
 
   getDirection = (prevPage) => {
@@ -140,11 +140,13 @@ export default class Routes extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      this.onRouteChanged();
-
-      this.getDirection(prevProps.location.pathname);
+  updateRoutesContainer = () => {
+    const routesContainerHeight = document.getElementById('routesContainer').clientHeight;
+    console.log('updating content height based on routescontainer height', routesContainerHeight);
+    if (routesContainerHeight) {
+      this.setState({
+        contentHeight: routesContainerHeight
+      });
     }
   }
 
@@ -153,15 +155,19 @@ export default class Routes extends React.Component {
     // logPageView(location);
 
     // scroll to top when changing page
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
+
+    // update routes container
+    this.updateRoutesContainer();
   }
 
-  updateRoutesContainer = () => {
-    console.log('updating content height based on routescontainer ref', this.routesContainer);
-    this.setState({
-      contentHeight: this.routesContainer.clientHeight
-    });
-  };
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+
+      this.getDirection(prevProps.location.pathname);
+    }
+  }
 
   componentDidMount() {
     this.updateRoutesContainer();
@@ -188,19 +194,19 @@ export default class Routes extends React.Component {
         <Layout>
           <TransitionGroup component="main" className={styles.animatedRoutes} style={{height: this.state.contentHeight}}>
             <CSSTransition key={currentKey} timeout={timeout} classNames={this.getAnimationClasses()}>
-              <div className={styles.animatedRoutesInner} ref={(el) => { this.routesContainer = el; }}>
+              <div className={styles.animatedRoutesInner} id='routesContainer'>
                 <Switch location={location}>
-                  <Route path="/" exact component={Index} />
-                  <Route path="/fullstack" component={FullStack} />
-                  <Route path="/frontend" component={FrontEnd} />
-                  <Route path="/ux" component={Ux} />
-                  <Route path="/automation" component={Automation} />
-                  <Route path="/portfolio" component={Portfolio} />
-                  <Route path="/about" component={About} />
+                  <Route path='/' exact render={(props)=><Index {...props} onLoaded={this.updateRoutesContainer} />} />                  
+                  <Route path='/fullstack' render={(props)=><FullStack {...props} onLoaded={this.updateRoutesContainer} />} />                  
+                  <Route path='/frontend' render={(props)=><FrontEnd {...props} onLoaded={this.updateRoutesContainer} />} />                  
+                  <Route path='/ux' render={(props)=><Ux {...props} onLoaded={this.updateRoutesContainer} />} />
+                  <Route path='/automation' render={(props)=><Automation {...props} onLoaded={this.updateRoutesContainer} />} /> 
+                  <Route path='/portfolio' render={(props)=><Portfolio {...props} onLoaded={this.updateRoutesContainer} />} />
+                  <Route path='/about' render={(props)=><About {...props} onLoaded={this.updateRoutesContainer} />} />
                   <Route path='/invoice/:id/:token' render={(props)=><Invoice {...props} onLoaded={this.updateRoutesContainer} />} />
                   <Route path="/estimate/:id/:token" render={(props)=><Estimate {...props} onLoaded={this.updateRoutesContainer} />} />
-                  <Route path="/p/:prospectName/:proposalId" component={Proposal} />
-                  <Route path="/p/:prospectName/:proposalId?env=:environment" component={Proposal} />
+                  <Route path="/p/:prospectName/:proposalId" render={(props)=><Proposal {...props} onLoaded={this.updateRoutesContainer} />} />
+                  <Route path="/p/:prospectName/:proposalId?env=:environment" render={(props)=><Proposal {...props} onLoaded={this.updateRoutesContainer} />} />
                 </Switch>
 
                 <EstimateForm show={currentKey !== 'invoice' && currentKey !== 'estimate'} />

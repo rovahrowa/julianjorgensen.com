@@ -24,7 +24,7 @@ export default class PaymentOptions extends React.Component {
 
 
   render() {
-    let { invoice, customer, paid, markAsPaid } = this.props;
+    let { paid } = this.props;
 
     if (paid) {
       return (
@@ -40,21 +40,13 @@ export default class PaymentOptions extends React.Component {
       <div className={styles.container} id='pay'>
         <Tabs index={this.state.fixedIndex} theme={styles} onChange={this.handleTabChange} fixed>
           <Tab label='Credit Card'>
-            <CreditCard
-              invoice={invoice}
-              customer={customer}
-              markAsPaid={markAsPaid}
-            />
+            <CreditCard {...this.props} />
           </Tab>
           <Tab label='Bank Transfer'>
             <BankTransfer />
           </Tab>
           <Tab label='PayPal'>
-            <PayPal
-              invoice={invoice}
-              customer={customer}
-              markAsPaid={markAsPaid}
-            />
+            <PayPal {...this.props}/>
           </Tab>
           <Tab label='Cheque'>
             <Cheque />

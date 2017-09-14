@@ -14,8 +14,8 @@ import Ux from './components/Ux';
 import Automation from './components/Automation';
 
 export default class Index extends React.Component {
-  constructor() {
-    super();
+  componentDidMount() {
+    // this.props.onLoaded;
   }
 
   render() {

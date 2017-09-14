@@ -39,6 +39,7 @@
   }
   & .carousel {
     width: 50%;
+    min-height: rem(400);
     & .slide {
       height: rem(200);
       & .slideLabel {

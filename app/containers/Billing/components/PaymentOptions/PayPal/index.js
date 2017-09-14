@@ -28,7 +28,7 @@ export default class PayPal extends React.Component {
   }
 
   render() {
-    let { invoice, customer } = this.props;
+    let { item, customer } = this.props;
     let { error } = this.state;
 
     const client = {
@@ -41,8 +41,8 @@ export default class PayPal extends React.Component {
         <PaypalExpressBtn
           env={ENV_CONFIG.ENV === 'production' ? 'production' : 'sandbox'}
           client={client}
-          currency={invoice.currency}
-          total={invoice.balance}
+          currency={item.currency}
+          total={item.balance}
           onError={this.onError}
           onSuccess={this.onSuccess}
           onCancel={this.onCancel}

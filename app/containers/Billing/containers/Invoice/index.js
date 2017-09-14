@@ -19,7 +19,7 @@ export default class Invoice extends React.Component {
   }
 
   componentDidMount() {
-    // Retrieve item data
+    // Retrieve invoice data
     let id = this.props.match.params.id;
     let token = this.props.match.params.token;
 

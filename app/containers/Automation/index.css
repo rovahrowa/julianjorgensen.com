@@ -6,3 +6,7 @@
 .container {
   composes: globalContainer withPaddings white;
 }
+
+.carousel{
+  min-height: rem(400);
+}
