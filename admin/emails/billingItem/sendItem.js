@@ -10,16 +10,8 @@ let sendItem = function(preparedMailContent) {
         preparedMailContent.to = preparedMailContent.from;
       }
 
-      console.log('itemRef from sendItem.js', preparedMailContent.itemRef);
-
-      let {
-        itemRef,
-        itemType
-      } = preparedMailContent;
-
       sendMail(preparedMailContent).then(() => {
-        console.log('sent! now resolving', itemType);
-        resolve(preparedMailContent); // pass the data so we can update item
+        resolve('sent billingItem email to ', recipientType); // pass the data so we can update item
       }).catch((err) => {
         console.log('Error: Something went wrong when sending the item email...', err);
       });
@@ -28,8 +20,12 @@ let sendItem = function(preparedMailContent) {
     });
   });
 
-  return Promise.all(sendItemPromises).catch((err) => {
-    console.log(err);
+  return new Promise((resolve, reject) => {
+    return Promise.all(sendItemPromises).then(() => {
+      resolve(preparedMailContent);
+    }).catch((err) => {
+      console.log(err);
+    });
   });
 };
 

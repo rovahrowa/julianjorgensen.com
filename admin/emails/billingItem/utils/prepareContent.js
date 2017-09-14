@@ -69,7 +69,6 @@ let prepareContent = ({
       console.log('expiration date: ', item.ExpirationDate);
       emailContext.expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('mmmm dS, yyyy');
       console.log('expiration date formatted: ', emailContext.expirationDateFormatted);
-      console.log('expiration date formatted2: ', moment(item.ExpirationDate, 'YYYY-MM-DD').format('mmmm dS, yyyy'));
       break;
     case 'reminder':
       subject = `Invoice reminder`;
