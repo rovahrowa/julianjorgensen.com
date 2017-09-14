@@ -58,6 +58,8 @@ function mailItem({
     } else {
       resolve('Nothing to send');
     }
+  }).catch((err) => {
+    return err;
   });
 };
 module.exports.mailItem = mailItem;
