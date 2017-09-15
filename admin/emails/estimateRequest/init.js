@@ -8,8 +8,7 @@ let sendEstimateConfirmation = function(body) {
     let {
       name,
       email,
-      projectName,
-      projectWebsite,
+      project,
       notes
     } = body;
 
@@ -17,8 +16,7 @@ let sendEstimateConfirmation = function(body) {
       schemaAction: 'AskAction', //http://schema.org/
       emailSummary: 'Project discovery',
       name: name.split(' ')[0],
-      projectName: projectName,
-      projectWebsite: util.addHttp(projectWebsite),
+      project: project,
       notes: notes
     };
 
@@ -32,7 +30,7 @@ let sendEstimateConfirmation = function(body) {
         name: name,
         address: email
       }], // An array if you have multiple recipients.
-      subject: projectName ? projectName : 'Your project',
+      subject: project ? project : 'Your project',
       template: {
         name: './admin/emails/templates/estimateConfirmation.pug',
         engine: 'pug',
@@ -51,7 +49,7 @@ let sendEstimateConfirmation = function(body) {
         name: 'Julian Jorgensen',
         address: 'me@julianjorgensen.com'
       }], // An array if you have multiple recipients.
-      subject: projectName + ' estimate',
+      subject: project + ' estimate',
       template: {
         name: './admin/emails/templates/estimateRequest.pug',
         engine: 'pug',

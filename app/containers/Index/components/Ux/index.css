@@ -13,10 +13,37 @@
   composes: globalTitle;
 }
 
-.box {
-  composes: globalBox;
+.boxLabel{
+  composes: globalBoxLabel transparent;
+  opacity: 0;
+  &.show{
+    opacity: 1;
+    background-color: gray(85%); 
+  }
 }  
 
+.box {
+  composes: globalBox transparent;
+  &.show{
+    background-color: gray(80%);
+  }
+}
+
+.box,
 .boxLabel{
-  composes: globalBoxLabel;  
-}  
+  transition-property: background-color, opacity;
+  transition-duration: 0.2s;
+  transition-delay: 0s;
+  &.show{
+    transition-duration: 1.6s, 0.2s;
+    transition-delay: 1.2s, 0s;
+  }
+}
+
+.boxIcon{
+  opacity: 0;
+  transition: opacity 0.2s;
+  &.show{
+    opacity: 1;
+  }
+}

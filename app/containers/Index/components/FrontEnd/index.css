@@ -20,3 +20,7 @@
 .boxLabel{
   composes: globalBoxLabel;  
 }  
+
+.icon svg path{
+  fill: gray(40%);
+}

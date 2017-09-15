@@ -19,8 +19,7 @@ export default class EstimateForm extends React.Component {
     this.state = {
       name: '',
       email: '',
-      projectName: '',
-      projectWebsite: '',
+      project: '',
       notes: '',
       submitting: false,
       sent: false,
@@ -53,8 +52,7 @@ export default class EstimateForm extends React.Component {
     axios.post('/email/get-estimate', {
         name: this.state.name,
         email: this.state.email,
-        projectName: this.state.projectName,
-        projectWebsite: this.state.projectWebsite,
+        project: this.state.project,
         notes: this.state.notes
       })
       .then((response) => {
@@ -102,18 +100,10 @@ export default class EstimateForm extends React.Component {
 
               <Input
                 type='text'
-                label='Company/project name'
-                value={this.state.projectName}
+                label='Project name/website'
+                value={this.state.project}
                 required
-                onChange={this.handleChange.bind(this, 'projectName')}
-              />
-
-              <Input
-                type='text'
-                value={this.state.projectWebsite}
-                label='Company website'
-                required
-                onChange={this.handleChange.bind(this, 'projectWebsite')}
+                onChange={this.handleChange.bind(this, 'project')}
               />
 
               <Input
@@ -145,7 +135,7 @@ export default class EstimateForm extends React.Component {
     } else {
       return (
         <div className={styles.container}>
-          Thank you. {this.state.name.split(' ')[0]}, please take 5-10 minutes to <a href="https://goo.gl/forms/i8TwGVYpMkrrk5hj2" target="new">answer some questions about {this.state.projectName}</a>. It will help make the estimate more thorough.
+          Thank you. {this.state.name.split(' ')[0]}, please take 5-10 minutes to <a href="https://goo.gl/forms/i8TwGVYpMkrrk5hj2" target="new">answer some questions about {this.state.project}</a>. It will help make the estimate more thorough.
         </div>
       )
     }

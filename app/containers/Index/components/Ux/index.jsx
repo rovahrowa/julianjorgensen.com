@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Button from 'components/Button';
@@ -10,47 +11,92 @@ import PrototypingIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/p
 
 import styles from './index.css';
 
-export default class HomeUx extends React.Component{
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>User Experience</h2>
-          <Button
-            label='See more'
-            hollow
-            tiny
-            blue
-          />
-        </div>
+import drawFillSvg from 'lib/draw-fill-svg';
+import VisibilitySensor from 'react-visibility-sensor';
 
-        <Row>
-          <Col xs={6} md={3}>
-            <div className={styles.box}>
-              <WebArchitectureIcon className={styles.boxIcon} />
-            </div>
-            <div className={styles.boxLabel}>Web Architecture</div>
-          </Col>
-          <Col xs={6} md={3}>
-            <div className={styles.box}>
-              <UXIcon className={styles.boxIcon} />
-            </div>
-            <div className={styles.boxLabel}>UX Development</div>
-          </Col>
-          <Col xs={6} md={3}>
-            <div className={styles.box}>
-              <DesignIcon className={styles.boxIcon} />
-            </div>
-            <div className={styles.boxLabel}>Interface Design</div>
-          </Col>
-          <Col xs={6} md={3}>
-            <div className={styles.box}>
-              <PrototypingIcon className={styles.boxIcon} />
-            </div>
-            <div className={styles.boxLabel}>Prototyping</div>
-          </Col>
-        </Row>
-      </div>
+export default class HomeUx extends React.Component{
+  state = {
+    show: false
+  }
+
+  onVisibilityChange = (isVisible) => {
+    if (isVisible) {
+      this.animateSvgs();
+      this.setState({show:true});
+    }else{
+      this.setState({show:false});        
+    }
+    console.log('Element is now %s', isVisible ? 'visible' : 'hidden');
+  };
+
+  animateSvgs = () => {
+    let svgAnimation = new DrawFillSVG({
+      elementId: "svg"
+    });
+    let svgAnimation2 = new DrawFillSVG({
+      elementId: "svg2"
+    });
+    let svgAnimation3 = new DrawFillSVG({
+      elementId: "svg3"
+    });
+    let svgAnimation4 = new DrawFillSVG({
+      elementId: "svg4"
+    });  
+  };
+
+  render() {
+    const _box = cn(styles.box, {
+      [styles.show]: this.state.show
+    });
+    const _boxLabel = cn(styles.boxLabel, {
+      [styles.show]: this.state.show
+    });
+    const _boxIcon = cn(styles.boxIcon, {
+      [styles.show]: this.state.show
+    });
+  
+    return (
+      <VisibilitySensor partialVisibility={true} offset={{top: 140, bottom: 80}} onChange={this.onVisibilityChange}>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>User Experience</h2>
+            <Button
+              label='See more'
+              hollow
+              tiny
+              blue
+            />
+          </div>
+
+          <Row>
+            <Col xs={6} md={3}>
+              <div className={_box}>
+                <WebArchitectureIcon id="svg" className={_boxIcon} />
+              </div>
+              <div className={_boxLabel}>Web Architecture</div>
+            </Col>
+            <Col xs={6} md={3}>
+              <div className={_box}>
+                <UXIcon id="svg2" className={_boxIcon} />
+              </div>
+              <div className={_boxLabel}>UX Development</div>
+            </Col>
+            <Col xs={6} md={3}>
+              <div className={_box}>
+                <DesignIcon id="svg3" className={_boxIcon} />
+              </div>
+              <div className={_boxLabel}>Interface Design</div>
+            </Col>
+            <Col xs={6} md={3}>
+              <div className={_box}>
+                <PrototypingIcon id="svg4" className={_boxIcon} />
+              </div>
+              <div className={_boxLabel}>Prototyping</div>
+            </Col>
+          </Row>
+        </div>
+      </VisibilitySensor>
     )
   }
 }
+

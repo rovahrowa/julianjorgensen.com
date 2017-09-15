@@ -6,19 +6,26 @@ import Button from 'components/Button';
 import styles from './index.css';
 
 import CodeBasedDesignIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/code-based-design.svg';
+import FastIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/bolt.svg';
+import AnimationIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/braille.svg';
+import OptimizedIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/braille.svg';
 
 let items = [
   {
-    title: 'Code-based design'
+    title: 'Code-based design',
+    icon: <CodeBasedDesignIcon className={styles.boxIcon} />
   },
   {
-    title: 'Animations'
+    title: 'Animations',
+    icon: <AnimationIcon />
   },
   {
-    title: 'Ultra fast'
+    title: 'Lightning fast',
+    icon: <FastIcon />
   },
   {
-    title: 'Optimized for everybody'
+    title: 'Optimized for everybody',
+    icon: <OptimizedIcon />
   }
 ];
 
@@ -51,7 +58,7 @@ export default class HomeFrontEnd extends React.Component{
               tag="div"
             >
                 <div className={styles.box}>
-                    <CodeBasedDesignIcon className={styles.boxIcon} />
+                    <div className={styles.icon}>{item.icon}</div>
                   </div>
                   <div className={styles.boxLabel}>{item.title}</div>
                   </Parallax>        

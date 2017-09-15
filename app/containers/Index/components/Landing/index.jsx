@@ -4,6 +4,8 @@ import ReactPlayer from 'react-player';
 import Button from 'react-toolbox/lib/button';
 import styles from './index.css';
 
+import PlayIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/solid/play.svg';
+
 export default class HomeLanding extends React.Component{
   constructor(){
     super();
@@ -28,6 +30,10 @@ export default class HomeLanding extends React.Component{
 
         <div className={styles.preFooter}></div>
         <footer className={styles.footer}>
+          <div className={styles.watchVideo}>
+            <div className={styles.icon}><PlayIcon /></div>
+            <div className={styles.label}>Watch Video</div>
+          </div>
         </footer>
       </div>
     )

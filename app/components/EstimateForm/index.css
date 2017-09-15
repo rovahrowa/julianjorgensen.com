@@ -2,7 +2,7 @@
 .container {
   composes: globalContainer white center;
   padding-top: rem(100);
-  padding-bottom: rem(30);
+  padding-bottom: rem(60);
   position: relative;
   flex-direction: column;
 }
@@ -33,24 +33,25 @@
 }
 
 .helper {
-  margin-top: rem(60);
+  margin-top: rem(40);
   padding: rem(15);
   background-color: gray(98%);
+  width: rem(600);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   &,
   & a {
     color: gray(60%);
   }
-  & .helperHeadline {
-    margin-bottom: rem(10);
-  }
   & .helperMethod {
-    margin-bottom: rem(10);
+    margin-left: rem(25);
     display: flex;
     align-items: center;
   }
   & .icon {
-    width: rem(15);
-    margin-right: rem(15);
+    height: rem(18);
+    margin-right: rem(10);
     & path {
       fill: gray(60%);
     }

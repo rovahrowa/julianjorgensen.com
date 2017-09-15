@@ -4,8 +4,10 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Parallax } from 'react-scroll-parallax';
 import Button from 'components/Button';
 
-import CodeBasedDesignIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/code-based-design.svg';
-import CMSIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/cms-icon.svg';
+
+import ScaleIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/expand.svg';
+import APIIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/code.svg';
+import DatabaseIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/cms-icon.svg';
 import AutomationIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/automation.svg';
 
 import styles from './index.css';
@@ -13,19 +15,23 @@ import styles from './index.css';
 let items = [
   {
     title: 'Scalable',
-    icon: <div className={styles.scalableIcon}></div>
+    className: styles.scalable,
+    icon: <ScaleIcon />
   },
   {
     title: 'API integrations',
-    icon: <CodeBasedDesignIcon className={styles.boxIcon} />
+    className: styles.api,
+    icon: <APIIcon />
   },
   {
-    title: 'Automation',
-    icon: <AutomationIcon className={styles.boxIcon} />
+    title: 'Automations',
+    className: styles.automation,
+    icon: <AutomationIcon />
   },
   {
-    title: 'Cloud based CMS',
-    icon: <CMSIcon className={styles.boxIcon} />
+    title: 'Cloud-based Databases',
+    className: styles.database,
+    icon: <DatabaseIcon />
   }
 ];
 
@@ -58,9 +64,9 @@ export default class HomeFullStack extends React.Component{
           {
             items.map((item, i) => {
               return (
-                <Col key={i} xs={6} md={3}>
+                <Col key={i} xs={6} md={3} className={item.className}>
                   <div className={styles.box}>
-                    {item.icon}
+                    <div className={styles.icon}>{item.icon}</div>
                   </div>
                   <div className={styles.boxLabel}>{item.title}</div>
                 </Col>  

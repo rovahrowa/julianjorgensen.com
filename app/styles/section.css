@@ -39,6 +39,9 @@
   &.transparent{
     background-color: transparent;
   }
+  & svg{
+    height: rem(80);
+  }
 }  
 
 .globalBoxLabel{

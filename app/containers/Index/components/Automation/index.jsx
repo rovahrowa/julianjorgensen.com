@@ -24,23 +24,33 @@ export default class HomeAutomation extends React.Component{
 
         <div className={styles.body}>
           <div className={styles.hero}>
-            <h3 className={styles.heroHeader}>Are you ready for an automated future?</h3>
+            <h3 className={styles.heroHeader}>How much more could you automate?</h3>
           </div>
           <div className={styles.carousel}>
             <Carousel vertical slidesToShow={2} wrapAround={true} autoplay autoplayInterval={5000} >
               <Slide
-                label='Automate & Reduce costs'
+                label='Invoice automation'
                 labelClassName={styles.slideLabel}
                 className={styles.slide}
                 href='/automation'
               />
               <Slide
-                label='Automation makes everybody happy'
+                label='API automation'
                 labelClassName={styles.slideLabel}
                 className={styles.slide}
               />
               <Slide
-                label='Team Training'
+                label='Email automation'
+                labelClassName={styles.slideLabel}
+                className={styles.slide}
+              />
+              <Slide
+                label='Automated tests & QA'
+                labelClassName={styles.slideLabel}
+                className={styles.slide}
+              />
+              <Slide
+                label='Automated workflows'
                 labelClassName={styles.slideLabel}
                 className={styles.slide}
               />
