@@ -64,6 +64,13 @@
     font-weight: bold;
     font-style: italic;
   }
+  & .logo{
+    width: rem(25);
+    height: rem(25);
+    & g {
+      fill: white;
+    }
+  }  
 }
 
 @media print {

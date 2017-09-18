@@ -32,6 +32,9 @@
   & .link {
     color: black;
   }
+  & .logo g{
+    fill: black;
+  }
 }
 
 .nav {
@@ -55,12 +58,13 @@
 .link {
   color: #ffffff;
   text-decoration: none;
-  opacity: 0.7;
   font-family: var(--primaryFont);
   font-size: rem(18);
   font-weight: bold;
-  transition: opacity 0.2s;
   -webkit-font-smoothing: antialiased;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  &.active,
   &:hover {
     opacity: 1;
   }
@@ -70,11 +74,8 @@
 }
 
 .logo {
-  opacity: 0.7;
-  &.active,
-  &:hover {
-    opacity: 1;
-  }
+  height: rem(25);
+  width: rem(25);
 }
 
 .linkActive {

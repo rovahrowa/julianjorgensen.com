@@ -64,7 +64,7 @@ export default class Footer extends React.Component {
         >
           <div className={styles.slogan}>Impress your online audience</div>
           <div className={styles.signature}>
-            <Logo size={25} className={styles.logo} color='white' />
+            <Logo className={styles.logo} />
             <div>Julian Jorgensen</div>
           </div>
         </Parallax>

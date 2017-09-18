@@ -5,19 +5,12 @@ import LogoSVG from '-!svg-react-loader?name=Icon!assets/icons/julian-jorgensen-
 import styles from './index.css';
 
 const Logo = ({ className, color, size, ...others }) => {
-  const _className = cn(className, {
-    [styles.white]: color === 'white',
-    [styles.black]: color === 'black'
-  });
+  const _className = cn(className);
 
   return (
     <LogoSVG
       className={_className}
       {...others}
-      style={{
-        width: size,
-        height: size
-      }}
     />
   )
 };

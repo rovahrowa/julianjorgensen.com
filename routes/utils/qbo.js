@@ -44,7 +44,7 @@ function mailItem({
     console.log('last sent date', lastSentDate);
     console.log('send item?', !lastSentDate);
 
-    if (!lastSentDate) {
+    if (!lastSentDate && item.balance > 0) {
       // send the item
       billingItemMailer.send({
         id: item.Id,
