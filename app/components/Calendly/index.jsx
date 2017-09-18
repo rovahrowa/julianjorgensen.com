@@ -43,7 +43,6 @@ export default class Calendly extends React.Component{
           label='Schedule a free consultation'
           onClick={this.handleToggle}
           className={styles.ctaButton}
-          raised
         />
         <Dialog
           active={site.showScheduling}

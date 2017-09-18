@@ -49,5 +49,15 @@
         color: white;
       }
     }
+
+    & ul{
+      display: flex !important;
+      flex-direction: column !important;
+      top: auto !important;
+      padding-right: rem(10) !important;
+      & button{
+        line-height: rem(10) !important;
+      }
+    }
   }
 }

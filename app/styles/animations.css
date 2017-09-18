@@ -7,18 +7,18 @@
 
   & .fade-left-enter {
     opacity: 0;
-    transform: translate3d(-20%, 0, 0);
+    transform: translate3d(-10%, 0, 0);
     transition-property: all;
   }
 
   & .fade-left-enter-active {
-    transition-duration: 1000ms;
+    transition-duration: 0.5s;
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 
   & .fade-left-exit {
-    transition-duration: 800ms;
+    transition-duration: 0.5ms;
     opacity: 1;
   }
 
@@ -37,24 +37,24 @@
 
   & .fade-right-enter {
     opacity: 0;
-    transform: translate3d(5%, 0, 0);
+    transform: translate3d(30px, 0, 0);
     transition-property: all;
   }
 
   & .fade-right-enter-active {
-    transition-duration: 400ms;
+    transition-duration: 300ms;
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 
   & .fade-right-exit {
-    transition-duration: 400ms;
+    transition-duration: 300ms;
     opacity: 1;
     transform: translate3d(0%, 0, 0);
   }
 
   & .fade-right-exit-active {
     opacity: 0;
-    transform: translate3d(-10%, 0, 0);
+    transform: translate3d(-30px, 0, 0);
   }
 }

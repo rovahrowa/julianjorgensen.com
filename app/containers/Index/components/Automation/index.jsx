@@ -7,6 +7,10 @@ import Button from 'components/Button';
 import Slide from 'components/slide';
 import styles from './index.css';
 
+let carouselDecorators = Carousel.getDefaultProps().decorators.slice(2, 3);
+carouselDecorators[0].position = 'CenterRight';
+console.log('c decorators', carouselDecorators);
+
 export default class HomeAutomation extends React.Component{
   render() {
     return (
@@ -27,7 +31,7 @@ export default class HomeAutomation extends React.Component{
             <h3 className={styles.heroHeader}>How much more could you automate?</h3>
           </div>
           <div className={styles.carousel}>
-            <Carousel vertical slidesToShow={2} wrapAround={true} autoplay autoplayInterval={5000} >
+            <Carousel decorators={carouselDecorators} vertical slidesToShow={2} wrapAround={true} autoplay autoplayInterval={5000} >
               <Slide
                 label='Invoice automation'
                 labelClassName={styles.slideLabel}

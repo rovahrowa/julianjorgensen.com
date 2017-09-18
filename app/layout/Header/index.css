@@ -25,6 +25,14 @@
   }
 }
 
+.logo {
+  height: rem(25);
+  width: rem(25);
+  & g{
+    fill: white;
+  }
+}
+
 .dark {
   &.navDefault {
     background-color: rgba(255, 255, 255, 1);
@@ -64,18 +72,11 @@
   -webkit-font-smoothing: antialiased;
   opacity: 0.6;
   transition: opacity 0.2s;
+  cursor: pointer;
   &.active,
   &:hover {
     opacity: 1;
   }
-  &a {
-    cursor: pointer;
-  }
-}
-
-.logo {
-  height: rem(25);
-  width: rem(25);
 }
 
 .linkActive {
