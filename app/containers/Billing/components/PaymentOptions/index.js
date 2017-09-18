@@ -22,9 +22,15 @@ export default class PaymentOptions extends React.Component {
     });
   };
 
+  componentDidMount() {
+    let { metadata } = this.props.item;
+    if (metadata.defaultPayment) {
+      this.handleTabChange(metadata.defaultPayment);
+    }
+  };
 
   render() {
-    let { paid } = this.props;
+    let { paid, item } = this.props;
 
     if (paid) {
       return (

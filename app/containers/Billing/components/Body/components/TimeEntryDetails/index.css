@@ -11,14 +11,6 @@
   }
 }
 
-.projectName {
-  margin-bottom: rem(30);
-  & label {
-    display: block;
-    margin-right: rem(15);
-  }
-}
-
 .modal {
   height: rem(600);
   width: rem(1000) !important;

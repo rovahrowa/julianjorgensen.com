@@ -45,3 +45,11 @@
   width: 20%;
   text-align: right;
 }
+
+.projectName {
+  margin-bottom: rem(30);
+  & label {
+    display: block;
+    margin-right: rem(15);
+  }
+}

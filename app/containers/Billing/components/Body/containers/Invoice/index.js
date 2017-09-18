@@ -21,13 +21,21 @@ export default class InvoiceBody extends React.Component {
       paid
     } = this.props;
 
+    let renderStatus = () => {
+      if (paid) {
+        return `Thank you for your payment ${item.paidDate ? `on ${moment(item.paidDate, 'DD-MM-YYYY').format('MMMM Do YYYY')}` : ''}`;
+       } else {
+        return `${numeral(item.balance).format('$0,0.00')} is due on ${moment(item.dueDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}`;
+       }
+    };
+
     return (
       <div className={sharedStyles.wrapper}>
         <div className={sharedStyles.id}><label>Invoice</label>{item.number}</div>
 
         <div className={sharedStyles.body}>
           <div className={sharedStyles.status}>
-            {paid ? `Thank you for your payment on ${moment(item.paidDate, 'DD-MM-YYYY').format('MMMM Do YYYY')}` : `${numeral(item.balance).format('$0,0.00')} is due on ${moment(item.dueDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}`}
+            {renderStatus()}
           </div>
 
           <div className={sharedStyles.note}>&nbsp;</div>

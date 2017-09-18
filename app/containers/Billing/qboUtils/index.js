@@ -33,13 +33,15 @@ export function getItem(type, id, token) {
         let projectName = projectNameObj ? projectNameObj.StringValue : null;
 
         let notes;
-        let report;
+        let metadata = {};
         if (payload.item.CustomerMemo) {
           let memo = payload.item.CustomerMemo.value;
-          notes = memo.split('metadata')[0] || '';
-          report = memo.split('metadata')[1] ? memo.split('metadata')[1].split('report=')[1] : '';
+          let curlyBracesRegEx = / *\{[^]*\} */g;
+          notes = memo.replace(curlyBracesRegEx, '');
+          
+          metadata = memo.match(curlyBracesRegEx) ? JSON.parse(memo.match(curlyBracesRegEx)[0]) : {};
         }
-
+        
         let discountObj = _.find(payload.item.Line, {
           'DetailType': 'DiscountLineDetail'
         });
@@ -61,14 +63,14 @@ export function getItem(type, id, token) {
           amount: payload.item.TotalAmt || 0,
           deposit: payload.item.Deposit || 0,
           balance: payload.item.Balance || 0,
-          email: email,
+          email,
           currency: payload.item.CurrencyRef.value || '',
-          paid: paidDate ? true : false,
-          paidDate: paidDate,
-          projectName: projectName,
+          paid: paidDate || (payload.item.Balance <= 0) ? true : false,
+          paidDate,
+          projectName,
           items: payload.item.Line || [],
-          notes: notes,
-          report: report,
+          notes,
+          metadata,
           customFields: payload.item.CustomField || [],
           // additional fields specifically for estimates
           status: payload.item.TxnStatus || '',

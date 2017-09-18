@@ -3,6 +3,8 @@
   & body {
     margin: 0;
     scroll-behavior: smooth;
+    background: #f3f3f3;
+    background: linear-gradient(to bottom, gray(96%), gray(70%));
   }
   & div {
     /*box-sizing: border-box;*/

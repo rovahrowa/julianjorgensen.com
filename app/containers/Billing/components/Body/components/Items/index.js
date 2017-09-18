@@ -13,6 +13,13 @@ export default class BillingItems extends React.Component {
 
     return (
       <div className={styles.container}>
+        {item.projectName ?
+          <div className={styles.projectName}>
+            <label>Project name</label>
+            <div>{item.projectName}</div>
+          </div>
+        : ''}
+
         <header className={styles.header}>
           <div className={styles.description}>
             <label>Description</label>

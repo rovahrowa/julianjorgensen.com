@@ -5,7 +5,7 @@ import cn from 'classnames';
 import RTButton from 'react-toolbox/lib/button';
 import styles from './index.css';
 
-const Button = ({ className, white, hollow, primary, blue, small, tiny, theme, href, ...others }) => {
+const Button = ({ className, white, hollow, primary, blue, small, tiny, theme, target, href, ...others }) => {
   const _className = cn(className, styles.custom, {
     [styles.white]: white,
     [styles.hollow]: hollow,
@@ -20,7 +20,7 @@ const Button = ({ className, white, hollow, primary, blue, small, tiny, theme, h
   }
 
   return (
-    <HashLink to={href}>
+    <HashLink to={href} target={target}>
       <RTButton className={_className} theme={styles} {...others}/>
     </HashLink>
   )

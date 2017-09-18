@@ -62,7 +62,7 @@ export default class Footer extends React.Component {
             fadeSpeed={1.6}
             tag="div"
         >
-          <div className={styles.slogan}>Life's Good</div>
+          <div className={styles.slogan}>Impress your online audience</div>
           <div className={styles.signature}>
             <Logo size={25} className={styles.logo} color='white' />
             <div>Julian Jorgensen</div>

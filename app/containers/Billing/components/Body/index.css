@@ -65,9 +65,12 @@
     column-gap: rem(30);
   }
   & .col {
-    display: inline-block;
+    break-inside: avoid-column;
     margin: 0 0 rem(25);
     width: 100%;
+    &:first-child{
+      break-inside: auto;
+    }
   }
   & .description {
     font-style: italic;

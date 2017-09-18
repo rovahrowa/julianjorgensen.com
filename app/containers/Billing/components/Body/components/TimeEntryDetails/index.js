@@ -5,6 +5,7 @@ import Button from 'components/Button';
 
 import styles from './index.css';
 import ChartIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/chart-bar.svg';
+import DocIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/list.svg';
 
 export default class TimeEntryDetails extends React.Component {
   state = {
@@ -27,14 +28,7 @@ export default class TimeEntryDetails extends React.Component {
 
     return (
       <div className={styles.container}>
-        {item.projectName ?
-          <div className={styles.projectName}>
-            <label>Project name</label>
-            <div>{item.projectName}</div>
-          </div>
-        : ''}
-
-        {item.report ?
+        {item.metadata.report ?
           <div>
             <Button small className={styles.button} onClick={this.handleToggle}>
               <ChartIcon className={styles.icon} />
@@ -50,10 +44,20 @@ export default class TimeEntryDetails extends React.Component {
               onOverlayClick={this.handleToggle}
               className={styles.modal}
             >
-              <iframe src={`https://toggl.com/app/bookmark/${item.report}`} width="100%" height="600px" allowFullScreen />
+              <iframe src={`https://toggl.com/app/bookmark/${item.metadata.report}`} width="100%" height="600px" allowFullScreen />
             </Dialog>
           </div>
         : ''}
+
+        {item.metadata.estimate ?
+          <div className={styles.linkedEstimate}>
+            <Button href={`/estimate/${item.metadata.estimate}`} target="new" small className={styles.button}>
+              <DocIcon className={styles.icon} />
+              <small>See linked estimate</small>
+            </Button>
+          </div>
+        : ''}
+
       </div>
     )
   }

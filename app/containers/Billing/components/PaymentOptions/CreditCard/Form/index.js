@@ -85,27 +85,6 @@ export default class CreditCardForm extends React.Component {
     });
   }
 
-  componentWillMount() {
-    let { customer, item } = this.props;
-    let customerAddress, customerName;
-
-    // if (customer.BillAddr) {
-    //   let customerStreet = customer.BillAddr.Line1 ? `${customer.BillAddr.Line1}, ` : '';
-    //   let customerCity = customer.BillAddr.City ? `${customer.BillAddr.City}, ` : '';
-    //   let customerProvince = customer.BillAddr.CountrySubDivisionCode ? `${customer.BillAddr.CountrySubDivisionCode}` : '';
-    //   customerAddress = `${customerStreet}${customerCity}${customerProvince}`;
-    // }
-
-    if (customer.GivenName) {
-      customerName = `${customer.GivenName}`;
-      customerName += customer.FamilyName ? ` ${customer.FamilyName}` : '';
-
-      this.setState({
-        name: customerName
-      });
-    }
-  }
-
   render() {
     let { error } = this.state;
     let { customer, item } = this.props;

@@ -37,9 +37,9 @@ export default class EstimateBody extends React.Component {
               <Summary {...this.props} />
             </div>
 
+            <label>Notes</label>
             <div className={sharedStyles.footer}>
               <div className={sharedStyles.col}>
-                <label>Notes</label>
                 <div className={sharedStyles.description}>
                   {item.notes}
                 </div>
