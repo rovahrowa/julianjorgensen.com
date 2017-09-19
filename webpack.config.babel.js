@@ -128,6 +128,11 @@ const BASE_CONFIG = {
         context: 'app',
         from: 'assets/pdfs',
         to: 'pdfs'
+      },
+      {
+        context: 'app',
+        from: 'assets/fonts',
+        to: 'fonts'
       }
     ]),
     new webpack.DefinePlugin({
