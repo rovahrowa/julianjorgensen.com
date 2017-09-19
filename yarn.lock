@@ -5479,7 +5479,7 @@ object.entries@^1.0.4:
     function-bind "^1.1.0"
     has "^1.0.1"
 
-object.omit@^2.0.0:
+object.omit@^2.0.0, object.omit@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/object.omit/-/object.omit-2.0.1.tgz#1a9c744829f39dbb858c76ca3579ae2a54ebd1fa"
   dependencies:
@@ -6803,6 +6803,14 @@ react-css-themr@^2.1.2:
   dependencies:
     hoist-non-react-statics "^1.2.0"
     invariant "^2.2.1"
+
+react-cursor-position@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-cursor-position/-/react-cursor-position-2.2.1.tgz#1b0b62620fb4636883fa4cd3a25e8828ce610fd4"
+  dependencies:
+    object-assign "^4.1.1"
+    object.omit "^2.0.1"
+    prop-types "^15.5.10"
 
 react-document-meta@^2.1.1:
   version "2.1.2"

@@ -24,11 +24,39 @@
   height: 100vh !important;
 }
 
-.header{
+
+.hero{
   position: absolute;
-  top: rem(160);
-  font-size: rem(70);
-  background: linear-gradient(130deg, #6446C2, #3E88D4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  top: rem(140);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & .header{
+    font-size: rem(60);
+    background: linear-gradient(130deg, #6446C2, #3E88D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  & .subheader{
+    margin-top: rem(25);
+    font-size: rem(22);
+    line-height: rem(28);
+    max-width: rem(600);
+    font-weight: 400;
+    font-style: italic;
+    opacity: 0.7;
+  }
+}
+
+.profileImage{
+  background: url('/images/julian-blackshirt.png') 0 0 no-repeat;
+  background-size: contain;
+  width: rem(480);
+  height: rem(400);
+  position: absolute;
+  bottom: rem(30);
+  z-index: 2;
 }

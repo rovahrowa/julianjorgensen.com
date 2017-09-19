@@ -14,9 +14,6 @@
   --primaryColor: #001C9B;
   --errorColor: #A40000;
   --linkColor: #0070c9;
-  /* fonts */
-  --primaryFont: 'Whitney';
-  --secondaryFont: 'Scandia';
 }
 
 :root {

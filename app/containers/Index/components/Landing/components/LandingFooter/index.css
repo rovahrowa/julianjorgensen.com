@@ -51,11 +51,12 @@
 
 .watchVideo{
   position: absolute;
-  bottom: rem(50);
+  bottom: rem(25);
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 9;
   & .icon{
     position: relative;
     width: rem(90);
@@ -82,7 +83,7 @@
       bottom: -15px;
       right: -15px;
       left: -15px;
-      background-image: linear-gradient(to bottom right, color(var(--blue) shade(50%)), var(--blue));
+      background-image: linear-gradient(to bottom right, #6446C2, #3E88D4);
       border-radius: inherit;
       box-shadow: rem(1) rem(2) rem(20) rem(5) gray(20%);
     }
@@ -92,11 +93,18 @@
       width: rem(40);
       margin-left: rem(8);
       & path{
-        fill: color(var(--blue) shade(50%));
+        fill: #6446C2;
       }
     }
   }
   & .label{
-
+    font-size: rem(30);
+    line-height: rem(30);
+    font-weight: 800;
+    margin-top: rem(35);
+    text-transform: uppercase;
+    background: linear-gradient(130deg, #6446C2, #3E88D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;    
   }
 }

@@ -77,6 +77,7 @@
     "react-addons-css-transition-group": "^15.5.2",
     "react-addons-test-utils": "^15.4.2",
     "react-collapse": "^4.0.2",
+    "react-cursor-position": "^2.2.1",
     "react-document-meta": "^2.1.1",
     "react-dom": "^15.4.2",
     "react-facebook": "^2.2.5",

@@ -15,30 +15,3 @@
 	font-weight: 500;
 	font-style: normal;
 }
-
-/* Whitney Book */
-@font-face {
-	font-family: 'whitney';
-	src: url('assets/fonts/whitney_book-webfont.woff2') format('woff2'),
-       url('assets/fonts/whitney_book-webfont.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
-}
-
-/* Whitney Semi-Bold */
-@font-face {
-	font-family: 'whitney';
-	src: url('assets/fonts/whitney_semibold-webfont.woff2') format('woff2'),
-       url('assets/fonts/whitney_semibold-webfont.woff') format('woff');
-	font-weight: 500;
-	font-style: normal;
-}
-
-/* Whitney Black */
-@font-face {
-	font-family: 'whitney';
-	src: url('assets/fonts/whitney_black-webfont.woff2') format('woff2'),
-       url('assets/fonts/whitney_black-webfont.woff') format('woff');
-	font-weight: 700;
-	font-style: normal;
-}
