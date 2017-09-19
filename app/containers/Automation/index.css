@@ -1,6 +1,6 @@
 @import "globals.css";
 .wrapper {
-  composes: globalWrapper;
+  composes: globalWrapper subpage;
 }
 
 .container {
@@ -9,4 +9,8 @@
 
 .carousel{
   min-height: rem(400);
+}
+
+.marquee{
+  background: linear-gradient(to bottom right, color(var(--blue) shade(50%)), var(--blue));
 }

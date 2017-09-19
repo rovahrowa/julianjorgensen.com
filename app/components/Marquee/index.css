@@ -1,41 +1,71 @@
 @import "globals.css";
-.marquee {
-  display: flex;
+.wrapper {
+  position: absolute;
+  top: 0;
   width: 100%;
-  height: rem(300);
   background-color: white;
   color: white;
+  transform: skewY(-4deg);
+  transform-origin: top left;  
+  z-index: -1;
+}
+
+.marquee{
+  display: flex;
+  overflow: hidden;
   align-items: flex-end;
   justify-content: center;
-  margin-bottom: rem(-80);
-  overflow: hidden;
+  height: rem(320);
+  & .header {
+    font-size: rem(220);
+    line-height: rem(130);
+    white-space: nowrap;
+  }  
 }
 
-.header {
-  font-size: rem(220);
-  line-height: rem(130);
+.blocks{
+  display: block;
+  position: relative;
+  top: 0;
+  height: 100%;
+  &:before,
+  &:after{
+    content: '';
+    display: block;
+    height: inherit;
+    position: absolute;
+    width: rem(400);
+    height: rem(100);
+  }
+
+  &:before{
+    bottom: rem(-10);
+    left: 0;
+    background-color: color(black alpha(10%));  
+  }
+  &:after{
+    top: rem(-10);
+    right: 0;
+    background-color: color(black alpha(10%));  
+  }
+
+  @media (--medium-and-down) {
+    display: none;
+  }    
 }
 
-.purple-blue {
-  background: linear-gradient(to bottom right, var(--lavender), var(--sky-blue));
-}
-
-.orange {
-  background: linear-gradient(to bottom right, color(var(--orange) hue(30%)), var(--orange));
-}
-
-.purple {
-  background: linear-gradient(to bottom right, #712DBC 40%, #3892D7);
-}
-
-.blue {
-  background: linear-gradient(to bottom right, color(var(--blue) shade(50%)), var(--blue));
-}
-
-.turquoise {
-  background: linear-gradient(to bottom right, color(var(--turquoise) shade(50%)), var(--turquoise));
-}
-
-.black {
-  background: linear-gradient(to bottom right, gray(10%), black);
+.blocks2{
+  position: relative;
+  width: 100%;
+  &:before{
+    content: '';
+    display: block;
+    position: absolute;
+    height: rem(40);
+    background-color: color(black alpha(10%));
+    background: linear-gradient(to right, color(black alpha(10%)), transparent);
+    top: rem(-40);
+    left: 0;
+    width: 20%;
+  }
 }

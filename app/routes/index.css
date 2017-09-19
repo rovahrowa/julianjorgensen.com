@@ -15,7 +15,7 @@
   }
 }
 
-.animatedRoutesInner {
+.routesContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,4 +39,16 @@
   @media print {
     position: static !important;
   }
+}
+
+.homepage{
+  background: #f3f3f3;
+  background: linear-gradient(to bottom, white rem(1000), gray(60%));
+}
+
+.layout{
+  transition: all 0.2s;
+  &.blur{
+    filter: blur(4px);
+  }  
 }

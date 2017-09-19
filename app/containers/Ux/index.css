@@ -1,8 +1,12 @@
 @import "globals.css";
 .wrapper {
-  composes: globalWrapper;
+  composes: globalWrapper subpage;
 }
 
 .container {
   composes: globalContainer withPaddings white;
+}
+
+.marquee{
+  background: linear-gradient(to bottom right, color(var(--orange) hue(30%)), var(--orange));
 }

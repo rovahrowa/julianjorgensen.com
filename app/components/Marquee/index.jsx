@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { connect } from 'react-redux';
 import styles from './index.css';
 
@@ -18,14 +19,20 @@ export default class Marquee extends React.Component {
   }
 
   render() {
-    let {title, bgColor, scroll} = this.props;
+    let {title, className, scroll} = this.props;
+
+    const _wrapperStyles = cn(className, styles.wrapper);  
 
     let headerMarginBottom = -scroll;
-    let headerOpacity = 0.2-(scroll/600);
+    let headerOpacity = 0.12-(scroll/600);
 
     return (
-      <div className={`${styles.marquee} ${styles[bgColor]}`}>
-        <h1 className={styles.header} style={{marginBottom: headerMarginBottom, opacity: headerOpacity}}>{title}</h1>
+      <div className={_wrapperStyles}>
+        <div className={styles.blocks}></div>
+        <div className={styles.marquee} style={{opacity: headerOpacity}}>
+          <h1 className={styles.header} style={{marginBottom: headerMarginBottom}}>{title}</h1>
+        </div>
+        <div className={styles.blocks2}></div>          
       </div>
     )
   }

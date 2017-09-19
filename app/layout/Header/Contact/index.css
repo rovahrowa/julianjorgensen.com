@@ -8,9 +8,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
     &.active {
       transform: translateY(0) !important;
+      box-shadow: rem(3) rem(3) rem(5) rem(1) black;
     }
   }
 }

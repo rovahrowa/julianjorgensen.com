@@ -1,6 +1,6 @@
 @import "globals.css";
 .wrapper {
-  composes: globalWrapper;
+  composes: globalWrapper subpage;
 }
 
 .container {
@@ -10,4 +10,8 @@
 
 .subNav {
   composes: globalContainer withPaddings white;
+}
+
+.marquee{
+  background: linear-gradient(to bottom right, #7100FF, #13B3FF);  
 }

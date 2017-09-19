@@ -26,6 +26,9 @@ export default class Header extends React.Component {
 
   handleContactToggle = () => {
     this.setState({contactActive: !this.state.contactActive});
+
+    // trigger parent callback
+    this.props.onContactToggle();
   };
 
   handleNavUnpin = () => {
@@ -68,7 +71,7 @@ export default class Header extends React.Component {
         <header className={`${styles.header} ${theme} ${navStatic ? styles.navStatic : styles.navDefault}`}>
           {ENV_CONFIG.ENV === 'production' ?
             <nav className={styles.nav}>
-              <li><div className={styles.link}><Logo className={`${styles.logo} ${pathname === '' ? styles.active : ''}`} /></div></li>
+              <li><div className={styles.logo}><Logo className={pathname === '' ? styles.active : ''} /></div></li>
               <li><div className={`${styles.link} ${pathname === 'frontend' ? styles.linkActive : ''}`}>Front-End</div></li>
               <li><div className={`${styles.link} ${pathname === 'fullstack' ? styles.linkActive : ''}`}>Full Stack</div></li>
               <li><div className={`${styles.link} ${pathname === 'ux' ? styles.linkActive : ''}`}>UX</div></li>
@@ -77,7 +80,7 @@ export default class Header extends React.Component {
             </nav>
             :
             <nav className={styles.nav}>
-              <li><Link to='/' className={styles.link}><Logo className={`${styles.logo} ${pathname === '' ? styles.active : ''}`} /></Link></li>
+              <li><Link to='/' className={styles.logo}><Logo className={pathname === '' ? styles.active : ''} /></Link></li>
               <li><Link to='/frontend' className={`${styles.link} ${pathname === 'frontend' ? styles.linkActive : ''}`}>Front-End</Link></li>
               <li><Link to='/fullstack' className={`${styles.link} ${pathname === 'fullstack' ? styles.linkActive : ''}`}>Full Stack</Link></li>
               <li><Link to='/ux' className={`${styles.link} ${pathname === 'ux' ? styles.linkActive : ''}`}>UX</Link></li>

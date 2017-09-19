@@ -11,7 +11,7 @@ export default class FrontEnd extends React.Component{
   render() {
     return (
       <div className={styles.wrapper}>
-        <Marquee title="Front-End" bgColor="purple-blue" />
+        <Marquee title="Front-End" className={styles.marquee} />
 
         <div className={styles.subNav}>
           content here

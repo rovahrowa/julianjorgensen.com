@@ -11,6 +11,7 @@ import {
 import {
   connect
 } from 'react-redux';
+import cn from 'classnames';
 import {
   ParallaxController
 } from 'lib/react-scroll-parallax';
@@ -150,6 +151,12 @@ export default class Routes extends React.Component {
     }
   }
 
+  handleModalToggle = () => {
+    this.setState({
+      modalActive: !this.state.modalActive
+    });
+  }
+
   onRouteChanged() {
     // log page view to Google Analytics
     // logPageView(location);
@@ -186,15 +193,23 @@ export default class Routes extends React.Component {
       exit: 400
     };
 
+    const _routesContainerStyles = cn(styles.routesContainer, {
+      [styles.homepage]: currentKey === '/'
+    });  
+
+    const _layoutStyles = cn(styles.layout, {
+      [styles.blur]: this.state.modalActive
+    });  
+
     return (
       <div className={styles.container}>
         <DocumentMeta {...meta} />
-        <Header />
+        <Header onContactToggle={this.handleModalToggle} />
 
-        <Layout>
+        <Layout className={_layoutStyles}>
           <TransitionGroup component="main" className={styles.animatedRoutes} style={{height: this.state.contentHeight}}>
             <CSSTransition key={currentKey} timeout={timeout} classNames={this.getAnimationClasses()}>
-              <div className={styles.animatedRoutesInner} id='routesContainer'>
+              <div className={_routesContainerStyles} id='routesContainer'>
                 <Switch location={location}>
                   <Route path='/' exact render={(props)=><Index {...props} onLoaded={this.updateRoutesContainer} />} />                  
                   <Route path='/fullstack' render={(props)=><FullStack {...props} onLoaded={this.updateRoutesContainer} />} />                  

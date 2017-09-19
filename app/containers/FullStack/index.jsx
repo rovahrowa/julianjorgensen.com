@@ -14,7 +14,7 @@ export default class FullStack extends React.Component{
 
     return (
       <div className={styles.wrapper}>
-        <Marquee title="Full-Stack" bgColor="black" />
+        <Marquee title="Full-Stack" className={styles.marquee} />
 
         <div className={styles.container}>
           <Carousel>
