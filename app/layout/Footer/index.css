@@ -8,7 +8,7 @@
 .pixelFade {
   position: relative;
   z-index: 2;
-  background-image: url('assets/images/pixels-fade.svg');
+  background-image: url('/images/pixels-fade.svg');
   background-repeat: repeat-x;
   background-position: 0 0;
   background-size: 10%;
@@ -16,6 +16,7 @@
 }
 
 .nav {
+  composes: globalContainer withShadow;
   position: relative;
   z-index: 2;
   background-color: gray(30%);
@@ -49,7 +50,7 @@
   text-align: center;
   top: rem(-100);
   margin-bottom: rem(80);
-  color: white;
+  color: black;
   & .slogan {
     margin-bottom: rem(20);
     font-size: rem(14);
@@ -68,7 +69,7 @@
     width: rem(25);
     height: rem(25);
     & g {
-      fill: white;
+      fill: black;
     }
   }  
 }

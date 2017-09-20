@@ -9,9 +9,10 @@
 }
 
 .subNav {
-  composes: globalContainer withPaddings white;
+  composes: globalContainer withShadow withPaddings white;
 }
 
 .marquee{
-  background: linear-gradient(to bottom right, #7100FF, #13B3FF);  
+  /* background: linear-gradient(to bottom right, color(#70FBD2 shade(30%)), #70FBD2);   */
+  background: linear-gradient(to bottom right, color(#82C745 shade(40%)), color(#82C745 shade(5%)));  
 }

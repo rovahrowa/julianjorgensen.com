@@ -15,6 +15,7 @@
 .body {
   min-height: rem(400);
   display: flex;
+  @apply --boxShadow;  
   & .hero {
     display: flex;
     padding: rem(45);

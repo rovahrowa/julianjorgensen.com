@@ -39,7 +39,7 @@ export default class HomeFrontEnd extends React.Component{
             label='See more'
             hollow
             tiny
-            blue
+            className={styles.cta}
           />
         </div>
 

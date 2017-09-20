@@ -6,7 +6,11 @@
 
 .header {
   composes: globalHeader;
-  color: black;
+  color: #82C745;
+}
+
+.cta {
+  color: #82C745 !important;
 }
 
 .title {

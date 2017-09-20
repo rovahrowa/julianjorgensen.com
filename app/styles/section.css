@@ -24,7 +24,7 @@
     color: inherit;
     height: rem(4);
     width: 100%;
-    background: linear-gradient(90deg, currentColor, var(--curious-blue));
+    background: linear-gradient(90deg, currentColor 20%, color(white alpha(0%)));
   }
 }
 

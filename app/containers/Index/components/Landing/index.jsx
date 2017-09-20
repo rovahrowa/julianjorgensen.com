@@ -2,7 +2,7 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import ReactCursorPosition from 'react-cursor-position';
 
-import Button from 'react-toolbox/lib/button';
+import Button from 'components/Button';
 import LandingFooter from './components/LandingFooter';
 import LandingCategories from './components/LandingCategories';
 import styles from './index.css';
@@ -12,7 +12,8 @@ export default class HomeLanding extends React.Component{
     super();
 
     this.state = {
-      videoHidden: true
+      videoHidden: true,
+      position: {}
     }
   }
 
@@ -22,10 +23,14 @@ export default class HomeLanding extends React.Component{
     });
   }
 
+  handlePositionChange = (position) => {
+    this.setState({position});
+  }
+
   render() {
     return (
       <ReactCursorPosition
-      onPositionChanged={(position) => console.log('position', position)}
+      onPositionChanged={this.handlePositionChange}
       >
         <div className={styles.wrapper}>
           <div className={styles.hero}>
@@ -35,7 +40,7 @@ export default class HomeLanding extends React.Component{
 
           <ReactPlayer url='https://vimeo.com/channels/staffpicks/214023666' className={styles.videoPlayer} width="100%" hidden={this.state.videoHidden} preload="true" />
 
-          <LandingCategories />
+          <LandingCategories position={this.state.position} />
 
           <div className={styles.profileImage}></div>
 

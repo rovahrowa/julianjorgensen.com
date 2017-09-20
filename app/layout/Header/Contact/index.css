@@ -1,10 +1,10 @@
 .wrapper{
   z-index: 99;
   & .drawer {
-    height: 300px;
+    height: rem(300);
     top: 0;
     width: 100vw !important;
-    transform: translateY(-300px) !important;
+    transform: translateY(rem(-300)) !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,8 +26,10 @@
 }
 
 .contact{
+  position: relative;
   display: flex;
   align-items: center;
+  padding: rem(40) rem(60);  
 }
 
 .logoWrapper{
@@ -77,4 +79,16 @@
     margin-top: rem(15);
     justify-content: flex-end;
   }
+}
+
+.profileImage{
+  background: url('/images/julian-blackshirt.png') 0 0 no-repeat;
+  background-size: contain;
+  width: rem(300);
+  height: rem(220);
+  position: absolute;
+  bottom: rem(-30);
+  left: 0;
+  z-index: 999;
+  filter: grayscale(100%);
 }

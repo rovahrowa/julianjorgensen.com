@@ -58,7 +58,7 @@ export default class Footer extends React.Component {
         <Parallax
             className={styles.credit}
             offsetYMax={0}
-            offsetYMin={800}
+            offsetYMin={1200}
             fadeSpeed={1.6}
             tag="div"
         >

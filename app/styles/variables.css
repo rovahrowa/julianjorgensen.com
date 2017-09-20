@@ -18,7 +18,7 @@
 
 :root {
   --boxShadow: {
-    box-shadow: rem(3) rem(3) rem(10) rem(1) gray(70%);
+    box-shadow: rem(5) rem(5) rem(8) rem(1) gray(40%);
   }
 }
 

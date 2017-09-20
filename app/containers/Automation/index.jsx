@@ -13,12 +13,12 @@ export default class Automation extends React.Component{
 
         <div className={styles.container}>
           <Carousel className={styles.carousel}>
-            <img height="400" src="http://placehold.it/1000x400/001C9B/ffffff/&text=slide1"/>
-            <img height="400" src="http://placehold.it/1000x400/001C9B/ffffff/&text=slide2"/>
-            <img height="400" src="http://placehold.it/1000x400/001C9B/ffffff/&text=slide3"/>
-            <img height="400" src="http://placehold.it/1000x400/001C9B/ffffff/&text=slide4"/>
-            <img height="400" src="http://placehold.it/1000x400/001C9B/ffffff/&text=slide5"/>
-            <img height="400" src="http://placehold.it/1000x400/001C9B/ffffff/&text=slide6"/>
+            <img height="400" src="http://placehold.it/1000x400/ffffff/000000/&text=slide1"/>
+            <img height="400" src="http://placehold.it/1000x400/ffffff/000000/&text=slide2"/>
+            <img height="400" src="http://placehold.it/1000x400/ffffff/000000/&text=slide3"/>
+            <img height="400" src="http://placehold.it/1000x400/ffffff/000000/&text=slide4"/>
+            <img height="400" src="http://placehold.it/1000x400/ffffff/000000/&text=slide5"/>
+            <img height="400" src="http://placehold.it/1000x400/ffffff/000000/&text=slide6"/>
           </Carousel>
         </div>
       </div>

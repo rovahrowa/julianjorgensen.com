@@ -224,8 +224,11 @@ export default class Routes extends React.Component {
                   <Route path="/p/:prospectName/:proposalId?env=:environment" render={(props)=><Proposal {...props} onLoaded={this.updateRoutesContainer} />} />
                 </Switch>
 
-                <EstimateForm show={currentKey !== 'invoice' && currentKey !== 'estimate'} />
-                <Faq handleUpdate={this.updateRoutesContainer} />
+                <div className={styles.footerWrapper}>
+                  <EstimateForm show={currentKey !== 'invoice' && currentKey !== 'estimate'} />
+                  <Faq handleUpdate={this.updateRoutesContainer} />
+                </div>
+
                 <Footer />
               </div>
             </CSSTransition>

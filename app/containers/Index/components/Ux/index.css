@@ -6,7 +6,12 @@
 
 .header {
   composes: globalHeader;
-  color: #9571FF;
+  color: var(--orange);
+  /* color: black; */
+}
+
+.cta{
+  color: var(--orange) !important;
 }
 
 .title {
@@ -27,6 +32,10 @@
   &.show{
     background-color: gray(80%);
   }
+}
+
+.boxWrapper{
+  @apply --boxShadow;
 }
 
 .box,

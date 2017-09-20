@@ -4,7 +4,7 @@
     margin: 0;
     scroll-behavior: smooth;
     background: #f3f3f3;
-    background: linear-gradient(to bottom, gray(96%), gray(60%));
+    background: linear-gradient(to bottom, gray(96%), #F6F9FD);
   }
   & div {
     /*box-sizing: border-box;*/

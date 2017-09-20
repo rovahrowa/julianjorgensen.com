@@ -30,13 +30,15 @@ const Contact = ({active, handleToggle}) => {
 
       <div className={styles.alternative}>
         <address>
-          <strong>Flo Inc.</strong><br />
+          <strong>Flo Digital Inc.</strong><br />
           308 5th Ave E.<br />
           V5T 1H4, Vancouver<br />
           B.C., Canada
         </address>
         <SocialIcons className={styles.icons} />
       </div>
+
+      <div className={styles.profileImage}></div>      
     </Drawer>
   )
 }

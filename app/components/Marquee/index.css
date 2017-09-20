@@ -5,7 +5,7 @@
   width: 100%;
   background-color: white;
   color: white;
-  transform: skewY(-4deg);
+  transform: skewY(-10deg);
   transform-origin: top left;  
   z-index: -1;
 }
@@ -15,7 +15,7 @@
   overflow: hidden;
   align-items: flex-end;
   justify-content: center;
-  height: rem(320);
+  height: rem(420);
   & .header {
     font-size: rem(220);
     line-height: rem(130);
@@ -28,7 +28,6 @@
   position: relative;
   top: 0;
   height: 100%;
-  &:before,
   &:after{
     content: '';
     display: block;
@@ -38,13 +37,8 @@
     height: rem(100);
   }
 
-  &:before{
-    bottom: rem(-10);
-    left: 0;
-    background-color: color(black alpha(10%));  
-  }
   &:after{
-    top: rem(-10);
+    top: rem(110);
     right: 0;
     background-color: color(black alpha(10%));  
   }

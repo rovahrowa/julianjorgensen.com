@@ -67,6 +67,13 @@
     border-radius: 50%;
     background-color: gray(95%);
     z-index: 2;
+    transition: all 0.2s;
+    &:hover{
+      transform: translateY(rem(-6));
+      &:after{
+        box-shadow: rem(1) rem(2) rem(20) rem(5) black;        
+      }
+    }  
     &:before {
       content: '';
       position: absolute;
@@ -85,7 +92,8 @@
       left: -15px;
       background-image: linear-gradient(to bottom right, #6446C2, #3E88D4);
       border-radius: inherit;
-      box-shadow: rem(1) rem(2) rem(20) rem(5) gray(20%);
+      box-shadow: rem(1) rem(2) rem(10) rem(5) gray(10%);
+      transition: all 0.2s;
     }
     & svg{
       position: relative;

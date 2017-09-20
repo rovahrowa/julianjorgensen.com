@@ -4,9 +4,9 @@
 }
 
 .container {
-  composes: globalContainer withPaddings white;
+  composes: globalContainer withShadow withPaddings white;
 }
 
 .marquee{
-  background: linear-gradient(to bottom right, color(var(--orange) hue(30%)), var(--orange));
+  background: linear-gradient(to bottom right, color(var(--orange) hue(25%)), color(var(--orange) hue(35%)));
 }

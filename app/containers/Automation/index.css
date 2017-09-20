@@ -4,7 +4,7 @@
 }
 
 .container {
-  composes: globalContainer withPaddings white;
+  composes: globalContainer withShadow withPaddings white;
 }
 
 .carousel{
@@ -12,5 +12,5 @@
 }
 
 .marquee{
-  background: linear-gradient(to bottom right, color(var(--blue) shade(50%)), var(--blue));
+  background: linear-gradient(to bottom right, color(var(--blue) shade(20%)), #11B5FF);
 }

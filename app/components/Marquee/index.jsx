@@ -24,7 +24,7 @@ export default class Marquee extends React.Component {
     const _wrapperStyles = cn(className, styles.wrapper);  
 
     let headerMarginBottom = -scroll;
-    let headerOpacity = 0.12-(scroll/600);
+    let headerOpacity = 0.08-(scroll/1000);
 
     return (
       <div className={_wrapperStyles}>

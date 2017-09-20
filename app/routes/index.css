@@ -43,7 +43,7 @@
 
 .homepage{
   background: #f3f3f3;
-  background: linear-gradient(to bottom, white rem(1000), gray(60%));
+  background: linear-gradient(to bottom, white 100vh, gray(90%));
 }
 
 .layout{
@@ -51,4 +51,8 @@
   &.blur{
     filter: blur(4px);
   }  
+}
+
+.footerWrapper{
+  composes: globalContainer withShadow;  
 }
