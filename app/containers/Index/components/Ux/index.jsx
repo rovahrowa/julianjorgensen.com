@@ -2,7 +2,6 @@ import React from 'react';
 import AtvImg from 'components/3DImg';
 import cn from 'classnames';
 
-import { Grid, Row, Col } from 'react-flexbox-grid';
 import Button from 'components/Button';
 
 import WebArchitectureIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/wireframing.svg';
@@ -69,40 +68,36 @@ export default class HomeUx extends React.Component{
             />
           </div>
 
-          <Row>
-            <Col xs={6} md={3}>
-              <div className={styles.boxWrapper}>
-                <div className={_box}>
-                  <WebArchitectureIcon id="svg" className={_boxIcon} />
-                </div>
-                <div className={_boxLabel}>Web Architecture</div>
+          <div className={styles.boxes}>
+            <div className={styles.boxWrapper}>
+              <div className={_box}>
+                <WebArchitectureIcon id="svg" className={_boxIcon} />
               </div>
-            </Col>
-            <Col xs={6} md={3}>
-              <div className={styles.boxWrapper}>
-                <div className={_box}>
-                  <UXIcon id="svg2" className={_boxIcon} />
-                </div>
-                <div className={_boxLabel}>UX Development</div>
+              <div className={_boxLabel}>Web Architecture</div>
+            </div>
+
+            <div className={styles.boxWrapper}>
+              <div className={_box}>
+                <UXIcon id="svg2" className={_boxIcon} />
               </div>
-            </Col>
-            <Col xs={6} md={3}>
-              <div className={styles.boxWrapper}>
-                <div className={_box}>
-                  <DesignIcon id="svg3" className={_boxIcon} />
-                </div>
-                <div className={_boxLabel}>Interface Design</div>
+              <div className={_boxLabel}>UX Development</div>
+            </div>
+
+            <div className={styles.boxWrapper}>
+              <div className={_box}>
+                <DesignIcon id="svg3" className={_boxIcon} />
               </div>
-            </Col>
-            <Col xs={6} md={3}>
-              <div className={styles.boxWrapper}>
-                <div className={_box}>
-                  <PrototypingIcon id="svg4" className={_boxIcon} />
-                </div>
-                <div className={_boxLabel}>Prototyping</div>
+              <div className={_boxLabel}>Interface Design</div>
+            </div>
+
+            <div className={styles.boxWrapper}>
+              <div className={_box}>
+                <PrototypingIcon id="svg4" className={_boxIcon} />
               </div>
-            </Col>
-          </Row>
+              <div className={_boxLabel}>Prototyping</div>
+            </div>
+          </div>
+
         </div>
       </VisibilitySensor>
     )

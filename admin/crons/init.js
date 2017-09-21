@@ -27,7 +27,7 @@ let invoiceReminderCron = new CronJob({
 let syncTogglWithQuickbooksCron = new CronJob({
   cronTime: '00 00 */2 * * *',
   onTick: function () {
-    syncTogglWithQuickbooks.init();
+    // syncTogglWithQuickbooks.init();
   },
   start: true
 });

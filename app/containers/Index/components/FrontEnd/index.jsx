@@ -1,6 +1,5 @@
 import React from 'react';
 import { Parallax } from 'lib/react-scroll-parallax';
-import { Grid, Row, Col } from 'react-flexbox-grid';
 import Button from 'components/Button';
 
 import styles from './index.css';
@@ -43,31 +42,21 @@ export default class HomeFrontEnd extends React.Component{
           />
         </div>
 
-        <Row>
+        <div className={styles.boxes}>
         {
           items.map((item, i) => {
-            let fadeSpeed = 1.55-(i/10);
-            return (      
-              <Col key={i} xs={6} md={3}>
-
-              <Parallax
-              offsetYMin={-3}
-              offsetYMax={6}
-              fadeSpeed={fadeSpeed}
-              // slowerScrollRate
-              tag="div"
-            >
+            return (
+              <div key={i} className={styles.boxWrapper}>
                 <div className={styles.box}>
-                    <div className={styles.icon}>{item.icon}</div>
-                  </div>
-                  <div className={styles.boxLabel}>{item.title}</div>
-                  </Parallax>        
-                  </Col>
+                  <div className={styles.icon}>{item.icon}</div>
+                </div>
+                <div className={styles.boxLabel}>{item.title}</div>
+              </div>
             )
           })
         }
-        </Row>
         </div>
+      </div>
     )
   }
 }

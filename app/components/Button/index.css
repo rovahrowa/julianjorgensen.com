@@ -10,6 +10,10 @@
   border-radius: rem(8);
   text-decoration: none;
   font-family: var(--primaryFont);
+  transition: all 0.2s;
+  &:hover{
+   transform: translateY(rem(-3));
+  }
   &.hollow:not([disabled]) {
     border: 1px solid currentColor;
     background-color: transparent;

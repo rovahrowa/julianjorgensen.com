@@ -20,12 +20,23 @@
 
 .header {
   composes: globalHeader;
-  /* color: #7100FF; */
-  color: white;
+  color: color(#7100FF tint(20%));
+}
+
+.cta {
+  color: color(#7100FF tint(20%)) !important;
 }
 
 .title {
   composes: globalTitle;
+}
+
+.boxWrapper{
+  composes: globalBoxWrapper transparent;
+}
+
+.boxes{
+  composes: globalBoxes;
 }
 
 .box {

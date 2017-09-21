@@ -3,6 +3,9 @@
   composes: globalContainer;
   padding: 0;
   background-color: transparent;
+  @media (--only-small) {
+    width: calc(100% - rem(20));
+  }
 }
 
 .pixelFade {
@@ -16,7 +19,7 @@
 }
 
 .nav {
-  composes: globalContainer withShadow;
+  @apply --boxShadow;
   position: relative;
   z-index: 2;
   background-color: gray(30%);
@@ -30,7 +33,10 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 100%;
+    @media (--medium-and-up) {
+      width: 50%;
+    }
     color: white;
     & .navItem {
       color: white;

@@ -17,6 +17,14 @@
   composes: globalTitle;
 }
 
+.boxWrapper{
+  composes: globalBoxWrapper;
+}
+
+.boxes{
+  composes: globalBoxes;
+}
+
 .box {
   composes: globalBox;
 }  

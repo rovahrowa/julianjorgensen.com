@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Parallax } from 'react-scroll-parallax';
 import Button from 'components/Button';
-
 
 import ScaleIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/expand.svg';
 import APIIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/code.svg';
@@ -56,24 +54,24 @@ export default class HomeFullStack extends React.Component{
               label='See more'
               hollow
               tiny
-              blue
+              className={styles.cta}
             />
           </div>
 
-          <Row>
+          <div className={styles.boxes}>
           {
             items.map((item, i) => {
               return (
-                <Col key={i} xs={6} md={3} className={item.className}>
+                <div key={i} className={`${styles.boxWrapper} ${item.className}`}>
                   <div className={styles.box}>
                     <div className={styles.icon}>{item.icon}</div>
                   </div>
                   <div className={styles.boxLabel}>{item.title}</div>
-                </Col>  
+                </div>  
               )
             })
           }
-          </Row>
+          </div>
         </div>
       </div>
     )

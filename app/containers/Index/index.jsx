@@ -21,19 +21,23 @@ export default class Index extends React.Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <HomeLanding />
-
-        <Quote
-          body='I would recommend him to any team looking for a quality front-end developer.'
-          author='Mark Fromson'
-          authorTitle='CEO, localsolo.com'
-          avatarUrl='images/mark-fromson.png'
-          className={styles.quote}
-        />
-        <FrontEnd />
-        <FullStack />
-        <Ux />
-        <Automation />
+        <div className={styles.mobile}>
+          <h1>Mobile here</h1>
+        </div>
+        <div className={styles.desktop}>
+          <HomeLanding />
+          <Quote
+            body='I would recommend him to any team looking for a quality front-end developer.'
+            author='Mark Fromson'
+            authorTitle='CEO, localsolo.com'
+            avatarUrl='images/mark-fromson.png'
+            className={styles.quote}
+          />
+          <FrontEnd />
+          <FullStack />
+          <Ux />
+          <Automation />
+        </div>
       </div>
     )
   }

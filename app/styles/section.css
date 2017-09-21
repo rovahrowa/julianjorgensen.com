@@ -29,6 +29,32 @@
 }
 
 
+.globalBoxes{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.globalBoxWrapper{
+  width: 100%;
+  margin-bottom: rem(20);
+  @apply --boxShadow;    
+  &.transparent{
+    box-shadow: none;
+  }
+  @media (--medium-and-up) {
+    width: calc(50% - rem(15));
+    &:nth-child(3),
+    &:nth-child(4){
+      margin-bottom: 0;
+    }
+  }
+  @media (--large-and-up) {
+    width: calc(25% - rem(15));
+    margin: 0;
+  }
+}
+
 .globalBox{
   display: flex;
   align-items: center;
