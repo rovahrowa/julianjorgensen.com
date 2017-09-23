@@ -42,11 +42,12 @@ export default class Quote extends React.Component{
     );
 
     return (
-      <div className={_className}>
-        <VisibilitySensor partialVisibility={true} offset={{top:50, bottom: 50}} onChange={this.onVisibilityChange} />
-        <q className={_quoteClassName}>{body}</q>
-        { href === undefined ? Author : <Link to={href}>{Author}</Link> }
-      </div>
+      <VisibilitySensor partialVisibility={true} offset={{top:50, bottom: 50}} onChange={this.onVisibilityChange}>
+        <div className={_className}>
+          <q className={_quoteClassName}>{body}</q>
+          { href === undefined ? Author : <Link to={href}>{Author}</Link> }
+        </div>
+      </VisibilitySensor>
     )
   }
 }

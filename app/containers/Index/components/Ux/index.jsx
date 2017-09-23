@@ -51,7 +51,7 @@ export default class HomeUx extends React.Component{
     const _boxLabel = cn(styles.boxLabel, {
       [styles.show]: this.state.show
     });
-    const _boxIcon = cn(styles.boxIcon, {
+    const _boxWrapper = cn(styles.boxWrapper, {
       [styles.show]: this.state.show
     });
   
@@ -69,30 +69,30 @@ export default class HomeUx extends React.Component{
           </div>
 
           <div className={styles.boxes}>
-            <div className={styles.boxWrapper}>
+            <div className={_boxWrapper}>
               <div className={_box}>
-                <WebArchitectureIcon id="svg" className={_boxIcon} />
+                <WebArchitectureIcon id="svg" className={styles.boxIcon} />
               </div>
               <div className={_boxLabel}>Web Architecture</div>
             </div>
 
-            <div className={styles.boxWrapper}>
+            <div className={_boxWrapper}>
               <div className={_box}>
-                <UXIcon id="svg2" className={_boxIcon} />
+                <UXIcon id="svg2" className={styles.boxIcon} />
               </div>
               <div className={_boxLabel}>UX Development</div>
             </div>
 
-            <div className={styles.boxWrapper}>
+            <div className={_boxWrapper}>
               <div className={_box}>
-                <DesignIcon id="svg3" className={_boxIcon} />
+                <DesignIcon id="svg3" className={styles.boxIcon} />
               </div>
               <div className={_boxLabel}>Interface Design</div>
             </div>
 
-            <div className={styles.boxWrapper}>
+            <div className={_boxWrapper}>
               <div className={_box}>
-                <PrototypingIcon id="svg4" className={_boxIcon} />
+                <PrototypingIcon id="svg4" className={styles.boxIcon} />
               </div>
               <div className={_boxLabel}>Prototyping</div>
             </div>

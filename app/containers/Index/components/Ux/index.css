@@ -27,19 +27,27 @@
   opacity: 0;
   &.show{
     opacity: 1;
-    background-color: gray(85%); 
+    background-color: gray(98%); 
   }
 }  
   
 .box {
   composes: globalBox transparent;
   &.show{
-    background-color: gray(80%);
+    background-color: gray(95%);
   }
 }
 
 .boxWrapper{
   composes: globalBoxWrapper;
+  opacity: 0;
+  box-shadow: none;
+  transition: opacity 0.2s;
+  &.show{
+    opacity: 1;
+    transition: opacity 0.2s, box-shadow 0.4s 2.5s;
+    box-shadow: rem(5) rem(5) rem(8) rem(1) gray(40%);
+  }
 }
   
 .box,
@@ -52,11 +60,3 @@
     transition-delay: 1.2s, 0s;
   }
 }
-  
-.boxIcon{
-  opacity: 0;
-  transition: opacity 0.2s;
-  &.show{
-    opacity: 1;
-  }
-}  

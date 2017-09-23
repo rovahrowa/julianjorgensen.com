@@ -21,13 +21,13 @@
     content: '';
     position: absolute;
     bottom: 0;
+    left: 0;
     color: inherit;
     height: rem(4);
     width: 100%;
     background: linear-gradient(90deg, currentColor 20%, color(white alpha(0%)));
   }
 }
-
 
 .globalBoxes{
   display: flex;
@@ -38,7 +38,7 @@
 .globalBoxWrapper{
   width: 100%;
   margin-bottom: rem(20);
-  @apply --boxShadow;    
+  /* @apply --boxShadow; */
   &.transparent{
     box-shadow: none;
   }

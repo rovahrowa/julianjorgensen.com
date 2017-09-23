@@ -41,7 +41,7 @@ export default class LandingCategories extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <div className={styles.category} style={categoryLeftStyles}>
+      <div className={styles.category} style={categoryLeftStyles}>
           <h2 className={styles.categoryHeader}>UI/UX Developer</h2>
           <div className={styles.description} style={leftDescriptionStyles}>
             <p>The new design trend is here for good. We expect everything to be intuitive, solid, and simple.</p>
@@ -67,7 +67,7 @@ export default class LandingCategories extends React.Component {
             />
           </div>
         </div>
-      </div>
+        </div>
     )
   }
 }

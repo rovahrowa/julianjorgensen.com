@@ -1,8 +1,7 @@
 @import "globals.css";
 .default {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  text-align: center;
   padding-left: rem(30);
   padding-right: rem(30);
   height: rem(50);

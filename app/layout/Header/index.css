@@ -45,7 +45,7 @@
   & .link {
     color: black;
     &:before{
-      background-color: black;
+      background: linear-gradient(90deg, color(black alpha(0%)), color(black alpha(100%)), color(black alpha(0%)));      
     }
   }
   & .logo g{
@@ -63,10 +63,13 @@
     @media (--medium-and-up) {
       display: inline-block;
       text-transform: uppercase;
-      margin-left: rem(70);
+      margin-left: rem(45);
       &:first-child {
         margin-left: 0;
       }
+    }
+    @media (--large-and-up) {
+      margin-left: rem(70);
     }
   }
 }
@@ -76,19 +79,22 @@
   color: #ffffff;
   text-decoration: none;
   font-family: var(--primaryFont);
-  font-size: rem(18);
+  font-size: rem(16);
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   cursor: pointer;
   padding-bottom: rem(5);
+  @media (--large-and-up) {
+    font-size: rem(18);
+  }    
   &:before {
     content: '';
     position: absolute;
     width: 100%;
+    background: linear-gradient(90deg, color(white alpha(0%)), color(white alpha(100%)), color(white alpha(0%)));          
     height: rem(3);
     bottom: 0;
     left: 0;
-    background-color: white;
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.2s ease-in-out 0s;

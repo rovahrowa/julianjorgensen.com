@@ -6901,7 +6901,7 @@ react-motion@^0.5.0:
     prop-types "^15.5.8"
     raf "^3.1.0"
 
-react-parallax@^1.4.1:
+react-parallax@^1.4.4:
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/react-parallax/-/react-parallax-1.4.4.tgz#4772042ca8bab2c0535e67c56a516a4e2abb34f0"
 

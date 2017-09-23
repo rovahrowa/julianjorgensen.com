@@ -26,6 +26,7 @@ export default class Index extends React.Component {
         </div>
         <div className={styles.desktop}>
           <HomeLanding />
+      
           <Quote
             body='I would recommend him to any team looking for a quality front-end developer.'
             author='Mark Fromson'

@@ -28,7 +28,7 @@ export default class HomeAutomation extends React.Component{
 
         <div className={styles.body}>
           <div className={styles.hero}>
-            <h3 className={styles.heroHeader}>How much more could you automate?</h3>
+            <h3 className={styles.heroHeader}>Be one step ahead.</h3>
           </div>
           <div className={styles.carousel}>
             <Carousel decorators={carouselDecorators} vertical slidesToShow={2} wrapAround={true} autoplay autoplayInterval={5000} >

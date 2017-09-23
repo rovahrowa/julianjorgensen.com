@@ -1,5 +1,4 @@
 import React from 'react';
-import { Parallax } from 'lib/react-scroll-parallax';
 import Button from 'components/Button';
 
 import styles from './index.css';

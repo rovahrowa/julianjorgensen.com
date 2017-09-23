@@ -133,6 +133,11 @@ const BASE_CONFIG = {
         context: 'app',
         from: 'assets/fonts',
         to: 'fonts'
+      },
+      {
+        context: 'app',
+        from: 'assets/videos',
+        to: 'videos'
       }
     ]),
     new webpack.DefinePlugin({
