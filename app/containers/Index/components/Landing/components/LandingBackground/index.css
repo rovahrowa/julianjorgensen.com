@@ -1,0 +1,27 @@
+.wrapper,
+.overlay,
+.wrapper:after{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wrapper:after{
+  content: '';
+  background-color: color(black alpha(50%));
+}
+
+.video{
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  /* filter: invert(100%) hue-rotate(150deg); */
+}
