@@ -48,7 +48,7 @@ router.route('/')
               itemType,
               eventType
             }).then((response) => {
-              console.log('invoice sent', invoice);
+              console.log('**invoice sent', invoice);
               res.status(200).send(response);
             }).catch((error) => {
               res.status(500).send(error);
@@ -64,7 +64,7 @@ router.route('/')
               itemType,
               eventType
             }).then((response) => {
-              console.log('estimate sent', estimate);
+              console.log('**estimate sent', estimate);
               res.status(200).send(response);
             }).catch((error) => {
               res.status(500).send(error);

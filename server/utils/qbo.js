@@ -42,20 +42,23 @@ function mailItem({
     let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
 
     console.log('last sent date', lastSentDate);
-    console.log('send item?', !lastSentDate);
+    console.log('item balance', item.balance);
+    console.log('send item?', !lastSentDate && item.balance > 0);
 
-    if (!lastSentDate && item.balance > 0) {
+    if (!lastSentDate && item.Balance > 0) {
       // send the item
       billingItemMailer.send({
         id: item.Id,
         itemType,
         eventType
       }).then(() => {
+        console.log(`Billing item #${item.DocNumber} sent!`);
         resolve(`Billing item #${item.DocNumber} sent!`);
       }).catch((err) => {
         reject(`Error sending billing item #${Item.DocNumber}...`);
       });
     } else {
+      console.log('nothing to send');
       resolve('Nothing to send');
     }
   }).catch((err) => {
