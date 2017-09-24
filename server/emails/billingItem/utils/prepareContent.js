@@ -122,7 +122,7 @@ let prepareContent = ({
       TxnTaxDetail: item.TxnTaxDetail
     },
     template: {
-      name: `./admin/emails/templates/${itemTemplate}`,
+      name: `./server/emails/templates/${itemTemplate}`,
       engine: 'pug',
       context: emailContext
     }
