@@ -1,4 +1,4 @@
-let util = require('../../../util/util');
+let util = require('../../utils/utils');
 let pug = require('pug');
 let sendMail = require('../sendMail');
 

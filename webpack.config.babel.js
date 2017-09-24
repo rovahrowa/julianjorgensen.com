@@ -25,17 +25,19 @@ const VENDOR_LIBS = [
   'react-document-meta'
 ];
 
-const APP_PATH = path.resolve(__dirname, 'app/app');
+const APP_ROOT = path.join(__dirname, '/');
+const CLIENT_PATH = path.join(APP_ROOT, '/client');
+const PUBLIC_PATH = path.join(APP_ROOT, '/public');
 
 // Webpack config for both production and development environments
 // ====================
 const BASE_CONFIG = {
   entry: {
-    bundle: ['babel-polyfill', APP_PATH],
+    bundle: ['babel-polyfill', path.join(CLIENT_PATH, 'app')],
     vendor: VENDOR_LIBS
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: PUBLIC_PATH,
     publicPath: '/'
   },
   module: {
@@ -76,7 +78,7 @@ const BASE_CONFIG = {
       },
       {
         test: /\.(gif|png|jpe?g)$/i,
-        include: path.resolve(__dirname, 'app/assets/images'),
+        include: path.resolve(CLIENT_PATH, 'assets/images'),
         loaders: [
           'file-loader',
           {
@@ -120,22 +122,22 @@ const BASE_CONFIG = {
   },
   plugins: [
     new CopyWebpackPlugin([{
-        context: 'app',
+        context: CLIENT_PATH,
         from: 'assets/images',
         to: 'images'
       },
       {
-        context: 'app',
+        context: CLIENT_PATH,
         from: 'assets/pdfs',
         to: 'pdfs'
       },
       {
-        context: 'app',
+        context: CLIENT_PATH,
         from: 'assets/fonts',
         to: 'fonts'
       },
       {
-        context: 'app',
+        context: CLIENT_PATH,
         from: 'assets/videos',
         to: 'videos'
       }
@@ -149,7 +151,7 @@ const BASE_CONFIG = {
       minChunks: Infinity
     }),
     new HTMLWebpackPlugin({
-      template: 'app/index.html'
+      template: path.join(CLIENT_PATH, 'index.html')
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.LoaderOptionsPlugin({
@@ -160,18 +162,18 @@ const BASE_CONFIG = {
   devtool: `${IS_PRODUCTION ? 'inline' : 'cheap-eval'}-source-map`,
   resolve: {
     alias: {
-      assets: path.resolve(__dirname, 'app/assets/'),
-      app: path.resolve(__dirname, 'app/'),
-      components: path.resolve(__dirname, 'app/components/'),
-      containers: path.resolve(__dirname, 'app/containers/'),
-      layout: path.resolve(__dirname, 'app/layout/'),
-      routes: path.resolve(__dirname, 'app/routes/'),
-      store: path.resolve(__dirname, 'app/store/'),
-      reducers: path.resolve(__dirname, 'app/store/reducers'),
-      actions: path.resolve(__dirname, 'app/store/actions'),
-      styles: path.resolve(__dirname, 'app/styles/'),
-      utils: path.resolve(__dirname, 'app/utils/'),
-      lib: path.resolve(__dirname, 'app/lib/')
+      assets: path.join(CLIENT_PATH, 'assets'),
+      client: path.join(CLIENT_PATH, '/'),
+      components: path.join(CLIENT_PATH, 'components/'),
+      containers: path.join(CLIENT_PATH, 'containers/'),
+      layout: path.join(CLIENT_PATH, 'layout/'),
+      routes: path.join(CLIENT_PATH, 'routes/'),
+      store: path.join(CLIENT_PATH, 'store/'),
+      reducers: path.join(CLIENT_PATH, 'store/reducers'),
+      actions: path.join(CLIENT_PATH, 'store/actions'),
+      styles: path.join(CLIENT_PATH, 'styles/'),
+      utils: path.join(CLIENT_PATH, 'utils/'),
+      lib: path.join(CLIENT_PATH, 'lib/')
     },
     extensions: ['.js', '.jsx', '.css']
   }

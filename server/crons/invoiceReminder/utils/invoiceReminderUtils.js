@@ -1,4 +1,4 @@
-let ENV_CONFIG = require('../../../../util/util').getEnvConfig();
+let ENV_CONFIG = require('../../../utils/utils').getEnvConfig();
 
 function searchForPreviousLateFee(lineItems) {
   return lineItems.filter((item, index) => {

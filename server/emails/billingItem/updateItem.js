@@ -1,5 +1,5 @@
 let moment = require('moment');
-let util = require('../../../util/util');
+let util = require('../../utils/utils');
 let ENV_CONFIG = util.getEnvConfig();
 
 let updateItem = (passedData) => {

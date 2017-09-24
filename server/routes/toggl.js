@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-let togglSync = require('../admin/toggl/init');
+let togglSync = require('../toggl/init');
 
 let TogglClient = require('toggl-api');
 const togglApiToken = process.env.TOGGL_API_TOKEN;

@@ -2,12 +2,12 @@ let express = require('express');
 let router = express.Router();
 let app = require('../app');
 
-let util = require('../util/util');
+let util = require('../utils/utils');
 let ENV_CONFIG = util.getEnvConfig();
 
 let {
   processItemData
-} = require('./utils/qbo');
+} = require('../utils/qbo');
 
 // Get Invoice/Estimate route for Quickbooks
 router.route('/:type/:id')

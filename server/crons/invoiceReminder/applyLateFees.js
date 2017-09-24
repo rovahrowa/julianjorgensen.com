@@ -1,7 +1,7 @@
 let moment = require('moment');
 let _ = require('lodash');
 let utils = require('./utils/invoiceReminderUtils');
-let ENV_CONFIG = require('../../../util/util').getEnvConfig();
+let ENV_CONFIG = require('../../utils/utils').getEnvConfig();
 
 let applyLateFees = function (processedInvoices) {
   if (processedInvoices.length > 0) {

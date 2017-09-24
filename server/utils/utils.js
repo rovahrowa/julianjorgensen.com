@@ -1,7 +1,7 @@
 let crypto = require('crypto'); // for validating payload
 
 let NODE_ENV = (process.env.NODE_ENV || 'development');
-let ENV_CONFIG = JSON.stringify(require('../config/' + NODE_ENV + '.config'));
+let ENV_CONFIG = JSON.stringify(require('../../config/' + NODE_ENV + '.config'));
 
 // Validates the payload (used for QuickBooks)
 function isValidPayload(signature, token, payload) {

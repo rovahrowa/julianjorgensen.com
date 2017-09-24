@@ -1,6 +1,6 @@
 let _ = require('lodash');
-let ENV_CONFIG = require('../../util/util').getEnvConfig();
-let billingItemMailer = require('../../admin/emails/billingItem/init');
+let ENV_CONFIG = require('./utils').getEnvConfig();
+let billingItemMailer = require('../emails/billingItem/init');
 
 function processItemData(item) {
   return new Promise((resolve, reject) => {

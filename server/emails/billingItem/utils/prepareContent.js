@@ -1,4 +1,4 @@
-let util = require('../../../../util/util');
+let util = require('../../../utils/utils');
 let ENV_CONFIG = util.getEnvConfig();
 let numeral = require('numeral');
 let _ = require('lodash');

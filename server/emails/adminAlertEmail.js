@@ -8,7 +8,7 @@ let send = function(body) {
       to: {name: 'Julian Jorgensen', address: 'me@julianjorgensen.com'},
       subject: 'Admin alert',
       template: {
-        name: `./admin/emails/templates/adminAlertEmail.pug`,
+        name: `./server/emails/templates/adminAlertEmail.pug`,
         engine: 'pug',
         context: {
           title: 'An error occurred',

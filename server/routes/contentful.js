@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 let app = require('../app');
 let bodyParser = require('body-parser');
-let util = require('../util/util');
+let util = require('../utils/utils');
 let numeral = require('numeral');
 let dateFormat = require('dateformat');
 

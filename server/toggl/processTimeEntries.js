@@ -1,4 +1,4 @@
-let util = require('../../util/util');
+let util = require('../utils/utils');
 let moment = require('moment');
 
 let processTimeEntries = function(passedData) {

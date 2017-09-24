@@ -1,6 +1,6 @@
 let moment = require('moment');
 let _ = require('lodash');
-let util = require('../../../util/util');
+let util = require('../../utils/utils');
 let ENV_CONFIG = util.getEnvConfig();
 
 let processInvoices = function (invoices) {

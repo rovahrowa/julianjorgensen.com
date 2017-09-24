@@ -2,14 +2,14 @@ let express = require('express');
 let router = express.Router();
 let app = require('../app');
 
-let util = require('../util/util');
+let util = require('../utils/utils');
 let ENV_CONFIG = util.getEnvConfig();
 
 let {
   mailItem
-} = require('./utils/qbo');
+} = require('../utils/qbo');
 
-let invoiceReminder = require('../admin/crons/invoiceReminder/init');
+let invoiceReminder = require('../crons/invoiceReminder/init');
 
 router.route('/')
   .post(function(req, res) {
@@ -48,6 +48,7 @@ router.route('/')
               itemType,
               eventType
             }).then((response) => {
+              console.log('invoice sent', invoice);
               res.status(200).send(response);
             }).catch((error) => {
               res.status(500).send(error);
@@ -63,6 +64,7 @@ router.route('/')
               itemType,
               eventType
             }).then((response) => {
+              console.log('estimate sent', estimate);
               res.status(200).send(response);
             }).catch((error) => {
               res.status(500).send(error);

@@ -3,7 +3,7 @@ let express = require('express');
 let router = express.Router();
 let app = require('../app');
 
-let sendEstimateConfirmation = require('../admin/emails/estimateRequest/init');
+let sendEstimateConfirmation = require('../emails/estimateRequest/init');
 
 // Send the get estimate email to prospect client
 router.route('/get-estimate')
