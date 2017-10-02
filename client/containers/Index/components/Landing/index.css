@@ -1,14 +1,12 @@
 @import 'variables';
-
-.wrapper{
+.wrapper {
   position: relative;
   height: 100vh;
   width: 100%;
-
-  & .background{
+  & .background {
     position: relative;
     z-index: 1;
-    & .backgroundContent{
+    & .backgroundContent {
       position: relative;
       z-index: 1;
       display: flex;
@@ -19,27 +17,88 @@
       text-align: center;
       color: white;
       width: 100vw;
-      height: 100vh;          
+      height: 100vh;
     }
   }
 }
 
-.wrap{
+.wrap {
   position: relative;
   height: 100vh;
   width: 100%;
 }
 
-.videoPlayer{
+.videoWrapper {
+  opacity: 0;
   position: absolute;
+  pointer-events: none;
   z-index: 999;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh !important;
+  height: 100vh;
+  transform: scale(0.4);
+  background-color: color(black alpha(74%));
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & .close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: rem(30);
+    width: rem(30);
+    background-color: gray(40%);
+    border-radius: 50%;
+    position: absolute;
+    top: calc(15% - rem(15));
+    right: calc(15% - rem(15));
+    cursor: pointer;
+    & svg {
+      width: rem(18);
+      height: rem(18);
+    }
+  }
+  & span {
+    width: 70%;
+    height: 70%;
+  }
+  & .player {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
 }
 
-.hero{
+.hero,
+.footer,
+.categories {
+  transition: all 0.3s;
+}
+
+.isPlayingVideo {
+  & .hero,
+  & .footer {
+    transform: translateY(rem(50));
+    opacity: 0;
+  }
+  & .categories {
+    transform: translateY(rem(50)) translateX(-50%);
+    opacity: 0;
+  }
+  & .videoWrapper {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0s;
+    pointer-events: auto;
+    & .player {
+      pointer-events: auto;
+    }
+  }
+}
+
+.hero {
   position: absolute;
   z-index: 1;
   bottom: 65%;
@@ -48,15 +107,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  & .header{
+  & .header {
     font-size: rem(60);
     background: linear-gradient(130deg, #6446C2, #3E88D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-
-  & .subheader{
+  & .subheader {
     margin-top: rem(25);
     font-size: rem(22);
     line-height: rem(28);
@@ -64,5 +121,33 @@
     font-weight: 400;
     font-style: italic;
     opacity: 0.7;
+  }
+}
+
+
+/* Signature */
+
+@keyframes signatureAnimation {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+.signature {
+  position: absolute;
+  left: 50%;
+  margin-left: rem(-350);
+  bottom: 5%;
+  width: rem(700);
+  height: rem(700);
+  opacity: 0.3;
+  animation: signatureAnimation 12s ease none 1;
+  & g path {
+    fill: gray(5%);
   }
 }

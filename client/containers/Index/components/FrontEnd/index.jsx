@@ -8,8 +8,7 @@ import FastIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/ligh
 import AnimationIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/braille.svg';
 import OptimizedIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/braille.svg';
 
-let items = [
-  {
+let items = [{
     title: 'Code-based design',
     icon: <CodeBasedDesignIcon className={styles.boxIcon} />
   },
@@ -27,10 +26,10 @@ let items = [
   }
 ];
 
-export default class HomeFrontEnd extends React.Component{
+export default class HomeFrontEnd extends React.Component {
   render() {
     return (
-      <div className={styles.container}>
+      <div className={styles.container} id='frontend'>
         <div className={styles.header}>
           <h2 className={styles.title}>Front-End Development</h2>
           <Button

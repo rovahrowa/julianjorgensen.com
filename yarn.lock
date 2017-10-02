@@ -7075,7 +7075,7 @@ react-visibility-sensor@^3.10.1:
     create-react-class "^15.5.1"
     prop-types "^15.5.4"
 
-react-youtube@^7.3.0:
+react-youtube@^7.4.0:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/react-youtube/-/react-youtube-7.4.0.tgz#d346c30ec77eec61871e8c0784cef2cb2c69b63d"
   dependencies:

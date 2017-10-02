@@ -1,36 +1,36 @@
-.item{
+.item {
   cursor: pointer;
   padding: rem(14) rem(10);
   padding-left: 0;
   border-bottom: 1px solid gray(70%, 50%);
   transition: padding-left 0.2s;
-  &:last-child{
+  &:last-child {
     border-bottom: none;
   }
 }
 
-.active{
+.active {
   background-color: gray(95%);
   padding-left: rem(10);
-  & .title{
+  & .title {
     margin-bottom: rem(8);
     opacity: 0.6;
   }
-  & .title:after{
+  & .title:after {
     transform: rotate(45deg);
   }
 }
 
-.title{
-  position: relative;
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   user-select: none;
   margin-bottom: 0;
   transition: all 0.2s;
-  &:after{
+  &:after {
     content: '+';
     font-weight: bold;
-    position: absolute;
-    right: 0;
     transition: all 0.2s;
     font-size: rem(20);
   }

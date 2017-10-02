@@ -1,4 +1,4 @@
-.default{
+.default {
   background-color: gray(80%);
   padding: rem(30);
   display: flex;
@@ -6,6 +6,10 @@
   justify-content: center;
 }
 
-.label{
+.label {
   padding: rem(10);
+  position: relative;
+  z-index: 1;
 }
+
+.icon {}

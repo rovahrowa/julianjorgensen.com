@@ -1,132 +1,13 @@
 @import "globals.css";
-.headroom {
-  position: absolute;
-  width: 100%;
-  z-index: 99;
-}
-
-.header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: rem(25) rem(30);
-  box-sizing: border-box;
-  transition: all 0.3s;
-  &.navStatic {
-    background-color: transparent;
-    box-shadow: none;
-  }
-  &.navDefault {
-    background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 rem(2) rem(20) 0;
-    backdrop-filter: blur(8px);
-    /*background: linear-gradient(to bottom right, color(var(--blue) shade(50%)), var(--blue));*/
-  }
-}
-
-.logo {
-  & svg{
-    height: rem(25);
-    width: rem(25);
-    & g{
-      fill: white;
-    }  
-  }
-  &:hover{
-    opacity: 1;
-  }
-}
-
-.dark {
-  &.navDefault {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  & .link {
-    color: black;
-    &:before{
-      background: linear-gradient(90deg, color(black alpha(0%)), color(black alpha(100%)), color(black alpha(0%)));      
-    }
-  }
-  & .logo g{
-    fill: black;
-  }
-}
-
-.nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  & li {
+.mobileNav {
+  @media (--medium-and-up) {
     display: none;
-    @media (--medium-and-up) {
-      display: inline-block;
-      text-transform: uppercase;
-      margin-left: rem(45);
-      &:first-child {
-        margin-left: 0;
-      }
-    }
-    @media (--large-and-up) {
-      margin-left: rem(70);
-    }
   }
 }
 
-.link {
-  position: relative;
-  color: #ffffff;
-  text-decoration: none;
-  font-family: var(--primaryFont);
-  font-size: rem(16);
-  font-weight: 700;
-  -webkit-font-smoothing: antialiased;
-  cursor: pointer;
-  padding-bottom: rem(5);
-  @media (--large-and-up) {
-    font-size: rem(18);
-  }    
-  &:before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    background: linear-gradient(90deg, color(white alpha(0%)), color(white alpha(100%)), color(white alpha(0%)));          
-    height: rem(3);
-    bottom: 0;
-    left: 0;
-    visibility: hidden;
-    transform: scaleX(0);
-    transition: all 0.2s ease-in-out 0s;
-  }
-  &:hover:before {
-    visibility: visible;
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-  }
-  &:hover:not(.linkActive){
-    opacity: 0.7;
-  }
-}
-
-.link,
-.logo{
-  opacity: 0.5;
-  transition: opacity 0.2s;
-}
-
-.linkActive {
-  opacity: 1;
-  &:before{
-    visibility: visible;
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-  }
-}
-
-@media print {
-  .header {
-    display: none !important;
-    page-break-after: avoid;
+.desktopNav {
+  display: none;
+  @media (--medium-and-up) {
+    display: block;
   }
 }

@@ -1,52 +1,37 @@
 import React from 'react';
+import cn from 'classnames';
 import Button from 'components/Button';
 import styles from './index.css';
 
 export default class LandingCategories extends React.Component {
   render() {
+    let _wrapperStyles = cn(styles.wrapper, this.props.className);
     let { position } = this.props.position || {};
     let categoryLeftStyles,
-    categoryRightStyles,
-    leftDescriptionStyles,
-    rightDescriptionStyles = {};
+      categoryRightStyles,
+      leftDescriptionStyles,
+      rightDescriptionStyles = {};
 
     if (position) {
-      console.log('position', position);
-      let categoryWidth = window.innerWidth/2;
+      let categoryWidth = window.innerWidth / 2;
 
       let coordinates = position;
       let maxPercentage = 100;
       let int = 0.2;
-      let positionPercentage = Math.round((coordinates.x/categoryWidth)*maxPercentage);
-      let leftPositionPercentage = maxPercentage-positionPercentage;
-      let rightPositionPercentage = positionPercentage-maxPercentage;
-
-      // categoryLeftStyles = {
-      //   transform: `translateY(-${(leftPositionPercentage)*int}%)`,
-      //   opacity: 0.6+(leftPositionPercentage * 0.004)
-      // }
-      // categoryRightStyles = {
-      //   transform: `translateY(-${(rightPositionPercentage)*int}%)`,
-      //   opacity: 0.6+(rightPositionPercentage * 0.004)
-      // }
-
-      // leftDescriptionStyles = {
-      //   opacity: 0+(leftPositionPercentage * 0.01)
-      // }
-
-      // rightDescriptionStyles = {
-      //   opacity: 0+(rightPositionPercentage * 0.01)
-      // }
+      let positionPercentage = Math.round((coordinates.x / categoryWidth) * maxPercentage);
+      let leftPositionPercentage = maxPercentage - positionPercentage;
+      let rightPositionPercentage = positionPercentage - maxPercentage;
     }
 
     return (
-      <div className={styles.wrapper}>
+      <div className={_wrapperStyles}>
       <div className={styles.category} style={categoryLeftStyles}>
           <h2 className={styles.categoryHeader}>UI/UX Developer</h2>
           <div className={styles.description} style={leftDescriptionStyles}>
-            <p>The new design trend is here for good. We expect everything to be intuitive, solid, and simple.</p>
+            <p>Great user experiences merge both design and development. It's designing code.</p>
             <Button
               label='See more'
+              href='#details'
               hollow
               tiny
               blue
@@ -57,9 +42,10 @@ export default class LandingCategories extends React.Component {
         <div className={styles.category} style={categoryRightStyles}>
           <h2 className={styles.categoryHeader}>Full-Stack Developer</h2>
           <div className={styles.description} style={rightDescriptionStyles}>
-            <p>Fluent in both design and code, frontend and backend, I'm your versatil. From protypes to launch and beyond.</p>
+            <p>Fluent in both front- and backend, I'm with you full-cycle. From prototypes to launch and beyond.</p>
             <Button
               label='See more'
+              href='#details'
               hollow
               tiny
               blue

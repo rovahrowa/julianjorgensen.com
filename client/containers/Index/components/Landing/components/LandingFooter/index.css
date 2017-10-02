@@ -16,13 +16,13 @@
   }
 }
 
-.wrapper{
+.wrapper {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-.content{
+.content {
   position: absolute;
   z-index: 10;
   width: 100%;
@@ -31,41 +31,41 @@
 }
 
 .footer,
-.footerBorder{
+.footerBorder {
   position: relative;
   width: 100%;
   background-color: white;
   &:before,
-  &:after{
+  &:after {
     @apply --footer-triangle;
-    border-bottom-color: white;    
+    border-bottom-color: white;
   }
-  &:before{
+  &:before {
     left: 0;
     border-left-width: 0;
     border-right-width: 50vw;
   }
-  &:after{
+  &:after {
     right: 0;
     border-left-width: 50vw;
     border-right-width: rem(0);
   }
 }
 
-.footerBorder{
+.footerBorder {
   height: 4vh;
   background-color: gray(90%);
   &:before,
-  &:after{
+  &:after {
     border-bottom-color: gray(90%);
   }
 }
 
-.footer{
-  height: 8vh;  
+.footer {
+  height: 8vh;
 }
 
-.watchVideo{
+.watchVideo {
   position: absolute;
   bottom: 15%;
   width: 100%;
@@ -73,7 +73,8 @@
   flex-direction: column;
   align-items: center;
   z-index: 9;
-  & .icon{
+  cursor: pointer;
+  & .icon {
     position: relative;
     width: rem(90);
     height: rem(90);
@@ -84,12 +85,12 @@
     background-color: gray(95%);
     z-index: 2;
     transition: all 0.2s;
-    &:hover{
+    &:hover {
       transform: translateY(rem(-6));
-      &:after{
-        box-shadow: rem(1) rem(2) rem(20) rem(5) black;        
+      &:after {
+        box-shadow: rem(1) rem(2) rem(20) rem(5) black;
       }
-    }  
+    }
     &:before {
       content: '';
       position: absolute;
@@ -113,17 +114,17 @@
       box-shadow: rem(1) rem(2) rem(10) rem(5) gray(10%);
       transition: all 0.2s;
     }
-    & svg{
+    & svg {
       position: relative;
       z-index: 2;
       width: rem(40);
       margin-left: rem(8);
-      & path{
+      & path {
         fill: #6446C2;
       }
     }
   }
-  & .label{
+  & .label {
     font-size: rem(30);
     line-height: rem(30);
     font-weight: 800;
@@ -131,11 +132,11 @@
     text-transform: uppercase;
     background: linear-gradient(130deg, #6446C2, #3E88D4);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;    
+    -webkit-text-fill-color: transparent;
   }
 }
 
-.profileImage{
+.profileImage {
   background: url('/images/julian-blackshirt.png') 0 0 no-repeat;
   background-size: contain;
   width: rem(480);

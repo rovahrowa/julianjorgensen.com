@@ -1,0 +1,150 @@
+@import "globals.css";
+.wrapper {
+  position: absolute;
+  width: 100%;
+  z-index: 99;
+}
+
+.header {
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: rem(12) rem(15);
+  box-sizing: border-box;
+  transition: all 0.3s;
+  background-color: color(white alpha(98%));
+  box-shadow: 0 rem(2) rem(20) 0;
+  &.active {
+    background-color: transparent;
+    box-shadow: none;
+    & .logo path {
+      fill: gray(20%);
+    }
+    & .bars span {
+      background-color: white;
+    }
+  }
+}
+
+.logo {
+  width: rem(30);
+  height: rem(30);
+  & path {
+    fill: black;
+  }
+}
+
+.meta {
+  text-align: center;
+  font-style: italic;
+  text-transform: uppercase;
+  opacity: 0.6;
+  & .title {
+    font-size: rem(16);
+    line-height: rem(16);
+    font-weight: bold;
+    margin-bottom: rem(4);
+  }
+  & .subtitle {
+    font-size: rem(12);
+    line-height: rem(12);
+  }
+}
+
+:root {
+  --barHeight: rem(4)
+}
+
+.bars {
+  position: relative;
+  width: rem(30);
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+  & span {
+    display: block;
+    height: var(--barHeight);
+    width: 50%;
+    background: black;
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: .3s ease-in-out;
+    margin-bottom: rem(5);
+  }
+  & span:nth-child(5),
+  & span:nth-child(6) {
+    margin-bottom: 0;
+  }
+  & span:nth-child(even) {
+    border-radius: 0 var(--barHeight) var(--barHeight) 0;
+  }
+  & span:nth-child(odd) {
+    border-radius: var(--barHeight) 0 0 var(--barHeight);
+  }
+  &.open {
+    & span:nth-child(1),
+    & span:nth-child(2) {
+      margin-bottom: rem(7);
+    }
+    & span:nth-child(1) {
+      transform: rotate(45deg) translateX(rem(3));
+    }
+    & span:nth-child(2) {
+      transform: rotate(-45deg) translateX(rem(-3));
+    }
+    & span:nth-child(3) {
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+    & span:nth-child(4) {
+      transform: translateX(50%);
+      opacity: 0;
+    }
+    & span:nth-child(3),
+    & span:nth-child(4) {
+      margin-bottom: rem(0);
+    }
+    & span:nth-child(5) {
+      transform: rotate(-45deg) translateX(rem(3));
+    }
+    & span:nth-child(6) {
+      transform: rotate(45deg) translateX(rem(-3));
+    }
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  z-index: 8;
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: rem(80) rem(20) 0;
+  font-size: rem(20);
+  font-weight: 300;
+  opacity: 0;
+}
+
+.navOpen {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.link {
+  display: block;
+  color: white;
+  border-bottom: 1px solid color(white alpha(40%));
+  margin-bottom: rem(15);
+  padding-bottom: rem(15);
+}
+
+.linkActive {}

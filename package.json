@@ -9,7 +9,7 @@
     "build:prod": "yarn clean && NODE_ENV=production webpack",
     "build": "yarn clean && webpack",
     "serve": "yarn clean && webpack -w",
-    "start": "node server/app.js",
+    "start": "webpack-dev-server",
     "heroku-postbuild": "webpack"
   },
   "author": "Julian Jorgensen",
@@ -103,7 +103,7 @@
     "react-toolbox": "^2.0.0-beta.12",
     "react-transition-group": "^2.2.0",
     "react-visibility-sensor": "^3.10.1",
-    "react-youtube": "^7.3.0",
+    "react-youtube": "^7.4.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0",
