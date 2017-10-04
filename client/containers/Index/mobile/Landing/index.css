@@ -1,11 +1,39 @@
+.wrapper {
+  position: relative;
+}
+
 .slider {}
 
+.cta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: rem(90);
+  height: rem(90);
+  opacity: 0.6;
+  & svg {
+    width: 100%;
+    height: 100%;
+    & path {
+      fill: #5461C9;
+      transition: all 0.2s;
+    }
+  }
+  &.white svg path {
+    fill: white;
+  }
+}
+
 .player {
-  width: 100%;
+  width: rem(110);
+  height: rem(110);
   position: absolute;
   z-index: 10;
-  top: 0;
   opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .content {
@@ -20,9 +48,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  & .playButton svg path {
-    fill: #5461C9;
-  }
 }
 
 .slide2 {
@@ -30,17 +55,11 @@
   & .title {
     color: white;
   }
-  & .playButton svg path {
-    fill: white;
-  }
 }
 
 .slide3 {
   background-image: linear-gradient(to bottom right, gray(2%), gray(10%));
   & .title {
     color: white;
-  }
-  & .playButton svg path {
-    fill: white;
   }
 }
