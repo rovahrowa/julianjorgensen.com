@@ -80,7 +80,6 @@ export default class HomeLandingMobile extends React.Component {
             opts={{
               playerVars: { 
                 autoplay: 0,
-                modestbranding: 1,
                 showinfo: 0,
                 rel: 0
               }
