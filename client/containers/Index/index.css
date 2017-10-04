@@ -8,15 +8,15 @@
   margin-bottom: rem(30);
 }
 
-.mobile{
-  @media (--medium-and-up) {
+.mobile {
+  @media (--large-and-up) {
     display: none;
   }
 }
 
-.desktop{
+.desktop {
   display: none;
-  @media (--medium-and-up) {
+  @media (--large-and-up) {
     display: flex;
     flex-direction: column;
   }

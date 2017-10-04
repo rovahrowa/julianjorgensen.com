@@ -1,13 +1,13 @@
 @import "globals.css";
 .mobileNav {
-  @media (--medium-and-up) {
+  @media (--large-and-up) {
     display: none;
   }
 }
 
 .desktopNav {
   display: none;
-  @media (--medium-and-up) {
+  @media (--large-and-up) {
     display: block;
   }
 }

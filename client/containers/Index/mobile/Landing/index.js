@@ -6,14 +6,14 @@ import styles from './index.css';
 import Dots from 'components/Carousel/components/Dots';
 
 let slides = [{
-  title: 'Impressive Code',
-  content: <div><p>I help agencies and startups create impressive web apps, ecommerce and branding sites.</p></div>
+  title: 'Impress',
+  content: <div className={styles.content}>I help agencies and startups create impressive web apps, ecommerce and branding sites.</div>
 }, {
   title: 'Ecommerce',
-  content: <div><p>Slide 2</p></div>
+  content: <div className={styles.content}>Slide 2</div>
 }, {
   title: 'Web Apps',
-  content: <div><p>Slide 3</p></div>
+  content: <div className={styles.content}>Slide 3</div>
 }]
 
 export default class HomeLandingMobile extends React.Component {
