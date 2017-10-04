@@ -1,5 +1,13 @@
 .slider {}
 
+.player {
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  opacity: 0;
+}
+
 .content {
   height: rem(60);
   font-size: rem(14);

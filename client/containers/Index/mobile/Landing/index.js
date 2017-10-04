@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from 'rmc-nuka-carousel';
+import YouTube from 'react-youtube';
 import Slide from './components/Slide';
 import styles from './index.css';
 
@@ -34,6 +35,19 @@ export default class HomeLandingMobile extends React.Component {
           )
         })}
         </Carousel>
+        <YouTube
+          videoId="_OJzg063OyI"
+          className={styles.player}
+          opts={{
+            playerVars: { 
+              autoplay: 0,
+              modestbranding: 1,
+              showinfo: 0,
+              rel: 0
+            }
+          }}
+        />
+
       </div>
     )
   }

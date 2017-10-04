@@ -6,7 +6,7 @@
 }
 
 .header {
-  position: absolute;
+  position: relative;
   z-index: 9;
   width: 100%;
   display: flex;
