@@ -20,10 +20,25 @@ import styles from './index.css';
 export default class MobileNav extends React.Component {
   constructor() {
     super();
+    this.state = {
+      navPinned: true
+    };
   }
 
   handleToggleNav = () => {
     this.props.dispatch(navActions.toggleNav());
+  }
+
+  handleNavUnpin = () => {
+    this.setState({
+      navPinned: false
+    })
+  }
+
+  handleNavUnfix = () => {
+    this.setState({
+      navPinned: true
+    })
   }
 
   render() {
@@ -32,7 +47,9 @@ export default class MobileNav extends React.Component {
 
     let _wrapperStyles = cn(className, styles.wrapper);
     let _headerStyles = cn(styles.header, {
-      [styles.active]: nav.show
+      [styles.active]: nav.show,
+      [styles.pinned]: this.state.navPinned,
+      [styles.fixed]: !this.state.navPinned
     });
     let _barsStyles = cn(styles.bars, {
       [styles.open]: nav.show
@@ -49,7 +66,7 @@ export default class MobileNav extends React.Component {
          className={_wrapperStyles}
        >
         <header className={_headerStyles}>
-          <Link to='/'><Logo className={styles.logo} /></Link>
+          <Link to='/' className={styles.logo}><Logo /></Link>
           <div className={styles.meta}>
             <div className={styles.title}>Julian Jorgensen</div>
             <div className={styles.subtitle}>UX & Full-Stack development</div>

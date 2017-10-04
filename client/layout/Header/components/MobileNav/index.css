@@ -17,6 +17,30 @@
   transition: all 0.3s;
   background-color: color(white alpha(80%));
   box-shadow: 0 rem(2) rem(20) 0;
+  &.fixed {
+    padding: rem(10) rem(15);
+    background-color: white;
+    & .meta .title {
+      margin-bottom: 0;
+    }
+    & .meta .subtitle {
+      opacity: 0;
+      height: 0;
+    }
+    & .logo {
+      width: rem(25);
+      height: rem(25);
+    }
+    & .bars {
+      & span {
+        margin-bottom: rem(4);
+      }
+      & span:nth-child(5),
+      & span:nth-child(6) {
+        margin-bottom: 0;
+      }
+    }
+  }
   &.active {
     background-color: transparent;
     box-shadow: none;
@@ -42,10 +66,15 @@
 }
 
 .logo {
+  display: block;
   width: rem(30);
   height: rem(30);
-  & path {
-    fill: black;
+  & svg {
+    width: 100%;
+    height: 100%;
+    & path {
+      fill: black;
+    }
   }
 }
 
@@ -63,6 +92,7 @@
   & .subtitle {
     font-size: rem(10);
     line-height: rem(10);
+    transition: 0.2s;
   }
 }
 
