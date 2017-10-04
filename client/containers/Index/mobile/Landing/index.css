@@ -26,11 +26,11 @@
 }
 
 .player {
-  width: rem(110);
-  height: rem(110);
+  width: rem(90);
+  height: rem(90);
   position: absolute;
   z-index: 10;
-  opacity: 0;
+  opacity: 0.2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
