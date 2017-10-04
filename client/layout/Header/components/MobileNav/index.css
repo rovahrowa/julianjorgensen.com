@@ -15,16 +15,28 @@
   padding: rem(12) rem(15);
   box-sizing: border-box;
   transition: all 0.3s;
-  background-color: color(white alpha(98%));
+  background-color: color(white alpha(80%));
   box-shadow: 0 rem(2) rem(20) 0;
   &.active {
     background-color: transparent;
     box-shadow: none;
-    & .logo path {
-      fill: gray(20%);
+    padding-bottom: rem(40);
+    & .logo {
+      & path {
+        transition: all 0.2s;
+        fill: gray(40%);
+      }
+      &:hover path {
+        fill: gray(100%);
+      }
     }
-    & .bars span {
-      background-color: white;
+    & .bars {
+      & span {
+        background-color: white;
+      }
+      &:hover span {
+        background-color: gray(70%);
+      }
     }
   }
 }
@@ -128,10 +140,11 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: rem(80) rem(20) 0;
+  padding: rem(100) rem(20) 0;
   font-size: rem(20);
-  font-weight: 300;
+  font-weight: 400;
   opacity: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 .navOpen {
@@ -145,6 +158,26 @@
   border-bottom: 1px solid color(white alpha(40%));
   margin-bottom: rem(15);
   padding-bottom: rem(15);
+  transition: all 0.2s;
+  &:hover {
+    color: gray(70%);
+  }
 }
 
 .linkActive {}
+
+.contact {
+  align-self: center;
+  border: 1px solid white;
+  border-radius: rem(13);
+  padding: rem(12) rem(22);
+  text-align: center;
+  color: white;
+  margin-top: rem(30);
+  text-transform: uppercase;
+  transition: all 0.2s;
+  &:hover {
+    color: gray(70%);
+    border-color: gray(70%);
+  }
+}

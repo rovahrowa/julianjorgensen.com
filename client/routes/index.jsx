@@ -1,21 +1,11 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  matchPath,
-  HashRouter,
-  Link,
-  Switch,
-  withRouter
-} from 'react-router-dom';
-import {
-  connect
-} from 'react-redux';
+import { BrowserRouter as Router, Route, matchPath, HashRouter, Link, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import cn from 'classnames';
-import {
-  ParallaxController
-} from 'lib/react-scroll-parallax';
+import { ParallaxController } from 'lib/react-scroll-parallax';
 ParallaxController.init();
+
+import { navActions } from 'store/actions';
 
 import DocumentMeta from 'react-document-meta';
 
@@ -31,10 +21,7 @@ import Scroll from 'components/Scroll';
 
 // containers
 import Index from 'containers/Index';
-import {
-  Invoice,
-  Estimate
-} from 'containers/Billing';
+import { Invoice, Estimate } from 'containers/Billing';
 import About from 'containers/About';
 import FullStack from 'containers/FullStack';
 import FrontEnd from 'containers/FrontEnd';
@@ -43,14 +30,9 @@ import Automation from 'containers/Automation';
 import Portfolio from 'containers/Portfolio';
 import Proposal from 'containers/Proposal';
 
-import {
-  Layout
-} from 'react-toolbox/lib/layout';
+import { Layout } from 'react-toolbox/lib/layout';
 
-import {
-  TransitionGroup,
-  CSSTransition
-} from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styles from './index.css';
 
 import ReactGA from 'react-ga';
@@ -164,6 +146,9 @@ export default class Routes extends React.Component {
     // scroll to top when changing page
     window.scrollTo(0, 0);
 
+    // close mobile nav
+    this.props.dispatch(navActions.closeNav());
+
     // update routes container
     this.updateRoutesContainer();
   }
@@ -195,11 +180,11 @@ export default class Routes extends React.Component {
 
     const _routesContainerStyles = cn(styles.routesContainer, {
       [styles.homepage]: currentKey === '/'
-    });  
+    });
 
     const _layoutStyles = cn(styles.layout, {
       [styles.blur]: this.state.modalActive
-    });  
+    });
 
     return (
       <div className={styles.container}>

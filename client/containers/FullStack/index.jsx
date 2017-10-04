@@ -5,8 +5,8 @@ import Marquee from 'components/Marquee';
 
 import styles from './index.css';
 
-export default class FullStack extends React.Component{
-  constructor(){
+export default class FullStack extends React.Component {
+  constructor() {
     super();
   }
 

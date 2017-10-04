@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import cn from 'classnames';
 import Headroom from 'react-headroom';
+
+import { navActions } from 'actions';
 
 import Logo from 'components/Logo';
 import BarsIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/bars.svg';
@@ -9,35 +12,33 @@ import BarsIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regu
 import styles from './index.css';
 
 @withRouter
+@connect(
+  ({ nav }) => ({
+    nav: nav
+  })
+)
 export default class MobileNav extends React.Component {
   constructor() {
     super();
-
-    this.state = {
-      navOpen: false
-    }
   }
 
   handleToggleNav = () => {
-    this.setState({
-      navOpen: !this.state.navOpen
-    });
+    this.props.dispatch(navActions.toggleNav());
   }
 
   render() {
-    let { navOpen } = this.state;
-    let { className } = this.props;
+    let { className, nav } = this.props;
     let pathname = this.props.location.pathname.split('/')[1];
 
     let _wrapperStyles = cn(className, styles.wrapper);
     let _headerStyles = cn(styles.header, {
-      [styles.active]: navOpen
+      [styles.active]: nav.show
     });
     let _barsStyles = cn(styles.bars, {
-      [styles.open]: navOpen
+      [styles.open]: nav.show
     });
     let _navStyles = cn(styles.nav, {
-      [styles.navOpen]: navOpen
+      [styles.navOpen]: nav.show
     });
 
     return (
@@ -67,7 +68,7 @@ export default class MobileNav extends React.Component {
           <Link to='/fullstack' className={`${styles.link} ${pathname === 'fullstack' ? styles.linkActive : ''}`}>Full Stack</Link>
           <Link to='/ux' className={`${styles.link} ${pathname === 'ux' ? styles.linkActive : ''}`}>UX</Link>
           <Link to='/automation' className={`${styles.link} ${pathname === 'automation' ? styles.linkActive : ''}`}>Automation</Link>
-          <div className={`${styles.link} ${styles.contact}`} onClick={this.handleContactToggle}>Contact</div>
+          <Link to='/contact' className={styles.contact}>Contact</Link>
         </nav>
         </Headroom>
     )

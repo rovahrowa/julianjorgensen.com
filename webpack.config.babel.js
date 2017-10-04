@@ -170,7 +170,7 @@ const BASE_CONFIG = {
       routes: path.join(CLIENT_PATH, 'routes/'),
       store: path.join(CLIENT_PATH, 'store/'),
       reducers: path.join(CLIENT_PATH, 'store/reducers'),
-      actions: path.join(CLIENT_PATH, 'store/actions'),
+      actions: path.join(CLIENT_PATH, 'store/actions/'),
       styles: path.join(CLIENT_PATH, 'styles/'),
       utils: path.join(CLIENT_PATH, 'utils/'),
       lib: path.join(CLIENT_PATH, 'lib/')

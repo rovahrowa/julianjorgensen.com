@@ -1,0 +1,26 @@
+.dots {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin-bottom: rem(40);
+}
+
+.dot {
+  border: rem(3) solid gray(75%);
+  background: transparent;
+  color: black;
+  cursor: pointer;
+  padding: 10;
+  width: rem(20);
+  height: rem(20);
+  margin-right: rem(15);
+  border-radius: 50%;
+  &:last-child {
+    margin-right: 0;
+  }
+  &.active {
+    opacity: 1;
+    background-color: gray(75%);
+  }
+}

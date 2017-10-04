@@ -1,0 +1,31 @@
+.slider {}
+
+.slide1 {
+  background-image: url('/images/mobile-placeholder.png');
+  & .title {
+    color: black;
+  }
+  & .playButton svg path {
+    fill: red;
+  }
+}
+
+.slide2 {
+  background-image: linear-gradient(to bottom right, #82AE3F, #4F8624);
+  & .title {
+    color: white;
+  }
+  & .playButton svg path {
+    fill: white;
+  }
+}
+
+.slide3 {
+  background-image: linear-gradient(to bottom right, gray(2%), gray(10%));
+  & .title {
+    color: white;
+  }
+  & .playButton svg path {
+    fill: white;
+  }
+}

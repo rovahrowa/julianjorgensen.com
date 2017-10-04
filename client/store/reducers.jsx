@@ -1,29 +1,26 @@
-export var navReducer = (state = {showClose: false, showNav: false}, action) => {
+export let navReducer = (state = { show: false }, action) => {
   switch (action.type) {
-    case 'TOGGLE_NAV_ICON':
-      return {
-        ...state,
-        showClose: !state.showClose,
-        showNav: state.showNav
-      };
     case 'TOGGLE_NAV':
       return {
         ...state,
-        showClose: !state.showClose,
-        showNav: !state.showNav
+        show: !state.show
+      };
+    case 'SHOW_NAV':
+      return {
+        ...state,
+        show: true
       };
     case 'CLOSE_NAV':
       return {
         ...state,
-        showClose: false,
-        showNav: false
+        show: false
       };
     default:
       return state;
   }
 };
 
-export var scrollReducer = (state = {y: 0}, action) => {
+export let scrollReducer = (state = { y: 0 }, action) => {
   switch (action.type) {
     case 'SET_SCROLL_POSITION':
       return {
@@ -35,7 +32,7 @@ export var scrollReducer = (state = {y: 0}, action) => {
   }
 };
 
-export var siteReducer = (state = {showScheduling: false}, action) => {
+export let siteReducer = (state = { showScheduling: false }, action) => {
   switch (action.type) {
     case 'TOGGLE_SCHEDULING':
       return {
