@@ -7,7 +7,6 @@ import Headroom from 'react-headroom';
 
 import Logo from 'components/Logo';
 import Contact from '../Contact';
-import NavItems from '../NavItems';
 import styles from './index.css';
 
 @withRouter
