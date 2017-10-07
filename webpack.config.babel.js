@@ -22,7 +22,8 @@ const VENDOR_LIBS = [
   'react-dom',
   'react-router-dom',
   'react-redux',
-  'react-document-meta'
+  'react-document-meta',
+  'react-youtube'
 ];
 
 const APP_ROOT = path.join(__dirname, '/');
@@ -147,7 +148,7 @@ const BASE_CONFIG = {
       'ENV_CONFIG': JSON.stringify(require('./config/' + NODE_ENV + '.config'))
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest'],
+      names: ['vendor', 'bundle'],
       minChunks: Infinity
     }),
     new HTMLWebpackPlugin({
