@@ -1,13 +1,14 @@
-import React from 'react';
-import { lazyload } from 'react-lazyload';
+import { asyncComponent } from 'react-async-component';
 
-@lazyload({
-  height: 200,
-  once: true
+export default asyncComponent({
+  resolve: () => new Promise(resolve =>
+    // Webpack's code splitting API w/naming
+    require.ensure(
+      [],
+      (require) => {
+        resolve(require('./Player'));
+      },
+      'YouTubePlayer'
+    )
+  )
 })
-export default class Player extends React.Component {
-  render() {
-    let { onReady, styles } = this.props;
-    return (<div></div>)
-  }
-}
