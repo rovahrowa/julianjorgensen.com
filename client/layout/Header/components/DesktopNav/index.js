@@ -55,8 +55,6 @@ export default class DesktopNav extends React.Component {
         theme = 'dark'
         break;
     }
-    console.log('path', pathname);
-    console.log('theme', theme);
 
     let _wrapperStyles = cn(className, styles.wrapper);
     let _headerStyles = cn(styles.header, {
