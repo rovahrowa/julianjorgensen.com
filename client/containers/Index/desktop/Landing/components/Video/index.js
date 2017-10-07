@@ -1,5 +1,4 @@
 import React from 'react';
-import LazyLoad from 'react-lazy-load';
 import { connect } from 'react-redux';
 import cn from 'classnames';
 import PlayIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/solid/play.svg';
@@ -102,12 +101,7 @@ export default class HomeLandingVideo extends React.Component {
       <div className={_wrapperStyles}>
         {renderAction()}
         <div className={styles.videoWrapper} onClick={this.handleCloseVideo}>
-          <LazyLoad 
-            height={200} 
-            onContentVisible={() => console.log('look ma I have been lazyloaded!')}
-          >
-            <Player styles={styles.player} onReady={this.onVideoReady} />
-          </LazyLoad>
+          <Player styles={styles.player} onReady={this.onVideoReady} />
           <div className={styles.close} onClick={this.handleCloseVideo}><CloseIcon /></div>
         </div>
         <Footer />
