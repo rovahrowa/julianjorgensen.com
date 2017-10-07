@@ -6,7 +6,6 @@ import CloseIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/reg
 import SeeMore from './components/SeeMore';
 import Player from './components/Player';
 import Footer from './components/Footer';
-import YouTube from 'react-youtube';
 import styles from './index.css';
 
 export default class HomeLandingVideo extends React.Component {

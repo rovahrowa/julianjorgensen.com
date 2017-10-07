@@ -2,6 +2,7 @@ import React from 'react';
 import YouTube from 'react-youtube';
 
 export default function Player({ onReady, styles }) {
+  console.log('importing the player...');
   return <YouTube
       videoId="_OJzg063OyI"
       className={styles}
