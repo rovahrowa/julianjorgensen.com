@@ -102,9 +102,7 @@ export default class HomeLandingVideo extends React.Component {
       <div className={_wrapperStyles}>
         {renderAction()}
         <div className={styles.videoWrapper} onClick={this.handleCloseVideo}>
-          <LazyLoad height={200} once>
-            <Player styles={styles.player} onReady={this.onVideoReady} />
-          </LazyLoad>
+          <Player styles={styles.player} onReady={this.onVideoReady} />
           <div className={styles.close} onClick={this.handleCloseVideo}><CloseIcon /></div>
         </div>
         <Footer />
