@@ -67,6 +67,7 @@ export default class HomeLandingVideo extends React.Component {
   render() {
     let { renderVideo, hasVideoPlayed, playVideo, onClose, dynamicStyles, handleVideoClick } = this.props;
 
+    console.log('render video?', renderVideo);
     if (!renderVideo) {
       return null;
     }
