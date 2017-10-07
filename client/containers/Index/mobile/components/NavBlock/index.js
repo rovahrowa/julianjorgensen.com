@@ -6,11 +6,21 @@ import styles from './index.css';
 
 export default class HomeNavBlock extends React.Component {
   render() {
-    let _wrapperStyles = cn(styles.wrapper, this.props.className);
+    let { className, tags } = this.props;
+    let _wrapperStyles = cn(styles.wrapper, className);
     return (
       <div className={_wrapperStyles}>
         <span>{this.props.title}</span>
         <AngleRightIcon />
+
+        <div className={styles.tags}>
+          {tags ? tags.map((tag) => {
+            return (
+              <div className={styles.tag}>{tag}</div>
+            )
+          }) : ''}
+        </div>
+
       </div>
     )
   }
