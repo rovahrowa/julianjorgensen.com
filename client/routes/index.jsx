@@ -163,6 +163,8 @@ export default class Routes extends React.Component {
 
   componentDidMount() {
     this.updateRoutesContainer();
+
+    this.props.dispatch({ type: 'SITE_LOADED' });
   }
 
   render() {

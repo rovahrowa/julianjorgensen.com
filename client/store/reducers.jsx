@@ -34,6 +34,11 @@ export let scrollReducer = (state = { y: 0 }, action) => {
 
 export let siteReducer = (state = { showScheduling: false }, action) => {
   switch (action.type) {
+    case 'SITE_LOADED':
+      return {
+        ...state,
+        hasLoaded: true
+      };
     case 'TOGGLE_SCHEDULING':
       return {
         ...state,

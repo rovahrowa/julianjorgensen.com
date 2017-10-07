@@ -20,7 +20,6 @@ export default class HomeLanding extends React.Component {
     super();
 
     this.state = {
-      renderVideo: false,
       playVideo: false,
       hasVideoPlayed: false,
       position: {}
@@ -56,12 +55,6 @@ export default class HomeLanding extends React.Component {
     console.log('video has played');
     this.setState({
       hasVideoPlayed: true
-    });
-  }
-
-  componentDidMount() {
-    this.setState({
-      renderVideo: true
     });
   }
 
