@@ -6795,6 +6795,10 @@ react-addons-test-utils@^15.4.2:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.6.0.tgz#062d36117fe8d18f3ba5e06eb33383b0b85ea5b9"
 
+react-async-component@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-async-component/-/react-async-component-1.0.1.tgz#ad60c4e13f6265fb6b456485ee0833e209258037"
+
 react-async-script-loader@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/react-async-script-loader/-/react-async-script-loader-0.2.2.tgz#70ae44c143539a2f2d4f79aa5f177f244eea8c55"

@@ -4,13 +4,11 @@ import cn from 'classnames';
 import PlayIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/solid/play.svg';
 import CloseIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/times.svg';
 import SeeMore from './components/SeeMore';
+import Player from './components/Player';
 import Footer from './components/Footer';
 import YouTube from 'react-youtube';
 import styles from './index.css';
 
-@connect(({ site }) => ({
-  site
-}))
 export default class HomeLandingVideo extends React.Component {
   constructor() {
     super();
@@ -20,6 +18,7 @@ export default class HomeLandingVideo extends React.Component {
   }
 
   onVideoReady = (event) => {
+    console.log('on ready', event.target);
     this.video = event.target;
   }
 
@@ -68,9 +67,6 @@ export default class HomeLandingVideo extends React.Component {
     }
   }
 
-  componentDidMount() {
-    console.log('video component mounted');
-  }
 
   render() {
     let { site, hasVideoPlayed, playVideo, onClose, dynamicStyles, handleVideoClick } = this.props;
@@ -102,37 +98,13 @@ export default class HomeLandingVideo extends React.Component {
       }
     }
 
-    let renderVideo = () => {
-      if (!site.hasLoaded) {
-        return null
-      }
-
-      console.log('rendering video!');
-
-      return (
-        <div className={styles.videoWrapper} onClick={this.handleCloseVideo}>
-          <YouTube
-            videoId="_OJzg063OyI"
-            className={styles.player}
-            opts={{
-              playerVars: { 
-                autoplay: 0,
-                modestbranding: 1,
-                showinfo: 0,
-                rel: 0
-              }
-            }}
-            onReady={this.onVideoReady}
-          />
-          <div className={styles.close} onClick={this.handleCloseVideo}><CloseIcon /></div>
-        </div>
-      )
-    }
-
     return (
       <div className={_wrapperStyles}>
         {renderAction()}
-        {renderVideo()}
+        <div className={styles.videoWrapper} onClick={this.handleCloseVideo}>
+          <Player styles={styles.player} onReady={this.onVideoReady} />
+          <div className={styles.close} onClick={this.handleCloseVideo}><CloseIcon /></div>
+        </div>
         <Footer />
       </div>
     )

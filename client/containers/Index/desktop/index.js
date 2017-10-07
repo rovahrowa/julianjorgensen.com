@@ -13,9 +13,6 @@ import Ux from './Ux';
 import Automation from './Automation';
 
 export default class HomeDesktop extends React.Component {
-  componentDidMount() {
-    console.log('home component mounted');
-  }
   render() {
     return (
       <div className={styles.wrapper}>
