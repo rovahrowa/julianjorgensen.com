@@ -1,0 +1,16 @@
+@import "globals.css";
+.wrapper {
+  height: rem(80);
+  width: 100%;
+  padding: 0 rem(15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: rem(20);
+  font-weight: bold;
+  text-transform: uppercase;
+  & svg {
+    height: rem(30);
+    width: rem(30);
+  }
+}

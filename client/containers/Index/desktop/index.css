@@ -1,0 +1,9 @@
+@import "globals.css";
+.wrapper {
+  composes: globalWrapper;
+}
+
+.quote {
+  composes: globalContainer;
+  margin-bottom: rem(30);
+}

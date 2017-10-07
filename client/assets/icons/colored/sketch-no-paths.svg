@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="434px" viewBox="0 0 512 434" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>diamond</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="diamond">
+            <g id="Layer_1">
+                <polygon id="Shape" fill="#FFE182" points="360.129 133.138 256 433.276 512 133.138"></polygon>
+                <g id="Group" fill="#FFCD73">
+                    <polygon id="Shape" points="105.931 0.724 0 133.138 151.871 133.138"></polygon>
+                    <polygon id="Shape" points="360.129 133.138 512 133.138 406.069 0.724"></polygon>
+                    <polygon id="Shape" points="360.129 133.138 256 0.724 151.871 133.138"></polygon>
+                </g>
+                <polygon id="Shape" fill="#FFAA64" points="256 0.724 105.931 0.724 151.871 133.138"></polygon>
+                <polygon id="Shape" fill="#FFE182" points="406.069 0.724 256 0.724 360.129 133.138"></polygon>
+                <polygon id="Shape" fill="#FFAA64" points="151.871 133.138 256 433.276 360.129 133.138"></polygon>
+                <polygon id="Shape" fill="#FF8C5A" points="0 133.138 256 433.276 151.871 133.138"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,32 @@
+@import "globals.css";
+.frontEnd {
+  color: white;
+  background: linear-gradient(to bottom right, color(#82C745 shade(40%)), color(#82C745 shade(5%)));
+  & svg path {
+    fill: white;
+  }
+}
+
+.fullStack {
+  color: white;
+  background: black;
+  & svg path {
+    fill: white;
+  }
+}
+
+.ux {
+  color: white;
+  background: linear-gradient(to bottom right, color(var(--orange) hue(25%)), color(var(--orange) hue(35%)));
+  & svg path {
+    fill: white;
+  }
+}
+
+.automation {
+  color: white;
+  background: linear-gradient(to bottom right, color(var(--blue) shade(20%)), #11B5FF);
+  & svg path {
+    fill: white;
+  }
+}
