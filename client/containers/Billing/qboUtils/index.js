@@ -38,10 +38,10 @@ export function getItem(type, id, token) {
           let memo = payload.item.CustomerMemo.value;
           let curlyBracesRegEx = / *\{[^]*\} */g;
           notes = memo.replace(curlyBracesRegEx, '');
-          
+
           metadata = memo.match(curlyBracesRegEx) ? JSON.parse(memo.match(curlyBracesRegEx)[0]) : {};
         }
-        
+
         let discountObj = _.find(payload.item.Line, {
           'DetailType': 'DiscountLineDetail'
         });
@@ -88,7 +88,7 @@ export function getItem(type, id, token) {
         });
       })
       .catch((error) => {
-        reject(`Error getting quickbooks item data from api...${error}`);
+        resolve({ error: error.response.data.message });
       });
   });
 }

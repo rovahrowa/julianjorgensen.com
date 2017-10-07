@@ -4,3 +4,31 @@
   justify-content: center;
   align-items: center;
 }
+
+.logo {
+  animation: logoAnimation 2s infinite;
+  max-width: rem(100);
+  max-height: rem(100);
+  & path {
+    fill: #6446C2;
+    animation: logoColorAnimation 2s infinite;
+  }
+}
+
+@keyframes logoAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes logoColorAnimation {
+  0% {
+    fill: #6446C2;
+  }
+  50% {
+    fill: #529CF1;
+  }
+}

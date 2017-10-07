@@ -5,6 +5,11 @@
   margin-bottom: rem(100);
 }
 
+.error {
+  text-align: center;
+  color: var(--errorColor);
+}
+
 @media print {
   .container {
     margin: 0 !important;

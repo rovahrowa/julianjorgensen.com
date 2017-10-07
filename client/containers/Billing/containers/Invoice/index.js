@@ -23,19 +23,23 @@ export default class Invoice extends React.Component {
     let id = this.props.match.params.id;
     let token = this.props.match.params.token;
 
-    getItem('invoice', id, token).then(({
-      item,
-      customer
-    }) => {
-      // set state
-      this.setState({
-        item,
-        customer,
-        paid: item.paid || false
-      });
+    getItem('invoice', id, token).then((response) => {
+      let { error, item, customer } = response;
+      if (error) {
+        this.setState({
+          error
+        });
+      } else {
+        // set state
+        this.setState({
+          item,
+          customer,
+          paid: item.paid || false
+        });
 
-      // trigger callback
-      this.props.onLoaded();
+        // trigger callback
+        this.props.onLoaded();
+      }
     });
   }
 
@@ -52,13 +56,22 @@ export default class Invoice extends React.Component {
     let {
       item,
       customer,
-      paid
+      paid,
+      error
     } = this.state;
 
-    if (!item) {
+    if (!item && !error) {
       return (
         <div className={styles.container}>
           <LoadingSpinner />
+        </div>
+      )
+    }
+
+    if (error) {
+      return (
+        <div className={styles.container}>
+          <div className={styles.error}>{error}</div>
         </div>
       )
     }

@@ -1,42 +1,65 @@
 @import 'variables';
-
-.container{
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: rem(40);
+  padding: rem(15);
   @apply --visibilityFade;
+  @media (--large-and-up) {
+    padding: rem(40);
+  }
 }
 
-.quote{
+.quote,
+.author {
+  opacity: 0.8;
+}
+
+.quote {
   display: block;
-  font-size: rem(30);
-  line-height: rem(34);
   text-align: center;
   font-style: italic;
+  font-size: rem(16);
+  line-height: rem(20);
+  @media (--large-and-up) {
+    font-size: rem(30);
+    line-height: rem(34);
+  }
 }
 
-.author{
+.author {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: rem(20);
+  margin-top: rem(10);
+  @media (--large-and-up) {
+    margin-top: rem(20);
+  }
 }
 
-.avatar{
+.avatar {
   display: block;
   border-radius: 50%;
   background-position: center center;
   background-size: cover;
-  height: rem(50);
-  width: rem(50);
+  height: rem(30);
+  width: rem(30);
   margin-right: rem(10);
+  @media (--large-and-up) {
+    height: rem(50);
+    width: rem(50);
+  }
 }
 
-.meta{
-  font-size: rem(14);
-  line-height: rem(14);
-  & .title{
+.meta {
+  font-size: rem(12);
+  line-height: rem(12);
+  & .title {
+    margin-top: rem(2);
     opacity: 0.8;
+  }
+  @media (--large-and-up) {
+    font-size: rem(14);
+    line-height: rem(14);
   }
 }

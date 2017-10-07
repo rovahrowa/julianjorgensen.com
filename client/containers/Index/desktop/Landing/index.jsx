@@ -13,6 +13,7 @@ import SeeMore from './components/SeeMore';
 import CloseIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/times.svg';
 import Signature from '-!svg-react-loader?name=Icon!assets/icons/julian-signature.svg';
 import styles from './index.css';
+import helperStyles from 'styles/helpers.css';
 
 @connect(({ scrollPosition }) => ({
   scroll: scrollPosition.y
@@ -100,7 +101,7 @@ export default class HomeLanding extends React.Component {
               <div style={dynamicBgStyles} className={styles.backgroundContent}>
                 <div className={styles.hero}>
                   <h1 className={styles.header}>Impress your online audience</h1>
-                  <p className={styles.subheader}>I help agencies and startups create impressive web apps, ecommerce and branding sites.</p>
+                  <p className={styles.subheader}>I help agencies and startups create impressive <span className={helperStyles.nobr}>web apps</span>, ecommerce <span className={helperStyles.nobr}>and branding sites.</span></p>
                 </div>
                 <LandingCategories className={styles.categories} />
               </div>

@@ -18,7 +18,7 @@ router.route('/:type/:id')
 
     // if token is false, then don't allow
     if (req.query.token !== token) {
-      res.status(401).send('You are unauthorized to see this item.').end();
+      res.status(401).send({ message: 'You are unauthorized to see this item.' }).end();
     }
 
     if (req.query.token === token) {
@@ -45,7 +45,7 @@ router.route('/:type/:id')
           processItemData(item).then((response) => {
             res.status(200).json(response);
           }).catch((err) => {
-            res.status(500).send(`Error ${err}`);
+            res.status(500).send(`Error123 ${err}`);
           });
         });
       }

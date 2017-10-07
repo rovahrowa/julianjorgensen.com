@@ -4,7 +4,7 @@ import styles from './index.css';
 
 export default class HomeLandingMobileSlide extends React.Component {
   render() {
-    let { title, content, className, playButtonClassName, titleClassName, videoIsLoading } = this.props;
+    let { title, content, className, playButtonClassName, titleClassName, videoIsLoading, backgroundOverlay } = this.props;
     let _slideStyles = cn(styles.slide, className);
     let _headerStyles = cn(styles.header, titleClassName);
     return (
@@ -14,6 +14,7 @@ export default class HomeLandingMobileSlide extends React.Component {
             <h1 className={_headerStyles}>{title}</h1>
             {content}
           </div>
+          {backgroundOverlay}
         </div>
       </div>
     )

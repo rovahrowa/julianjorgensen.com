@@ -2,22 +2,3 @@
 .wrapper {
   composes: globalWrapper;
 }
-
-.quote {
-  composes: globalContainer;
-  margin-bottom: rem(30);
-}
-
-.mobile {
-  @media (--large-and-up) {
-    display: none;
-  }
-}
-
-.desktop {
-  display: none;
-  @media (--large-and-up) {
-    display: flex;
-    flex-direction: column;
-  }
-}

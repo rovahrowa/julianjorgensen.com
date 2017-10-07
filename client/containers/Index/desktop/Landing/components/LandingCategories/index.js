@@ -28,7 +28,7 @@ export default class LandingCategories extends React.Component {
       <div className={styles.category} style={categoryLeftStyles}>
           <h2 className={styles.categoryHeader}>UI/UX Developer</h2>
           <div className={styles.description} style={leftDescriptionStyles}>
-            <p>Great user experiences merge both design and development. It's designing code.</p>
+            <p>Great designs are nothing without great implementation. I focus on bringing UX into development - merging design and code.</p>
             <Button
               label='See more'
               href='#details'
