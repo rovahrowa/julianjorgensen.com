@@ -8,6 +8,6 @@ import { lazyload } from 'react-lazyload';
 export default class Player extends React.Component {
   render() {
     let { onReady, styles } = this.props;
-    return ()
+    return (<div></div>)
   }
 }
