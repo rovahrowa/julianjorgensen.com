@@ -1,8 +1,9 @@
 @import "globals.css";
 .wrapper {
-  height: rem(80);
-  width: 100%;
-  padding: 0 rem(15);
+  composes: globalContainer withShadow;
+  height: rem(120);
+  margin-bottom: rem(30);
+  padding: rem(20);
   display: flex;
   align-items: center;
   justify-content: space-between;

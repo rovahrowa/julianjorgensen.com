@@ -23,10 +23,12 @@ export default class HomeMobile extends React.Component {
           className={styles.quote}
         />
 
-        <NavBlock className={styles.frontEnd} title='FrontEnd development' />
-        <NavBlock className={styles.fullStack} title='FullStack development' />
-        <NavBlock className={styles.ux} title='User Experience' />
-        <NavBlock className={styles.automation} title='Automation' />
+        <div className={styles.navBlocks}>
+          <NavBlock className={styles.frontEnd} title='FrontEnd development' />
+          <NavBlock className={styles.fullStack} title='FullStack development' />
+          <NavBlock className={styles.ux} title='User Experience' />
+          <NavBlock className={styles.automation} title='Automation' />
+        </div>
       </div>
     )
   }

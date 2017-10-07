@@ -1,4 +1,10 @@
 @import "globals.css";
+.navBlocks {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .frontEnd {
   color: white;
   background: linear-gradient(to bottom right, color(#82C745 shade(40%)), color(#82C745 shade(5%)));
