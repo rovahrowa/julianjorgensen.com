@@ -2,15 +2,12 @@ import React from 'react';
 import cn from 'classnames';
 import { Parallax, Background } from 'react-parallax';
 import { connect } from 'react-redux';
-import YouTube from 'react-youtube';
 import ReactCursorPosition from 'react-cursor-position';
 
 import Button from 'components/Button';
-import LandingFooter from './components/LandingFooter';
 import LandingCategories from './components/LandingCategories';
 import LandingBackground from './components/LandingBackground';
-import SeeMore from './components/SeeMore';
-import CloseIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/times.svg';
+import Video from './components/Video';
 import Signature from '-!svg-react-loader?name=Icon!assets/icons/julian-signature.svg';
 import styles from './index.css';
 import helperStyles from 'styles/helpers.css';
@@ -23,11 +20,11 @@ export default class HomeLanding extends React.Component {
     super();
 
     this.state = {
+      renderVideo: false,
       playVideo: false,
+      hasVideoPlayed: false,
       position: {}
     }
-
-    this.video = null;
   }
 
   handlePositionChange = (position) => {
@@ -42,45 +39,31 @@ export default class HomeLanding extends React.Component {
     });
   }
 
-  onVideoReady = (event) => {
-    this.video = event.target;
-  }
-
   handlePlayVideo = () => {
     this.setState({
       playVideo: true,
       hasVideoPlayed: false
     });
-
-    this.video.seekTo(0);
-    this.video.playVideo();
-  }
-
-  handleToggleSound = () => {
-    if (this.state.videoMute) {
-      this.video.unMute();
-    } else {
-      this.video.mute();
-    }
-
-    this.setState({
-      videoMute: !this.state.videoMute
-    });
   }
 
   handleCloseVideo = () => {
-    let percentagePlayed = (this.video.getCurrentTime() / this.video.getDuration()) * 100;
-    let hasVideoPlayed = percentagePlayed > 60 ? true : false;
     this.setState({
-      playVideo: false,
-      hasVideoPlayed: hasVideoPlayed
+      playVideo: false
     });
-
-    if (!hasVideoPlayed) {
-      this.video.stopVideo();
-    }
   }
 
+  handleVideoHasPlayed = () => {
+    console.log('video has played');
+    this.setState({
+      hasVideoPlayed: true
+    });
+  }
+
+  componentDidMount() {
+    this.setState({
+      renderVideo: true
+    });
+  }
 
   render() {
     let { scroll } = this.props;
@@ -107,27 +90,16 @@ export default class HomeLanding extends React.Component {
               </div>
               <LandingBackground active={this.state.cursorActive} position={this.state.position} />
               <Signature className={styles.signature} />
-              <SeeMore videoMute={this.state.videoMute} handleToggleSound={this.handleToggleSound} hasVideoPlayed={this.state.hasVideoPlayed} handleReplay={this.handlePlayVideo} />
             </Background>
           </Parallax>
 
-          <LandingFooter className={styles.footer} dynamicStyles={dynamicFooterStyles} hasVideoPlayed={this.state.hasVideoPlayed} handleVideoClick={this.handlePlayVideo} />
-          <div className={styles.videoWrapper} onClick={this.handleCloseVideo}>
-            <YouTube
-              videoId="_OJzg063OyI"
-              className={styles.player}
-              opts={{
-                playerVars: { 
-                  autoplay: 0,
-                  modestbranding: 1,
-                  showinfo: 0,
-                  rel: 0
-                }
-              }}
-              onReady={this.onVideoReady}
-            />
-            <div className={styles.close} onClick={this.handleCloseVideo}><CloseIcon /></div>
-          </div>
+          <Video
+            onVideoEnd={this.handleCloseVideo}
+            onVideoHasPlayed={this.handleVideoHasPlayed}
+            dynamicStyles={dynamicFooterStyles}
+            handleVideoClick={this.handlePlayVideo}
+            {...this.state}
+          />
         </div>
       </ReactCursorPosition>
     )
