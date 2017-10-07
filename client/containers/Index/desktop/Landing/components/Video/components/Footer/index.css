@@ -1,0 +1,57 @@
+:root {
+  --footer-triangle: {
+    content: '';
+    position: absolute;
+    height: inherit;
+    width: 50%;
+    top: 0;
+    transform: translateY(-100%);
+    border-bottom-width: rem(100);
+    border-bottom-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+}
+
+.wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  & .topBorder,
+  & .bottomBorder {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    &:before,
+    &:after {
+      @apply --footer-triangle;
+      border-bottom-color: white;
+    }
+    &:before {
+      left: 0;
+      border-left-width: 0;
+      border-right-width: 50vw;
+    }
+    &:after {
+      right: 0;
+      border-left-width: 50vw;
+      border-right-width: rem(0);
+    }
+  }
+  & .topBorder {
+    bottom: rem(50);
+    height: 4vh;
+    background-color: gray(90%);
+    &:before,
+    &:after {
+      border-bottom-color: gray(90%);
+    }
+  }
+  & .bottomBorder {
+    height: 8vh;
+    bottom: 0;
+  }
+}
