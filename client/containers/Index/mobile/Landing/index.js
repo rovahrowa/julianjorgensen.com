@@ -1,13 +1,10 @@
 import React from 'react';
-import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import Carousel from 'rmc-nuka-carousel';
-import PlayIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/solid/play-circle.svg';
 import MobileIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/mobile-phone-pay.svg';
 import DevicesIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/devices.svg';
 import SketchIcon from '-!svg-react-loader?name=Icon!assets/icons/colored/sketch-no-paths.svg';
-import LoadingSpinner from 'components/LoadingSpinner';
-import YouTube from 'react-youtube';
+import Video from './components/Video';
 import Slide from './components/Slide';
 import styles from './index.css';
 
@@ -36,25 +33,14 @@ let slides = [{
 
 export default class HomeLandingMobile extends React.Component {
   state = {
+    isLoaded: false,
     activeSlide: 0
   };
 
-  onVideoReady = (event) => {
-    this.video = event.target;
-  }
-
-  onVideoStateChange = (event) => {
-    switch (event.data) {
-      case 3:
-        this.setState({
-          videoIsLoading: true
-        });
-        break;
-      default:
-        this.setState({
-          videoIsLoading: false
-        });
-    }
+  componentDidMount() {
+    this.setState({
+      isLoaded: true
+    });
   }
 
   handleSlideChange = (prevSlide, nextSlide) => {
@@ -63,11 +49,20 @@ export default class HomeLandingMobile extends React.Component {
     });
   }
 
-  render() {
-    let { activeSlide, videoIsLoading } = this.state;
-    let _ctaStyles = cn(styles.cta, {
-      [styles.white]: activeSlide === 1 || activeSlide === 2 || activeSlide === 3
+  onVideoLoaded = () => {
+    this.setState({
+      videoIsLoading: false
     });
+  }
+
+  onVideoLoad = () => {
+    this.setState({
+      videoIsLoading: true
+    });
+  }
+
+  render() {
+    let { isLoaded, videoIsLoading } = this.state;
 
     return (
       <div className={styles.wrapper}>
@@ -86,23 +81,12 @@ export default class HomeLandingMobile extends React.Component {
         })}
         </Carousel>
 
-        <div className={_ctaStyles}>
-          {videoIsLoading ? <LoadingSpinner /> : <PlayIcon />}
-
-          <YouTube
-            videoId="_OJzg063OyI"
-            className={styles.player}
-            opts={{
-              playerVars: { 
-                autoplay: 0,
-                showinfo: 0,
-                rel: 0
-              }
-            }}
-            onReady={this.onVideoReady}
-            onStateChange={this.onVideoStateChange}
-          />
-        </div>
+        <Video
+          render={isLoaded}
+          onVideoLoaded={this.onVideoLoaded} 
+          onVideoLoad={this.onVideoLoad} 
+          {...this.state} 
+        />
       </div>
     )
   }

@@ -24,7 +24,7 @@ export default class HomeMobile extends React.Component {
         />
 
         <div className={styles.navBlocks}>
-          <NavBlock className={styles.frontEnd} title='FrontEnd development' tags={['design', 'animations', 'performance', 'scalable']} />
+          <NavBlock className={styles.frontEnd} title='FrontEnd development' tags={['React Javascript', 'UI', 'Animations', 'Responsive', 'Performance']} />
           <NavBlock className={styles.fullStack} title='FullStack development' tags={['Node', 'Javascript', 'API', 'secure']} />
           <NavBlock className={styles.ux} title='User Experience' tags={['Web architecture', 'Wireframeing', 'UX development', 'Prototyping']} />
           <NavBlock className={styles.automation} title='Automation' tags={['billing', 'social media', 'api', 'emails']} />
