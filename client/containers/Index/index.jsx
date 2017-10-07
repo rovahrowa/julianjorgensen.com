@@ -10,7 +10,7 @@ export default class Index extends React.Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <MobileTablet component={<HomeMobile />} />
+        {/*<MobileTablet component={<HomeMobile />} />*/}
         <Desktop component={<Home />} />
       </div>
     )
