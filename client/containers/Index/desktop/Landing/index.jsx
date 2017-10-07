@@ -60,11 +60,9 @@ export default class HomeLanding extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        renderVideo: true
-      });
-    }, 2000);
+    this.setState({
+      renderVideo: true
+    });
   }
 
   render() {
