@@ -68,6 +68,10 @@ export default class HomeLandingVideo extends React.Component {
     }
   }
 
+  componentDidMount() {
+    console.log('video component mounted');
+  }
+
   render() {
     let { site, hasVideoPlayed, playVideo, onClose, dynamicStyles, handleVideoClick } = this.props;
 
@@ -98,27 +102,37 @@ export default class HomeLandingVideo extends React.Component {
       }
     }
 
+    let renderVideo = () => {
+      if (!site.hasLoaded) {
+        return null
+      }
+
+      console.log('rendering video!');
+
+      return (
+        <div className={styles.videoWrapper} onClick={this.handleCloseVideo}>
+          <YouTube
+            videoId="_OJzg063OyI"
+            className={styles.player}
+            opts={{
+              playerVars: { 
+                autoplay: 0,
+                modestbranding: 1,
+                showinfo: 0,
+                rel: 0
+              }
+            }}
+            onReady={this.onVideoReady}
+          />
+          <div className={styles.close} onClick={this.handleCloseVideo}><CloseIcon /></div>
+        </div>
+      )
+    }
+
     return (
       <div className={_wrapperStyles}>
         {renderAction()}
-        {site.hasLoaded ?
-          <div className={styles.videoWrapper} onClick={this.handleCloseVideo}>
-            <YouTube
-              videoId="_OJzg063OyI"
-              className={styles.player}
-              opts={{
-                playerVars: { 
-                  autoplay: 0,
-                  modestbranding: 1,
-                  showinfo: 0,
-                  rel: 0
-                }
-              }}
-              onReady={this.onVideoReady}
-            />
-            <div className={styles.close} onClick={this.handleCloseVideo}><CloseIcon /></div>
-          </div> 
-        : ''}
+        {renderVideo()}
         <Footer />
       </div>
     )

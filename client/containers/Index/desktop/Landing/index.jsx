@@ -58,6 +58,10 @@ export default class HomeLanding extends React.Component {
     });
   }
 
+  componentDidMount() {
+    console.log('landing component mounted');
+  }
+
   render() {
     let { scroll } = this.props;
     let { playVideo } = this.state;
