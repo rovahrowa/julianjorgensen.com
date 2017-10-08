@@ -4,9 +4,15 @@ import cn from 'classnames';
 import PlayIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/solid/play.svg';
 import CloseIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/times.svg';
 import SeeMore from './components/SeeMore';
-import Player from './components/Player';
 import Footer from './components/Footer';
 import styles from './index.css';
+
+import Loadable from 'react-loadable';
+import LoadingSpinner from 'components/LoadingSpinner';
+const Player = Loadable({
+  loader: () => import('./components/Player'),
+  loading: LoadingSpinner,
+});
 
 export default class HomeLandingVideo extends React.Component {
   constructor() {

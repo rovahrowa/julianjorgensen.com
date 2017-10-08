@@ -4,6 +4,7 @@ import Merge from 'webpack-merge';
 import StatsPlugin from 'stats-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
+import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import PostCSS from './postcss.config';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
@@ -22,8 +23,7 @@ const VENDOR_LIBS = [
   'react-dom',
   'react-router-dom',
   'react-redux',
-  'react-document-meta',
-  'react-youtube'
+  'react-document-meta'
 ];
 
 const APP_ROOT = path.join(__dirname, '/');

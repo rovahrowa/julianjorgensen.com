@@ -6914,6 +6914,10 @@ react-load-script@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
 
+react-loadable@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-loadable/-/react-loadable-5.0.0.tgz#b99df8afd646069022fb3f5fc22402c0f47c317f"
+
 react-markdown@^2.4.4:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/react-markdown/-/react-markdown-2.5.0.tgz#b1c61904fee5895886803bd9df7db23c3dc3a89e"
@@ -7530,6 +7534,12 @@ schema-utils@^0.3.0:
 scmp@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/scmp/-/scmp-1.0.2.tgz#bc4e4e2713252b04210cdff9cef3ade2c8fa7370"
+
+script-ext-html-webpack-plugin@^1.8.5:
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/script-ext-html-webpack-plugin/-/script-ext-html-webpack-plugin-1.8.5.tgz#7a408383d7f3329da8f59d503be25cc39a53f3f3"
+  dependencies:
+    debug "^2.6.8"
 
 seek-bzip@^1.0.3:
   version "1.0.5"
