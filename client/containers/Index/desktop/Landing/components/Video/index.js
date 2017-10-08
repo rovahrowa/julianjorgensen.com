@@ -6,11 +6,11 @@ import CloseIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/reg
 import SeeMore from './components/SeeMore';
 import Footer from './components/Footer';
 import styles from './index.css';
-
+import delay from './delay';
 import Loadable from 'react-loadable';
 import LoadingSpinner from 'components/LoadingSpinner';
 const Player = Loadable({
-  loader: () => import('./components/Player'),
+  loader: () => delay(5000).then(() => import('./components/Player')),
   loading: LoadingSpinner,
   delay: 5000
 });
