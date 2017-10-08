@@ -12,6 +12,7 @@ import LoadingSpinner from 'components/LoadingSpinner';
 const Player = Loadable({
   loader: () => import('./components/Player'),
   loading: LoadingSpinner,
+  delay: 5000
 });
 
 export default class HomeLandingVideo extends React.Component {
