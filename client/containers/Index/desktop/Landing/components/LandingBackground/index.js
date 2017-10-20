@@ -22,7 +22,7 @@ export default class LandingBackground extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <video loop autoPlay controls className={styles.video}>
+        <video loop autoPlay controls className={styles.video} poster='/images/northern-lights.jpg'>
           <source src='/videos/julian-jorgensen-northern-lights.mp4' type='video/mp4' />
           <source src='/videos/julian-jorgensen-northern-lights.webm' type='video/webm' />
         </video>
