@@ -50,8 +50,7 @@ const BillingHeader = ({
         <div className={styles.col}>
           <label>From</label>
           <address>
-            <strong>FLO INC.</strong><br />
-            Julian Jorgensen<br />
+            <strong>FLO DIGITAL INC.</strong><br />
             308 5th Ave E<br />
             V5T 1H4, Vancouver <br />
             B.C., Canada
