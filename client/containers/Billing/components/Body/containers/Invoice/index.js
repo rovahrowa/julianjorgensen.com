@@ -25,7 +25,10 @@ export default class InvoiceBody extends React.Component {
       if (paid) {
         return `Thank you for your payment ${item.paidDate ? `on ${moment(item.paidDate, 'DD-MM-YYYY').format('MMMM Do YYYY')}` : ''}`;
        } else {
-        return `${numeral(item.balance).format('$0,0.00')} is due on ${moment(item.dueDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}`;
+        const now = moment();
+        const dueDate = moment(item.dueDate, 'YYYY-MM-DD');
+        const wasIs = today.diff(dueDate) < 0 ? 'is' : 'was';
+        return `${numeral(item.balance).format('$0,0.00')} ${wasIs} due on ${dueDate.format('MMMM Do YYYY')}`;
        }
     };
 
