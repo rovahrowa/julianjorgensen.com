@@ -80,15 +80,3 @@
     justify-content: flex-end;
   }
 }
-
-.profileImage{
-  background: url('/images/julian-blackshirt.png') 0 0 no-repeat;
-  background-size: contain;
-  width: rem(300);
-  height: rem(220);
-  position: absolute;
-  bottom: rem(-30);
-  left: 0;
-  z-index: 999;
-  filter: grayscale(100%);
-}

@@ -28,8 +28,8 @@ export default class HomeDesktop extends React.Component {
           className={styles.quote}
         />
         <FrontEnd />
-        <FullStack />
         <Ux />
+        <FullStack />
         <Automation />
     </div>
     )

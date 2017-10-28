@@ -1,38 +1,37 @@
-let util = require('../../../utils/utils');
-let ENV_CONFIG = util.getEnvConfig();
-let numeral = require('numeral');
-let _ = require('lodash');
-let moment = require('moment');
+import numeral from 'numeral';
+import _ from 'lodash';
+import moment from 'moment';
+import { envConfig, createToken } from '../../../utils/utils';
 
-let prepareContent = ({
+const prepareContent = ({
   eventType,
   itemType,
   item,
-  customer
+  customer,
 }) => {
   // Create token for email button
-  let secretVariable = 'Item' + item.Id;
-  let itemToken = util.createToken(secretVariable);
+  const secretVariable = `Item${item.Id}`;
+  const itemToken = createToken(secretVariable);
 
   console.log('preparingContent');
   console.log('itemToken', itemToken);
   console.log('item id', item.Id);
 
   // Create variables
-  let itemNumber = item.DocNumber;
-  let itemAmount = numeral(item.Balance).format('$0,0.00');
-  let currency = item.CurrencyRef.value;
-  let itemDueDate = item.DueDate;
-  let itemDueDateFormatted = moment(item.DueDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
-  let customerIsActive = customer.Active;
-  let customerName = customer.GivenName;
-  let companyName = customer.CompanyName;
+  const itemNumber = item.DocNumber;
+  const itemAmount = numeral(item.Balance).format('$0,0.00');
+  const currency = item.CurrencyRef.value;
+  const itemDueDate = item.DueDate;
+  const itemDueDateFormatted = moment(item.DueDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
+  const customerIsActive = customer.Active;
+  const customerName = customer.GivenName;
+  const companyName = customer.CompanyName;
 
   // get project name
-  let projectNameObj = _.find(item.CustomField, {
-    'Name': ENV_CONFIG.QBO_PROJECT_NAME_LABEL
+  const projectNameObj = _.find(item.CustomField, {
+    'Name': envConfig.QBO_PROJECT_NAME_LABEL
   });
-  let projectName = projectNameObj ? projectNameObj.StringValue : null;
+  const projectName = projectNameObj ? projectNameObj.StringValue : null;
 
   // if item has an email then use that, otherwise use the email(s) associated with the customer
   let email;

@@ -1,7 +1,7 @@
 let moment = require('moment');
 let _ = require('lodash');
 let util = require('../../utils/utils');
-let ENV_CONFIG = util.getEnvConfig();
+import { envConfig } from '../../utils/utils';
 
 let processInvoices = function (invoices) {
   if (invoices) {
@@ -11,13 +11,13 @@ let processInvoices = function (invoices) {
 
       // get paid date
       let paidDateObj = _.find(invoice.CustomField, {
-        'Name': ENV_CONFIG.QBO_PAID_LABEL
+        'Name': envConfig.QBO_PAID_LABEL
       });
       let paidDate = paidDateObj ? paidDateObj.StringValue : null;
 
       // get last sent date
       let lastSentDateObj = _.find(invoice.CustomField, {
-        'Name': ENV_CONFIG.QBO_SENT_LABEL
+        'Name': envConfig.QBO_SENT_LABEL
       });
       let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
 

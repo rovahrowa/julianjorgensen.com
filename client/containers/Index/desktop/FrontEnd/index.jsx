@@ -8,20 +8,21 @@ import FastIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/ligh
 import AnimationIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/braille.svg';
 import OptimizedIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/braille.svg';
 
-let items = [{
-    title: 'Code-based design',
-    icon: <CodeBasedDesignIcon className={styles.boxIcon} />
-  },
+let items = [
   {
-    title: 'Animations',
+    title: 'Solid stack',
     icon: <AnimationIcon />
   },
   {
-    title: 'Lightning fast',
+    title: 'Advanced CSS architecture',
+    icon: <CodeBasedDesignIcon className={styles.boxIcon} />
+  },
+  {
+    title: 'Speed optimization',
     icon: <FastIcon />
   },
   {
-    title: 'Optimized for everybody',
+    title: 'High precision',
     icon: <OptimizedIcon />
   }
 ];

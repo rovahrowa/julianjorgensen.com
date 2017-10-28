@@ -1,6 +1,5 @@
-let moment = require('moment');
-let util = require('../../utils/utils');
-let ENV_CONFIG = util.getEnvConfig();
+import moment from 'moment';
+import { envConfig } from '../../utils/utils';
 
 let updateItem = (passedData) => {
   console.log('passedData', passedData);
@@ -16,7 +15,7 @@ let updateItem = (passedData) => {
       let updatedItemData = {
         CustomField: [{
           "DefinitionId": "2",
-          "Name": ENV_CONFIG.QBO_SENT_LABEL,
+          "Name": envConfig.QBO_SENT_LABEL,
           "Type": "StringType",
           "StringValue": moment(Date.now()).format('DD-MM-YYYY')
         }],

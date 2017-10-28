@@ -37,8 +37,6 @@ const Contact = ({active, handleToggle}) => {
         </address>
         <SocialIcons className={styles.icons} />
       </div>
-
-      <div className={styles.profileImage}></div>      
     </Drawer>
   )
 }

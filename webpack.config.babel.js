@@ -4,11 +4,10 @@ import Merge from 'webpack-merge';
 import StatsPlugin from 'stats-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
-import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
-import autoprefixer from 'autoprefixer';
-import PostCSS from './postcss.config';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
+
+import './postcss.config';
 
 // define environment constants
 const NODE_ENV = (process.env.NODE_ENV || 'development');
@@ -23,7 +22,7 @@ const VENDOR_LIBS = [
   'react-dom',
   'react-router-dom',
   'react-redux',
-  'react-document-meta'
+  'react-document-meta',
 ];
 
 const APP_ROOT = path.join(__dirname, '/');
@@ -35,47 +34,49 @@ const PUBLIC_PATH = path.join(APP_ROOT, '/public');
 const BASE_CONFIG = {
   entry: {
     bundle: ['babel-polyfill', path.join(CLIENT_PATH, 'app')],
-    vendor: VENDOR_LIBS
+    vendor: VENDOR_LIBS,
   },
   output: {
     path: PUBLIC_PATH,
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.jsx?$/i,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
-          use: [{
+          use: [
+            {
               loader: 'css-loader',
               options: {
                 modules: true,
                 sourceMap: false,
                 minimize: true,
                 importLoaders: 1,
-                localIdentName: "[name]--[local]--[hash:base64:8]"
+                localIdentName: '[name]--[local]--[hash:base64:8]',
               }
             },
             {
-              loader: 'postcss-loader'
+              loader: 'postcss-loader',
             }
           ]
         })
       },
       {
         test: /\.json$/i,
-        use: 'json-loader'
+        use: 'json-loader',
       },
       {
         test: /\.pdf$/i,
-        use: 'file-loader?name=/docs/[name].[ext]'
+        use: 'file-loader?name=/docs/[name].[ext]',
       },
       {
         test: /\.(gif|png|jpe?g)$/i,
@@ -93,55 +94,47 @@ const BASE_CONFIG = {
               },
               pngquant: {
                 quality: '65-80',
-                speed: 4
+                speed: 4,
               },
               mozjpeg: {
                 progressive: true,
-                quality: 65
+                quality: 65,
               },
               // Specifying webp here will create a WEBP version of your JPG/PNG images
               webp: {
-                quality: 75
-              }
-            }
-          }
-        ]
+                quality: 75,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'url-loader'
+        loader: 'url-loader',
       },
       {
         test: /\.svg$/,
         exclude: /node_modules/,
         loader: 'svg-react-loader',
-        query: {
-          classIdPrefix: '[name]-[hash:8]__'
-        }
-      }
-    ]
+        query:
+        {
+          classIdPrefix: '[name]-[hash:8]__',
+        },
+      },
+    ],
   },
   plugins: [
-    new CopyWebpackPlugin([{
-        context: CLIENT_PATH,
-        from: 'assets/images',
-        to: 'images'
-      },
+    new CopyWebpackPlugin([
       {
         context: CLIENT_PATH,
         from: 'assets/pdfs',
-        to: 'pdfs'
-      },
-      {
-        context: CLIENT_PATH,
-        from: 'assets/fonts',
-        to: 'fonts'
+        to: 'pdfs',
       },
       {
         context: CLIENT_PATH,
         from: 'assets/videos',
-        to: 'videos'
-      }
+        to: 'videos',
+      },
     ]),
     new webpack.DefinePlugin({
       // Dynamically access local environment variables based on the environment
@@ -149,16 +142,16 @@ const BASE_CONFIG = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'bundle'],
-      minChunks: Infinity
+      minChunks: Infinity,
     }),
     new HTMLWebpackPlugin({
-      template: path.join(CLIENT_PATH, 'index.html')
+      template: path.join(CLIENT_PATH, 'index.html'),
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.LoaderOptionsPlugin({
-      debug: true
+      debug: true,
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/) // reduce moment package size
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // reduce moment package size
   ],
   devtool: `${IS_PRODUCTION ? 'inline' : 'cheap-eval'}-source-map`,
   resolve: {
@@ -174,10 +167,10 @@ const BASE_CONFIG = {
       actions: path.join(CLIENT_PATH, 'store/actions/'),
       styles: path.join(CLIENT_PATH, 'styles/'),
       utils: path.join(CLIENT_PATH, 'utils/'),
-      lib: path.join(CLIENT_PATH, 'lib/')
+      lib: path.join(CLIENT_PATH, 'lib/'),
     },
-    extensions: ['.js', '.jsx', '.css']
-  }
+    extensions: ['.js', '.jsx', '.css'],
+  },
 };
 
 
@@ -185,54 +178,52 @@ const BASE_CONFIG = {
 const PROD_PLUGINS = [
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify('production')
-    }
+      NODE_ENV: JSON.stringify('production'),
+    },
   }),
   new ExtractTextPlugin('[name].min.[contenthash].css'),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       screw_ie8: true,
-      warnings: false
+      warnings: false,
     },
     output: {
-      comments: false
-    }
+      comments: false,
+    },
   }),
   new webpack.optimize.AggressiveMergingPlugin(),
   new CompressionPlugin({
-    asset: "[path].gz[query]",
-    algorithm: "gzip",
+    asset: '[path].gz[query]',
+    algorithm: 'gzip',
     test: /\.js$|\.css$|\.html$/,
     threshold: 10240,
-    minRatio: 0.8
+    minRatio: 0.8,
   }),
   new StatsPlugin('stats.prod.json', {
-    chunkModules: true
-  })
+    chunkModules: true,
+  }),
 ];
 
 // Webpack field-value pairs re: webpack-dev-server:
 const PROD_CONFIG = {
   output: {
-    filename: '[name].min.[hash].js'
-  }
+    filename: '[name].min.[hash].js',
+  },
 };
-
-
 
 // Webpack plugins unique to the development build:
 const DEV_PLUGINS = [
   new ExtractTextPlugin('[name].[contenthash].css'),
   new webpack.HotModuleReplacementPlugin(),
   new StatsPlugin('stats.dev.json', {
-    chunkModules: true
-  })
+    chunkModules: true,
+  }),
 ];
 
 // Webpack field-value pairs re: webpack-dev-server:
 const DEV_CONFIG = {
   output: {
-    filename: '[name].[hash].js'
+    filename: '[name].[hash].js',
   },
   devServer: {
     contentBase: path.join(__dirname, 'public'),
@@ -242,18 +233,18 @@ const DEV_CONFIG = {
     inline: true,
     noInfo: false,
     port: 3000,
-    historyApiFallback: true
-  }
+    historyApiFallback: true,
+  },
 };
 
 // Final Webpack configuration object constructed
 //  conditionally according to the NODE_ENV value:
 const AGGREGATE_CONFIG = IS_PRODUCTION ?
   Merge(BASE_CONFIG, PROD_CONFIG, {
-    plugins: PROD_PLUGINS
+    plugins: PROD_PLUGINS,
   }) :
   Merge(BASE_CONFIG, DEV_CONFIG, {
-    plugins: DEV_PLUGINS
+    plugins: DEV_PLUGINS,
   });
 
 export default AGGREGATE_CONFIG;

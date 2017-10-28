@@ -1,4 +1,4 @@
-let sendMail = require('../sendMail');
+let sendEmail = require('../sendEmail');
 
 let sendItem = function(preparedMailContent) {
   console.log('sending prepared email item', preparedMailContent);
@@ -10,7 +10,7 @@ let sendItem = function(preparedMailContent) {
         preparedMailContent.to = preparedMailContent.from;
       }
 
-      sendMail(preparedMailContent).then(() => {
+      sendEmail(preparedMailContent).then(() => {
         resolve('sent billingItem email to ', recipientType); // pass the data so we can update item
       }).catch((err) => {
         console.log('Error: Something went wrong when sending the item email...', err);

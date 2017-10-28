@@ -1,7 +1,7 @@
-let moment = require('moment');
-let _ = require('lodash');
-let utils = require('./utils/invoiceReminderUtils');
-let ENV_CONFIG = require('../../utils/utils').getEnvConfig();
+import moment from 'moment';
+import _ from 'lodash';
+import { getFirstLineItemTaxCode, searchForPreviousLateFee } from './utils/invoiceReminderUtils';
+import { envConfig } from '../../utils/utils';
 
 let applyLateFees = function (processedInvoices) {
   if (processedInvoices.length > 0) {
@@ -21,7 +21,7 @@ let applyLateFees = function (processedInvoices) {
           });
           let subtotal = subtotalObj.Amount;
 
-          let previousLateFee = utils.searchForPreviousLateFee(invoiceRef.Line);
+          let previousLateFee = searchForPreviousLateFee(invoiceRef.Line);
 
           // If there was a previous Late fee item, increment that one
           if (previousLateFee) {
@@ -43,7 +43,7 @@ let applyLateFees = function (processedInvoices) {
 
           } else {
 
-            let defaultTaxCode = utils.getFirstLineItemTaxCode(invoiceRef.Line);
+            let defaultTaxCode = getFirstLineItemTaxCode(invoiceRef.Line);
 
             // Otherwise, create a new late fee line item
             invoiceRef.Line.push({
@@ -52,7 +52,7 @@ let applyLateFees = function (processedInvoices) {
               Amount: lateFeesQty * subtotal * 0.03,
               SalesItemLineDetail: {
                 "ItemRef": {
-                  "value": ENV_CONFIG.QBO_LATE_FEE_ITEM_REF
+                  "value": envConfig.QBO_LATE_FEE_ITEM_REF
                 },
                 UnitPrice: subtotal * 0.03,
                 Qty: lateFeesQty,

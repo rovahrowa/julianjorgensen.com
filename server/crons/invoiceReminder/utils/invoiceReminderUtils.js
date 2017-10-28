@@ -1,4 +1,4 @@
-let ENV_CONFIG = require('../../../utils/utils').getEnvConfig();
+import { envConfig } from '../../../utils/utils';
 
 function searchForPreviousLateFee(lineItems) {
   return lineItems.filter((item, index) => {
@@ -8,7 +8,7 @@ function searchForPreviousLateFee(lineItems) {
     }
 
     // description has to match "Late fee"
-    if (item.SalesItemLineDetail.ItemRef.value !== ENV_CONFIG.QBO_LATE_FEE_ITEM_REF) {
+    if (item.SalesItemLineDetail.ItemRef.value !== envConfig.QBO_LATE_FEE_ITEM_REF) {
       return false
     }
 

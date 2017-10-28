@@ -1,6 +1,6 @@
 let util = require('../../utils/utils');
 let pug = require('pug');
-let sendMail = require('../sendMail');
+let sendEmail = require('../sendEmail');
 
 let sendEstimateConfirmation = function(body) {
   let promise = new Promise(function(resolve, reject) {
@@ -37,7 +37,7 @@ let sendEstimateConfirmation = function(body) {
         context: contextObject
       }
     };
-    sendMail(estimateConfirmation);
+    sendEmail(estimateConfirmation);
 
     // send the estimate request to myself
     let estimateRequest = {
@@ -56,7 +56,7 @@ let sendEstimateConfirmation = function(body) {
         context: contextObject
       }
     };
-    sendMail(estimateRequest);
+    sendEmail(estimateRequest);
     resolve();
   });
 

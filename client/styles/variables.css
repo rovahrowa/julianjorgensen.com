@@ -20,6 +20,12 @@
   --boxShadow: {
     box-shadow: rem(5) rem(5) rem(8) rem(1) gray(40%);
   }
+  --tag: {
+    font-size: rem(12);
+    border-radius: rem(5);
+    background-color: color(gray(20%) alpha(50%));
+    padding: rem(2) rem(6);
+  }  
 }
 
 :root {

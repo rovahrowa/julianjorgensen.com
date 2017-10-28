@@ -11,22 +11,25 @@
   font-family: var(--primaryFont);
   transition: all 0.2s;
   &:hover{
-   transform: translateY(rem(-3));
+   transform: translateY(rem(-2));
+   box-shadow: 0 rem(7) rem(14) color(gray(20%) alpha(10%));
   }
   &.hollow:not([disabled]) {
     border: 1px solid currentColor;
     background-color: transparent;
     color: gray(60%);
+    transition: all 0.2s;
     &:hover {
-      background-color: color(gray(60%) alpha(-80%));
+      background-color: color(white alpha(5%));
     }
   }
   &.primary:not([disabled]) {
     color: black;
-    box-shadow: rem(0) rem(2) rem(2) rem(0) gray(50%);
+    box-shadow: rem(0) rem(2) rem(4) gray(50%);
     background: linear-gradient(to bottom right, var(--gamboge), var(--brightSun));
     &:hover {
-      background: linear-gradient(to bottom right, color(var(--gamboge) shade(10%)), color(var(--brightSun) shade(10%)));
+      background: linear-gradient(to bottom right, var(--gamboge), var(--brightSun));
+      box-shadow: 0 rem(7) rem(14) color(gray(20%) alpha(40%));
     }
   }
   &.confirm:not([disabled]) {
