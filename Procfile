@@ -1,1 +1,1 @@
-web: node server/app.js
+web: yarn babel-node server/app.js --presets es2015,stage-2
