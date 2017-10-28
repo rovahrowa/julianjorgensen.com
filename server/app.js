@@ -34,18 +34,15 @@ app.use(cors({
 }));
 
 // Stripe routes
-app.get('/stripe/find-customer', stripe.findCustomer);
-app.get('/stripe/charge-customer', stripe.chargeCustomer);
-app.get('/stripe/create-customer', stripe.createCustomer);
 app.get('/stripe/charge', stripe.charge);
 
 // Proposal routes
-app.get('/get-proposal/:id', contentful.getProposal);
-app.get('/get-proposal-preview/:id', contentful.getProposalPreview);
+// app.get('/get-proposal/:id', contentful.getProposal);
+// app.get('/get-proposal-preview/:id', contentful.getProposalPreview);
 
 // Quickbooks routes
-app.get('/get-billing-item/:type/:id/', qbo.itemDetails);
-app.get('/qbo-webhook/', qbo.webhook);
+// app.get('/get-billing-item/:type/:id/', qbo.itemDetails);
+// app.get('/qbo-webhook/', qbo.webhook);
 
 // Email routes
 // app.get('/email', sendEmail);
