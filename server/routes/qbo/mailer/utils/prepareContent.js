@@ -26,6 +26,8 @@ export default ({
   const customerIsActive = customer.Active;
   const customerName = customer.GivenName;
   const companyName = customer.CompanyName;
+  let subject;
+  let itemTemplate;
 
   // get project name
   const projectNameObj = _.find(item.CustomField, {
@@ -80,17 +82,17 @@ export default ({
     // invoice
     switch (eventType) {
       case 'reminder':
-        subject = `Invoice reminder`;
+        subject = 'Invoice reminder';
         itemTemplate = 'invoiceReminder.pug';
         emailContext.timeTillDueDate = moment(itemDueDate, 'YYYY-MM-DD').fromNow();
         break;
       case 'overdue':
-        subject = `Invoice overdue!`;
+        subject = 'Invoice overdue!';
         itemTemplate = 'invoiceOverdue.pug';
         emailContext.timeOverdue = moment(itemDueDate, 'YYYY-MM-DD').fromNow();
         break;
       case 'create':
-        subject = 'Invoice #' + itemNumber;
+        subject = `Invoice #${itemNumber}`;
         itemTemplate = 'invoice.pug';
         break;
       case 'update':
@@ -106,10 +108,10 @@ export default ({
   console.log('itemTemplate', itemTemplate);
 
   // prepare final content
-  let preparedMailContent = {
+  const preparedMailData = {
     from: {
       name: 'Julian Jorgensen',
-      address: 'me@julianjorgensen.com'
+      address: 'me@julianjorgensen.com',
     },
     to: [{
       name: customerName,
@@ -131,14 +133,14 @@ export default ({
     },
   };
 
-  console.log('preparedMailContent', preparedMailContent);
+  console.log('preparedMailData', preparedMailData);
 
   // if CC exists, then also include that to the object
   if (emailCc) {
     Object.assign({
       cc: emailCc,
-    }, preparedMailContent);
+    }, preparedMailData);
   }
 
-  return preparedMailContent;
+  return preparedMailData;
 };
