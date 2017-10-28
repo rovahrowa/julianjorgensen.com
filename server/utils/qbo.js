@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import qbo from '../routes/qbo';
 import { envConfig } from './utils';
-import billingItemMailer from '../emails/billingItem/init';
+import billingItemMailer from '../routes/qbo/mailer';
 
 export const processItemData = (item) => {
   return new Promise((resolve, reject) => {

@@ -1,5 +1,5 @@
 let moment = require('moment');
-let billingMailer = require('../../emails/billingItem/init');
+let billingMailer = require('../../routes/qbo/mailer');
 
 let sendReminders = function(invoices) {
   if (invoices) {

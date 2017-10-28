@@ -10,8 +10,7 @@ import {} from 'dotenv/config';
 import stripe from './routes/stripe';
 import * as contentful from './routes/contentful';
 import * as qbo from './routes/qbo';
-// import sendEmail from './emails/sendEmail';
-import { envConfig } from './utils/utils';
+import sendEmail from './routes/sendEmail';
 
 global.appRoot = path.join(__dirname, '../');
 const app = express();
@@ -45,7 +44,7 @@ app.get('/get-billing-item/:type/:id/', qbo.itemDetails);
 app.get('/qbo-webhook/', qbo.webhook);
 
 // Email routes
-// app.get('/email', sendEmail);
+app.get('/email', sendEmail);
 
 // use static
 app.use(express.static(path.join(global.appRoot, 'public')));
