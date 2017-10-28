@@ -37,12 +37,12 @@ app.use(cors({
 app.get('/stripe/charge', stripe.charge);
 
 // Proposal routes
-// app.get('/get-proposal/:id', contentful.getProposal);
-// app.get('/get-proposal-preview/:id', contentful.getProposalPreview);
+app.get('/get-proposal/:id', contentful.getProposal);
+app.get('/get-proposal-preview/:id', contentful.getProposalPreview);
 
 // Quickbooks routes
-// app.get('/get-billing-item/:type/:id/', qbo.itemDetails);
-// app.get('/qbo-webhook/', qbo.webhook);
+app.get('/get-billing-item/:type/:id/', qbo.itemDetails);
+app.get('/qbo-webhook/', qbo.webhook);
 
 // Email routes
 // app.get('/email', sendEmail);
