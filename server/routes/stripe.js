@@ -4,7 +4,7 @@ import qbo from '../utils/qbo';
 const keySecret = process.env.STRIPE_SECRET_KEY;
 const stripe = require('stripe')(keySecret);
 
-export const charge = (req, res) => {
+export default (req, res) => {
   const {
     stripeToken, invoiceId, invoiceNumber, amount, currency,
   } = req.body;

@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import {} from 'dotenv/config';
 
 // import './crons/init';
-import * as stripe from './routes/stripe';
+import stripe from './routes/stripe';
 import * as contentful from './routes/contentful';
 import * as qbo from './routes/qbo';
 // import sendEmail from './emails/sendEmail';
@@ -34,7 +34,7 @@ app.use(cors({
 }));
 
 // Stripe routes
-app.get('/stripe/charge', stripe.charge);
+app.get('/stripe/charge', stripe);
 
 // Proposal routes
 app.get('/get-proposal/:id', contentful.getProposal);

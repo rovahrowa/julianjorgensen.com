@@ -2,7 +2,6 @@ import React from 'react';
 import Carousel from 'rmc-nuka-carousel';
 import cn from 'classnames';
 
-import { Grid, Row, Col } from 'react-flexbox-grid';
 import Button from 'components/Button';
 
 import Slide from 'components/slide';
