@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 
-let NODE_ENV = (process.env.NODE_ENV || 'development');
-let ENV_CONFIG = JSON.stringify(require('../../config/' + NODE_ENV + '.config'));
+const NODE_ENV = (process.env.NODE_ENV || 'development');
+const ENV_CONFIG = JSON.stringify(require('../../config/' + NODE_ENV + '.config'));
 
 // Validates the payload (used for QuickBooks)
 export const isValidPayload = (signature, token, payload) => {
@@ -9,7 +9,7 @@ export const isValidPayload = (signature, token, payload) => {
 		return false;
 	}
 
-	var hash = crypto.createHmac('sha256', token).update(JSON.stringify(payload)).digest('base64');
+	const hash = crypto.createHmac('sha256', token).update(JSON.stringify(payload)).digest('base64');
 	if (signature === hash) {
 		return hash;
 	}
@@ -17,10 +17,7 @@ export const isValidPayload = (signature, token, payload) => {
 }
 
 // Creates a MD5 token based on a secret varialbe
-export const createToken = (secretVariable) => {
-	let token = crypto.createHash('md5').update(secretVariable).digest('hex');
-	return token;
-}
+export const createToken = secretVariable => crypto.createHash('md5').update(secretVariable).digest('hex');
 
 // search objects by prop value
 export const searchObjects = (nameKey, prop, arr) => {
@@ -29,6 +26,7 @@ export const searchObjects = (nameKey, prop, arr) => {
 			return arr[i];
 		}
 	}
+	return true;
 }
 
 export const addHttp = (url) => {
@@ -38,6 +36,4 @@ export const addHttp = (url) => {
 	return url;
 }
 
-export const envConfig = () => {
-	return JSON.parse(ENV_CONFIG);
-}
+export const envConfig = () => JSON.parse(ENV_CONFIG);

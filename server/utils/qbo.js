@@ -3,24 +3,22 @@ import qbo from '../routes/qbo';
 import { envConfig } from './utils';
 import billingItemMailer from '../routes/qbo/mailer';
 
-export const processItemData = (item) => {
-  return new Promise((resolve, reject) => {
-    if (!item) {
-      reject();
-    }
+export const processItemData = item => new Promise((resolve, reject) => {
+  if (!item) {
+    reject();
+  }
 
-    const customerId = item.CustomerRef.value;
-    qbo.getCustomer(customerId, (error, customer) => {
-      if (error) reject(error);
+  const customerId = item.CustomerRef.value;
+  qbo.getCustomer(customerId, (error, customer) => {
+    if (error) reject(error);
 
-      const itemAndCustomer = {
-        item,
-        customer,
-      };
-      resolve(itemAndCustomer);
-    });
+    const itemAndCustomer = {
+      item,
+      customer,
+    };
+    resolve(itemAndCustomer);
   });
-};
+});
 
 export function mailItem({
   item,
@@ -38,13 +36,15 @@ export function mailItem({
       Name: envConfig.QBO_SENT_LABEL,
     });
     const lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
-
+    console.log('lastSentDate', lastSentDate);
+    console.log('balance', item.Balance);
+    
     if (!lastSentDate && item.Balance > 0) {
       // send the item
-      billingItemMailer.send({
+      billingItemMailer({
         id: item.Id,
         itemType,
-        eventType
+        eventType,
       }).then(() => {
         console.log('billing item sent');        
         resolve(`Billing item #${item.DocNumber} sent!`);
