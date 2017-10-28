@@ -3,7 +3,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import { envConfig, createToken } from '../../../../utils/utils';
 
-const prepareContent = ({
+export default ({
   eventType,
   itemType,
   item,
@@ -29,7 +29,7 @@ const prepareContent = ({
 
   // get project name
   const projectNameObj = _.find(item.CustomField, {
-    'Name': envConfig.QBO_PROJECT_NAME_LABEL
+    Name: envConfig.QBO_PROJECT_NAME_LABEL,
   });
   const projectName = projectNameObj ? projectNameObj.StringValue : null;
 
@@ -55,7 +55,7 @@ const prepareContent = ({
   }
 
   // create emailContext for .pug mail templates
-  let emailContext = {
+  const emailContext = {
     itemId: item.Id,
     itemToken,
     itemNumber,
@@ -64,19 +64,19 @@ const prepareContent = ({
     currency,
     customerName,
     companyName,
-    projectName
+    projectName,
   };
 
   console.log('emailContext', emailContext);
 
   // if its an estimate
   if (itemType === 'estimate') {
-    subject = `Estimate`;
+    subject = 'Estimate';
     itemTemplate = 'estimate.pug';
-    let expirationDate = item.ExpirationDate ? moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow() : null;
-    let expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
+    const expirationDate = item.ExpirationDate ? moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow() : null;
+    const expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
     emailContext.mainContent = `As promised, here's the estimate ${projectName ? `for ${projectName}` : 'you requested'}. You can view it by clicking the button below.${expirationDate ? ` Please note that it expires ${expirationDate} (${expirationDateFormatted}).` : ''}`;
-  }else{
+  } else {
     // invoice
     switch (eventType) {
       case 'reminder':
@@ -96,6 +96,10 @@ const prepareContent = ({
       case 'update':
         subject = `Invoice #${itemNumber} updated`;
         itemTemplate = 'invoiceUpdated.pug';
+        break;
+      default:
+        subject = `Invoice #${itemNumber} updated`;
+        itemTemplate = 'invoiceUpdated.pug';
     }
   }
 
@@ -109,7 +113,7 @@ const prepareContent = ({
     },
     to: [{
       name: customerName,
-      address: email
+      address: email,
     }], // An array if you have multiple recipients.
     subject,
     itemType,
@@ -118,13 +122,13 @@ const prepareContent = ({
       SyncToken: item.SyncToken,
       sparse: true,
       Line: item.Line,
-      TxnTaxDetail: item.TxnTaxDetail
+      TxnTaxDetail: item.TxnTaxDetail,
     },
     template: {
       name: `./server/emails/templates/${itemTemplate}`,
       engine: 'pug',
-      context: emailContext
-    }
+      context: emailContext,
+    },
   };
 
   console.log('preparedMailContent', preparedMailContent);
@@ -132,10 +136,9 @@ const prepareContent = ({
   // if CC exists, then also include that to the object
   if (emailCc) {
     Object.assign({
-      cc: emailCc
+      cc: emailCc,
     }, preparedMailContent);
   }
 
   return preparedMailContent;
 };
-module.exports = prepareContent;

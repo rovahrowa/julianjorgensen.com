@@ -1,27 +1,25 @@
-let parseItemData = ({
+import qbo from '../../index';
+
+export default ({
   item,
   itemType,
-  eventType
-}) => {
-  return new Promise(function(resolve, reject) {
-    if (item) {
-      let customerId = item.CustomerRef.value;
-      qbo.getCustomer(customerId, (err, customer) => {
-        if (customer) {
-          resolve({
-            item,
-            itemType,
-            eventType,
-            customer
-          });
-        } else {
-          reject(err);
-        }
-      });
-    } else {
-      reject('No Invoice/Estimate item found.');
-    }
-  });
-};
-
-module.exports = parseItemData;
+  eventType,
+}) => new Promise((resolve, reject) => {
+  if (item) {
+    const customerId = item.CustomerRef.value;
+    qbo.getCustomer(customerId, (err, customer) => {
+      if (customer) {
+        resolve({
+          item,
+          itemType,
+          eventType,
+          customer,
+        });
+      } else {
+        reject(err);
+      }
+    });
+  } else {
+    reject('No Invoice/Estimate item found.');
+  }
+});
