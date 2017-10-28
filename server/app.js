@@ -41,7 +41,7 @@ app.get('/get-proposal-preview/:id', contentful.getProposalPreview);
 
 // Quickbooks routes
 app.get('/get-billing-item/:type/:id/', qbo.itemDetails);
-app.post('/qbo-webhook/', qbo.webhook);
+app.post('/qbo-webhook', qbo.webhook);
 
 // Email routes
 app.get('/email', sendEmail);

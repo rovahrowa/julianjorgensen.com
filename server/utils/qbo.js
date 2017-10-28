@@ -28,6 +28,7 @@ export function mailItem({
   eventType,
 }) {
   return new Promise((resolve, reject) => {
+    console.log('mailing item...');
     if (!item) {
       reject();
     }
@@ -45,8 +46,10 @@ export function mailItem({
         itemType,
         eventType
       }).then(() => {
+        console.log('billing item sent');        
         resolve(`Billing item #${item.DocNumber} sent!`);
       }).catch((err) => {
+        console.log('error', err);
         reject(`Error sending billing item #${Item.DocNumber}...`);
       });
     } else {

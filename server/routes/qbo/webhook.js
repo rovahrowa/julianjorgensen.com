@@ -3,6 +3,7 @@ import { isValidPayload } from '../../utils/utils';
 import { mailItem } from '../../utils/qbo';
 
 export default (req, res) => {
+  console.log('hello from QBO webhook');
   // get data from QBO webhook
   const payload = req.body;
   const signature = req.get('intuit-signature');
@@ -33,6 +34,7 @@ export default (req, res) => {
             itemType,
             eventType,
           }).then((response) => {
+            console.log('sent');
             res.status(200).send(response);
           }).catch((error) => {
             res.status(500).send(error);
