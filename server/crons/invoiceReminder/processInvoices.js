@@ -1,23 +1,22 @@
-let moment = require('moment');
-let _ = require('lodash');
-let util = require('../../utils/utils');
+import moment from 'moment';
+import _ from 'lodash';
 import { envConfig } from '../../utils/utils';
 
-let processInvoices = function (invoices) {
+export default (invoices) => {
   if (invoices) {
-    let processedInvoices = invoices.filter((invoice) => {
+    const processedInvoices = invoices.filter((invoice) => {
       // today
-      let today = moment().startOf('day');
+      const today = moment().startOf('day');
 
       // get paid date
-      let paidDateObj = _.find(invoice.CustomField, {
-        'Name': envConfig.QBO_PAID_LABEL
+      const paidDateObj = _.find(invoice.CustomField, {
+        Name: envConfig.QBO_PAID_LABEL,
       });
-      let paidDate = paidDateObj ? paidDateObj.StringValue : null;
+      const paidDate = paidDateObj ? paidDateObj.StringValue : null;
 
       // get last sent date
-      let lastSentDateObj = _.find(invoice.CustomField, {
-        'Name': envConfig.QBO_SENT_LABEL
+      const lastSentDateObj = _.find(invoice.CustomField, {
+        Name: envConfig.QBO_SENT_LABEL,
       });
       let lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
 
@@ -26,28 +25,26 @@ let processInvoices = function (invoices) {
         return false;
       }
 
-      // if it's never been sent, then just resolve 
+      // if it's never been sent, then just resolve
       if (!lastSentDate) {
         return invoice;
       }
 
       // if it was sent before
       if (lastSentDate) {
-        lastSentDate = moment(lastSentDate, 'DD-MM-YYYY'); //parse date to moment
-        let daysSinceSentLast = Math.round(moment.duration(today - lastSentDate).asDays());
+        lastSentDate = moment(lastSentDate, 'DD-MM-YYYY'); // parse date to moment
+        const daysSinceSentLast = Math.round(moment.duration(today - lastSentDate).asDays());
 
         if (daysSinceSentLast > 7) {
           return invoice;
-        } else {
-          return false;
         }
+
+        return false;
       }
+      return true;
     });
 
     return processedInvoices;
-  } else {
-    return null;
   }
+  return null;
 };
-
-module.exports = processInvoices;

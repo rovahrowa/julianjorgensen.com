@@ -1,42 +1,35 @@
-let moment = require('moment');
-let billingMailer = require('../../routes/qbo/mailer');
+import moment from 'moment';
+import billingMailer from '../../routes/qbo/mailer';
 
-let sendReminders = function(invoices) {
+export default (invoices) => {
   if (invoices) {
-    let promises = invoices.map((invoiceRef) => {
-      return new Promise(function(resolve, reject) {
+    const promises = invoices.map(invoiceRef => new Promise((resolve, reject) => {
+      const today = moment().startOf('day');
+      const dueDate = moment(invoiceRef.DueDate, 'YYYY-MM-DD');
+      const daysTillOverdue = moment.duration(dueDate - today).asDays();
 
-        let today = moment().startOf('day');
-        let dueDate = moment(invoiceRef.DueDate, 'YYYY-MM-DD');
-        let daysTillOverdue = moment.duration(dueDate - today).asDays();
+      let eventType;
+      if (daysTillOverdue >= 0) {
+        eventType = 'reminder';
+      } else {
+        eventType = 'overdue';
+      }
 
-        let eventType;
-        if (daysTillOverdue >= 0) {
-          eventType = 'reminder';
-        } else {
-          eventType = 'overdue';
-        }
-
-        // now, send the invoice
-        billingMailer.send({
-          id: invoiceRef.Id,
-          itemType: 'invoice',
-          eventType: eventType
-        }).then((data) => {
-          resolve(`Invoice reminder #${invoiceRef.Id} sent!`);
-        }).catch((err) => {
-          reject('Something went wrong sending the invoice email reminder', err);
-        });
-
+      // now, send the invoice
+      billingMailer.send({
+        id: invoiceRef.Id,
+        itemType: 'invoice',
+        eventType,
+      }).then((data) => {
+        resolve(`Invoice reminder #${invoiceRef.Id} sent!`);
+      }).catch((err) => {
+        reject('Something went wrong sending the invoice email reminder', err);
       });
-    });
+    }));
 
     return Promise.all(promises).then().catch((err) => {
       console.log('Error in sending invoice reminders: ', err);
     });
-  } else {
-    return false;
   }
+  return false;
 };
-
-module.exports = sendReminders;

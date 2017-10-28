@@ -1,17 +1,12 @@
-let getInvoices = require('./getInvoices');
-let processInvoices = require('./processInvoices');
-let applyLateFees = require('./applyLateFees');
-let sendReminders = require('./sendReminders');
+import getInvoices from './getInvoices';
+import processInvoices from './processInvoices';
+import applyLateFees from './applyLateFees';
+import sendReminders from './sendReminders';
 
-function init() {
-  console.log('Sending invoice reminders...');
-  return getInvoices()
-    .then(processInvoices)
-    .then(applyLateFees)
-    .then(sendReminders)
-    .catch((err) => {
-      throw Error(err);
-    });
-}
-
-module.exports.init = init;
+export default () => getInvoices()
+  .then(processInvoices)
+  .then(applyLateFees)
+  .then(sendReminders)
+  .catch((err) => {
+    throw Error(err);
+  });
