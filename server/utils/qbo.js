@@ -33,7 +33,7 @@ export function mailItem({
 
     // get last sent date
     const lastSentDateObj = _.find(item.CustomField, {
-      'Name': envConfig.QBO_SENT_LABEL,
+      Name: envConfig.QBO_SENT_LABEL,
     });
     const lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
     console.log('envConfig', envConfig);

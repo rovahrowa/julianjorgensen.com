@@ -36,4 +36,4 @@ export const addHttp = (url) => {
   return url;
 }
 
-export const envConfig = () => JSON.parse(ENV_CONFIG);
+export const envConfig = JSON.parse(ENV_CONFIG);
