@@ -20,6 +20,6 @@ export default ({
       }
     });
   } else {
-    reject('No Invoice/Estimate item found.');
+    reject(new Error('No Invoice/Estimate item found.'));
   }
 });

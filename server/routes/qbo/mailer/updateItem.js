@@ -36,7 +36,7 @@ export default (passedData) => {
         reject();
       }
     }).catch((err) => {
-      reject(err);
+      throw new Error(err);
     });
   }
 

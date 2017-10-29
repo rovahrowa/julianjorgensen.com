@@ -50,12 +50,12 @@ app.get('/email', sendEmail);
 app.use(express.static(path.join(global.appRoot, 'public')));
 
 // Catch all other paths and serve the index file
-app.all('*', function(request, response) {
+app.all('*', (request, response) => {
   response.sendFile(path.join(global.appRoot, 'public/index.html'));
 });
 
 // Listen to port
-app.listen(app.get('port'), function() {
+app.listen(app.get('port'), () => {
   console.log('Node app is running on port', app.get('port'));
 });
 

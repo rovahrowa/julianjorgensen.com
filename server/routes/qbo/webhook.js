@@ -3,7 +3,6 @@ import { isValidPayload } from '../../utils/utils';
 import { mailItem } from '../../utils/qbo';
 
 export default (req, res) => {
-  console.log('hello from QBO webhook');
   // get data from QBO webhook
   const payload = req.body;
   const signature = req.get('intuit-signature');

@@ -23,7 +23,7 @@ export default (invoices) => {
       }).then((data) => {
         resolve(`Invoice reminder #${invoiceRef.Id} sent!`);
       }).catch((err) => {
-        reject('Something went wrong sending the invoice email reminder', err);
+        reject(new Error(`Something went wrong sending the invoice email reminder: ${err}`));
       });
     }));
 

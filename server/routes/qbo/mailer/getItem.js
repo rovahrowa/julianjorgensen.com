@@ -16,7 +16,7 @@ export default ({
       parseItemData({
         item,
         itemType,
-        eventType
+        eventType,
       }).then((parsedData) => {
         console.log('parsedData from getItem.js', parsedData);
         resolve(parsedData);

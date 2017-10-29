@@ -17,7 +17,7 @@ export default () => new Promise((resolve, reject) => {
     },
   ], (err, data) => {
     if (err) {
-      reject(`error: ${err}`);
+      reject(new Error(err));
     } else {
       resolve(data.QueryResponse.Invoice);
     }

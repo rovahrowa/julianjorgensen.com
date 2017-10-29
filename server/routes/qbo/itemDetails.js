@@ -6,7 +6,7 @@ export default (req, res) => {
   // generate unique md5 token
   const secretVariable = `Item${req.params.id}`;
   const token = createToken(secretVariable);
-  
+
   // if token is false, then don't allow
   if (req.query.token !== token) {
     res.status(401).send({ message: 'You are unauthorized to see this item.' }).end();
