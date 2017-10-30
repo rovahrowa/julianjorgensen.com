@@ -3,6 +3,7 @@ import cn from 'classnames';
 import Loadable from 'react-loadable';
 import { delay } from 'utils';
 import LoadingSpinner from 'components/LoadingSpinner';
+import profileImage from 'assets/images/julian-blackshirt.png';
 import PlayIcon from 'assets/icons/FontAwesome/solid/play.svg';
 import CloseIcon from 'assets/icons/FontAwesome/regular/times.svg';
 import SeeMore from './components/SeeMore';
@@ -84,7 +85,7 @@ export default class HomeLandingVideo extends Component {
       if (!hasVideoPlayed) {
         return (
           <div className={styles.ctas} style={dynamicStyles}>
-            <div className={styles.profileImage} />
+            <div className={styles.profileImage} style={{ backgroundImage: `url(${profileImage})` }} />
             <div className={styles.watchVideo}>
               <div className={styles.icon} onClick={handleVideoClick}><PlayIcon /></div>
               <div className={styles.label} onClick={handleVideoClick}>Watch Video</div>

@@ -129,7 +129,8 @@
 }
 
 .profileImage {
-  background: url('/images/julian-blackshirt.png') 0 0 no-repeat;
+  background-position: center center;
+  background-repeat: no-repeat;
   background-size: contain;
   width: rem(480);
   height: rem(400);
