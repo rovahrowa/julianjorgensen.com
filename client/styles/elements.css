@@ -1,0 +1,27 @@
+@import "variables.css";
+:global {
+  & div,
+  & header,
+  & footer {
+    box-sizing: border-box;
+  }
+  & button {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    text-align: left;
+    font-size: inherit;
+    &:focus {
+      outline: none;
+    }
+  }
+  & .noBullets {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  & address {
+    font-style: normal;
+  }
+}

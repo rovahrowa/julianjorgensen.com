@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 import Button from 'components/Button';
-import DrawFillSVG from 'lib/draw-fill-svg';
 import VisibilitySensor from 'react-visibility-sensor';
 import WebArchitectureIcon from 'assets/icons/colored/wireframing.svg';
 import UXIcon from 'assets/icons/colored/sketch.svg';
 import DesignIcon from 'assets/icons/colored/ab-testing.svg';
 import PrototypingIcon from 'assets/icons/colored/prototyping.svg';
+import 'lib/draw-fill-svg';
 import styles from './index.css';
 
 export default class HomeUx extends Component {
@@ -51,7 +51,7 @@ export default class HomeUx extends Component {
   
     return (
       <VisibilitySensor partialVisibility offset={{ top: 140, bottom: 80 }} onChange={this.onVisibilityChange}>
-        <div className={styles.container}>
+        <div className={styles.container} id="ux">
           <div className={styles.header}>
             <h2 className={styles.title}>User Experience</h2>
             <Button

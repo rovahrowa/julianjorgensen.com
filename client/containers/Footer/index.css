@@ -48,14 +48,13 @@
 }
 
 .icons {
-  margin-top: rem(60);
+  /* margin-top: rem(60); */
 }
 
 .credit {
   position: relative;
   text-align: center;
-  top: rem(-100);
-  margin-bottom: rem(80);
+  height: rem(150);
   color: black;
   & .slogan {
     margin-bottom: rem(20);

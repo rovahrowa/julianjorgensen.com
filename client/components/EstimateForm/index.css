@@ -1,6 +1,6 @@
 @import "globals.css";
 .container {
-  composes: globalContainer white center;
+  composes: globalContainer withShadow white center;
   position: relative;
   flex-direction: column;
   padding: rem(20);

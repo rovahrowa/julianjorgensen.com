@@ -3,7 +3,7 @@
   composes: globalWrapper withPadding;
   background-color: black;
   position: relative;
-  margin-bottom: rem(120);
+  padding-top: rem(40);  
 }
 
 .parallaxBg {

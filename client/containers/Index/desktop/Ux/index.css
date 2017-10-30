@@ -1,7 +1,7 @@
 @import "globals.css";
 .container {
   composes: globalContainer withMarginBottom;
-  margin-top: rem(40);
+  padding-top: rem(40);
 }
 
 .header {

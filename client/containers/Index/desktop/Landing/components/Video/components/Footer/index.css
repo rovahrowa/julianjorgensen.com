@@ -3,7 +3,6 @@
     content: '';
     position: absolute;
     height: inherit;
-    width: 50%;
     top: 0;
     transform: translateY(-100%);
     border-bottom-width: rem(100);

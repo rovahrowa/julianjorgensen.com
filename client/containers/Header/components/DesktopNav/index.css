@@ -37,7 +37,6 @@
     display: none;
     @media (--medium-and-up) {
       display: inline-block;
-      text-transform: uppercase;
       margin-left: rem(45);
       &:first-child {
         margin-left: 0;
@@ -69,10 +68,10 @@
   font-family: var(--primaryFont);
   font-size: rem(16);
   font-weight: 700;
-  -webkit-font-smoothing: antialiased;
   cursor: pointer;
   padding-bottom: rem(5);
   @media (--large-and-up) {
+    text-transform: uppercase;
     font-size: rem(18);
   }
   &:before {
@@ -89,7 +88,6 @@
   }
   &:hover:before {
     visibility: visible;
-    -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
   &:hover:not(.linkActive) {
@@ -107,7 +105,6 @@
   opacity: 1;
   &:before {
     visibility: visible;
-    -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
 }

@@ -1,58 +1,14 @@
 @import "globals.css";
-.container {
+.switch {
   position: relative;
-  display: flex;
-  flex-flow: column;
-  overflow-x: hidden;
-}
-
-.animatedRoutes {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  @media print {
-    height: auto !important;
-  }
-}
-
-.routesContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  /*&,
-  & > div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  & div:first-child{
+  &>div {
+    transition: all 0.1s;
+    position: absolute;
     width: 100%;
-  }*/
-  @media print {
-    position: static !important;
   }
 }
 
 .homepage{
   background: #f3f3f3;
   background: linear-gradient(to bottom, white 100vh, gray(90%));
-}
-
-.layout{
-  transition: all 0.2s;
-  &.blur{
-    filter: blur(4px);
-  }  
-}
-
-.footerWrapper{
-  composes: globalContainer withShadow;  
 }

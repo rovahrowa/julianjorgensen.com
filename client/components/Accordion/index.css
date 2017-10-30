@@ -1,4 +1,6 @@
 .item {
+  display: block;
+  width: 100%;
   cursor: pointer;
   padding: rem(14) rem(10);
   padding-left: 0;

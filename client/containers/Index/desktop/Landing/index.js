@@ -19,13 +19,13 @@ export default class HomeLanding extends Component {
     this.state = {
       playVideo: false,
       hasVideoPlayed: false,
-      position: {},
-    }
+      cursorPosition: {},
+    };
   }
 
-  handlePositionChange = (position) => {
+  handleCursorPositionChange = (cursorPosition) => {
     this.setState({
-      position,
+      cursorPosition,
     });
   }
 
@@ -56,7 +56,7 @@ export default class HomeLanding extends Component {
 
   render() {
     const { scroll } = this.props;
-    const { playVideo } = this.state;
+    const { playVideo, cursorPosition } = this.state;
     const dynamicBgStyles = {
       opacity: 1 - (scroll / 300),
     };
@@ -66,7 +66,7 @@ export default class HomeLanding extends Component {
     };
 
     return (
-      <ReactCursorPosition onActivationChanged={this.handleActivationChange} onPositionChanged={this.handlePositionChange}>
+      <ReactCursorPosition onActivationChanged={this.handleActivationChange} onPositionChanged={this.handleCursorPositionChange}>
         <div className={`${styles.wrapper} ${playVideo ? styles.isPlayingVideo : ''}`}>
           <Parallax strength={400} className={styles.wrap}>
             <Background className={styles.background}>
@@ -77,7 +77,7 @@ export default class HomeLanding extends Component {
                 </div>
                 <LandingCategories className={styles.categories} />
               </div>
-              <LandingBackground active={this.state.cursorActive} position={this.state.position} />
+              <LandingBackground active={this.state.cursorActive} position={cursorPosition} />
               <Signature className={styles.signature} />
             </Background>
           </Parallax>
