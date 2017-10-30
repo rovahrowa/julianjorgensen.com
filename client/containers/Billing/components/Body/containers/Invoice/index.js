@@ -1,34 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import numeral from 'numeral';
-import {
-  Link
-} from 'react-router-dom';
-
 import Header from '../../components/Header';
 import Items from '../../components/Items';
 import Summary from '../../components/Summary';
 import InvoiceCtas from '../../components/InvoiceCtas';
 import TimeEntryDetails from '../../components/TimeEntryDetails';
 import sharedStyles from '../../index.css';
-import styles from './index.css';
 
-export default class InvoiceBody extends React.Component {
+export default class InvoiceBody extends Component {
   render() {
-    let {
+    const {
       item,
-      customer,
-      paid
+      paid,
     } = this.props;
 
-    let renderStatus = () => {
+    const renderStatus = () => {
       if (paid) {
         return `Thank you for your payment ${item.paidDate ? `on ${moment(item.paidDate, 'DD-MM-YYYY').format('MMMM Do YYYY')}` : ''}`;
-       } else {
-        const dueDate = moment(item.dueDate, 'YYYY-MM-DD');
-        const wasIs = moment().diff(dueDate) < 0 ? 'is' : 'was';
-        return `${numeral(item.balance).format('$0,0.00')} ${wasIs} due on ${dueDate.format('MMMM Do YYYY')}`;
-       }
+      }
+
+      const dueDate = moment(item.dueDate, 'YYYY-MM-DD');
+      const wasIs = moment().diff(dueDate) < 0 ? 'is' : 'was';
+      return `${numeral(item.balance).format('$0,0.00')} ${wasIs} due on ${dueDate.format('MMMM Do YYYY')}`;
     };
 
     return (

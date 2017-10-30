@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Accordion from 'components/Accordion';
 import styles from './index.css';
 
-export default class Faq extends React.Component{
+export default class Faq extends Component {
   handleUpdate = () => {
-    console.log('handling faq update');
     this.props.handleUpdate();
   };
 
@@ -60,6 +59,6 @@ export default class Faq extends React.Component{
           </Accordion>
         </div>
       </div>
-    )
+    );
   }
 }

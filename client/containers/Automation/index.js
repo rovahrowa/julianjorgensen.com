@@ -1,11 +1,10 @@
-import React from 'react';
-import DocumentMeta from 'react-document-meta';
+import React, { Component } from 'react';
 import Carousel from 'rmc-nuka-carousel';
 import Marquee from 'components/Marquee';
 
 import styles from './index.css';
 
-export default class Automation extends React.Component{
+export default class Automation extends Component {
   render() {
     return (
       <div className={styles.wrapper}>

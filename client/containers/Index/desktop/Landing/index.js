@@ -1,72 +1,68 @@
-import React from 'react';
-import cn from 'classnames';
+import React, { Component } from 'react';
 import { Parallax, Background } from 'react-parallax';
 import { connect } from 'react-redux';
 import ReactCursorPosition from 'react-cursor-position';
-
-import Button from 'components/Button';
+import Signature from 'assets/icons/julian-signature.svg';
+import helperStyles from 'styles/helpers.css';
 import LandingCategories from './components/LandingCategories';
 import LandingBackground from './components/LandingBackground';
 import Video from './components/Video';
-import Signature from '-!svg-react-loader?name=Icon!assets/icons/julian-signature.svg';
 import styles from './index.css';
-import helperStyles from 'styles/helpers.css';
 
 @connect(({ scrollPosition }) => ({
-  scroll: scrollPosition.y
+  scroll: scrollPosition.y,
 }))
-export default class HomeLanding extends React.Component {
+export default class HomeLanding extends Component {
   constructor() {
     super();
 
     this.state = {
       playVideo: false,
       hasVideoPlayed: false,
-      position: {}
+      position: {},
     }
   }
 
   handlePositionChange = (position) => {
     this.setState({
-      position
+      position,
     });
   }
 
   handleActivationChange = ({ isActive }) => {
     this.setState({
-      cursorActive: isActive
+      cursorActive: isActive,
     });
   }
 
   handlePlayVideo = () => {
     this.setState({
       playVideo: true,
-      hasVideoPlayed: false
+      hasVideoPlayed: false,
     });
   }
 
   handleCloseVideo = () => {
     this.setState({
-      playVideo: false
+      playVideo: false,
     });
   }
 
   handleVideoHasPlayed = () => {
-    console.log('video has played');
     this.setState({
-      hasVideoPlayed: true
+      hasVideoPlayed: true,
     });
   }
 
   render() {
-    let { scroll } = this.props;
-    let { playVideo } = this.state;
-    let dynamicBgStyles = {
-      opacity: 1 - (scroll / 300)
+    const { scroll } = this.props;
+    const { playVideo } = this.state;
+    const dynamicBgStyles = {
+      opacity: 1 - (scroll / 300),
     };
 
-    let dynamicFooterStyles = {
-      opacity: 1 - (scroll / 100)
+    const dynamicFooterStyles = {
+      opacity: 1 - (scroll / 100),
     };
 
     return (
@@ -95,6 +91,6 @@ export default class HomeLanding extends React.Component {
           />
         </div>
       </ReactCursorPosition>
-    )
+    );
   }
 }

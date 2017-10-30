@@ -1,13 +1,8 @@
-import React from 'react';
-import DocumentMeta from 'react-document-meta';
+import React, { Component } from 'react';
 import Marquee from 'components/Marquee';
 import styles from './index.css';
 
-export default class FrontEnd extends React.Component{
-  constructor(){
-    super();
-  }
-
+export default class FrontEnd extends Component{
   render() {
     return (
       <div className={styles.wrapper}>
@@ -21,6 +16,6 @@ export default class FrontEnd extends React.Component{
           naked content here
         </div>
       </div>
-    )
+    );
   }
 }

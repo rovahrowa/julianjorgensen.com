@@ -1,25 +1,21 @@
-import React from 'react';
-import Script from 'react-load-script'
-
-import { StripeProvider } from 'react-stripe-elements';
-import { Elements } from 'react-stripe-elements';
-
+import React, { Component } from 'react';
+import Script from 'react-load-script';
+import { StripeProvider, Elements } from 'react-stripe-elements';
+import ScandiaWebRegular from 'assets/fonts/ScandiaWebRegular.woff2';
 import Form from './Form';
 import styles from './index.css';
 
-let ScandiaWebRegular = require('assets/fonts/ScandiaWebRegular.woff2');
-
-export default class CreditCard extends React.Component {
+export default class CreditCard extends Component {
   state = {
-    stripeLoaded: false
+    stripeLoaded: false,
   }
 
   handleScriptLoad = () => {
-    this.setState({ stripeLoaded: true })
+    this.setState({ stripeLoaded: true });
   }
 
   render() {
-    let { stripeLoaded } = this.state;
+    const { stripeLoaded } = this.state;
 
     return (
       <div className={styles.container}>
@@ -27,8 +23,9 @@ export default class CreditCard extends React.Component {
           <StripeProvider apiKey={ENV_CONFIG.STRIPE_PUBLISHABLE_KEY}>
             <Elements fonts={[{
               family: 'ScandiaWeb-Regular',
-              src: `url(${ScandiaWebRegular})`
-            }]}>
+              src: `url(${ScandiaWebRegular})`,
+            }]}
+            >
               <Form {...this.props} />
             </Elements>
           </StripeProvider> : ''
@@ -40,6 +37,6 @@ export default class CreditCard extends React.Component {
           onLoad={this.handleScriptLoad}
         />
       </div>
-    )
+    );
   }
 }

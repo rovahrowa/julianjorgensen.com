@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Collapse } from 'react-collapse';
 import styles from './index.css';
 
-export default class Accordion extends React.Component{
-  constructor(){
+export default class Accordion extends Component {
+  constructor() {
     super();
 
     this.state = {
-      selected: null
-    }
+      selected: null,
+    };
   }
 
   handleUpdate = () => {
@@ -19,22 +19,22 @@ export default class Accordion extends React.Component{
   };
 
   render() {
-    let {className} = this.props;
+    let { className } = this.props;
     return (
       <div className={className}>
         {this.props.children.map((item, index) => {
-          let title = item.props.children[0].props.children;
-          let content = item.props.children[1].props.children;
+          const title = item.props.children[0].props.children;
+          const content = item.props.children[1].props.children;
           let selected;
 
           return (
-            <div
+            <button
               key={index}
               className={`${styles.item} ${this.state.selected === index ? styles.active : ''}`}
               onClick={() => {
                 selected = (index === this.state.selected ? null : index)
                 this.setState({
-                  selected: selected
+                  selected,
                 }, () => {
                   this.handleUpdate();
                 });
@@ -42,15 +42,15 @@ export default class Accordion extends React.Component{
             >
               <div className={styles.title}>{title}</div>
               <Collapse
-                isOpened={this.state.selected === index ? true : false}
-                springConfig={{stiffness: 200, damping: 20}}
+                isOpened={this.state.selected === index}
+                springConfig={{ stiffness: 200, damping: 20 }}
               >
                 <div className={styles.content}>{content}</div>
               </Collapse>
-            </div>
-          )
+            </button>
+          );
         })}
       </div>
-    )
+    );
   }
 }

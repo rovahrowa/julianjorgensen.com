@@ -1,12 +1,7 @@
-import React from 'react';
-import DocumentMeta from 'react-document-meta';
+import React, { Component } from 'react';
 import Marquee from 'components/Marquee';
 
-export default class About extends React.Component{
-  constructor(){
-    super();
-  }
-
+export default class About extends Component{
   render() {
     return (
       <section className="section">

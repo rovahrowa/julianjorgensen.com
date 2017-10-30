@@ -1,5 +1,4 @@
 import React from 'react';
-import DocumentMeta from 'react-document-meta';
 import Carousel from 'rmc-nuka-carousel';
 import Marquee from 'components/Marquee';
 

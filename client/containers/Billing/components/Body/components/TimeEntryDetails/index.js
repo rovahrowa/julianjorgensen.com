@@ -1,30 +1,24 @@
-import React from 'react';
-import moment from 'moment';
+import React, { Component } from 'react';
 import Dialog from 'react-toolbox/lib/dialog';
 import Button from 'components/Button';
-
+import ChartIcon from 'assets/icons/FontAwesome/light/chart-bar.svg';
+import DocIcon from 'assets/icons/FontAwesome/light/list.svg';
 import styles from './index.css';
-import ChartIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/chart-bar.svg';
-import DocIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/light/list.svg';
 
-export default class TimeEntryDetails extends React.Component {
+export default class TimeEntryDetails extends Component {
   state = {
-    active: false
+    active: false,
   };
 
   handleToggle = () => {
     this.setState({
-      active: !this.state.active
+      active: !this.state.active,
     });
   };
 
   render() {
-    let {
-      active
-    } = this.state;
-    let {
-      item
-    } = this.props;
+    const { active } = this.state;
+    const { item } = this.props;
 
     return (
       <div className={styles.container}>
@@ -37,14 +31,14 @@ export default class TimeEntryDetails extends React.Component {
 
             <Dialog
               actions={[
-                { label: "Close", onClick: this.handleToggle }
+                { label: 'Close', onClick: this.handleToggle }
               ]}
               active={active}
               onEscKeyDown={this.handleToggle}
               onOverlayClick={this.handleToggle}
               className={styles.modal}
             >
-              <iframe src={`https://toggl.com/app/bookmark/${item.metadata.report}`} width="100%" height="600px" allowFullScreen />
+              <iframe title="Invoice time-entry details" src={`https://toggl.com/app/bookmark/${item.metadata.report}`} width="100%" height="600px" allowFullScreen />
             </Dialog>
           </div>
         : ''}
@@ -59,6 +53,6 @@ export default class TimeEntryDetails extends React.Component {
         : ''}
 
       </div>
-    )
+    );
   }
 }

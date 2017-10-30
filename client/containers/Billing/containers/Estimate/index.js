@@ -1,39 +1,31 @@
-import React from 'react';
-import {
-  Link
-} from 'react-router-dom';
-import {
-  getItem
-} from '../../qboUtils';
-
+import React, { Component } from 'react';
 import LoadingSpinner from 'components/LoadingSpinner';
-import {
-  EstimateBody
-} from '../../components/Body';
+import { getItem } from '../../qboUtils';
+import { EstimateBody } from '../../components/Body';
 import styles from './index.css';
 
-export default class Estimate extends React.Component {
+export default class Estimate extends Component {
   state = {
-    item: null
+    item: null,
   }
 
   componentDidMount() {
     // Retrieve item data
-    let id = this.props.match.params.id;
-    let token = this.props.match.params.token;
+    const { id } = this.props.match.params;
+    const { token } = this.props.match.params;
 
     getItem('estimate', id, token).then((response) => {
-      let { error, item, customer } = response;
+      const { error, item, customer } = response;
       if (error) {
         this.setState({
-          error
+          error,
         });
       } else {
         // set state
         this.setState({
           item,
           customer,
-          paid: item.paid || false
+          paid: item.paid || false,
         });
 
         // trigger callback
@@ -44,7 +36,7 @@ export default class Estimate extends React.Component {
 
   markAsPaid = () => {
     this.setState({
-      paid: true
+      paid: true,
     });
 
     // trigger callback
@@ -52,11 +44,11 @@ export default class Estimate extends React.Component {
   }
 
   render() {
-    let {
+    const {
       item,
       customer,
       paid,
-      error
+      error,
     } = this.state;
 
     if (!item && !error) {
@@ -64,7 +56,7 @@ export default class Estimate extends React.Component {
         <div className={styles.container}>
           <LoadingSpinner />
         </div>
-      )
+      );
     }
 
     if (error) {
@@ -72,13 +64,8 @@ export default class Estimate extends React.Component {
         <div className={styles.container}>
           <div className={styles.error}>{error}</div>
         </div>
-      )
+      );
     }
-
-    let {
-      number,
-      amount
-    } = item;
 
     return (
       <div className={styles.container}>
@@ -88,6 +75,6 @@ export default class Estimate extends React.Component {
           paid={paid}
         />
       </div>
-    )
+    );
   }
 }

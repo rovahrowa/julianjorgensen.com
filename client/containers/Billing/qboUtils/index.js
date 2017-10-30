@@ -1,63 +1,59 @@
 import axios from 'axios';
 import _ from 'lodash';
-import numeral from 'numeral';
 
 // Get item details from QuickBooks
-export function getItem(type, id, token) {
+export default function getItem(type, id, token) {
   return new Promise((resolve, reject) => {
-
     axios.get(`/api/qbo/item/${type}/${id}?token=${token}`)
       .then((response) => {
-        let payload = response.data;
-
-        console.log('response from qbo item api', response);
+        const payload = response.data;
 
         // if item has a email then use that, otherwise use the email(s) associated with the customer
         let email;
         if (payload.item.BillEmail) {
-          email = payload.item.BillEmail.Address
+          email = payload.item.BillEmail.Address;
         } else if (payload.customer.PrimaryEmailAddr) {
-          email = payload.customer.PrimaryEmailAddr.Address
+          email = payload.customer.PrimaryEmailAddr.Address;
         } else {
           email = null;
         }
 
-        let paidDateObj = _.find(payload.item.CustomField, {
-          'Name': ENV_CONFIG.QBO_PAID_LABEL
+        const paidDateObj = _.find(payload.item.CustomField, {
+          Name: ENV_CONFIG.QBO_PAID_LABEL,
         });
-        let paidDate = paidDateObj ? paidDateObj.StringValue : null;
+        const paidDate = paidDateObj ? paidDateObj.StringValue : null;
 
-        let projectNameObj = _.find(payload.item.CustomField, {
-          'Name': ENV_CONFIG.QBO_PROJECT_NAME_LABEL
+        const projectNameObj = _.find(payload.item.CustomField, {
+          Name: ENV_CONFIG.QBO_PROJECT_NAME_LABEL,
         });
-        let projectName = projectNameObj ? projectNameObj.StringValue : null;
+        const projectName = projectNameObj ? projectNameObj.StringValue : null;
 
         let notes;
         let metadata = {};
         if (payload.item.CustomerMemo) {
-          let memo = payload.item.CustomerMemo.value;
-          let curlyBracesRegEx = / *\{[^]*\} */g;
+          const memo = payload.item.CustomerMemo.value;
+          const curlyBracesRegEx = / *\{[^]*\} */g;
           notes = memo.replace(curlyBracesRegEx, '');
 
           metadata = memo.match(curlyBracesRegEx) ? JSON.parse(memo.match(curlyBracesRegEx)[0]) : {};
         }
 
-        let discountObj = _.find(payload.item.Line, {
-          'DetailType': 'DiscountLineDetail'
+        const discountObj = _.find(payload.item.Line, {
+          DetailType: 'DiscountLineDetail'
         });
-        let discount = discountObj ? discountObj.Amount : 0;
+        const discount = discountObj ? discountObj.Amount : 0;
 
         // Create item object and dispatch
-        let item = {
-          type: type,
+        const item = {
+          type,
           id: payload.item.Id,
           createdDate: payload.item.MetaData.CreateTime,
           dueDate: payload.item.DueDate,
           number: payload.item.DocNumber,
           subtotal: _.find(payload.item.Line, {
-            'DetailType': 'SubTotalLineDetail'
+            DetailType: 'SubTotalLineDetail'
           }).Amount || 0,
-          discount: discount,
+          discount,
           taxes: payload.item.TxnTaxDetail.TotalTax || 0,
           taxPercent: payload.item.TxnTaxDetail.TaxLine[0].TaxLineDetail.TaxPercent || 0,
           amount: payload.item.TotalAmt || 0,
@@ -65,7 +61,7 @@ export function getItem(type, id, token) {
           balance: payload.item.Balance || 0,
           email,
           currency: payload.item.CurrencyRef.value || '',
-          paid: paidDate || (payload.item.Balance <= 0) ? true : false,
+          paid: paidDate || (payload.item.Balance <= 0),
           paidDate,
           projectName,
           items: payload.item.Line || [],
@@ -76,11 +72,8 @@ export function getItem(type, id, token) {
           status: payload.item.TxnStatus || '',
           expirationDate: payload.item.ExpirationDate || ''
         };
-        console.log('item: ', item);
 
-        let customer = payload.customer;
-
-        console.log('customer: ', customer);
+        const { customer } = payload;
 
         resolve({
           item,

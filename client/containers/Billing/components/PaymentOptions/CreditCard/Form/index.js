@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import numeral from 'numeral';
 import axios from 'axios';
-
 import { injectStripe, CardElement } from 'react-stripe-elements';
-
 import Button from 'components/Button';
+import AlertIcon from 'assets/icons/FontAwesome/regular/exclamation-circle.svg';
 import styles from './index.css';
 
-import AlertIcon from '-!svg-react-loader?name=Icon!assets/icons/FontAwesome/regular/exclamation-circle.svg';
-
 @injectStripe
-export default class CreditCardForm extends React.Component {
+export default class CreditCardForm extends Component {
   state = {
     submitting: false,
     error: false,
@@ -18,7 +15,7 @@ export default class CreditCardForm extends React.Component {
   }
 
   handleNameChange = (e) => {
-    this.setState({name: e.target.value});
+    this.setState({ name: e.target.value });
   };
 
   handleSubmit = (ev) => {
@@ -26,29 +23,29 @@ export default class CreditCardForm extends React.Component {
 
     this.setState({
       submitting: true,
-      error: false
+      error: false,
     });
 
-    let { item, customer } = this.props;
-    let { name } = this.state;
+    const { name } = this.state;
 
     this.props.stripe.createToken({
-      name
-    }).then(({error, token}) => {
-      if(error) {
+      name,
+    }).then(({ error, token }) => {
+      if (error) {
         this.setState({
           submitting: false,
-          error: error.message
+          error: error.message,
         });
         return false;
       }
 
       this.createCharge(token);
+      return true;
     });
   }
 
   createCharge = (token) => {
-    let { item, customer } = this.props;
+    const { item } = this.props;
 
     axios.post('/api/stripe/charge', {
       invoiceId: item.id,
@@ -56,15 +53,12 @@ export default class CreditCardForm extends React.Component {
       email: item.email,
       currency: item.currency,
       amount: item.balance,
-      stripeToken: token.id
-    })
-    .then((response) => {
-      console.log('response from stripe charge', response);
-
+      stripeToken: token.id,
+    }).then((response) => {
       if (response.data.error) {
         this.setState({
           submitting: false,
-          error: response.data.error
+          error: response.data.error,
         });
         return false;
       }
@@ -72,12 +66,11 @@ export default class CreditCardForm extends React.Component {
       // charged successful
       this.setState({
         submitting: false,
-        error: false
+        error: false,
       });
       this.props.markAsPaid();
-    })
-    .catch((error) => {
-      console.log('error', error);
+      return true;
+    }).catch((error) => {
       this.setState({
         submitting: false,
         error: `There was a technical error. Please contact me@julianjorgensen.com if the issue persists... Error details: ${error}`
@@ -86,19 +79,19 @@ export default class CreditCardForm extends React.Component {
   }
 
   render() {
-    let { error } = this.state;
-    let { customer, item } = this.props;
+    const { error } = this.state;
+    const { item } = this.props;
 
     return (
       <div className={styles.container}>
         <form onSubmit={this.handleSubmit} className={styles.form}>
           <div className={styles.cardHolderName}>
             <input
-              type='text'
+              type="text"
               className={styles.input}
               value={this.state.name}
               onChange={this.handleNameChange}
-              placeholder='Cardholder name'
+              placeholder="Cardholder name"
               disabled={this.state.submitting}
               required
             />
@@ -119,7 +112,7 @@ export default class CreditCardForm extends React.Component {
           </div>
 
           <Button
-            type='submit'
+            type="submit"
             disabled={this.state.submitting}
             primary
             className={styles.submit}
@@ -135,6 +128,6 @@ export default class CreditCardForm extends React.Component {
           : ''}
         </form>
       </div>
-    )
+    );
   }
 }

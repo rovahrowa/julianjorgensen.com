@@ -2,14 +2,14 @@ import React from 'react';
 import moment from 'moment';
 import styles from './index.css';
 
-const BillingHeader = ({
+export default ({
   item,
   customer,
-  paid
+  paid,
 }) => {
-  let renderAddress = () => {
+  const renderAddress = () => {
     if (!customer.BillAddr) {
-      return (<div></div>)
+      return false;
     }
 
     return (
@@ -20,10 +20,10 @@ const BillingHeader = ({
         {customer.BillAddr.CountrySubDivisionCode ? <div className={styles.province}>{customer.BillAddr.CountrySubDivisionCode}</div> : ''}
         {customer.BillAddr.Country ? <div className={styles.country}>{customer.BillAddr.Country}</div> : ''}
       </address>
-    )
+    );
   };
 
-  let renderEndDate = () => {
+  const renderEndDate = () => {
     if (item.type === 'estimate') {
       return (
         <div>
@@ -31,14 +31,14 @@ const BillingHeader = ({
           <date>{moment(item.expirationDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}</date>
         </div>
       )
-    } else {
-      return (
-        <div>
-          <label>Due on</label>
-          <date>{moment(item.dueDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}</date>
-        </div>
-      )
     }
+
+    return (
+      <div>
+        <label>Due on</label>
+        <date>{moment(item.dueDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}</date>
+      </div>
+    );
   };
 
   return (
@@ -79,7 +79,5 @@ const BillingHeader = ({
         </div>
       </div>
     </div>
-  )
+  );
 };
-
-export default BillingHeader;

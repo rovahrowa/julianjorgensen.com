@@ -1,15 +1,10 @@
-import React from 'react';
-import DocumentMeta from 'react-document-meta';
+import React, { Component } from 'react';
 import Carousel from 'rmc-nuka-carousel';
 import Marquee from 'components/Marquee';
 
 import styles from './index.css';
 
-export default class FullStack extends React.Component {
-  constructor() {
-    super();
-  }
-
+export default class FullStack extends Component {
   render() {
 
     return (

@@ -95,7 +95,7 @@ export default class AtvImg extends Component {
   );
 
   renderShine = () => (
-    <div style={{ ...styles.shine, ...this.state.shine }}/>
+    <div style={{ ...styles.shine, ...this.state.shine }} />
   );
 
   render() {
@@ -108,7 +108,7 @@ export default class AtvImg extends Component {
           }}
           className={this.props.className || ''}
         >
-          <img style={styles.staticFallback} src={this.props.staticFallback} />
+          <img style={styles.staticFallback} src={this.props.staticFallback} alt="" />
         </div>
       );
     }

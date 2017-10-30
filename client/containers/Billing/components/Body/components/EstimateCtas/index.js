@@ -2,17 +2,13 @@ import React from 'react';
 import Button from 'components/Button';
 import styles from './index.css';
 
-const EstimateCtas = ({
+export default ({
   item,
-  customer
-}) => {
-  return (
-    <div className={styles.container}>
-      <div className={styles.ctas}>
-        <Button label='Print estimate' onClick={() => window.print()} />
-      </div>
+  customer,
+}) => (
+  <div className={styles.container}>
+    <div className={styles.ctas}>
+      <Button label="Print estimate" onClick={() => window.print()} />
     </div>
-  )
-};
-
-export default EstimateCtas;
+  </div>
+);

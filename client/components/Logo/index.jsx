@@ -1,18 +1,16 @@
 import React from 'react';
 import cn from 'classnames';
+import LogoSVG from 'assets/icons/julian-jorgensen-logo.svg';
 
-import LogoSVG from '-!svg-react-loader?name=Icon!assets/icons/julian-jorgensen-logo.svg';
-import styles from './index.css';
-
-const Logo = ({ className, color, size, ...others }) => {
-  const _className = cn(className);
+export default ({
+  className, color, size, ...others
+}) => {
+  const wrapperStyles = cn(className);
 
   return (
     <LogoSVG
-      className={_className}
+      className={wrapperStyles}
       {...others}
     />
-  )
+  );
 };
-
-export default Logo;

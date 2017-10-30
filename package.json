@@ -84,6 +84,7 @@
     "react-redux": "^5.0.2",
     "react-responsive": "^2.0.0",
     "react-router-dom": "^4.1.1",
+    "react-router-transition": "^1.1.1",
     "react-scroll-parallax": "^1.0.0",
     "react-stack-grid": "^0.4.0",
     "react-stripe-elements": "^0.0.8",
