@@ -61,11 +61,11 @@
     color: gray(60%);
   }
   & .helperMethod {
-    margin-left: rem(25);
     display: flex;
     align-items: center;
     margin-top: rem(10);
     @media (--medium-and-up) {
+      margin-left: rem(25);
       margin-top: 0;
     }
   }

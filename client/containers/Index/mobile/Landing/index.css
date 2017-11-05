@@ -21,7 +21,6 @@
 } */
 
 .slideLanding {
-  background-image: url('/images/mobile-placeholder.png');
   & .title {
     background: linear-gradient(130deg, #6446C2, #3E88D4);
     -webkit-background-clip: text;
@@ -30,6 +29,24 @@
   & .bgOverlay {
     width: 100%;
     height: 100%;
+  }
+}
+
+.slideBgOverlay {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  & svg {
+    padding-top: 20%;
+    width: 70%;
+    height: 70%;
   }
 }
 
@@ -42,17 +59,7 @@
     color: white;
   }
   & .slideBgOverlay {
-    position: absolute;
-    z-index: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 70%;
-    height: 70%;
     opacity: 0.2;
-    & svg {
-      max-width: 100%;
-      max-height: 100%;
-    }
   }
 }
 
@@ -67,36 +74,8 @@
     color: white;
   }
   & .slideBgOverlay {
-    position: absolute;
-    left: 0;
-    z-index: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    overflow: hidden;
-    & svg {
-      position: relative;
-      top: 50%;
-      transform: translateY(-20%);
-      z-index: 2;
-      max-width: 70%;
-      max-height: 70%;
-      & path {
-        fill: black;
-      }
-    }
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('/images/code-bg-small.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
+    & svg path {
+      fill: black;
     }
   }
 }
@@ -110,20 +89,6 @@
     color: white;
   }
   & .slideBgOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
     opacity: 0.2;
-    & svg {
-      position: relative;
-      top: 50%;
-      transform: translateY(-20%);
-      max-width: 70%;
-      max-height: 70%;
-    }
   }
 }

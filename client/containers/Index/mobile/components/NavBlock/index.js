@@ -3,11 +3,11 @@ import cn from 'classnames';
 import AngleRightIcon from 'assets/icons/FontAwesome/regular/angle-right.svg';
 import styles from './index.css';
 
-export default ({ className, tags }) => {
+export default ({ className, title, tags }) => {
   const wrapperStyles = cn(styles.wrapper, className);
   return (
     <div className={wrapperStyles}>
-      <span>{this.props.title}</span>
+      <span>{title}</span>
       <AngleRightIcon />
 
       <div className={styles.tags}>
@@ -15,7 +15,6 @@ export default ({ className, tags }) => {
           <div className={styles.tag}>{tag}</div>
         )) : ''}
       </div>
-
     </div>
   );
 };

@@ -7,7 +7,7 @@ import styles from './index.css';
 
 export default () => (
   <div className={styles.wrapper}>
-    {/* <MobileTablet component={<HomeMobile />} /> */}
+    <MobileTablet component={<HomeMobile />} />
     <Desktop component={<Home />} />
     <Footer />
   </div>

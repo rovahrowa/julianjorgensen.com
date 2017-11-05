@@ -1,5 +1,6 @@
 import React from 'react';
 import Quote from 'components/Quote';
+import authorImage from 'assets/images/mark-fromson.png';
 import HomeLanding from './Landing';
 import NavBlock from './components/NavBlock';
 import styles from './index.css';
@@ -11,7 +12,7 @@ export default () => (
       body="I would recommend him to any team looking for a quality front-end developer."
       author="Mark Fromson"
       authorTitle="CEO, localsolo.com"
-      avatarUrl="images/mark-fromson.png"
+      avatarImage={authorImage}
       className={styles.quote}
     />
 

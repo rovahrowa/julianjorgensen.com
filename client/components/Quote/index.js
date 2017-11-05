@@ -26,7 +26,7 @@ export default class Quote extends Component {
       className,
       body,
       quoteClassName,
-      avatarUrl,
+      avatarImage,
       avatarClassName,
       authorClassName,
       author,
@@ -43,7 +43,7 @@ export default class Quote extends Component {
 
     const Author = (
       <author className={authorStyles}>
-        <div className={avatarStyles} style={{ backgroundImage: `url(${avatarUrl})` }} />
+        <div className={avatarStyles} style={{ backgroundImage: avatarImage }} />
         <div className={styles.meta}>
           <div className={styles.name}>{author}</div>
           <div className={styles.title}>{authorTitle}</div>
