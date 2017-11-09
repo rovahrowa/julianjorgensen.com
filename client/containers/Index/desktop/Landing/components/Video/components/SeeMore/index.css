@@ -52,6 +52,7 @@
   text-transform: uppercase;
   font-size: rem(14);
   font-weight: bold;
+  user-select: none;
   & .arrow {
     margin-bottom: rem(-16);
     height: rem(30);

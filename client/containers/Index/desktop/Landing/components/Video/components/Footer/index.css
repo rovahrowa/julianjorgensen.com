@@ -16,6 +16,7 @@
 
 .wrapper {
   position: absolute;
+  pointer-events: none;
   bottom: 0;
   width: 100%;
   & .topBorder,

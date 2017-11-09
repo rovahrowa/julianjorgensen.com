@@ -5,6 +5,7 @@
   left: 0;
   width: 100%;
   z-index: 99;
+  pointer-events: none;
 }
 
 .header {
@@ -113,6 +114,7 @@
 .logo {
   opacity: 0.5;
   transition: opacity 0.2s;
+  pointer-events: auto;
 }
 
 .linkActive {
