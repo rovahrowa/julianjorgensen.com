@@ -1,0 +1,20 @@
+@import "globals.css";
+.submitButton{
+  margin-top: rem(30);
+}
+.response{
+  &.success{
+    margin-top: rem(30);
+    padding: rem(30);
+    background-color: color(green alpha(10%));
+  }  
+}
+
+.groupLabel{
+  @apply --smallText;
+  font-size: rem(12);
+  font-weight: light;
+  margin-top: rem(15);
+  margin-bottom: rem(15);
+  -webkit-font-smoothing: antialiased;
+}

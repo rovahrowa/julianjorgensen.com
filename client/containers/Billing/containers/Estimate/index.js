@@ -53,27 +53,33 @@ export default class Estimate extends Component {
 
     if (!item && !error) {
       return (
-        <div className={styles.container}>
-          <LoadingSpinner />
+        <div className={styles.wrapper}>
+          <div className={styles.container}>
+            <LoadingSpinner />
+          </div>
         </div>
       );
     }
 
     if (error) {
       return (
-        <div className={styles.container}>
-          <div className={styles.error}>{error}</div>
+        <div className={styles.wrapper}>
+          <div className={styles.container}>
+            <div className={styles.error}>{error}</div>
+          </div>
         </div>
       );
     }
 
     return (
-      <div className={styles.container}>
-        <EstimateBody
-          item={item}
-          customer={customer}
-          paid={paid}
-        />
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          <EstimateBody
+            item={item}
+            customer={customer}
+            paid={paid}
+          />
+        </div>
       </div>
     );
   }

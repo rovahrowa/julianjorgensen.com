@@ -22,6 +22,11 @@
     padding: rem(45);
     width: 50%;
     background: linear-gradient(to bottom right, var(--blue), color(var(--blue) shade(60%)));
+    &:hover{
+      & .heroHeader{
+        opacity: 1;
+      }
+    }
   }
   & .heroHeader {
     align-self: flex-start;
@@ -30,6 +35,8 @@
     line-height: rem(58);
     font-weight: bold;
     color: white;
+    opacity: 0.4;
+    transition: all 0.2s;
     &:after {
       content: '';
       position: absolute;

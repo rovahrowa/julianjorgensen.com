@@ -7,7 +7,6 @@ export default ({
 }) => {
   let dynamicOverlayStyles = {};
 
-  console.log('cursorposiiton', position);
   if (position && active) {
     const splitWindowWidth = window.innerWidth / 2;
 
@@ -16,8 +15,6 @@ export default ({
     const positionPercentage = (coordinates.x / splitWindowWidth) * maxPercentage;
     const leftPositionPercentage = maxPercentage - positionPercentage;
     const rightPositionPercentage = positionPercentage - maxPercentage;
-
-    console.log('positionPercentage', positionPercentage);
     
     dynamicOverlayStyles = {
       backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, ${rightPositionPercentage}) 45%, rgba(0, 0, 0, ${leftPositionPercentage}) 55%)`,

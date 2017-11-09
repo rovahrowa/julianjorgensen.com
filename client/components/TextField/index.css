@@ -1,0 +1,37 @@
+@import "globals.css";
+.default{
+  font-family: var(--secondaryFont);
+  margin: 0 0 rem(5);
+  padding-top: rem(14);
+}
+
+.bar:before, .bar:after{
+  background-color: var(--primaryColor);
+}
+
+.inputElement {
+  color: gray(10%);
+  line-height: 170%;
+  padding-bottom: rem(3);
+  &,
+  & ~ .label{
+    font-size: rem(16);    
+  }
+  & ~ .label{
+    top: rem(27);
+  }
+  &:not([disabled]):not([readonly]) ~ .label{
+    color: gray(10%);
+    transition-property: all !important;
+  }
+  &:focus:not([disabled]):not([readonly]) ~ .label,
+  &.filled ~ .label{
+    font-size: rem(9) !important;
+    letter-spacing: rem(1) !important;
+    color: var(--primaryColor) !important;
+  }
+}
+
+.hint{
+  color: gray(60%);
+}

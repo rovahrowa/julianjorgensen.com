@@ -1,8 +1,12 @@
 @import "globals.css";
+.wrapper{
+  composes: globalContainer;  
+}
+
 .container {
   composes: globalContainer;
+  @apply --boxShadow;
   padding: 0;
-  background-color: transparent;
   @media (--only-small) {
     width: calc(100% - rem(20));
   }
@@ -11,7 +15,6 @@
 .pixelFade {
   position: relative;
   z-index: 2;
-  background-image: url('/images/pixels-fade.svg');
   background-repeat: repeat-x;
   background-position: 0 0;
   background-size: 10%;
@@ -19,7 +22,6 @@
 }
 
 .nav {
-  @apply --boxShadow;
   position: relative;
   z-index: 2;
   background-color: gray(30%);

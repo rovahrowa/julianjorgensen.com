@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Desktop, MobileTablet } from 'utils/responsive';
 import Footer from 'containers/Footer';
 import Home from './desktop';
@@ -9,6 +9,6 @@ export default () => (
   <div className={styles.wrapper}>
     <MobileTablet component={<HomeMobile />} />
     <Desktop component={<Home />} />
-    <Footer />
+    <Footer estimate faq />
   </div>
 );

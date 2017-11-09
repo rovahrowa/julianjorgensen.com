@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Footer from 'containers/Footer';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { getItem } from '../../qboUtils';
 import { InvoiceBody } from '../../components/Body';
@@ -54,34 +55,41 @@ export default class Invoice extends Component {
 
     if (!item && !error) {
       return (
-        <div className={styles.container}>
-          <LoadingSpinner />
+        <div className={styles.wrapper}>
+          <div className={styles.container}>
+            <LoadingSpinner />
+          </div>
         </div>
       );
     }
 
     if (error) {
       return (
-        <div className={styles.container}>
-          <div className={styles.error}>{error}</div>
+        <div className={styles.wrapper}>
+          <div className={styles.container}>
+            <div className={styles.error}>{error}</div>
+          </div>
         </div>
       );
     }
 
     return (
-      <div className={styles.container}>
-        <InvoiceBody
-          item={item}
-          customer={customer}
-          paid={paid}
-        />
-        <PaymentOptions
-          item={item}
-          customer={customer}
-          paid={paid}
-          markAsPaid={this.markAsPaid}
-          onLoaded={() => this.props.onLoaded()}
-        />
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          <InvoiceBody
+            item={item}
+            customer={customer}
+            paid={paid}
+          />
+          <PaymentOptions
+            item={item}
+            customer={customer}
+            paid={paid}
+            markAsPaid={this.markAsPaid}
+            onLoaded={() => this.props.onLoaded()}
+          />
+        </div>
+        <Footer faq />
       </div>
     );
   }

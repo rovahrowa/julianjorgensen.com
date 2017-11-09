@@ -1,0 +1,14 @@
+@import "globals.css";
+.wrapper {
+  composes: globalWrapper subpage;
+}
+
+.container {
+  composes: globalContainer;
+  margin-bottom: rem(100);
+}
+
+.iframe{
+  border: 0;
+  overflow-y: auto;
+}

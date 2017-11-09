@@ -42,12 +42,13 @@ export default class Main extends Component {
   }
 
   render() {
+    const { location } = this.props;
     return (
       <div className={styles.container}>
         <DocumentMeta {...meta} />
         <Header onContactToggle={this.handleContactToggle} />
         <Routes contactActive={this.state.contactActive} />
-        <Calendly />
+        {location.pathname !== '/schedule' ? <Calendly /> : ''}
       </div>
     );
   }

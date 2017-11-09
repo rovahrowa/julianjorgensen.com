@@ -54,12 +54,12 @@ export default class HomeUx extends Component {
         <div className={styles.container} id="ux">
           <div className={styles.header}>
             <h2 className={styles.title}>User Experience</h2>
-            <Button
+            {/* <Button
               label="See more"
               hollow
               tiny
               className={styles.cta}
-            />
+            /> */}
           </div>
 
           <div className={styles.boxes}>

@@ -1,12 +1,13 @@
 import React from 'react';
+import CanadaFlag from 'assets/images/ca-flag.jpg';
 import styles from './index.css';
 
-export default (
+export default () => (
   <div className={styles.container}>
     <div className={styles.item}>
       <div className={styles.header}>Please send the cheque to</div>
       <img
-        src="/images/ca-flag.jpg"
+        src={CanadaFlag}
         className={styles.flag}
         alt="Canada flag"
       />
@@ -15,4 +16,3 @@ export default (
     </div>
   </div>
 );
-

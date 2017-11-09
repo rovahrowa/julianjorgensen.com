@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import moment from 'moment';
 import Header from '../../components/Header';
 import Items from '../../components/Items';
@@ -7,32 +7,28 @@ import EstimateCtas from '../../components/EstimateCtas';
 import styles from './index.css';
 import sharedStyles from '../../index.css';
 
-export default ({
-  item,
-  customer,
-  paid,
-}) => (
+export default props => (
   <div className={sharedStyles.wrapper}>
-    <div className={sharedStyles.id}><label>Estimate</label>{item.number}</div>
+    <div className={sharedStyles.id}><label>Estimate</label>{props.item.number}</div>
 
     <div className={sharedStyles.body}>
       <div className={sharedStyles.status}>
-        {item.status}
+        {props.item.status}
       </div>
 
       <div className={sharedStyles.container}>
-        <Header {...this.props} />
-        <Items {...this.props} />
+        <Header {...props} />
+        <Items {...props} />
 
         <div className={styles.summary}>
-          <Summary {...this.props} />
+          <Summary {...props} />
         </div>
 
         <label>Notes</label>
         <div className={sharedStyles.footer}>
           <div className={sharedStyles.col}>
             <div className={sharedStyles.description}>
-              {item.notes}
+              {props.item.notes}
             </div>
           </div>
         </div>
@@ -75,13 +71,13 @@ export default ({
         <div className={sharedStyles.col}>
           <label>Expiration</label>
           <div className={sharedStyles.description}>
-            <p>This estimate expires on <date>{moment(item.expirationDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}</date></p>
+            <p>This estimate expires on <date>{moment(props.item.expirationDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}</date></p>
           </div>
         </div>
 
         </div>
 
-      <EstimateCtas {...this.props} />
+      <EstimateCtas {...props} />
     </div>
   </div>
 );

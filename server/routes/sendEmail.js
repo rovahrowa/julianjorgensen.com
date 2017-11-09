@@ -2,21 +2,31 @@ import Mailer from '../emails/Mailer';
 
 export default (req, res) => {
   const {
-    template, subject, ...context
+    template, subject, name, email, ...context
   } = req.body;
 
+  let { to, from } = req.body;
+
+  const adminContact = {
+    name: 'Julian Jorgensen', address: 'me@julianjorgensen.com',
+  };
+
+  if (from === 'user') from = { name, address: email };
+  if (from === 'admin') from = adminContact;
+
+  if (to === 'user') to = { name, address: email };
+  if (to === 'admin') to = adminContact;
+
   const mailOptions = {
-    from: {
-      name: 'Julian Jorgensen', address: 'me@julianjorgensen.com',
-    },
-    to: {
-      name: 'Julian Jorgensen', address: 'me@julianjorgensen.com',
-    },
+    from: from || adminContact,
+    to: to || adminContact,
     subject,
     template: {
       name: `./server/emails/templates/${template}.pug`,
       engine: 'pug',
       context: {
+        name,
+        email,
         ...context,
       },
     },

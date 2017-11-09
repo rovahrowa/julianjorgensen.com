@@ -7,6 +7,7 @@ import ReactGA from 'react-ga';
 import Index from 'containers/Index';
 import { Invoice, Estimate } from 'containers/Billing';
 import About from 'containers/About';
+import Schedule from 'containers/Schedule';
 import FullStack from 'containers/FullStack';
 import FrontEnd from 'containers/FrontEnd';
 import Ux from 'containers/Ux';
@@ -106,6 +107,7 @@ export default class Routes extends Component {
         <PropsRoute path="/automation" component={Automation} />
         <PropsRoute path="/portfolio" component={Portfolio} />
         <PropsRoute path="/about" component={About} />
+        <PropsRoute path="/schedule" component={Schedule} />
         <PropsRoute path="/invoice/:id/:token" component={Invoice} />
         <PropsRoute path="/estimate/:id/:token" component={Estimate} />
         <PropsRoute path="/p/:prospectName/:proposalId" component={Proposal} />

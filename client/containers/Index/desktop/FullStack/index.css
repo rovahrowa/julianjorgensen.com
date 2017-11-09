@@ -7,7 +7,7 @@
 }
 
 .parallaxBg {
-  composes: globalBgImage;
+  @apply --globalBgImage;
   opacity: 0.25;
   overflow: hidden;
 }

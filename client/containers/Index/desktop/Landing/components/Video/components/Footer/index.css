@@ -52,5 +52,6 @@
   & .bottomBorder {
     height: 8vh;
     bottom: 0;
+    background: linear-gradient(to bottom, white, gray(95%));
   }
 }

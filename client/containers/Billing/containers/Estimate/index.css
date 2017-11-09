@@ -1,4 +1,9 @@
 @import "globals.css";
+.wrapper {
+  composes: globalWrapper;
+  min-height: 100vh;
+}
+
 .container {
   composes: globalContainer;
   margin-top: rem(150);

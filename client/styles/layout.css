@@ -3,13 +3,28 @@
   & body {
     margin: 0;
     scroll-behavior: smooth;
-    background: #f3f3f3;
-    background: linear-gradient(to bottom, gray(96%), #F6F9FD);
+    background: gray(95%);
     text-rendering: optimizeSpeed;
     touch-action: manipulation;
   }
   & div {
     /*box-sizing: border-box;*/
+  }
+}
+
+.globalWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  &.withPadding {
+    padding: rem(60);
+  }
+  &.subpage {
+    margin-top: rem(60);
+    @media (--medium-and-up) {
+      margin-top: rem(200);      
+    }
   }
 }
 
@@ -34,22 +49,7 @@
   &.withShadow {
     @apply --boxShadow;
     @media (--medium-and-up) {
-      width: calc(100% - 20px);
       max-width: 100%;
     }
-  }
-}
-
-.globalWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  margin: 0 0 rem(40);
-  &.withPadding {
-    padding: rem(60);
-  }
-  &.subpage {
-    margin-top: rem(200);
   }
 }

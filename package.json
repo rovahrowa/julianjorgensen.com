@@ -93,6 +93,7 @@
     "react-visibility-sensor": "^3.10.1",
     "react-youtube": "^7.4.0",
     "redux": "^3.6.0",
+    "redux-form": "^7.1.2",
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.2",
     "rmc-nuka-carousel": "^2.2.1",

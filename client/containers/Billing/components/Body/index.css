@@ -22,7 +22,6 @@
 }
 
 .id {
-  font-size: rem(26);
   text-align: center;
   & label {
     display: inline-block;

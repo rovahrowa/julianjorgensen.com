@@ -64,8 +64,8 @@
   }
   & .subheader {
     margin-top: rem(25);
-    font-size: rem(22);
-    line-height: rem(28);
+    font-size: rem(20);
+    line-height: rem(30);
     max-width: rem(600);
     font-weight: 400;
     font-style: italic;

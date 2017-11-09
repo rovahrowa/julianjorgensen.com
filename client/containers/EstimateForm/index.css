@@ -1,6 +1,6 @@
 @import "globals.css";
 .container {
-  composes: globalContainer withShadow white center;
+  composes: globalContainer white center;
   position: relative;
   flex-direction: column;
   padding: rem(20);
@@ -11,12 +11,13 @@
 }
 
 .header {
-  width: rem(500);
+  width: rem(600);
   max-width: 100%;
   margin-bottom: rem(20);
   & .title {
+    text-transform: uppercase;
     text-align: center;
-    margin-bottom: rem(10);
+    margin-bottom: rem(25);
     font-size: rem(30);
     @media (--medium-and-up) {
       font-size: rem(50);
@@ -35,22 +36,18 @@
 }
 
 .form {
-  width: rem(400);
+  width: rem(450);
   max-width: 100%;
 }
 
-.submit {
-  width: 100%;
-}
-
 .helper {
-  margin-top: rem(40);
+  margin-top: rem(60);
   padding: rem(15);
   background-color: gray(98%);
   width: rem(600);
   max-width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
   @media (--medium-and-up) {
@@ -58,16 +55,15 @@
   }
   &,
   & a {
-    color: gray(60%);
+    color: gray(50%);
+  }
+  & button {
+    cursor: pointer;
   }
   & .helperMethod {
     display: flex;
     align-items: center;
-    margin-top: rem(10);
-    @media (--medium-and-up) {
-      margin-left: rem(25);
-      margin-top: 0;
-    }
+
   }
   & .icon {
     height: rem(18);
@@ -76,4 +72,8 @@
       fill: gray(60%);
     }
   }
+}
+
+.submitButton{
+  width: 100%;
 }

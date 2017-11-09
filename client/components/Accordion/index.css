@@ -1,22 +1,24 @@
 .item {
   display: block;
-  width: 100%;
   cursor: pointer;
-  padding: rem(14) rem(10);
-  padding-left: 0;
+  padding: rem(14) 0;
   border-bottom: 1px solid gray(70%, 50%);
-  transition: padding-left 0.2s;
+  min-width: 100%;
+  transition: all .2s;
+  color: gray(10%);
   &:last-child {
     border-bottom: none;
   }
 }
 
 .active {
-  background-color: gray(95%);
-  padding-left: rem(10);
+  background-color: color(white alpha(35%));
+  margin: 0 rem(-15);
+  padding: rem(14) rem(15);
+  min-width: calc(100% + rem(30));
   & .title {
     margin-bottom: rem(8);
-    opacity: 0.6;
+    color: gray(20%);
   }
   & .title:after {
     transform: rotate(45deg);
@@ -29,11 +31,12 @@
   align-items: center;
   user-select: none;
   margin-bottom: 0;
-  transition: all 0.2s;
+  &,&:after{
+    transition: all 0.2s;    
+  }
   &:after {
     content: '+';
     font-weight: bold;
-    transition: all 0.2s;
     font-size: rem(20);
     margin-left: rem(15);
   }

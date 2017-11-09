@@ -18,10 +18,19 @@
     box-shadow: none;
   }
   &.navDefault {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: color(white alpha(90%));
     box-shadow: 0 rem(2) rem(20) 0;
     backdrop-filter: blur(8px);
-    /*background: linear-gradient(to bottom right, color(var(--blue) shade(50%)), var(--blue));*/
+    & .link,
+    & .logo {
+      opacity: 0.8;
+    }
+    & .link {
+      color: black;      
+      &:before {
+        background: linear-gradient(90deg, color(black alpha(0%)), color(black alpha(100%)), color(black alpha(0%)));
+      }
+    }
   }
 }
 
@@ -63,7 +72,7 @@
 
 .link {
   position: relative;
-  color: #ffffff;
+  color: white;
   text-decoration: none;
   font-family: var(--primaryFont);
   font-size: rem(16);

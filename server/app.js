@@ -44,7 +44,7 @@ app.get('/get-billing-item/:type/:id/', qbo.itemDetails);
 app.post('/qbo-webhook', qbo.webhook);
 
 // Email routes
-app.get('/email', sendEmail);
+app.post('/email', sendEmail);
 
 // use static
 app.use(express.static(path.join(global.appRoot, 'public')));

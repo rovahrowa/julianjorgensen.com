@@ -49,6 +49,7 @@ export default class DesktopNav extends React.Component {
     switch (pathname) {
       case 'invoice':
       case 'estimate':
+      case 'schedule':
         theme = 'dark';
         break;
       default:
@@ -71,11 +72,11 @@ export default class DesktopNav extends React.Component {
       >
         <header className={headerStyles}>
           <nav className={styles.nav}>
-            <li><HashLink to='/' className={styles.logo}><Logo className={pathname === '' ? styles.active : ''} /></HashLink></li>
-            <li><HashLink to='#frontend' className={`${styles.link} ${pathname === 'frontend' ? styles.linkActive : ''}`}>Front-End</HashLink></li>
-            <li><HashLink to='#ux' className={`${styles.link} ${pathname === 'ux' ? styles.linkActive : ''}`}>UX</HashLink></li>
-            <li><HashLink to='#fullstack' className={`${styles.link} ${pathname === 'fullstack' ? styles.linkActive : ''}`}>Full Stack</HashLink></li>
-            <li><HashLink to='#automation' className={`${styles.link} ${pathname === 'automation' ? styles.linkActive : ''}`}>Automation</HashLink></li>
+            <li><HashLink to="/" className={styles.logo}><Logo className={pathname === '' ? styles.active : ''} /></HashLink></li>
+            <li><HashLink to="/#frontend" className={`${styles.link} ${pathname === 'frontend' ? styles.linkActive : ''}`}>Front-End</HashLink></li>
+            <li><HashLink to="/#ux" className={`${styles.link} ${pathname === 'ux' ? styles.linkActive : ''}`}>UX</HashLink></li>
+            <li><HashLink to="/#fullstack" className={`${styles.link} ${pathname === 'fullstack' ? styles.linkActive : ''}`}>Full Stack</HashLink></li>
+            <li><HashLink to="/#automation" className={`${styles.link} ${pathname === 'automation' ? styles.linkActive : ''}`}>Automation</HashLink></li>
             <li><button className={`${styles.link} ${styles.contact}`} onClick={this.handleContactToggle}>Contact</button></li>
           </nav>
           <Contact

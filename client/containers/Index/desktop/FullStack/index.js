@@ -1,6 +1,7 @@
 import React from 'react';
 import { Parallax } from 'react-scroll-parallax';
 import Button from 'components/Button';
+import codeBg from 'assets/images/code-bg.jpg';
 import ScaleIcon from 'assets/icons/FontAwesome/regular/expand.svg';
 import APIIcon from 'assets/icons/FontAwesome/regular/code.svg';
 import DatabaseIcon from 'assets/icons/colored/cms-icon.svg';
@@ -39,18 +40,18 @@ export default () => (
       slowerScrollRate
       tag="div"
     >
-      <img src="/images/code-bg.jpg" className={styles.codeBg} alt="Code background" />
+      <img src={codeBg} className={styles.codeBg} alt="Code background" />
     </Parallax>
 
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>Full-Stack Development</h2>
-        <Button
+        {/* <Button
           label="See more"
           hollow
           tiny
           className={styles.cta}
-        />
+        /> */}
       </div>
 
       <div className={styles.boxes}>

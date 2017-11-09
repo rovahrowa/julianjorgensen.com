@@ -56,18 +56,18 @@ export default () => (
   <div className={styles.container} id="automation">
     <div className={styles.header}>
       <h2 className={styles.title}>Automation</h2>
-      <Button
+      {/* <Button
         label="See more"
         href="/automation"
         hollow
         tiny
         blue
-      />
+      /> */}
     </div>
 
     <div className={styles.body}>
       <div className={styles.hero}>
-        <h3 className={styles.heroHeader}>Connect to the future.<br />It's easy!</h3>
+        <h3 className={styles.heroHeader}>Connect to<br />the future.<br />It's easy!</h3>
       </div>
       <div className={styles.carousel}>
         <Carousel decorators={carouselDecorators} vertical slidesToShow={2} wrapAround autoplay easing="easeInOutQuint" speed={800} autoplayInterval={5000} >
@@ -82,7 +82,6 @@ export default () => (
                   className={slideStyle}
                   icon={slide.icon}
                   iconStyles={styles.icon}
-                  href="/automation"
                 />
               );
             })

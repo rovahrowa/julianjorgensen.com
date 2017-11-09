@@ -8,19 +8,19 @@ import styles from './index.css';
 
 const items = [
   {
-    title: 'Solid stack',
+    title: 'Solid Stack',
     icon: <AnimationIcon />,
   },
   {
-    title: 'Advanced CSS architecture',
+    title: 'CSS Architecture',
     icon: <CodeBasedDesignIcon className={styles.boxIcon} />,
   },
   {
-    title: 'Speed optimization',
+    title: 'Speed Optimization',
     icon: <FastIcon />,
   },
   {
-    title: 'High precision',
+    title: 'High Precision',
     icon: <OptimizedIcon />,
   },
 ];
@@ -29,12 +29,12 @@ export default () => (
   <div className={styles.container} id="frontend">
     <div className={styles.header}>
       <h2 className={styles.title}>Front-End Development</h2>
-      <Button
+      {/* <Button
         label="See more"
         hollow
         tiny
         className={styles.cta}
-      />
+      /> */}
     </div>
 
     <div className={styles.boxes}>

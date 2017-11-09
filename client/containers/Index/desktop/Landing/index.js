@@ -73,7 +73,7 @@ export default class HomeLanding extends Component {
               <div style={dynamicBgStyles} className={styles.backgroundContent}>
                 <div className={styles.hero}>
                   <h1 className={styles.header}>Impress your online audience</h1>
-                  <p className={styles.subheader}>I help agencies and startups create impressive <span className={helperStyles.nobr}>web apps</span>, ecommerce <span className={helperStyles.nobr}>and branding sites.</span></p>
+                  <p className={styles.subheader}>I work with agencies and startups to create impressive <span className={helperStyles.nobr}>web apps</span>, ecommerce <span className={helperStyles.nobr}>and branding sites.</span></p>
                 </div>
                 <LandingCategories className={styles.categories} />
               </div>

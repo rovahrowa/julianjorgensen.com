@@ -3,23 +3,10 @@ import { Collapse } from 'react-collapse';
 import styles from './index.css';
 
 export default class Accordion extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      selected: null,
-    };
-  }
-
-  handleUpdate = () => {
-    setTimeout(() => {
-      console.log('handling accordion update');
-      this.props.handleUpdate();
-    }, 250);
-  };
+  state = {};
 
   render() {
-    let { className } = this.props;
+    const { className } = this.props;
     return (
       <div className={className}>
         {this.props.children.map((item, index) => {
@@ -29,14 +16,12 @@ export default class Accordion extends Component {
 
           return (
             <button
-              key={index}
+              key={title}
               className={`${styles.item} ${this.state.selected === index ? styles.active : ''}`}
               onClick={() => {
-                selected = (index === this.state.selected ? null : index)
+                selected = (index === this.state.selected ? null : index);
                 this.setState({
                   selected,
-                }, () => {
-                  this.handleUpdate();
                 });
               }}
             >

@@ -1,11 +1,14 @@
 import React from 'react';
+import CanadaFlag from 'assets/images/ca-flag.jpg';
+import USFlag from 'assets/images/us-flag.jpg';
+import EuroFlag from 'assets/images/euro-flag.jpg';
 import styles from './index.css';
 
-export default (
+export default () => (
   <div className={styles.container}>
     <div className={styles.item}>
       <img
-        src="/images/ca-flag.jpg"
+        src={CanadaFlag}
         className={styles.flag}
         alt="Canada flag"
       />
@@ -37,7 +40,7 @@ export default (
 
     <div className={styles.item}>
       <img
-        src="/images/us-flag.jpg"
+        src={USFlag}
         className={styles.flag}
         alt="US Flag"
       />
@@ -70,7 +73,7 @@ export default (
 
     <div className={styles.item}>
       <img
-        src="/images/euro-flag.jpg"
+        src={EuroFlag}
         className={styles.flag}
         alt="EU Flag"
       />

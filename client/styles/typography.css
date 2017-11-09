@@ -18,10 +18,6 @@ label;
   --h5: rem(16);
   --h6: rem(14);
   --lineHeight: 1.15;
-  /* fonts */
-  --primaryFont: 'Whitney SSm A', 'Whitney SSm B';
-  /* --secondaryFont: 'Scandia'; */
-  --secondaryFont: 'Gotham SSm A', 'Gotham SSm B';
 }
 
 :global {
@@ -31,16 +27,14 @@ label;
   & p,
   & :--inputs {
     font-family: var(--secondaryFont);
+    font-size: rem(16);
+    line-height: rem(24);
   }
   & :--headings {
     font-family: var(--primaryFont);
     font-style: normal;
     margin: 0;
     font-weight: 800;
-  }
-  & body {
-    font-size: rem(16);
-    line-height: rem(20);
   }
   & a {
     text-decoration: none;
