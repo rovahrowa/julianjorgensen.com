@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import styles from './index.css';
 
 const Player = Loadable({
-  loader: () => delay(1500).then(() => import('./components/Player')),
+  loader: () => delay(2000).then(() => import('./components/Player')),
   loading: LoadingSpinner,
 });
 
