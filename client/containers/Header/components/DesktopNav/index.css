@@ -1,6 +1,8 @@
 @import "globals.css";
 .wrapper {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   z-index: 99;
 }
@@ -30,6 +32,9 @@
       &:before {
         background: linear-gradient(90deg, color(black alpha(0%)), color(black alpha(100%)), color(black alpha(0%)));
       }
+    }
+    & svg g{
+      fill: black;
     }
   }
 }

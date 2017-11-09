@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
+import cn from 'classnames';
 import { Parallax, Background } from 'react-parallax';
 import { connect } from 'react-redux';
-import ReactCursorPosition from 'react-cursor-position';
 import Signature from 'assets/icons/julian-signature.svg';
 import helperStyles from 'styles/helpers.css';
-import LandingCategories from './components/LandingCategories';
 import LandingBackground from './components/LandingBackground';
 import Video from './components/Video';
 import styles from './index.css';
@@ -16,35 +15,20 @@ export default class HomeLanding extends Component {
   constructor() {
     super();
 
-    this.state = {
-      playVideo: false,
-      hasVideoPlayed: false,
-      cursorPosition: {},
-    };
+    this.state = {};
+    this.handleLoadVideo = this.handleLoadVideo.bind(this);
   }
 
-  handleCursorPositionChange = (cursorPosition) => {
+  handleLoadVideo = () => {
     this.setState({
-      cursorPosition,
-    });
-  }
-
-  handleActivationChange = ({ isActive }) => {
-    this.setState({
-      cursorActive: isActive,
-    });
-  }
-
-  handlePlayVideo = () => {
-    this.setState({
-      playVideo: true,
+      loadVideo: true,
       hasVideoPlayed: false,
     });
   }
 
   handleCloseVideo = () => {
     this.setState({
-      playVideo: false,
+      loadVideo: false,
     });
   }
 
@@ -56,41 +40,36 @@ export default class HomeLanding extends Component {
 
   render() {
     const { scroll } = this.props;
-    const { playVideo, cursorPosition } = this.state;
+    const { loadVideo } = this.state;
+    const wrapperStyles = cn(styles.wrapper, {
+      [styles.isPlayingVideo]: loadVideo,
+    });
     const dynamicBgStyles = {
       opacity: 1 - (scroll / 300),
     };
 
-    const dynamicFooterStyles = {
-      opacity: 1 - (scroll / 100),
-    };
-
     return (
-      <ReactCursorPosition onActivationChanged={this.handleActivationChange} onPositionChanged={this.handleCursorPositionChange}>
-        <div className={`${styles.wrapper} ${playVideo ? styles.isPlayingVideo : ''}`}>
-          <Parallax strength={400} className={styles.wrap}>
-            <Background className={styles.background}>
-              <div style={dynamicBgStyles} className={styles.backgroundContent}>
-                <div className={styles.hero}>
-                  <h1 className={styles.header}>Impress your online audience</h1>
-                  <p className={styles.subheader}>I work with agencies and startups to create impressive <span className={helperStyles.nobr}>web apps</span>, ecommerce <span className={helperStyles.nobr}>and branding sites.</span></p>
-                </div>
-                <LandingCategories className={styles.categories} />
+      <div className={wrapperStyles}>
+        <Parallax strength={400} className={styles.wrap}>
+          <Background className={styles.background}>
+            <div style={dynamicBgStyles} className={styles.backgroundContent}>
+              <div className={styles.hero}>
+                <h1 className={styles.header}>Impress your online audience</h1>
+                <p className={styles.subheader}>I work with agencies and startups to create impressive <span className={helperStyles.nobr}>web apps</span>, ecommerce <span className={helperStyles.nobr}>and branding sites.</span></p>
               </div>
-              <LandingBackground active={this.state.cursorActive} position={cursorPosition} />
-              <Signature className={styles.signature} />
-            </Background>
-          </Parallax>
+            </div>
+            <LandingBackground playingVideo={loadVideo} />
+            <Signature className={styles.signature} />
+          </Background>
+        </Parallax>
 
-          <Video
-            onVideoEnd={this.handleCloseVideo}
-            onVideoHasPlayed={this.handleVideoHasPlayed}
-            dynamicStyles={dynamicFooterStyles}
-            handleVideoClick={this.handlePlayVideo}
-            {...this.state}
-          />
-        </div>
-      </ReactCursorPosition>
+        <Video
+          onVideoEnd={this.handleCloseVideo}
+          onVideoHasPlayed={this.handleVideoHasPlayed}
+          handleVideoClick={this.handleLoadVideo}
+          {...this.state}
+        />
+      </div>
     );
   }
 }

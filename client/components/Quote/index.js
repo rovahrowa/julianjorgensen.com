@@ -26,8 +26,8 @@ export default class Quote extends Component {
       className,
       body,
       quoteClassName,
-      avatarImage,
-      avatarClassName,
+      authorImage,
+      authorImageClassName,
       authorClassName,
       author,
       authorTitle,
@@ -37,13 +37,13 @@ export default class Quote extends Component {
     const wrapperStyles = cn(className, styles.container, {
       [styles.show]: this.state.show,
     });
-    const avatarStyles = cn(avatarClassName, styles.avatar);
+    const authorImageStyles = cn(authorImageClassName, styles.authorImage);
     const authorStyles = cn(authorClassName, styles.author);
     const quoteStyles = cn(quoteClassName, styles.quote);
 
     const Author = (
       <author className={authorStyles}>
-        <div className={avatarStyles} style={{ backgroundImage: avatarImage }} />
+        <div className={authorImageStyles} style={{ backgroundImage: `url(${authorImage})` }} />
         <div className={styles.meta}>
           <div className={styles.name}>{author}</div>
           <div className={styles.title}>{authorTitle}</div>

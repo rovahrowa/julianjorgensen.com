@@ -6,24 +6,6 @@
   padding: rem(60) rem(50);
 }
 
-.accordions {
-  width: 100%;
-  @media (--medium-and-up) {
-    display: flex;
-    justify-content: space-between;
-    margin-top: rem(20);
-  }
-  & .accordion {
-    width: 100%;
-    & .item {
-      border-top: rem(1) solid black;
-    }
-    @media (--medium-and-up) {
-      width: calc(50% - 20px);
-    }
-  }
-}
-
 @media print {
   .container {
     display: none !important;

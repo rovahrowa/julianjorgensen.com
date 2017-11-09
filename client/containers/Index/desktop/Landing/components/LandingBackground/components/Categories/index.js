@@ -6,11 +6,10 @@ import ShopifyLogo from 'assets/icons/colored/shopify-logo-vector.svg';
 import FirebaseLogo from 'assets/icons/colored/firebase-logo-vector.svg';
 import styles from './index.css';
 
-export default ({
-  className,
-  position,
-}) => {
-  const wrapperStyles = cn(styles.wrapper, className);
+export default ({ playingVideo }) => {
+  const wrapperStyles = cn(styles.wrapper, {
+    [styles.isPlayingVideo]: playingVideo,
+  });
   let categoryLeftStyles;
   let categoryRightStyles;
   let leftDescriptionStyles;

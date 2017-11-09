@@ -3,6 +3,7 @@
 .wrapper{
   position: absolute;
   z-index: 1;
+  pointer-events: none;
   left: 50%;
   transform: translateX(-50%);
   bottom: 17%;
@@ -10,6 +11,12 @@
   justify-content: space-between;
   width: rem(1350);
   max-width: calc(100% - 40px);
+  transition: all 0.3s;
+  
+  &.isPlayingVideo {
+    transform: translateX(-50%) translateY(rem(50));
+    opacity: 0;
+  }
 }
 
 .category{
@@ -19,6 +26,8 @@
   transition: all 0.2s;
   padding-bottom: rem(60);
   text-align: center;
+  pointer-events: auto;
+  color: white;
 
   &:hover{
     opacity: 1;

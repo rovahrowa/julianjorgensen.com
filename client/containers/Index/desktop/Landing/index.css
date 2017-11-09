@@ -3,17 +3,19 @@
   position: relative;
   height: 100vh;
   width: 100%;
+  background-color: black;
   & .background {
     position: relative;
     z-index: 1;
+    background-color: black;
     & .backgroundContent {
       position: relative;
+      pointer-events: none;
       z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: transparent;
       text-align: center;
       color: white;
       width: 100vw;
@@ -28,8 +30,7 @@
   width: 100%;
 }
 
-.hero,
-.categories {
+.hero {
   transition: all 0.3s;
 }
 
@@ -38,14 +39,11 @@
     transform: translateY(rem(50));
     opacity: 0;
   }
-  & .categories {
-    transform: translateX(-50%) translateY(rem(50));
-    opacity: 0;
-  }
 }
 
 .hero {
   position: absolute;
+  pointer-events: none;
   z-index: 1;
   bottom: 65%;
   width: 100%;
@@ -89,6 +87,7 @@
 
 .signature {
   position: absolute;
+  pointer-events: none;
   left: 50%;
   margin-left: rem(-350);
   bottom: 5%;

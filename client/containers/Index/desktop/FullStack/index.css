@@ -4,6 +4,7 @@
   background-color: black;
   position: relative;
   padding-top: rem(40);  
+  margin-bottom: var(--spacingLarge);
 }
 
 .parallaxBg {

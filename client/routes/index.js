@@ -70,24 +70,6 @@ export default class Routes extends Component {
   }
 
   render() {
-    const renderMergedProps = (component, ...rest) => {
-      const finalProps = Object.assign({}, ...rest);
-      return (
-        React.createElement(component, finalProps)
-      );
-    };
-
-    const globalProps = {
-      onLoaded: () => console.log('trigger update'),
-    };
-
-    const PropsRoute = ({ component, ...rest }) => (
-      <Route
-        {...rest}
-        render={routeProps => renderMergedProps(component, routeProps, globalProps, rest)}
-      />
-    );
-
     const switchStyles = cn(styles.switch, {
       [styles.blur]: this.props.contactActive,
     });
@@ -100,18 +82,18 @@ export default class Routes extends Component {
         mapStyles={mapStyles}
         className={switchStyles}
       >
-        <PropsRoute path="/" exact component={Index} />
-        <PropsRoute path="/frontend" component={FrontEnd} />
-        <PropsRoute path="/fullstack" component={FullStack} />
-        <PropsRoute path="/ux" component={Ux} />
-        <PropsRoute path="/automation" component={Automation} />
-        <PropsRoute path="/portfolio" component={Portfolio} />
-        <PropsRoute path="/about" component={About} />
-        <PropsRoute path="/schedule" component={Schedule} />
-        <PropsRoute path="/invoice/:id/:token" component={Invoice} />
-        <PropsRoute path="/estimate/:id/:token" component={Estimate} />
-        <PropsRoute path="/p/:prospectName/:proposalId" component={Proposal} />
-        <PropsRoute path="/p/:prospectName/:proposalId?env=:environment" component={Proposal} />
+        <Route path="/" exact component={Index} />
+        <Route path="/frontend" component={FrontEnd} />
+        <Route path="/fullstack" component={FullStack} />
+        <Route path="/ux" component={Ux} />
+        <Route path="/automation" component={Automation} />
+        <Route path="/portfolio" component={Portfolio} />
+        <Route path="/about" component={About} />
+        <Route path="/schedule" component={Schedule} />
+        <Route path="/invoice/:id/:token" component={Invoice} />
+        <Route path="/estimate/:id/:token" component={Estimate} />
+        <Route path="/p/:prospectName/:proposalId" component={Proposal} />
+        <Route path="/p/:prospectName/:proposalId?env=:environment" component={Proposal} />
       </AnimatedSwitch>
     );
   }

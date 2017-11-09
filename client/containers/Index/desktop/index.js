@@ -1,5 +1,6 @@
 import React from 'react';
 import Quote from 'components/Quote';
+import markFromsonProfile from 'assets/images/mark-fromson.png';
 import HomeLanding from './Landing';
 import FullStack from './FullStack';
 import FrontEnd from './FrontEnd';
@@ -17,7 +18,7 @@ export default () => (
       body="I would recommend him to any team looking for a quality front-end developer."
       author="Mark Fromson"
       authorTitle="CEO, localsolo.com"
-      avatarUrl="images/mark-fromson.png"
+      authorImage={markFromsonProfile}
       className={styles.quote}
     />
     <FrontEnd />

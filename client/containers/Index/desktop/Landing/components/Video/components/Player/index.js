@@ -3,6 +3,7 @@ import YouTube from 'react-youtube';
 
 export default ({
   onReady,
+  onPlay,
   styles,
 }) => (
   <YouTube
@@ -17,5 +18,6 @@ export default ({
       },
     }}
     onReady={onReady}
+    onPlay={onPlay}
   />
 );

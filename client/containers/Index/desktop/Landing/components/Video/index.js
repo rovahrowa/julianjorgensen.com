@@ -3,15 +3,13 @@ import cn from 'classnames';
 import Loadable from 'react-loadable';
 import { delay } from 'utils';
 import LoadingSpinner from 'components/LoadingSpinner';
-import profileImage from 'assets/images/julian-blackshirt.png';
-import PlayIcon from 'assets/icons/FontAwesome/solid/play.svg';
 import CloseIcon from 'assets/icons/FontAwesome/regular/times.svg';
-import SeeMore from './components/SeeMore';
+import Actions from './components/Actions';
 import Footer from './components/Footer';
 import styles from './index.css';
 
 const Player = Loadable({
-  loader: () => delay(2000).then(() => import('./components/Player')),
+  loader: () => delay(1500).then(() => import('./components/Player')),
   loading: LoadingSpinner,
 });
 
@@ -19,13 +17,14 @@ export default class HomeLandingVideo extends Component {
   constructor() {
     super();
 
-    this.video = null;
     this.state = {};
+    this.video = null;
+    this.handleToggleSound = this.handleToggleSound.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.playVideo !== newProps.playVideo && newProps.playVideo) {
-      this.handlePlayVideo();
+    if (this.props.loadVideo !== newProps.loadVideo && newProps.loadVideo) {
+      this.handleLoadVideo();
     }
   }
 
@@ -33,9 +32,29 @@ export default class HomeLandingVideo extends Component {
     this.video = event.target;
   }
 
+  onVideoPlay = () => {
+    this.setState({
+      isPlaying: true,
+    });
+  }
+
   handlePlayVideo = () => {
-    this.video.seekTo(0);
-    this.video.playVideo();
+    if (this.video) {
+      this.video.seekTo(0);
+      this.video.playVideo();
+    }
+  }
+
+  handleLoadVideo = () => {
+    if (!this.video) {
+      this.loadingVideo = setTimeout(() => {
+        this.handleLoadVideo();
+      }, 200);
+      return false;
+    }
+
+    this.handlePlayVideo();
+    return true;
   }
 
   handleToggleSound = () => {
@@ -74,42 +93,29 @@ export default class HomeLandingVideo extends Component {
 
   render() {
     const {
-      hasVideoPlayed, playVideo, dynamicStyles, handleVideoClick,
+      hasVideoPlayed, loadVideo, handleVideoClick,
     } = this.props;
 
+    const { isPlaying } = this.state;
+
     const wrapperStyles = cn(styles.wrapper, {
-      [styles.isPlaying]: playVideo,
+      [styles.loadVideo]: loadVideo,
+      [styles.isPlaying]: isPlaying,
     });
-
-    const renderAction = () => {
-      if (!hasVideoPlayed) {
-        return (
-          <div className={styles.ctas} style={dynamicStyles}>
-            <div className={styles.profileImage} style={{ backgroundImage: `url(${profileImage})` }} />
-            <div className={styles.watchVideo}>
-              <div className={styles.icon} onClick={handleVideoClick}><PlayIcon /></div>
-              <div className={styles.label} onClick={handleVideoClick}>Watch Video</div>
-            </div>
-          </div>
-        );
-      }
-
-      return (
-        <SeeMore
-          videoMute={this.state.videoMute}
-          handleToggleSound={this.handleToggleSound}
-          hasVideoPlayed={this.props.hasVideoPlayed}
-          handleReplay={handleVideoClick}
-        />
-      );
-    };
 
     return (
       <div className={wrapperStyles}>
-        {renderAction()}
+        <Actions
+          isPlaying={loadVideo}
+          hasVideoPlayed={hasVideoPlayed}
+          mute={this.state.videoMute}
+          handleToggleSound={this.handleToggleSound}
+          handleVideoClick={handleVideoClick}
+        />
         <div className={styles.videoWrapper} onClick={this.handleCloseVideo}>
-          <Player styles={styles.player} onReady={this.onVideoReady} />
+          <Player styles={styles.player} onReady={this.onVideoReady} onPlay={this.onVideoPlay} />
           <div className={styles.close} onClick={this.handleCloseVideo}><CloseIcon /></div>
+          <LoadingSpinner className={styles.loading} />
         </div>
         <Footer />
       </div>

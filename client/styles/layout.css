@@ -33,7 +33,7 @@
   width: rem(900);
   max-width: 100%;
   &.withMarginBottom {
-    margin-bottom: rem(100);
+    margin-bottom: var(--spacingLarge);
   }
   &.withPaddings {
     padding: rem(40) rem(30);
