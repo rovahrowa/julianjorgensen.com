@@ -61,14 +61,14 @@ export default class EstimateForm extends React.Component {
           template={[
             {
               templateName: 'estimateConfirmation',
-              from: 'user',
-              to: 'admin',
+              from: 'admin',
+              to: 'user',
               subject: 'Estimate confirmation',
             },
             {
               templateName: 'estimateRequest',
-              from: 'admin',
-              to: 'user',
+              from: 'user',
+              to: 'admin',
               subject: 'Estimate request',
             },
           ]}
