@@ -23,6 +23,9 @@
 
 .id {
   text-align: center;
+  &, & label {
+    font-size: rem(20);    
+  }
   & label {
     display: inline-block;
     margin-right: rem(5);
@@ -55,17 +58,17 @@
   justify-content: space-between;
 }
 
-.footer,
+.notes,
 .finePrint {
   column-count: 1;
   column-gap: 0;
   @media (--medium-and-up) {
     column-count: 2;
-    column-gap: rem(30);
+    column-gap: rem(35);
   }
   & .col {
     break-inside: avoid-column;
-    margin: 0 0 rem(25);
+    margin: 0 0 rem(35);
     width: 100%;
     &:first-child{
       break-inside: auto;
@@ -78,9 +81,9 @@
   }
 }
 
+.notes,
 .finePrint {
   composes: globalContainer withPaddings;
-  background-color: gray(90%);
   font-size: rem(14);
   & label {
     margin-bottom: rem(4);
@@ -90,6 +93,25 @@
     margin-top: 0;
   }
   & .description {}
+}
+
+.notes{
+  background-color: color(yellow alpha(10%));
+}
+
+.fullCol{
+  column-count: 1;
+  & .col{
+    margin: 0;
+    @media (--medium-and-up) {
+      column-count: 2;
+    }
+  }
+}
+
+.finePrint{
+  background-color: color(yellow alpha(6%));
+  border-top: 1px solid gray(40%);
 }
 
 @media print {

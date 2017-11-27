@@ -1,7 +1,6 @@
 @import "globals.css";
 .container {
   composes: globalContainer withPaddings;
-  background-color: gray(95%);
   display: flex;
   justify-content: center;
   border-top: 1px dashed gray(50%);

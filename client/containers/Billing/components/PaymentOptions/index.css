@@ -28,7 +28,7 @@
 }
 
 .paymentThankYou {
-  composes: globalContainer withPaddings white;
+  composes: globalContainer withPaddings withShadow white;
   text-align: center;
   color: green;
 }

@@ -61,7 +61,7 @@ export default ({
         <div className={styles.col}>
           <label>To</label>
           <address>
-            <strong>{customer.FullyQualifiedName}</strong><br />
+            <strong>{customer.CompanyName}</strong><br />
             {customer.GivenName || ''} {customer.FamilyName || ''}
             {renderAddress()}
             <div className={styles.email}>{item.email}</div>

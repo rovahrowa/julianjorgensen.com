@@ -1,12 +1,10 @@
 @import "globals.css";
 .container {
   position: relative;
-  padding: 0;
-  margin-bottom: rem(20);
-  border-bottom: rem(1) solid gray(70%);
+  padding: rem(30) rem(30) 0;
+  background-color: var(--mystic);  
   @media (--medium-and-up) {
-    padding: 0 rem(80);
-    margin-bottom: rem(40);
+    padding: rem(50) rem(80) 0;
   }
   & .row {
     @media (--medium-and-up) {
@@ -17,7 +15,7 @@
     }
   }
   & .col {
-    margin-bottom: rem(30);
+    padding-bottom: rem(30);
     & label {
       display: block;
     }
@@ -25,8 +23,8 @@
       margin-right: 0;
     }
     @media (--medium-and-up) {
-      width: rem(200);
-      margin-bottom: rem(50);
+      width: rem(300);
+      padding-bottom: rem(50);
       margin-right: rem(80);
     }
   }

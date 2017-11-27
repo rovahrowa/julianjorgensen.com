@@ -16,20 +16,21 @@ export default props => (
         {props.item.status}
       </div>
 
+      <Header {...props} />
+      
       <div className={sharedStyles.container}>
-        <Header {...props} />
         <Items {...props} />
 
         <div className={styles.summary}>
           <Summary {...props} />
         </div>
+      </div>
 
+      <div className={`${sharedStyles.notes} ${sharedStyles.fullCol}`}>
         <label>Notes</label>
-        <div className={sharedStyles.footer}>
-          <div className={sharedStyles.col}>
-            <div className={sharedStyles.description}>
-              {props.item.notes}
-            </div>
+        <div className={sharedStyles.col}>
+          <div className={sharedStyles.description}>
+            <p>{props.item.notes}</p>
           </div>
         </div>
       </div>
@@ -38,7 +39,7 @@ export default props => (
         <div className={sharedStyles.col}>
           <label>Browser Compatibility</label>
           <div className={sharedStyles.description}>
-            All major browsers and their last 2 major releases; Chrome, Safari, Firefox, Edge and Internet Explorer 11+ is supported. While IE 9 and 10 is not specifically supported, they usually look fine anyway. <a href='https://www.w3schools.com/Browsers/default.asp' target='new'>See current browser statistics</a>.
+            <p>All major browsers and their last 2 major releases; Chrome, Safari, Firefox, Edge and Internet Explorer 11+ is supported. While IE 9 and 10 is not specifically supported, they usually look fine anyway. <a href='https://www.w3schools.com/Browsers/default.asp' target='new'>See current browser statistics</a>.</p>
           </div>
         </div>
         <div className={sharedStyles.col}>
@@ -51,7 +52,7 @@ export default props => (
         <div className={sharedStyles.col}>
           <label>Late Fees</label>
           <div className={sharedStyles.description}>
-            For invoices overdue by 1 month or more, a non-compounding late fee of 3.0% accrues monthly on the outstanding amount.
+            <p>For invoices overdue by 1 month or more, a non-compounding late fee of 3.0% accrues monthly on the outstanding amount.</p>
           </div>
         </div>
         <div className={sharedStyles.col}>
@@ -67,15 +68,19 @@ export default props => (
             <p>An estimate is used to give a rough idea of time and effort. It can vary depending on scope. Once we fully clarify project scope and requirements, I can provide a fixed quote.</p>
           </div>
         </div>
-
+        <div className={sharedStyles.col}>
+          <label>License/material costs</label>
+          <div className={sharedStyles.description}>
+            <p>All costs associated with hosting, domains, subscriptions, and other services are not included.</p>
+          </div>
+        </div>
         <div className={sharedStyles.col}>
           <label>Expiration</label>
           <div className={sharedStyles.description}>
             <p>This estimate expires on <date>{moment(props.item.expirationDate, 'YYYY-MM-DD').format('MMMM Do YYYY')}</date></p>
           </div>
         </div>
-
-        </div>
+      </div>
 
       <EstimateCtas {...props} />
     </div>

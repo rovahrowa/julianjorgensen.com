@@ -11,6 +11,7 @@
 
 .items {
   margin-bottom: rem(10);
+  font-size: rem(14);
   & .item {
     margin-bottom: rem(8);
   }
