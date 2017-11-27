@@ -13,7 +13,7 @@ export default ({ isPlaying, hasVideoPlayed, mute, handleToggleSound, handleVide
 
     return (
       <div className={wrapperStyles}>
-        <div className={styles.profileImage} style={{ backgroundImage: `url(${profileImage})` }} />
+        {/* <div className={styles.profileImage} style={{ backgroundImage: `url(${profileImage})` }} /> */}
         <div className={styles.watchVideo}>
           <div className={styles.icon} onClick={handleVideoClick}><PlayIcon /></div>
           <div className={styles.label} onClick={handleVideoClick}>Watch Video</div>
