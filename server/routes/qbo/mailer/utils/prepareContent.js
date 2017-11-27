@@ -77,7 +77,7 @@ export default ({
     itemTemplate = 'estimate.pug';
     const expirationDate = item.ExpirationDate ? moment(item.ExpirationDate, 'YYYY-MM-DD').fromNow() : null;
     const expirationDateFormatted = moment(item.ExpirationDate, 'YYYY-MM-DD').format('MMMM Do, YYYY');
-    emailContext.mainContent = `As promised, here's the estimate ${projectName ? `for ${projectName}` : 'you requested'}. You can view it by clicking the button below.${expirationDate ? ` Please note that it expires ${expirationDate} (${expirationDateFormatted}).` : ''}`;
+    emailContext.mainContent = `Here's the estimate ${projectName ? `for ${projectName}` : 'you requested'}. You can view it by clicking the button below.${expirationDate ? ` Please note that it expires ${expirationDate} (${expirationDateFormatted}).` : ''}`;
   } else {
     // invoice
     switch (eventType) {
