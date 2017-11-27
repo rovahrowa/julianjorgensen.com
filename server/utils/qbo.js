@@ -38,9 +38,8 @@ export function mailItem({
     const lastSentDate = lastSentDateObj ? lastSentDateObj.StringValue : null;
     console.log('envConfig', envConfig);
     console.log('lastSentDate', lastSentDate);
-    console.log('balance', item.Balance);
 
-    if (!lastSentDate && item.Balance > 0) {
+    if (!lastSentDate) {
       // send the item
       billingItemMailer({
         id: item.Id,
@@ -54,6 +53,7 @@ export function mailItem({
         reject(new Error(`Error sending billing item #${item.DocNumber}...`));
       });
     } else {
+      console.log('noting to send');
       resolve('Nothing to send');
     }
   }).catch(err => err);

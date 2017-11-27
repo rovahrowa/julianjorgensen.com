@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import profileImage from 'assets/images/julian-blackshirt.png';
+import profileImage from 'assets/images/julian-headshot-transparent.png';
 import PlayIcon from 'assets/icons/FontAwesome/solid/play.svg';
 import SeeMore from '../SeeMore';
 import styles from './index.css';
