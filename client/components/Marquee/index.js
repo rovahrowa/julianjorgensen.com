@@ -1,15 +1,13 @@
 import React from 'react';
 import cn from 'classnames';
-import { connect } from 'react-redux';
+import { withScroll } from 'react-window-decorators';
 import styles from './index.css';
 
-@connect(({ scrollPosition }) => ({
-  scroll: scrollPosition.y,
-}))
+@withScroll
 export default class Marquee extends React.Component {
   render() {
     const {
-      title, className, scroll, light,
+      title, className, scrollPosition, light,
     } = this.props;
 
     const wrapperStyles = cn(className, styles.wrapper);
@@ -19,9 +17,9 @@ export default class Marquee extends React.Component {
     const bottomBlockStyles = cn(styles.bottomBlock, {
       [styles.light]: light,
     });
-    
-    const headerMarginBottom = -scroll;
-    const headerOpacity = 0.08 - (scroll / 1000);
+
+    const headerMarginBottom = -scrollPosition;
+    const headerOpacity = 0.08 - (scrollPosition / 1000);
 
     return (
       <div className={wrapperStyles}>

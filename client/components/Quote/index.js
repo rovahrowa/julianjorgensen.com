@@ -9,18 +9,6 @@ export default class Quote extends Component {
     show: false,
   }
 
-  onVisibilityChange = (isVisible) => {
-    if (isVisible) {
-      this.setState({
-        show: true,
-      });
-    } else {
-      this.setState({
-        show: false,
-      });
-    }
-  };
-
   render() {
     const {
       className,
@@ -34,9 +22,7 @@ export default class Quote extends Component {
       href,
     } = this.props;
 
-    const wrapperStyles = cn(className, styles.container, {
-      [styles.show]: this.state.show,
-    });
+    const wrapperStyles = cn(className, styles.container);
     const authorImageStyles = cn(authorImageClassName, styles.authorImage);
     const authorStyles = cn(authorClassName, styles.author);
     const quoteStyles = cn(quoteClassName, styles.quote);
@@ -52,16 +38,10 @@ export default class Quote extends Component {
     );
 
     return (
-      <VisibilitySensor
-        partialVisibility
-        offset={{ top: 50, bottom: 50 }}
-        onChange={this.onVisibilityChange}
-      >
-        <div className={wrapperStyles}>
-          <q className={quoteStyles}>{body}</q>
-          { href === undefined ? Author : <Link to={href}>{Author}</Link> }
-        </div>
-      </VisibilitySensor>
+      <div className={wrapperStyles}>
+        <q className={quoteStyles}>{body}</q>
+        { href === undefined ? Author : <Link to={href}>{Author}</Link> }
+      </div>
     );
   }
 }

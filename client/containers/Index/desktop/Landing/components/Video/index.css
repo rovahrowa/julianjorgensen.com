@@ -1,4 +1,9 @@
 @import 'variables';
+.wrapper{
+  position: relative;
+  z-index: 3;
+}
+
 .videoWrapper {
   opacity: 0;
   position: fixed;

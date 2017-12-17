@@ -50,7 +50,7 @@ export default class HomeUx extends Component {
     });
   
     return (
-      <VisibilitySensor partialVisibility offset={{ top: 140, bottom: 80 }} onChange={this.onVisibilityChange}>
+      <VisibilitySensor partialVisibility onChange={this.onVisibilityChange}>
         <div className={styles.container} id="ux">
           <div className={styles.header}>
             <h2 className={styles.title}>User Experience</h2>

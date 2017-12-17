@@ -2,16 +2,12 @@ import React from 'react';
 import { HashLink } from 'lib/react-router-hash-link';
 import { Link, withRouter } from 'react-router-dom';
 import cn from 'classnames';
-import { connect } from 'react-redux';
 import Headroom from 'react-headroom';
 import Logo from 'components/Logo';
 import Contact from '../Contact';
 import styles from './index.css';
 
 @withRouter
-@connect(({ scrollPosition }) => ({
-  scroll: scrollPosition.y,
-}))
 export default class DesktopNav extends React.Component {
   constructor() {
     super();
@@ -68,7 +64,7 @@ export default class DesktopNav extends React.Component {
         <Headroom
           onUnpin={this.handleNavUnpin}
           onUnfix={this.handleNavUnfix}
-          upTolerance={1}
+          upTolerance={10}
         >
           <header className={headerStyles}>
             <nav className={styles.nav}>

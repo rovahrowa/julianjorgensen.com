@@ -2,13 +2,12 @@ import * as redux from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
-import { siteReducer, navReducer, scrollReducer } from './reducers';
+import { siteReducer, navReducer } from './reducers';
 
 export default (initialState = {}) => {
   const reducer = redux.combineReducers({
     site: siteReducer,
     nav: navReducer,
-    scrollPosition: scrollReducer,
     form: formReducer,
   });
 

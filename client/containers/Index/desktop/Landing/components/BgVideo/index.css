@@ -1,0 +1,17 @@
+@import "globals.css";
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.video {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+  /* filter: invert(100%) hue-rotate(150deg); */
+}

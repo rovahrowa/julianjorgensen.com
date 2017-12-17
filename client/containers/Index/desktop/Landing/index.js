@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import { Parallax, Background } from 'react-parallax';
-import { connect } from 'react-redux';
+import { withScroll } from 'react-window-decorators';
 import Signature from 'assets/icons/julian-signature.svg';
-import helperStyles from 'styles/helpers.css';
-import LandingBackground from './components/LandingBackground';
+import Overlay from './components/Overlay';
 import Video from './components/Video';
+import Categories from './components/Categories';
+import BgVideo from './components/BgVideo';
 import styles from './index.css';
 
-@connect(({ scrollPosition }) => ({
-  scroll: scrollPosition.y,
-}))
+@withScroll
 export default class HomeLanding extends Component {
   constructor() {
     super();
@@ -37,32 +35,31 @@ export default class HomeLanding extends Component {
       hasVideoPlayed: true,
     });
   }
-
+  
   render() {
-    const { scroll } = this.props;
+    const { scrollPosition } = this.props;
     const { loadVideo } = this.state;
     const wrapperStyles = cn(styles.wrapper, {
       [styles.isPlayingVideo]: loadVideo,
     });
+    
     const dynamicBgStyles = {
-      opacity: 1 - (scroll / 300),
+      opacity: 1 - (scrollPosition / 200),
+      transform: `translateY(${scrollPosition / 4}px)`
     };
 
     return (
       <div className={wrapperStyles}>
-        <Parallax strength={400} className={styles.wrap}>
-          <Background className={styles.background}>
-            <div style={dynamicBgStyles} className={styles.backgroundContent}>
-              <div className={styles.hero}>
-                <h1 className={styles.header}>Impress your online audience</h1>
-                <p className={styles.subheader}>I develop impressive web apps, ecommerce, and branding sites for agencies and startups.</p>
-              </div>
-            </div>
-            <LandingBackground playingVideo={loadVideo} />
-            <Signature className={styles.signature} />
-          </Background>
-        </Parallax>
-
+        <div style={dynamicBgStyles} className={styles.content}>
+          <div className={styles.hero}>
+            <h1 className={styles.header}>Impress your online audience</h1>
+            <p className={styles.subheader}>I develop impressive web apps, ecommerce, and branding sites.</p>
+          </div>
+          <Categories playingVideo={loadVideo} />
+          {/* <Signature className={styles.signature} /> */}
+        </div>
+        <Overlay />
+        <BgVideo />
         <Video
           onVideoEnd={this.handleCloseVideo}
           onVideoHasPlayed={this.handleVideoHasPlayed}

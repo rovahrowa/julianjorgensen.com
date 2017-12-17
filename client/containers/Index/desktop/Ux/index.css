@@ -1,10 +1,10 @@
 @import "globals.css";
-.container {
+.container{
   composes: globalContainer withMarginBottom;
-  padding-top: rem(40);
+  padding-top: rem(80);
 }
 
-.header {
+.header{
   composes: globalHeader;
   color: var(--orange);
   /* color: black; */
@@ -14,7 +14,7 @@
   color: var(--orange) !important;
 }
 
-.title {
+.title{
   composes: globalTitle;
 }
 
@@ -31,7 +31,7 @@
   }
 }  
   
-.box {
+.box{
   composes: globalBox transparent;
   &.show{
     background-color: gray(95%);

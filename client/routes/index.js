@@ -60,7 +60,7 @@ export default class Routes extends Component {
     // log page view to Google Analytics
     const { pathname } = this.props.location;
     ReactGA.set({ page: pathname });
-    ReactGA.pageview(pathname);  
+    ReactGA.pageview(pathname);
 
     // scroll to top when changing page
     window.scrollTo(0, 0);

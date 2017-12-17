@@ -33,6 +33,7 @@ const items = [
 
 export default () => (
   <div className={styles.wrapper} id="fullstack">
+  
     <Parallax
       className={styles.parallaxBg}
       offsetYMax={10}

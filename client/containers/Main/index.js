@@ -17,7 +17,7 @@ ReactGA.initialize('UA-6241825-5'); // initialize Google Analytics
 // site meta data
 const meta = {
   title: 'Julian Jorgensen',
-  description: 'UX &amp; Front-End Development',
+  description: 'UX &amp; Full-stack development',
   meta: {
     charset: 'utf-8',
   },
@@ -48,7 +48,7 @@ export default class Main extends Component {
         <DocumentMeta {...meta} />
         <Header onContactToggle={this.handleContactToggle} />
         <Routes contactActive={this.state.contactActive} />
-        {location.pathname !== '/schedule' ? <Calendly /> : ''}
+        {/* {location.pathname !== '/schedule' ? <Calendly /> : ''} */}
       </div>
     );
   }

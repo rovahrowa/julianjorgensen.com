@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Dialog from 'react-toolbox/lib/dialog';
 import Button from 'components/Button';
+import { withScroll } from 'react-window-decorators';
 import styles from './index.css';
 
-@connect(({ scrollPosition, site }) => ({
-  scroll: scrollPosition.y,
+@withScroll
+@connect(({ site }) => ({
   site,
 }))
 export default class Calendly extends Component {
@@ -23,7 +24,8 @@ export default class Calendly extends Component {
   }
 
   render() {
-    const { site } = this.props;
+    const { site, scrollPosition } = this.props;
+    if (scrollPosition < 1000) return false;
 
     return (
       <div className={`${styles.container} ${this.state.showButton ? styles.showButton : ''}`}>

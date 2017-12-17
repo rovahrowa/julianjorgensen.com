@@ -73,7 +73,8 @@ export default class HomeLandingVideo extends Component {
     this.props.onVideoEnd();
 
     const percentagePlayed = (this.video.getCurrentTime() / this.video.getDuration()) * 100;
-    const hasVideoPlayed = percentagePlayed > 60;
+    // const hasVideoPlayed = percentagePlayed > 60;
+    const hasVideoPlayed = true;
     if (hasVideoPlayed) this.props.onVideoHasPlayed();
 
     if (!hasVideoPlayed) {

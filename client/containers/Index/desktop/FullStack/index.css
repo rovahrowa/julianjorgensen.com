@@ -3,7 +3,7 @@
   composes: globalWrapper withPadding;
   background-color: black;
   position: relative;
-  padding-top: rem(40);  
+  padding-top: rem(80);
   margin-bottom: var(--spacingLarge);
 }
 

@@ -1,0 +1,115 @@
+@import 'globals';
+
+.wrapper{
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16%;
+  display: flex;
+  justify-content: space-between;
+  width: rem(1300);
+  max-width: calc(100% - 40px);
+  transition: all 0.3s;
+  
+  &.isPlayingVideo {
+    transform: translateX(-50%) translateY(rem(50));
+    opacity: 0;
+  }
+}
+
+.category{
+  width: rem(400);
+  text-align: left;
+  opacity: 0.8;
+  transition: all 0.2s;
+  padding-bottom: rem(60);
+  text-align: center;
+  pointer-events: auto;
+  color: white;
+
+  &:hover{
+    opacity: 1;
+    transform: translateY(rem(-25));
+    & .description{
+      opacity: 1;
+    }
+    & .categoryHeader:after{
+      transform: scaleX(2);
+    }
+    & .features{
+      opacity: 1;
+    }
+  }
+
+  & .categoryHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    font-style: italic;
+    color: white;
+    cursor: default;
+    font-size: rem(26);
+    &:after{
+      content: '';
+      position: relative;
+      bottom: rem(-15);
+      height: rem(2);
+      background-color: white;
+      background: linear-gradient(90deg, color(white alpha(0%)), color(white alpha(100%)), color(white alpha(0%)));
+      width: rem(120);
+      transition: all 0.3s;
+    }
+  }
+
+  & .features{
+    display: flex;
+    justify-content: center;
+    margin-top: rem(30);
+    opacity: 0.2;
+    transition: opacity 0.2s;
+    & .feature{
+      @apply --tag;
+      margin-top: rem(3);
+      margin-right: rem(10);
+      &:last-child{
+        margin-right: 0;        
+      }
+    }
+    & svg{
+      width: rem(70);
+      height: rem(30);
+      margin-right: rem(10);
+      filter: grayscale(100%);
+      transition: all 0.2s;
+      cursor: default;
+      &:last-child{
+        margin-right: 0;
+      }
+      &:hover{
+        filter: grayscale(0%);
+      }
+    }
+  }
+
+  & .description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    margin-top: 0;
+    opacity: 0;
+    transition: all 0.2s;
+    cursor: default;
+    padding: 0 rem(20);
+    color: gray(90%);
+    & p{
+      font-size: rem(14);
+    }
+    & .cta{
+      align-self: center;
+    }
+  }
+}

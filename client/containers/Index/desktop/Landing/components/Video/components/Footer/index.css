@@ -19,6 +19,7 @@
   pointer-events: none;
   bottom: 0;
   width: 100%;
+  
   & .topBorder,
   & .bottomBorder {
     position: absolute;

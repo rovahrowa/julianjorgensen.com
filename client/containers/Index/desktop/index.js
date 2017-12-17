@@ -11,9 +11,7 @@ import styles from './index.css';
 export default () => (
   <div className={styles.wrapper}>
     <HomeLanding />
-
     <div id="details" />
-
     <Quote
       body="I would recommend him to any team looking for a quality front-end developer."
       author="Mark Fromson"
