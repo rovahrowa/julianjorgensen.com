@@ -3,11 +3,8 @@
   & body {
     margin: 0;
     background: gray(95%);
-    text-rendering: optimizeSpeed;
-    touch-action: manipulation;
-  }
-  & div {
-    /*box-sizing: border-box;*/
+    /* text-rendering: optimizeSpeed; */
+    /* touch-action: manipulation; */
   }
 }
 

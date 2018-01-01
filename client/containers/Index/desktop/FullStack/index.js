@@ -33,17 +33,6 @@ const items = [
 
 export default () => (
   <div className={styles.wrapper} id="fullstack">
-  
-    <Parallax
-      className={styles.parallaxBg}
-      offsetYMax={10}
-      offsetYMin={-50}
-      slowerScrollRate
-      tag="div"
-    >
-      <img src={codeBg} className={styles.codeBg} alt="Code background" />
-    </Parallax>
-
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>Full-Stack Development</h2>
@@ -68,5 +57,11 @@ export default () => (
         }
       </div>
     </div>
+    <Parallax
+      y={['-100px', '100px']}
+      className={styles.parallax}
+    >
+      <img src={codeBg} className={styles.codeBg} alt="Code background" />
+    </Parallax>
   </div>
 );

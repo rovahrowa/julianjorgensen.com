@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import { withScroll } from 'react-window-decorators';
-import Signature from 'assets/icons/julian-signature.svg';
+import ReactCursorPosition from 'react-cursor-position';
+import { Parallax } from 'react-scroll-parallax';
 import Overlay from './components/Overlay';
 import Video from './components/Video';
 import Categories from './components/Categories';
 import BgVideo from './components/BgVideo';
 import styles from './index.css';
 
-@withScroll
 export default class HomeLanding extends Component {
   constructor() {
     super();
@@ -35,38 +34,47 @@ export default class HomeLanding extends Component {
       hasVideoPlayed: true,
     });
   }
-  
+
+  handleCursorPositionChange = (cursorPosition) => {
+    this.setState({
+      cursorPosition,
+    });
+  }
+
   render() {
-    const { scrollPosition } = this.props;
+    // const { scrollPosition } = this.props;
     const { loadVideo } = this.state;
     const wrapperStyles = cn(styles.wrapper, {
       [styles.isPlayingVideo]: loadVideo,
     });
     
-    const dynamicBgStyles = {
-      opacity: 1 - (scrollPosition / 200),
-      transform: `translateY(${scrollPosition / 4}px)`
-    };
-
     return (
-      <div className={wrapperStyles}>
-        <div style={dynamicBgStyles} className={styles.content}>
-          <div className={styles.hero}>
-            <h1 className={styles.header}>Impress your online audience</h1>
-            <p className={styles.subheader}>I develop impressive web apps, ecommerce, and branding sites.</p>
+      <ReactCursorPosition onPositionChanged={this.handleCursorPositionChange}>
+        <div className={wrapperStyles}>
+          <div className={styles.content}>
+            <Parallax
+              y={['-100px', '300px']}
+              opacity={[3, -0.8]}
+            >
+              <div className={styles.hero}>
+                <h1 className={styles.header}>Impress your online audience</h1>
+                <p className={styles.subheader}>I develop impressive web apps, ecommerce, and branding sites.</p>
+              </div>
+              <Categories playingVideo={loadVideo} />
+            </Parallax>
           </div>
-          <Categories playingVideo={loadVideo} />
-          {/* <Signature className={styles.signature} /> */}
+
+          <Overlay cursorPosition={this.state.cursorPosition} />
+
+          <BgVideo />
+          <Video
+            onVideoEnd={this.handleCloseVideo}
+            onVideoHasPlayed={this.handleVideoHasPlayed}
+            handleVideoClick={this.handleLoadVideo}
+            {...this.state}
+          />
         </div>
-        <Overlay />
-        <BgVideo />
-        <Video
-          onVideoEnd={this.handleCloseVideo}
-          onVideoHasPlayed={this.handleVideoHasPlayed}
-          handleVideoClick={this.handleLoadVideo}
-          {...this.state}
-        />
-      </div>
+      </ReactCursorPosition>
     );
   }
 }

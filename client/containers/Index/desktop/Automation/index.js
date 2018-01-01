@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Carousel from 'rmc-nuka-carousel';
 import cn from 'classnames';
 import Button from 'components/Button';
@@ -52,42 +53,56 @@ const slides = [
   },
 ]
 
-export default () => (
-  <div className={styles.container} id="automation">
-    <div className={styles.header}>
-      <h2 className={styles.title}>Automation</h2>
-      {/* <Button
-        label="See more"
-        href="/automation"
-        hollow
-        tiny
-        blue
-      /> */}
-    </div>
+@connect()
+export default class Automation extends Component {
+  state = {};
 
-    <div className={styles.body}>
-      <div className={styles.hero}>
-        <h3 className={styles.heroHeader}>Connect to<br />the future.<br />It's easy!</h3>
+  toggleScheduling = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'TOGGLE_SCHEDULING',
+    });
+  }
+
+  render() {
+    return (
+      <div className={styles.container} id="automation">
+        <div className={styles.header}>
+          <h2 className={styles.title}>Web automation</h2>
+          {/* <Button
+            label="See more"
+            href="/automation"
+            hollow
+            tiny
+            blue
+          /> */}
+        </div>
+
+        <div className={styles.body}>
+          <div className={styles.hero}>
+            <h3 className={styles.heroHeader}><span>Automation is the future.</span><br /><br /><span className={styles.connectCta} onClick={this.toggleScheduling}>Let's connect!</span></h3>
+          </div>
+          <div className={styles.carousel}>
+            <Carousel decorators={carouselDecorators} vertical slidesToShow={2} wrapAround autoplay easing="easeInOutQuint" speed={800} autoplayInterval={5000} >
+              {
+                slides.map((slide, i) => {
+                  const slideStyle = cn(styles.slide, slide.className);
+                  return (
+                    <Slide
+                      key={slide.label}
+                      label={slide.label}
+                      labelClassName={styles.slideLabel}
+                      className={slideStyle}
+                      icon={slide.icon}
+                      iconStyles={styles.icon}
+                    />
+                  );
+                })
+              }
+            </Carousel>
+          </div>
+        </div>
       </div>
-      <div className={styles.carousel}>
-        <Carousel decorators={carouselDecorators} vertical slidesToShow={2} wrapAround autoplay easing="easeInOutQuint" speed={800} autoplayInterval={5000} >
-          {
-            slides.map((slide, i) => {
-              const slideStyle = cn(styles.slide, slide.className);
-              return (
-                <Slide
-                  key={slide.label}
-                  label={slide.label}
-                  labelClassName={styles.slideLabel}
-                  className={slideStyle}
-                  icon={slide.icon}
-                  iconStyles={styles.icon}
-                />
-              );
-            })
-          }
-        </Carousel>
-      </div>
-    </div>
-  </div>
-);
+    );
+  }
+}

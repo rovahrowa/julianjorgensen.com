@@ -25,7 +25,7 @@ const formFields = [
     label: 'How can I help?',
     name: 'notes',
     multiline: true,
-    rows: 4,
+    rows: 2,
   },
 ];
 
@@ -76,7 +76,7 @@ export default class EstimateForm extends React.Component {
         <div className={styles.helper}>
           <div className={styles.helperMethod}>
             <CalendarIcon className={styles.icon} />
-            <button onClick={this.toggleScheduling}>Schedule a free meeting</button>
+            <button onClick={this.toggleScheduling}>Schedule a meeting</button>
           </div>
           <div className={styles.helperMethod}>
             <EmailIcon className={styles.icon} />

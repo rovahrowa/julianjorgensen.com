@@ -1,4 +1,8 @@
 @import "globals.css";
+.quote {
+  padding: rem(30);
+}
+
 .navBlocks {
   display: flex;
   justify-content: center;

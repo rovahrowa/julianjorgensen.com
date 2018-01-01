@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { ParallaxController } from 'lib/react-scroll-parallax';
 import ReactGA from 'react-ga';
 import DocumentMeta from 'react-document-meta';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 import Routes from 'routes';
 import Header from 'containers/Header';
@@ -47,8 +48,10 @@ export default class Main extends Component {
       <div className={styles.container}>
         <DocumentMeta {...meta} />
         <Header onContactToggle={this.handleContactToggle} />
-        <Routes contactActive={this.state.contactActive} />
-        {/* {location.pathname !== '/schedule' ? <Calendly /> : ''} */}
+        <ParallaxProvider>
+          <Routes contactActive={this.state.contactActive} />
+        </ParallaxProvider>
+        {location.pathname !== '/schedule' ? <Calendly /> : ''}
       </div>
     );
   }

@@ -1,6 +1,7 @@
 @import "globals.css";
 .container {
   composes: globalContainer withMarginBottom;
+  padding-top: rem(50);
 }
 
 .header {
@@ -19,23 +20,28 @@
   & .hero {
     display: flex;
     padding: rem(45);
-    width: 50%;
+    width: 45%;
     background: linear-gradient(to bottom right, var(--blue), color(var(--blue) shade(60%)));
-    &:hover{
-      & .heroHeader{
-        opacity: 1;
-      }
-    }
   }
   & .heroHeader {
     align-self: flex-start;
     position: relative;
-    font-size: rem(48);
-    line-height: rem(58);
+    font-size: rem(40);
+    line-height: rem(48);
     font-weight: bold;
     color: white;
-    opacity: 0.4;
     transition: all 0.2s;
+    & span{
+      opacity: 0.8;
+    }
+    & .connectCta{
+      opacity: 0.8;
+      transition: all 0.2s;
+      cursor: pointer;
+      &:hover{
+        opacity: 1;
+      }
+    }
     &:after {
       content: '';
       position: absolute;
@@ -43,11 +49,12 @@
       bottom: rem(-40);
       width: rem(80);
       height: rem(5);
+      opacity: 0.8;
       background-color: white;
     }
   }
   & .carousel {
-    width: 50%;
+    width: 55%;
     & .slide {
       height: rem(200);
       & .slideLabel {

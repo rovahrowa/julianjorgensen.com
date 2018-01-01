@@ -1,6 +1,11 @@
 @import "globals.css";
 .wrapper{
   composes: globalContainer;  
+  @media (--only-small) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .container {

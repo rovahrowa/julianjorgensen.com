@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-import ReactCursorPosition from 'react-cursor-position';
 import styles from './index.css';
 
 export default class LandingOverlay extends Component {
   state = {};
 
-  handleCursorPositionChange = (cursorPosition) => {
-    this.setState({
-      cursorPosition,
-    });
-  }
-
   render() {
-    const { cursorPosition } = this.state;
+    const { cursorPosition } = this.props;
     let dynamicOverlayStyles = {};
 
     if (cursorPosition) {
@@ -30,10 +23,8 @@ export default class LandingOverlay extends Component {
     }
 
     return (
-      <div>
-        <ReactCursorPosition onPositionChanged={this.handleCursorPositionChange} className={styles.wrapper}>
-          <div className={styles.overlay} style={dynamicOverlayStyles} />
-        </ReactCursorPosition>
+      <div className={styles.wrapper}>
+        <div className={styles.overlay} style={dynamicOverlayStyles} />
       </div>
     );
   }

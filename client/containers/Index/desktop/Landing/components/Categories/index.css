@@ -1,12 +1,10 @@
 @import 'globals';
 
 .wrapper{
-  position: absolute;
+  margin: rem(150) auto 0;
   z-index: 2;
   pointer-events: none;
   left: 50%;
-  transform: translateX(-50%);
-  bottom: 16%;
   display: flex;
   justify-content: space-between;
   width: rem(1300);
@@ -14,7 +12,7 @@
   transition: all 0.3s;
   
   &.isPlayingVideo {
-    transform: translateX(-50%) translateY(rem(50));
+    transform: translateX(0) translateY(rem(50));
     opacity: 0;
   }
 }

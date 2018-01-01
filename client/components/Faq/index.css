@@ -3,7 +3,10 @@
   composes: globalContainer;
   background: linear-gradient(to bottom right, gray(85%), gray(50%));
   position: relative;
-  padding: rem(60) rem(50);
+  padding: rem(30) rem(25);
+  @media (--large-and-up) {
+    padding: rem(60) rem(50);
+  }
 }
 
 @media print {

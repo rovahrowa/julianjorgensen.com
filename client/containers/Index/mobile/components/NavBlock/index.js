@@ -8,7 +8,7 @@ export default ({ className, title, tags }) => {
   return (
     <div className={wrapperStyles}>
       <span>{title}</span>
-      <AngleRightIcon />
+      {/* <AngleRightIcon /> */}
 
       <div className={styles.tags}>
         {tags ? tags.map(tag => (

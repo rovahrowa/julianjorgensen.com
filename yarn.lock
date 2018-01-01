@@ -6672,6 +6672,10 @@ react-motion@^0.5.0:
     prop-types "^15.5.8"
     raf "^3.1.0"
 
+react-observed@^1.0.0-beta.2:
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/react-observed/-/react-observed-1.0.0-beta.2.tgz#b41a4d58d817c00620dd1f80bce8618dbf5be68a"
+
 react-parallax@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/react-parallax/-/react-parallax-1.5.0.tgz#1358437b9a2dabade66e062943ebe7cf20812335"
@@ -6744,13 +6748,12 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-scroll-parallax@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-scroll-parallax/-/react-scroll-parallax-1.0.0.tgz#37af56aa5603ef2a83ba8187e31f978c75366223"
+react-scroll-parallax@next:
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/react-scroll-parallax/-/react-scroll-parallax-2.0.0-alpha.1.tgz#890cfe134eb458ebbe723138264e094d48617774"
   dependencies:
-    prop-types "^15.5.10"
-    react "^15.4.2"
-    react-dom "^15.4.2"
+    prop-types "^15.5.7"
+    react-observed "^1.0.0-beta.2"
 
 react-side-effect@^1.1.0:
   version "1.1.3"

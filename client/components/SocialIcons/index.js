@@ -17,7 +17,7 @@ export default ({
   return (
     <div className={wrapperStyles}>
       <a href="https://github.com/julianjorgensen" target="new" className={styles.icon}><GithubIcon /></a>
-      <a href="https://www.linkedin.com/in/julian-jorgensen-9a889b73" target="new" className={styles.icon}><LinkedInIcon /></a>
+      <a href="https://www.linkedin.com/in/julianjorgensen" target="new" className={styles.icon}><LinkedInIcon /></a>
       <a href="https://angel.co/julianjorgensen" target="new" className={styles.icon}><AngelListIcon /></a>
     </div>
   );

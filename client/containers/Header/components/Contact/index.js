@@ -4,10 +4,11 @@ import Logo from 'components/Logo';
 import SocialIcons from 'components/SocialIcons';
 import EmailIcon from 'assets/icons/FontAwesome/regular/envelope.svg';
 import PhoneIcon from 'assets/icons/FontAwesome/regular/phone.svg';
+import CalendarIcon from 'assets/icons/FontAwesome/regular/calendar.svg';
 import CloseIcon from 'assets/icons/FontAwesome/regular/times.svg';
 import styles from './index.css';
 
-export default ({ active, handleToggle }) => (
+export default ({ active, handleScheduleToggle, handleToggle }) => (
   <Drawer
     theme={styles}
     active={active}
@@ -22,6 +23,7 @@ export default ({ active, handleToggle }) => (
       <ul className={styles.methods}>
         <li className={styles.method}><a href="mailto:me@julianjorgensen.com"><EmailIcon className={styles.icon} /> me@julianjorgensen.com</a></li>
         <li className={styles.method}><a href="tel:1-888-709-0944"><PhoneIcon className={styles.icon} /> 1-888-709-0944</a></li>
+        <li className={styles.method}><a onClick={handleScheduleToggle}><CalendarIcon className={styles.icon} /> Schedule a meeting</a></li>
       </ul>
     </div>
 

@@ -1,0 +1,79 @@
+@import "globals.css";
+.container{
+  composes: globalContainer withMarginBottom;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: rem(60);
+}
+
+.header{
+  composes: globalHeader;
+  color: var(--orange);
+  /* color: black; */
+}
+
+.cta{
+  color: var(--orange) !important;
+}
+
+.title{
+  composes: globalTitle;
+}
+
+.boxes{
+  composes: globalBoxes;
+}
+
+.boxLabel{
+  composes: globalBoxLabel transparent;
+  opacity: 0;
+  &.show{
+    opacity: 1;
+    background-color: gray(98%); 
+  }
+}  
+  
+.box{
+  composes: globalBox transparent;
+  &.show{
+    background-color: gray(95%);
+  }
+}
+
+.boxWrapper{
+  composes: globalBoxWrapper;
+  opacity: 0;
+  box-shadow: none;
+  transition: opacity 0.2s;
+  position: relative;
+  &:after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    box-shadow: rem(5) rem(5) rem(8) rem(1) gray(40%);
+    opacity: 0;
+  }
+  &.show{
+    opacity: 1;
+    transition: opacity 0.2s;
+    &:after{
+      transition: opacity 0.4s 2.5s;
+      opacity: 1;
+    }
+  }
+}
+  
+.box,
+.boxLabel{
+  transition-property: background-color, opacity;
+  transition-duration: 0.2s;
+  transition-delay: 0s;
+  &.show{
+    transition-duration: 1.6s, 0.2s;
+    transition-delay: 1.2s, 0s;
+  }
+}

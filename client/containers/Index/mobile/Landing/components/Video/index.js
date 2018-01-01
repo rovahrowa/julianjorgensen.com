@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cn from 'classnames';
 import PlayIcon from 'assets/icons/FontAwesome/solid/play-circle.svg';
 import LoadingSpinner from 'components/LoadingSpinner';
+import YouTube from 'react-youtube';
 import styles from './index.css';
 
 export default class HomeLandingMobileVideo extends Component {
@@ -34,6 +35,19 @@ export default class HomeLandingMobileVideo extends Component {
       <div className={styles.wrapper}>
         <div className={ctaStyles}>
           {videoIsLoading ? <LoadingSpinner /> : <PlayIcon />}
+          <YouTube
+            videoId="8SHDyLNd0Cw"
+            className={styles.player}
+            opts={{
+              playerVars: {
+                autoplay: 0,
+                showinfo: 0,
+                rel: 0,
+              }
+            }}
+            onReady={this.onVideoReady}
+            onStateChange={this.onVideoStateChange}
+          />
         </div>
       </div>
     );

@@ -25,15 +25,21 @@ export default class Calendly extends Component {
 
   render() {
     const { site, scrollPosition } = this.props;
-    if (scrollPosition < 1000) return false;
 
-    return (
-      <div className={`${styles.container} ${this.state.showButton ? styles.showButton : ''}`}>
+    const renderCta = () => {
+      if (scrollPosition < 1000) return false;
+      return (
         <Button
           label="Schedule a free consultation"
           onClick={this.handleToggle}
           className={styles.ctaButton}
         />
+      );
+    };
+
+    return (
+      <div className={`${styles.container} ${this.state.showButton ? styles.showButton : ''}`}>
+        {renderCta()}
         <Dialog
           active={site.showScheduling}
           onEscKeyDown={this.handleToggle}

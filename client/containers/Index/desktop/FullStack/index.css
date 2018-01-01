@@ -4,13 +4,8 @@
   background-color: black;
   position: relative;
   padding-top: rem(80);
-  margin-bottom: var(--spacingLarge);
-}
-
-.parallaxBg {
-  @apply --globalBgImage;
-  opacity: 0.25;
   overflow: hidden;
+  margin-bottom: rem(40);
 }
 
 .container {
@@ -44,15 +39,22 @@
   composes: globalBox transparent;
 }  
 
-.boxLabel{
+.boxLabel {
   composes: globalBoxLabel transparent;
   color: white;
 }  
 
-.codeBg{
-  transform: rotate(20deg);
+.parallax{
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+}
+
+.codeBg {
+  transform: rotate(10deg) scale(1.2);
+  opacity: 0.3;
+  width: 100%;
 }
 
 

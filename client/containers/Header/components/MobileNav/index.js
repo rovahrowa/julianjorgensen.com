@@ -66,6 +66,8 @@ export default class MobileNav extends React.Component {
             <div className={styles.title}>Julian Jorgensen</div>
             <div className={styles.subtitle}>UX & Full-Stack development</div>
           </div>
+          <div></div>
+          {/*
           <button className={barsStyles} onClick={this.handleToggleNav}>
             <span />
             <span />
@@ -74,6 +76,7 @@ export default class MobileNav extends React.Component {
             <span />
             <span />
           </button>
+          */}
         </header>
         <nav className={navStyles}>
           <Link to="/frontend" className={`${styles.link} ${pathname === 'frontend' ? styles.linkActive : ''}`}>Front-End</Link>
