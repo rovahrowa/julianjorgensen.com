@@ -53,14 +53,16 @@ export default class HomeLanding extends Component {
         <div className={wrapperStyles}>
           <div className={styles.content}>
             <Parallax
-              y={['-100px', '300px']}
+              y={['00px', '300px']}
               opacity={[3, -0.8]}
             >
-              <div className={styles.hero}>
-                <h1 className={styles.header}>Impress your online audience</h1>
-                <p className={styles.subheader}>I develop impressive web apps, ecommerce, and branding sites.</p>
+              <div className={styles.landingContent}>
+                <div className={styles.hero}>
+                  <h1 className={styles.header}>Impress your online audience</h1>
+                  <p className={styles.subheader}>I develop impressive web apps, ecommerce, and branding sites.</p>
+                </div>
+                <Categories playingVideo={loadVideo} />
               </div>
-              <Categories playingVideo={loadVideo} />
             </Parallax>
           </div>
 

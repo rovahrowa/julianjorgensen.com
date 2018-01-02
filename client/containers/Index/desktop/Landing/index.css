@@ -31,6 +31,13 @@
   }
 }
 
+.landingContent{
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .hero {
   pointer-events: none;
   z-index: 1;
@@ -47,6 +54,9 @@
     @media (--large-and-up) {
       font-size: rem(60);
     }
+    @media (--xlarge-and-up) {
+      font-size: rem(80);
+    }
   }
   & .subheader {
     color: gray(40%);
@@ -55,6 +65,10 @@
     font-family: var(--secondaryFont);
     line-height: rem(30);
     font-weight: 300;
+    @media (--xlarge-and-up) {
+      margin-top: rem(30);
+      font-size: rem(30);
+    }
   }
 }
 
