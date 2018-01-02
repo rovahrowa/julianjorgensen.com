@@ -53,7 +53,7 @@ export default class HomeLanding extends Component {
         <div className={wrapperStyles}>
           <div className={styles.content}>
             <Parallax
-              y={['00px', '300px']}
+              y={['0px', '300px']}
               opacity={[3, -0.8]}
             >
               <div className={styles.landingContent}>

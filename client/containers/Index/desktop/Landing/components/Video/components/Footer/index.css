@@ -1,3 +1,5 @@
+@import 'variables';
+
 :root {
   --footer-triangle: {
     content: '';
@@ -5,7 +7,7 @@
     height: inherit;
     top: 0;
     transform: translateY(-100%);
-    border-bottom-width: rem(100);
+    border-bottom-width: rem(120);
     border-bottom-style: solid;
     border-right-style: solid;
     border-left-style: solid;
@@ -50,10 +52,17 @@
     &:after {
       border-bottom-color: gray(90%);
     }
+    @media (--xlarge-and-up) {
+      height: 6vh;
+      bottom: rem(85);
+    }
   }
   & .bottomBorder {
     height: 8vh;
     bottom: 0;
     background: linear-gradient(to bottom, white, gray(95%));
+    @media (--xlarge-and-up) {
+      height: 12vh;
+    }
   }
 }
