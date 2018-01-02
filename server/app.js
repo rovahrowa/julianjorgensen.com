@@ -1,3 +1,4 @@
+import sslRedirect from 'heroku-ssl-redirect';
 import path from 'path';
 import compression from 'compression';
 import express from 'express';
@@ -45,6 +46,9 @@ app.post('/qbo-webhook', qbo.webhook);
 
 // Email routes
 app.post('/email', sendEmail);
+
+// enable ssl redirect
+app.use(sslRedirect());
 
 // use static
 app.use(express.static(path.join(global.appRoot, 'public')));

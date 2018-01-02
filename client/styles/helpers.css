@@ -28,6 +28,13 @@
     }
   }
 
+  --boxShadowLight: {
+    box-shadow: rem(3) rem(3) rem(10) rem(4) gray(80%);
+    @media print {
+      box-shadow: none;
+    }
+  }
+
   --tag: {
     font-size: rem(12);
     border-radius: rem(5);

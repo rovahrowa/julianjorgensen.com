@@ -12,15 +12,15 @@ export default () => (
       body="I would recommend him to any team looking for a quality front-end developer."
       author="Mark Fromson"
       authorTitle="CEO, localsolo.com"
-      avatarImage={authorImage}
+      authorImage={authorImage}
       className={styles.quote}
     />
 
     <div className={styles.navBlocks}>
       <NavBlock className={styles.frontEnd} title="FrontEnd development" tags={['React Javascript', 'UI', 'Animations', 'Responsive', 'Performance']} />
+      <NavBlock className={styles.ux} title="UX development" tags={['Web architecture', 'Wireframeing', 'UX development', 'Prototyping']} />
       <NavBlock className={styles.fullStack} title="FullStack development" tags={['Node', 'Javascript', 'API', 'secure']} />
-      <NavBlock className={styles.ux} title="User Experience" tags={['Web architecture', 'Wireframeing', 'UX development', 'Prototyping']} />
-      <NavBlock className={styles.automation} title="Automation" tags={['billing', 'social media', 'api', 'emails']} />
+      <NavBlock className={styles.automation} title="Web automation" tags={['billing', 'social media', 'api', 'emails']} />
     </div>
   </div>
 );

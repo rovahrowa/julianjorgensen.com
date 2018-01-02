@@ -7,12 +7,12 @@ export default ({ className, title, tags }) => {
   const wrapperStyles = cn(styles.wrapper, className);
   return (
     <div className={wrapperStyles}>
-      <span>{title}</span>
+      <h2>{title}</h2>
       {/* <AngleRightIcon /> */}
 
       <div className={styles.tags}>
         {tags ? tags.map(tag => (
-          <div className={styles.tag}>{tag}</div>
+          <article className={styles.tag}>{tag}</article>
         )) : ''}
       </div>
     </div>

@@ -1,15 +1,16 @@
 @import "globals.css";
 .wrapper {
-  composes: globalContainer withShadow;
+  composes: globalContainer;
+  @apply --boxShadowLight;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
   margin-bottom: rem(15);
   padding: rem(20);
   font-size: rem(20);
   font-weight: bold;
   text-transform: uppercase;
+  width: calc(100% - rem(20));
   & svg {
     height: rem(30);
     width: rem(30);
@@ -18,17 +19,15 @@
 
 .tags {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   opacity: 0.8;
   margin-top: rem(10);
   & .tag {
-    background-color: color(white alpha(30%));
     padding: rem(3);
     color: black;
     margin-right: rem(10);
     margin-bottom: rem(5);
-    font-size: rem(10);
+    font-size: rem(11);
     line-height: rem(10);
     font-weight: normal;
   }

@@ -24,6 +24,9 @@
   background-position: 0 0;
   background-size: 10%;
   height: rem(50);
+  @media (--only-small) {
+    display: none;
+  }
 }
 
 .nav {
@@ -62,9 +65,10 @@
   position: relative;
   text-align: center;
   height: rem(150);
+  margin-top: rem(30);
   color: black;
   & .slogan {
-    margin-bottom: rem(20);
+    margin-bottom: rem(10);
     font-size: rem(14);
     font-style: italic;
   }
