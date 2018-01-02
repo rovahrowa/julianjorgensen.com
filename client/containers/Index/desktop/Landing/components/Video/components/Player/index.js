@@ -7,7 +7,7 @@ export default ({
   styles,
 }) => (
   <YouTube
-    videoId="8SHDyLNd0Cw"
+    videoId="ZcY45aRs5o4"
     className={styles}
     opts={{
       playerVars: {
