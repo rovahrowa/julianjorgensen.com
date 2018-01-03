@@ -57,6 +57,7 @@
     width: 55%;
     & .slide {
       height: rem(200);
+      background: gray(95%);
       & .slideLabel {
         background-color: var(--blue);
         font-weight: bold;
@@ -89,32 +90,4 @@
     width: 80%;
     height: 80%;
   }
-}
-
-.slide.billing {
-  background: radial-gradient(circle at center, color(green alpha(25%)) 20%, color(green alpha(1%)) 40%);
-}
-
-.slide.socialmedia {
-  background: radial-gradient(circle at center, color(red alpha(15%)) 20%, color(red alpha(1%)) 40%);
-}
-
-.slide.api {
-  background: radial-gradient(circle at center, color(orange alpha(15%)) 20%, color(orange alpha(1%)) 40%);
-}
-
-.slide.email {
-  background: radial-gradient(circle at center, color(blue alpha(15%)) 20%, color(blue alpha(1%)) 40%);
-}
-
-.slide.tests {
-  background: radial-gradient(circle at center, color(blue alpha(15%)) 20%, color(blue alpha(1%)) 40%);
-}
-
-.slide.scheduling {
-  background: radial-gradient(circle at center, color(blue alpha(15%)) 20%, color(blue alpha(1%)) 40%);
-}
-
-.slide.workflow {
-  background: radial-gradient(circle at center, color(blue alpha(15%)) 20%, color(blue alpha(1%)) 40%);
 }

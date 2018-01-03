@@ -57,10 +57,6 @@
   }
 }
 
-.icons {
-  /* margin-top: rem(60); */
-}
-
 .credit {
   position: relative;
   text-align: center;
@@ -88,6 +84,11 @@
       fill: black;
     }
   }  
+}
+
+.contact{
+  margin-bottom: rem(30);
+  border: 1px solid gray(20%);
 }
 
 @media print {

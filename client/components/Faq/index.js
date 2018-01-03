@@ -20,7 +20,7 @@ export default () => (
       </div>
       <div>
         <div>Are you a developer or designer?</div>
-        <div>I prefer the term UX Development because of my unique passion and ability to bridge both development and design. Good UX is found in both and that's what impresses an online audience.</div>
+        <div>I prefer the term UX Development because of my unique passion and ability to bridge both development and design. Good UX is found in both and that's what impresses your users.</div>
       </div>
       <div>
         <div>What do you automate?</div>

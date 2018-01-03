@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 import ReactCursorPosition from 'react-cursor-position';
-import { Parallax } from 'react-scroll-parallax';
+import { Parallax, Background } from 'react-parallax';
 import Overlay from './components/Overlay';
 import Video from './components/Video';
 import Categories from './components/Categories';
@@ -49,34 +49,36 @@ export default class HomeLanding extends Component {
     });
     
     return (
-      <ReactCursorPosition onPositionChanged={this.handleCursorPositionChange}>
-        <div className={wrapperStyles}>
-          <div className={styles.content}>
-            <Parallax
-              y={['0px', '300px']}
-              opacity={[3, -0.8]}
-            >
-              <div className={styles.landingContent}>
-                <div className={styles.hero}>
-                  <h1 className={styles.header}>Impress your online audience</h1>
-                  <p className={styles.subheader}>I develop impressive web apps, ecommerce, and branding sites.</p>
+      <div>
+        <ReactCursorPosition onPositionChanged={this.handleCursorPositionChange}>
+          <Parallax strength={300} className={wrapperStyles} bgStyle={{width: '100%'}}>
+            <Background>
+              <div className={wrapperStyles}>
+                <div className={styles.content}>
+                  <div className={styles.landingContent}>
+                    <div className={styles.hero}>
+                      <h1 className={styles.header}>Impress your users</h1>
+                      <p className={styles.subheader}>I develop impressive web apps, ecommerce, and branding sites.</p>
+                    </div>
+                    <Categories playingVideo={loadVideo} />
+                  </div>
                 </div>
-                <Categories playingVideo={loadVideo} />
+
+                <Overlay cursorPosition={this.state.cursorPosition} />
+
+                <BgVideo />
               </div>
-            </Parallax>
-          </div>
+            </Background>
+          </Parallax>
+        </ReactCursorPosition>
 
-          <Overlay cursorPosition={this.state.cursorPosition} />
-
-          <BgVideo />
-          <Video
-            onVideoEnd={this.handleCloseVideo}
-            onVideoHasPlayed={this.handleVideoHasPlayed}
-            handleVideoClick={this.handleLoadVideo}
-            {...this.state}
-          />
-        </div>
-      </ReactCursorPosition>
+        <Video
+          onVideoEnd={this.handleCloseVideo}
+          onVideoHasPlayed={this.handleVideoHasPlayed}
+          handleVideoClick={this.handleLoadVideo}
+          {...this.state}
+        />
+      </div>
     );
   }
 }

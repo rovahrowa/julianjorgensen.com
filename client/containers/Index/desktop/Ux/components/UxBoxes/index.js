@@ -11,16 +11,16 @@ export default class UxBoxes extends Component {
   state = {};
 
   componentWillReceiveProps(newProps) {
-    if (!newProps.isInView) {
+    if (!newProps.isVisible) {
       this.setState({
-        isInView: false,
+        isVisible: false,
       });
       return false;
     }
 
-    if (newProps.isInView && !this.state.isInView) {
+    if (newProps.isVisible && !this.state.isVisible) {
       this.setState({
-        isInView: true,
+        isVisible: true,
       });
       this.animateSvgs();
     }
@@ -44,16 +44,16 @@ export default class UxBoxes extends Component {
   }
 
   render() {
-    const { isInView } = this.state;
+    const { isVisible } = this.state;
 
     const boxStyles = cn(styles.box, {
-      [styles.show]: isInView,
+      [styles.show]: isVisible,
     });
     const boxLabel = cn(styles.boxLabel, {
-      [styles.show]: isInView,
+      [styles.show]: isVisible,
     });
     const boxWrapper = cn(styles.boxWrapper, {
-      [styles.show]: isInView,
+      [styles.show]: isVisible,
     });
 
     return (

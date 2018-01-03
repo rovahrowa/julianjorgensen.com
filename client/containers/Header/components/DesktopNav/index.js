@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { HashLink } from 'lib/react-router-hash-link';
 import { Link, withRouter } from 'react-router-dom';
+import { navActions } from 'actions';
 import cn from 'classnames';
 import Headroom from 'react-headroom';
 import Logo from 'components/Logo';
@@ -9,29 +10,28 @@ import Contact from '../Contact';
 import styles from './index.css';
 
 @withRouter
-@connect()
+@connect(({ site }) => ({
+  site,
+}))
 export default class DesktopNav extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      contactActive: false,
       navStatic: true,
     };
   }
 
   handleContactToggle = () => {
-    this.setState({ contactActive: !this.state.contactActive });
-
-    // trigger parent callback
-    this.props.onContactToggle();
+    const { dispatch } = this.props;
+    dispatch(navActions.toggleContact());
   };
 
   handleScheduleToggle = () => {
     this.handleContactToggle();
 
     const { dispatch } = this.props;
-    dispatch({ type: 'TOGGLE_SCHEDULING' });
+    dispatch(navActions.toggleScheduling());
   }
 
   handleNavUnpin = () => {
@@ -47,7 +47,8 @@ export default class DesktopNav extends React.Component {
   }
 
   render() {
-    const { navStatic, contactActive } = this.state;
+    const { site } = this.props;
+    const { navStatic } = this.state;
     const pathname = this.props.location.pathname.split('/')[1];
     let theme;
     switch (pathname) {
@@ -84,7 +85,7 @@ export default class DesktopNav extends React.Component {
             <li><button className={`${styles.link} ${styles.contact}`} onClick={this.handleContactToggle}>Contact</button></li>
           </nav>
           <Contact
-            active={contactActive}
+            active={site.showContact || false}
             handleToggle={this.handleContactToggle}
             handleScheduleToggle={this.handleScheduleToggle}
           />

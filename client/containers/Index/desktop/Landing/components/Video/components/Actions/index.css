@@ -102,6 +102,9 @@
   50% {
     transform: scale(1.035, 1.035);
   }
+  100%{
+    transform: scale(1, 1);
+  }
 }
 
 @keyframes videoCtaShadow {
@@ -111,20 +114,9 @@
   50% {
     opacity: 0.4;
   }
-}
-
-.profileImage {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: rem(480);
-  height: rem(400);
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: rem(45);
-  z-index: 2;
-  pointer-events: none;
+  100% {
+    opacity: 1;
+  }
 }
 
 .isPlaying {

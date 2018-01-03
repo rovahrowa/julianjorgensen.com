@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import { navActions } from 'actions';
+import Button from 'components/Button';
 import Logo from 'components/Logo';
 import SocialIcons from 'components/SocialIcons';
 import Faq from 'components/Faq';
@@ -8,8 +11,14 @@ import pixelFade from 'assets/images/pixels-fade.png';
 import styles from './index.css';
 
 @withRouter
+@connect()
 export default class Footer extends Component {
   state = {};
+
+  toggleContact = () => {
+    const { dispatch } = this.props;
+    dispatch(navActions.toggleContact());
+  }
 
   render() {
     const renderEstimateForm = () => {
@@ -29,13 +38,14 @@ export default class Footer extends Component {
           {renderFAQ()}
 
           <nav className={styles.nav}>
+            <Button className={styles.contact} onClick={this.toggleContact} small label="Contact me" />
             <SocialIcons large className={styles.icons} />
           </nav>
         </div>
         <div className={styles.pixelFade} style={{ backgroundImage: `url(${pixelFade})` }} />
 
         <div className={styles.credit}>
-          <div className={styles.slogan}>Impress your online audience</div>
+          <div className={styles.slogan}>Impress your users</div>
           <div className={styles.signature}>
             <Logo className={styles.logo} />
             <div>Julian Jorgensen</div>

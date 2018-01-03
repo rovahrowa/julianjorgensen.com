@@ -1,14 +1,13 @@
 import React from 'react';
-import { Parallax } from 'react-scroll-parallax';
+import VisibilitySensor from 'react-visibility-sensor';
 import UxBoxes from './components/UxBoxes';
 
-export default () => {
-  return (
-    <div id="ux">
-      <Parallax>
-        {({ isInView, progress }) => <UxBoxes progress={progress} isInView={isInView} /> }
-      </Parallax>
-    </div>
-  );
-};
-
+export default () => (
+  <div id="ux">
+    <VisibilitySensor partialVisibility>
+      {({ isVisible }) =>
+        <UxBoxes isVisible={isVisible} />
+      }
+    </VisibilitySensor>
+  </div>
+);

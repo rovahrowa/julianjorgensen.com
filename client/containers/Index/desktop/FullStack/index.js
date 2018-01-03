@@ -1,5 +1,5 @@
 import React from 'react';
-import { Parallax } from 'react-scroll-parallax';
+import { Parallax, Background } from 'react-parallax';
 import Button from 'components/Button';
 import codeBg from 'assets/images/code-bg.jpg';
 import ScaleIcon from 'assets/icons/FontAwesome/regular/expand.svg';
@@ -32,8 +32,13 @@ const items = [
 ];
 
 export default () => (
-  <div className={styles.wrapper} id="fullstack">
-    <div className={styles.container}>
+  <div id="fullstack">
+    <Parallax className={styles.wrapper} strength={300}>
+      <Background>
+        <div style={{ backgroundImage: `url(${codeBg})` }} className={styles.codeBg} />
+      </Background>
+
+      <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>Full-Stack Development</h2>
         {/* <Button
@@ -57,11 +62,6 @@ export default () => (
         }
       </div>
     </div>
-    <Parallax
-      y={['-100px', '100px']}
-      className={styles.parallax}
-    >
-      <img src={codeBg} className={styles.codeBg} alt="Code background" />
     </Parallax>
   </div>
 );

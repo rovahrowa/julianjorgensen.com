@@ -41,7 +41,7 @@ export default class Calendly extends Component {
       <div className={`${styles.container} ${this.state.showButton ? styles.showButton : ''}`}>
         {renderCta()}
         <Dialog
-          active={site.showScheduling}
+          active={site.showScheduling || false}
           onEscKeyDown={this.handleToggle}
           onOverlayClick={this.handleToggle}
           className={styles.modal}

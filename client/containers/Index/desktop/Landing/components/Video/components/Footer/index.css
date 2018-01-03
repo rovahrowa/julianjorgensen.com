@@ -5,7 +5,7 @@
     content: '';
     position: absolute;
     height: inherit;
-    top: 0;
+    top: rem(1);
     transform: translateY(-100%);
     border-bottom-width: rem(120);
     border-bottom-style: solid;
@@ -36,11 +36,11 @@
     &:before {
       left: 0;
       border-left-width: 0;
-      border-right-width: 50vw;
+      border-right-width: 60vw;
     }
     &:after {
       right: 0;
-      border-left-width: 50vw;
+      border-left-width: 60vw;
       border-right-width: rem(0);
     }
   }

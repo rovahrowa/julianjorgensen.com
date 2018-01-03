@@ -12,3 +12,13 @@ export const showNav = () => ({
 export const closeNav = () => ({
   type: 'CLOSE_NAV',
 });
+
+// action: toggle contact
+export const toggleContact = () => ({
+  type: 'TOGGLE_CONTACT',
+});
+
+// action: toggle scheduling
+export const toggleScheduling = () => ({
+  type: 'TOGGLE_SCHEDULING',
+});
