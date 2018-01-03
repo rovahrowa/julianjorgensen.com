@@ -1,4 +1,13 @@
 @import 'variables';
+:root {
+  --videoWidthMedium: rem(854);
+  --videoHeightMedium: rem(480);
+  --videoWidthLarge: rem(1067);
+  --videoHeightLarge: rem(600);
+  --videoWidthXLarge: rem(1245);
+  --videoHeightXLarge: rem(700);
+}
+
 .wrapper{
   position: relative;
   z-index: 3;
@@ -29,8 +38,7 @@
     background-color: gray(40%);
     border-radius: 50%;
     position: absolute;
-    top: calc(15% - rem(15));
-    right: calc(15% - rem(15));
+    transform: translate(50%, -50%);
     cursor: pointer;
     transition: all 0.2s;
     &:hover {
@@ -40,10 +48,29 @@
       width: rem(18);
       height: rem(18);
     }
+
+    top: calc(((100% - var(--videoHeightMedium)) / 2));
+    right: calc(((100% - var(--videoWidthMedium)) / 2));
+    @media (--large-and-up){
+      top: calc(((100% - var(--videoHeightLarge)) / 2));
+      right: calc(((100% - var(--videoWidthLarge)) / 2));
+    }
+    @media (--xlarge-and-up){
+      top: calc(((100% - var(--videoHeightXLarge)) / 2));
+      right: calc(((100% - var(--videoWidthXLarge)) / 2));
+    }
   }
   & span {
-    width: 70%;
-    height: 70%;
+    width: var(--videoWidthMedium);
+    height: var(--videoHeightMedium);
+    @media (--large-and-up){
+      width: var(--videoWidthLarge);
+      height: var(--videoHeightLarge);        
+    }
+    @media (--xlarge-and-up){
+      width: var(--videoWidthXLarge);
+      height: var(--videoHeightXLarge);
+    }
   }
   & .player {
     pointer-events: none;

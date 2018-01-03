@@ -23,7 +23,7 @@
   z-index: 9;
   cursor: pointer;
   @media (--xlarge-and-up) {
-    bottom: rem(100);
+    bottom: rem(120);
   }
   & .ctaWrapper {
     position: relative;

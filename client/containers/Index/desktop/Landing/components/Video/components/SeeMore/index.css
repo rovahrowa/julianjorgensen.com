@@ -1,9 +1,13 @@
+@import 'variables';
 .container {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: rem(150);
   z-index: 9;
+  @media (--xlarge-and-up){
+    bottom: rem(240);
+  }
 }
 
 .videoActions {
@@ -23,10 +27,17 @@
     &:hover {
       opacity: 1;
     }
+    @media (--xlarge-and-up){
+      width: rem(50);
+      height: rem(50);
+    }
     & svg {
       height: rem(30);
       & path {
         fill: white;
+      }
+      @media (--xlarge-and-up){
+        height: rem(50);
       }
     }
   }
@@ -53,12 +64,20 @@
   font-size: rem(14);
   font-weight: bold;
   user-select: none;
+  @media (--xlarge-and-up){
+    font-size: rem(18);
+  }
+
   & .arrow {
     margin-bottom: rem(-16);
     height: rem(30);
     width: rem(20);
     transform: scale(0.7);
     opacity: 0.2;
+    @media (--xlarge-and-up){
+      height: rem(35);
+      width: rem(28);
+    }
     animation: scrollArrow 1.2s infinite;
     &:nth-child(2) {
       animation-delay: 0;
