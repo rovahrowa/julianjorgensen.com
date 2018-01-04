@@ -2,7 +2,7 @@
 :global {
   & body {
     margin: 0;
-    background: gray(95%);
+    background-color: gray(98%);
     /* text-rendering: optimizeSpeed; */
     /* touch-action: manipulation; */
   }

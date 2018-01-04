@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+import ReactTooltip from 'react-tooltip';
 import Loadable from 'react-loadable';
 import { delay } from 'utils';
 import LoadingSpinner from 'components/LoadingSpinner';
@@ -26,6 +27,12 @@ export default class HomeLandingVideo extends Component {
     if (this.props.loadVideo !== newProps.loadVideo && newProps.loadVideo) {
       this.handleLoadVideo();
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      showVideoCta: true,
+    });
   }
 
   onVideoReady = (event) => {
@@ -109,13 +116,15 @@ export default class HomeLandingVideo extends Component {
           mute={this.state.videoMute}
           handleToggleSound={this.handleToggleSound}
           handleVideoClick={handleVideoClick}
+          showVideoCta={this.state.showVideoCta}
         />
         <div className={styles.videoWrapper} onClick={this.handleCloseVideo}>
           <Player styles={styles.player} onReady={this.onVideoReady} onPlay={this.onVideoPlay} />
-          <div className={styles.close} onClick={this.handleCloseVideo}><CloseIcon /></div>
+          <div className={styles.close} onClick={this.handleCloseVideo} data-tip="Close video" data-effect="solid"><CloseIcon /></div>
           <LoadingSpinner className={styles.loading} />
         </div>
         <Footer />
+        <ReactTooltip />
       </div>
     );
   }

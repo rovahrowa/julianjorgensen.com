@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+import ReactTooltip from 'react-tooltip';
 import GithubIcon from 'assets/icons/FontAwesome/brands/github.svg';
 import LinkedInIcon from 'assets/icons/FontAwesome/brands/linkedin-in.svg';
 import AngelListIcon from 'assets/icons/FontAwesome/brands/angellist.svg';
@@ -16,9 +17,10 @@ export default ({
 
   return (
     <div className={wrapperStyles}>
-      <a href="https://github.com/julianjorgensen" target="new" className={styles.icon}><GithubIcon /></a>
-      <a href="https://www.linkedin.com/in/julianjorgensen" target="new" className={styles.icon}><LinkedInIcon /></a>
-      <a href="https://angel.co/julianjorgensen" target="new" className={styles.icon}><AngelListIcon /></a>
+      <a href="https://github.com/julianjorgensen" target="new" className={styles.icon} data-tip="See my Github" data-effect="solid"><GithubIcon /></a>
+      <a href="https://www.linkedin.com/in/julianjorgensen" target="new" className={styles.icon} data-tip="See my LinkedIn" data-effect="solid"><LinkedInIcon /></a>
+      <a href="https://angel.co/julianjorgensen" target="new" className={styles.icon} data-tip="See my Angel profile" data-effect="solid"><AngelListIcon /></a>
+      <ReactTooltip />
     </div>
   );
 };

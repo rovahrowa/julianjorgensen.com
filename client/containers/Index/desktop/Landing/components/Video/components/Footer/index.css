@@ -27,11 +27,11 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: white;
+    background-color: gray(98%);
     &:before,
     &:after {
       @apply --footer-triangle;
-      border-bottom-color: white;
+      border-bottom-color: gray(98%);
     }
     &:before {
       left: 0;
@@ -47,7 +47,7 @@
   & .topBorder {
     bottom: rem(50);
     height: 4vh;
-    background-color: gray(90%);
+    background: gray(98%);
     &:before,
     &:after {
       border-bottom-color: gray(90%);
@@ -60,7 +60,7 @@
   & .bottomBorder {
     height: 8vh;
     bottom: 0;
-    background: linear-gradient(to bottom, white, gray(95%));
+    background: gray(98%);
     @media (--xlarge-and-up) {
       height: 12vh;
     }

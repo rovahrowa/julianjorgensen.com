@@ -39,6 +39,7 @@
     animation: videoCta 2s infinite;
     &:hover{
       &,
+      & .ctaButton.show,
       & .circle:after{
         animation: none;
       }
@@ -47,6 +48,25 @@
         opacity: 0.4;
       }
     }
+    & .ctaButton{
+      position: absolute;
+      margin-bottom: rem(40);
+      color: #3E88D4;
+      padding: rem(4);
+      border-radius: rem(5);
+      opacity: 0;
+      top: rem(-65);
+      width: rem(120);
+      text-align: center;
+      text-transform: uppercase;
+      font-size: rem(14);
+      font-weight: 500;
+      &.show{
+        opacity: 1;
+        animation: videoButtonCta 2s infinite;
+        cursor: pointer;
+      }
+    }    
     & .circle {
       position: absolute;
       top: -15px;
@@ -113,6 +133,18 @@
   }
   50% {
     opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes videoButtonCta {
+  0%{
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
   100% {
     opacity: 1;

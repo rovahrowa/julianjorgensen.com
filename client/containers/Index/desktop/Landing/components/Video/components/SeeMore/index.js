@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashLink } from 'lib/react-router-hash-link';
+import ReactTooltip from 'react-tooltip';
 import AngleDownIcon from 'assets/icons/FontAwesome/regular/angle-down.svg';
 import ReplayIcon from 'assets/icons/FontAwesome/regular/redo.svg';
 import MuteIcon from 'assets/icons/FontAwesome/regular/volume-mute.svg';
@@ -13,8 +14,8 @@ export default ({
     if (hasVideoPlayed) {
       return (
         <div className={styles.videoActions}>
-          <div className={styles.replay} onClick={handleReplay}><ReplayIcon /></div>
-          <div className={styles.mute} onClick={handleToggleSound}>{videoMute ? <MuteIcon /> : <UnMuteIcon />}</div>
+          <div className={styles.replay} onClick={handleReplay} data-tip="Replay video" data-effect="solid"><ReplayIcon /></div>
+          <div className={styles.mute} onClick={handleToggleSound} data-tip={videoMute ? "Unmute video" : "Mute video"} data-effect="solid">{videoMute ? <MuteIcon /> : <UnMuteIcon />}</div>
         </div>
       );
     }
@@ -23,6 +24,7 @@ export default ({
 
   return (
     <div className={styles.container}>
+      <ReactTooltip />
       {videoActions()}
       <HashLink to="#details">
         <div className={styles.seeMore}>

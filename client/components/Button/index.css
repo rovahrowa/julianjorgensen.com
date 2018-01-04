@@ -41,11 +41,11 @@
   /* Button: Tiny */
   &.tiny {
     border-radius: rem(10);
-    padding: rem(5) rem(5);
+    padding: rem(5) rem(7);
     height: auto;
     font-size: rem(14);
     line-height: rem(14);
-    text-transform: capitalize;
+    text-transform: none;
   }
   /* Button: Small */
   &.small {
