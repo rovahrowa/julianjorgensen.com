@@ -5,10 +5,10 @@ import Home from './desktop';
 import HomeMobile from './mobile';
 import styles from './index.css';
 
-export default () => (
+export default ({ content }) => (
   <div className={styles.wrapper}>
-    <MobileTablet component={<HomeMobile />} />
-    <Desktop component={<Home />} />
+    <MobileTablet component={<HomeMobile content={content} />} />
+    <Desktop component={<Home content={content} />} />
     <Footer estimate faq />
   </div>
 );

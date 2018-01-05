@@ -55,6 +55,7 @@ export default class DesktopNav extends React.Component {
       case 'invoice':
       case 'estimate':
       case 'schedule':
+      case 'p':
         theme = 'dark';
         break;
       default:

@@ -92,8 +92,8 @@
       }
     }
     & svg{
-      width: rem(70);
-      height: rem(30);
+      height: rem(20);
+      width: auto;
       margin-right: rem(10);
       filter: grayscale(100%);
       transition: all 0.2s;
@@ -102,12 +102,18 @@
         width: rem(100);
         height: rem(43);
       }
-
       &:last-child{
         margin-right: 0;
       }
       &:hover{
         filter: grayscale(0%);
+      }
+      &.fillWhite:not(:hover){
+        & path,
+        & polygon,
+        & rect{
+          fill: white;
+        }
       }
     }
   }

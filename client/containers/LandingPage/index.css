@@ -1,0 +1,16 @@
+@import "globals.css";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow-x: hidden;
+  margin-top: rem(100);
+}
+
+.container {
+  composes: globalContainer white withShadow withPaddings;
+  margin: rem(100) 0;
+}

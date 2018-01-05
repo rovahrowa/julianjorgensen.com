@@ -13,7 +13,7 @@ import FrontEnd from 'containers/FrontEnd';
 import Ux from 'containers/Ux';
 import Automation from 'containers/Automation';
 import Portfolio from 'containers/Portfolio';
-import Proposal from 'containers/Proposal';
+import LandingPage from 'containers/LandingPage';
 import { navActions } from 'store/actions';
 
 import styles from './index.css';
@@ -92,8 +92,7 @@ export default class Routes extends Component {
         <Route path="/schedule" component={Schedule} />
         <Route path="/invoice/:id/:token" component={Invoice} />
         <Route path="/estimate/:id/:token" component={Estimate} />
-        <Route path="/p/:prospectName/:proposalId" component={Proposal} />
-        <Route path="/p/:prospectName/:proposalId?env=:environment" component={Proposal} />
+        <Route path="/l/:landingPageUrl" component={LandingPage} />
       </AnimatedSwitch>
     );
   }

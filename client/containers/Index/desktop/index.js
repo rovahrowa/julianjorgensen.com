@@ -8,9 +8,9 @@ import Ux from './Ux';
 import Automation from './Automation';
 import styles from './index.css';
 
-export default () => (
+export default ({ content }) => (
   <div className={styles.wrapper}>
-    <HomeLanding />
+    <HomeLanding content={content} />
     <div id="details" />
     <Quote
       body="I would recommend him to any team looking for a quality front-end developer."

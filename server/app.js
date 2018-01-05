@@ -36,9 +36,8 @@ app.use(cors({
 // Stripe routes
 app.get('/stripe/charge', stripe);
 
-// Proposal routes
-app.get('/get-proposal/:id', contentful.getProposal);
-app.get('/get-proposal-preview/:id', contentful.getProposalPreview);
+// Landingpage routes
+app.get('/get-landingpage/:id', contentful.getLandingpage);
 
 // Quickbooks routes
 app.get('/get-billing-item/:type/:id/', qbo.itemDetails);

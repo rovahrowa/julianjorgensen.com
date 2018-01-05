@@ -42,25 +42,31 @@ export default class HomeLanding extends Component {
   }
 
   render() {
-    // const { scrollPosition } = this.props;
+    const { prospectLogo, headline, subheadline } = this.props.content || {};
     const { loadVideo } = this.state;
     const wrapperStyles = cn(styles.wrapper, {
       [styles.isPlayingVideo]: loadVideo,
     });
-    
+
+    const renderProspectLogo = () => {
+      if (!prospectLogo) return false;
+      return <div className={styles.prospectLogo} style={{ backgroundImage: `url(${prospectLogo.fields.file.url})` }} />;
+    };
+
     return (
       <div>
         <ReactCursorPosition onPositionChanged={this.handleCursorPositionChange}>
-          <Parallax strength={300} className={wrapperStyles} bgStyle={{width: '100%'}}>
+          <Parallax strength={300} className={wrapperStyles} bgStyle={{ width: '100%' }}>
             <Background>
               <div className={wrapperStyles}>
                 <div className={styles.content}>
                   <div className={styles.landingContent}>
                     <div className={styles.hero}>
-                      <h1 className={styles.header}>Impress your users</h1>
-                      <p className={styles.subheader}>I develop impressive web apps, ecommerce, and branding sites.</p>
+                      <h1 className={styles.header}>{headline || 'Impress your users'}</h1>
+                      <p className={styles.subheader}>{subheadline || 'I develop impressive web apps, ecommerce, and branding sites.'}</p>
                     </div>
-                    <Categories playingVideo={loadVideo} />
+                    <Categories playingVideo={loadVideo} content={this.props.content} />
+                    {renderProspectLogo()}
                   </div>
                 </div>
 
