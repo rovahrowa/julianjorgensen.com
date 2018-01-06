@@ -9,6 +9,8 @@ import Actions from './components/Actions';
 import Footer from './components/Footer';
 import styles from './index.css';
 
+const TIME_WHEN_VIDEO_ENDS = 278;
+
 const Player = Loadable({
   loader: () => delay(2000).then(() => import('./components/Player')),
   loading: LoadingSpinner,
@@ -49,12 +51,10 @@ export default class HomeLandingVideo extends Component {
     if (this.video) {
       this.video.seekTo(0);
       this.video.playVideo();
-      const videoAutoCloseTimer = setInterval(() => {
-        let currentVideoTime = this.video.getCurrentTime();
-        console.log(currentVideoTime);
-        if (currentVideoTime > 278) {
-          this.props.onVideoEnd();
-          this.props.onVideoHasPlayed();
+      setInterval(() => {
+        const currentVideoTime = this.video.getCurrentTime();
+        if (currentVideoTime < TIME_WHEN_VIDEO_ENDS) {
+          this.handleCloseVideo();
         }
       }, 1000);
     }
@@ -88,8 +88,8 @@ export default class HomeLandingVideo extends Component {
     this.props.onVideoEnd();
     this.props.onVideoHasPlayed();
 
-    const percentagePlayed = (this.video.getCurrentTime() / this.video.getDuration()) * 100;
-    if (percentagePlayed < 90) {
+    const currentVideoTime = this.video.getCurrentTime();
+    if (currentVideoTime < TIME_WHEN_VIDEO_ENDS) {
       this.video.stopVideo();
     }
 
