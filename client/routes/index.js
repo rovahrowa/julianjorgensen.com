@@ -56,17 +56,25 @@ const transition = {
 @withRouter
 @connect()
 export default class Routes extends Component {
+  componentDidMount() {
+    this.updateAnalytics();
+  }
+
   onRouteChanged() {
     // log page view to Google Analytics
-    const { pathname } = this.props.location;
-    ReactGA.set({ page: pathname });
-    ReactGA.pageview(pathname);
+    this.updateAnalytics();
 
     // scroll to top when changing page
     window.scrollTo(0, 0);
 
     // close mobile nav
     this.props.dispatch(navActions.closeNav());
+  }
+
+  updateAnalytics() {
+    const { pathname } = this.props.location;
+    ReactGA.set({ page: pathname });
+    ReactGA.pageview(pathname);
   }
 
   render() {

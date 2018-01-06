@@ -36,7 +36,7 @@ export default class HomeLandingMobileVideo extends Component {
         <div className={ctaStyles}>
           {videoIsLoading ? <LoadingSpinner /> : <PlayIcon />}
           <YouTube
-            videoId="ZcY45aRs5o4"
+            videoId="r4r7Cauj-aI"
             className={styles.player}
             opts={{
               playerVars: {
