@@ -49,6 +49,14 @@ export default class HomeLandingVideo extends Component {
     if (this.video) {
       this.video.seekTo(0);
       this.video.playVideo();
+      const videoAutoCloseTimer = setInterval(() => {
+        let currentVideoTime = this.video.getCurrentTime();
+        console.log(currentVideoTime);
+        if (currentVideoTime > 278) {
+          this.props.onVideoEnd();
+          this.props.onVideoHasPlayed();
+        }
+      }, 1000);
     }
   }
 
