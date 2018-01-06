@@ -101,9 +101,9 @@ const BASE_CONFIG = {
                 quality: 65,
               },
               // Specifying webp here will create a WEBP version of your JPG/PNG images
-              webp: {
-                quality: 75,
-              },
+              // webp: {
+              //   quality: 75,
+              // },
             },
           },
         ],
