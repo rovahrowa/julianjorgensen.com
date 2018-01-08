@@ -6619,6 +6619,13 @@ react-cursor-position@^2.2.1:
     object.omit "^2.0.1"
     prop-types "^15.5.10"
 
+react-device-detect@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-0.1.0.tgz#91f249fb1034a3fdab86666f3babc73f8288c438"
+  dependencies:
+    react "^16.0.0"
+    react-dom "^16.0.0"
+
 react-document-meta@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/react-document-meta/-/react-document-meta-2.1.2.tgz#891ccca08a416c3eefe015294cef56dad0f19d3f"
@@ -6634,6 +6641,15 @@ react-dom@^15.4.2, react-dom@^15.6.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "^15.5.10"
+
+react-dom@^16.0.0:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 react-ga@^2.1.2:
   version "2.2.0"
@@ -6859,6 +6875,15 @@ react@^15.4.2, react@^15.6.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "^15.5.10"
+
+react@^16.0.0:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 read-all-stream@^3.0.0:
   version "3.1.0"

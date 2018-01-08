@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+import { isIOS } from 'react-device-detect';
 import PlayIcon from 'assets/icons/FontAwesome/solid/play-circle.svg';
 import LoadingSpinner from 'components/LoadingSpinner';
 import YouTube from 'react-youtube';
 import styles from './index.css';
 
 export default class HomeLandingMobileVideo extends Component {
+  state = {};
+
   onVideoReady = (event) => {
     this.video = event.target;
+  }
+
+  onVideoPlay = () => {
+    this.setState({
+      isPlaying: true,
+    });
   }
 
   onVideoStateChange = (event) => {
@@ -31,8 +40,14 @@ export default class HomeLandingMobileVideo extends Component {
       [styles.white]: activeSlide === 1 || activeSlide === 2 || activeSlide === 3,
     });
 
+    const wrapperStyles = cn(styles.wrapper, {
+      [styles.isNotIOS]: !isIOS,
+      [styles.isPlaying]: this.state.isPlaying,
+    });
+
+
     return (
-      <div className={styles.wrapper}>
+      <div className={wrapperStyles}>
         <div className={ctaStyles}>
           {videoIsLoading ? <LoadingSpinner /> : <PlayIcon />}
           <YouTube
@@ -47,6 +62,7 @@ export default class HomeLandingMobileVideo extends Component {
             }}
             onReady={this.onVideoReady}
             onStateChange={this.onVideoStateChange}
+            onPlay={this.onVideoPlay}
           />
         </div>
       </div>

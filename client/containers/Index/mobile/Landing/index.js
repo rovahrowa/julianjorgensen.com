@@ -57,7 +57,7 @@ export default class HomeLandingMobile extends Component {
       videoIsLoading: true,
     });
   }
-
+  
   handleSlideChange = (prevSlide, nextSlide) => {
     this.setState({
       activeSlide: nextSlide,

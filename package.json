@@ -72,6 +72,7 @@
     "react-addons-test-utils": "^15.4.2",
     "react-collapse": "^4.0.2",
     "react-cursor-position": "^2.2.1",
+    "react-device-detect": "^0.1.0",
     "react-document-meta": "^2.1.1",
     "react-dom": "^15.4.2",
     "react-ga": "^2.1.2",
