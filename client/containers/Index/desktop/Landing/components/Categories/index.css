@@ -10,6 +10,12 @@
   width: rem(1000);
   max-width: calc(100% - 40px);
   transition: all 0.3s;
+  @media (--extra-short-screens) {
+    display: none;
+  }
+  @media (--short-screens) {
+    margin-top: rem(80);
+  }
   @media (--large-and-up) {
     width: rem(1300);
   }
