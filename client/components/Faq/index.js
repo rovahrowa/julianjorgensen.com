@@ -28,7 +28,7 @@ export default () => (
       </div>
       <div>
         <div>Do you also subcontract?</div>
-        <div>I only subcontract for agencies in North America and prefer those that focus on management. This allows me to fully focus on the technical side.</div>
+        <div>I subcontract for agencies in Europe and North America. I prefer those that focus on management and/or design. This allows me to fully focus on the technical side.</div>
       </div>
       <div>
         <div>What's your availability?</div>

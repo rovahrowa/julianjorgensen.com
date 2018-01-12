@@ -1,7 +1,7 @@
 @import 'globals';
 
 .wrapper{
-  margin: rem(150) auto 0;
+  margin: rem(120) auto 0;
   z-index: 2;
   pointer-events: none;
   left: 50%;
@@ -21,6 +21,7 @@
   }
   @media (--xlarge-and-up) {
     width: rem(1600);
+    margin: rem(150) auto 0;
   }
 
   &.isPlayingVideo {

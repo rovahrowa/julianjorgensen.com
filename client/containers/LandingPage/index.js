@@ -30,7 +30,7 @@ export default class LandingPage extends Component {
 
   render() {
     const { landingPage } = this.state;
-    if (!landingPage) return <Loader />;
+    if (!landingPage) return <Loader className={styles.loader} />;
 
     // const renderTechnologies = () => {
     //   if (!landingPage.technologies) return false;

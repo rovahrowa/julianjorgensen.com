@@ -37,6 +37,10 @@
   flex-direction: column;
   justify-content: space-between;
   padding-bottom: rem(100);
+  margin-top: rem(-60);
+  @media (--xlarge-and-up) {
+    margin-top: rem(-200);
+  }
 }
 
 .hero {
@@ -47,6 +51,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
   & .header {
     font-size: rem(50);
     background: linear-gradient(130deg, #6446C2, #3E88D4);

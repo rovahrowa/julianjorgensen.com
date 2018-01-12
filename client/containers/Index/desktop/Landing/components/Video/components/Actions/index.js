@@ -17,9 +17,9 @@ export default ({ isPlaying, hasVideoPlayed, mute, handleToggleSound, handleVide
 
     return (
       <div className={wrapperStyles}>
+        <button onClick={handleVideoClick} className={ctaButtonStyles}>Watch video</button>
         <div className={styles.watchVideo}>
           <div className={styles.ctaWrapper} onClick={handleVideoClick}>
-            <button onClick={handleVideoClick} className={ctaButtonStyles}>Watch video</button>
             <PlayIcon />
             <div className={styles.circle}></div>
           </div>

@@ -30,6 +30,9 @@
     letter-spacing: rem(1) !important;
     color: var(--primaryColor) !important;
   }
+  &:required{
+    box-shadow: none;
+  }
 }
 
 .hint{
